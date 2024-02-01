@@ -1,16 +1,15 @@
-import pytest
-import requests
-from datetime import datetime
-
-currentFullTime = datetime.now() # whole date
-currentDateStr = datetime.strftime(currentFullTime,"%Y-%m-%d") # date to string format
-print("currentDateStr::",currentDateStr)
-
-
-class TestAccount:
+class TestAccount():
+    import pytest
     @pytest.fixture
     def url(self):
+
+        import requests
+        from datetime import datetime
         global response1, response2, response5, response4
+        global currentDateStr
+        currentFullTime = datetime.now()  # whole date
+        currentDateStr = datetime.strftime(currentFullTime, "%Y-%m-%d")  # date to string format
+        # print("currentDateStr::", currentDateStr)
 
         response1 = requests.get(
             "https://lendittfinserve.com/admin-prod/admin/tally/getAllDisbursementDetails",params={"startDate":f"{currentDateStr}T10:00:00.000Z","endDate":f"{currentDateStr}T10:00:00.000Z"})  # Current date
@@ -240,8 +239,6 @@ class TestAccount:
         print("totalAmountCreditFloat::", totalAmountCreditFloat)
         print("cTBTotalCreditFloat::", cTBTotalCreditFloat)
         print("disbAmtTOBorrFloat::", disbAmtTOBorrFloat)
-
-
 
 
         try:

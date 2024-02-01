@@ -15,7 +15,7 @@ print("currentDateStr::",currentDateStr)
 
 
 
-previousDate = currentDateF - timedelta(days=3)
+previousDate = currentDateF - timedelta(days=4)
 previousDateStr = datetime.strftime(previousDate,"%Y-%m-%d")
 
 
@@ -41,8 +41,6 @@ class TestRepayment:
             else:
                 pass
 
-
-
         # print("unique lids::", lIDs)
         print('count of unique lids::', len(lIDs))
 
@@ -52,7 +50,7 @@ class TestRepayment:
         for i in lIDs:
 
             response = requests.get(
-                "https://lendittfinserve.com/prod/admin/loan/getEMIRepaymentDetails", params={"loanId": i},
+                "https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
                 verify=False)  # current date
 
             # print('status code of get Repayment::', response.status_code)
@@ -66,7 +64,7 @@ class TestRepayment:
 
             '''getting EMIData data of Repayment '''
             emiData = response.json()["data"]["EMIData"]
-            # print(emiData)
+            print(emiData)
 
             # EMI Data
             paymentType = []
@@ -80,7 +78,7 @@ class TestRepayment:
                 # if "Paid" in eD:
                 #     status.append(eD['Paid'])
 
-                if ((eD["Payment type"] == "FULLPAY") and (eD["Status"] == "Unpaid")) or ((eD["Payment type"] == "EMIPAY") and (eD["Status"] == "Unpaid")):
+                if ((eD["paymentType"] == "FULLPAY") and (eD["status"] == "UNPAID")) or ((eD["paymentType"] == "EMIPAY") and (eD["status"] == "UNPAID")):
                     unpaid.append(i)
 
                 else:
@@ -89,18 +87,18 @@ class TestRepayment:
 
 
             '''getting transactionData of Repayment'''
-            tranData = response.json()["data"]["transactionData"]
+            # tranData = response.json()["data"]["transactionData"]
             # print(tranData)
 
             # Transaction data
-            tPaidAmount = []
-            tPrincipalAmount = []
-            tPrincipalDifference = []
-            tInterestAmount = []
-            tInterestDifference = []
-            tPenaltyAmount = []
-
-            tPenaltyDifference = []
+            # tPaidAmount = []
+            # tPrincipalAmount = []
+            # tPrincipalDifference = []
+            # tInterestAmount = []
+            # tInterestDifference = []
+            # tPenaltyAmount = []
+            #
+            # tPenaltyDifference = []
 
 
             # for td in tranData:
@@ -122,10 +120,5 @@ class TestRepayment:
             print("unpaid found")
 
         assert len(unpaid) == 0
-
-
-
-
-
 
 

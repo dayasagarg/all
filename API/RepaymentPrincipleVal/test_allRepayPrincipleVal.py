@@ -7,10 +7,10 @@ class TestRepaymentPrinciple:
     def test_getRepaymentPrinciple(self):
         global totalUnpaidAmountForm, sumOfPrincipalAmountEList, principalAmountE, lid, i, eD, notMatchedPA, aa, bb
         responseAllLoanID = requests.get(
-            "https://lendittfinserve.com/prod/admin/transaction/allRepaidLoans?start_date=2023-10-21T10:00:00.000Z&end_date=2023-10-21T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true",
+            "https://lendittfinserve.com/prod/admin/transaction/allRepaidLoans?start_date=2023-12-30T10:00:00.000Z&end_date=2023-12-30T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true",
             verify=False)  # current date
 
-        '''getting loan ids from Repayment '''
+        '''getting loan ids from Repayment'''
 
         loanIDs = responseAllLoanID.json()["data"]["rows"]
 

@@ -15,7 +15,7 @@ print("currentDateStr::",currentDateStr)
 
 
 
-previousDate = currentDateF - timedelta(days=3)
+previousDate = currentDateF - timedelta(days=4)
 previousDateStr = datetime.strftime(previousDate,"%Y-%m-%d")
 
 

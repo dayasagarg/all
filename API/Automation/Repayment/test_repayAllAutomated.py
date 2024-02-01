@@ -44,7 +44,7 @@ class TestRepayment:
         for i in lIDs:
 
             response = requests.get(
-                "https://lendittfinserve.com/admin-prod/admin/loan/getEMIRepaymentDetails", params={"loanId": i},
+                "https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
                 verify=False)  # current date
 
             # print('status code of get Repayment::', response.status_code)

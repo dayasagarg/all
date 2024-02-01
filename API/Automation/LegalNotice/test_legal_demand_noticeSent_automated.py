@@ -2,27 +2,27 @@ import requests
 import pytest
 from datetime import datetime, timedelta
 
+
+# uniqLIdListDemand = None
+
 currentFullTime = datetime.now()  # whole date
-end_2 = datetime.strftime(currentFullTime,"%Y-%m-%d") # date to string format
-end_2_F = datetime.strptime(end_2,"%Y-%m-%d") # string to date format
+end_2 = datetime.strftime(currentFullTime, "%Y-%m-%d")  # date to string format
+end_2_F = datetime.strptime(end_2, "%Y-%m-%d")  # string to date format
 
 start_2 = end_2_F - timedelta(days=15)
-start_2_DateStr = datetime.strftime(start_2,"%Y-%m-%d")
+start_2_DateStr = datetime.strftime(start_2, "%Y-%m-%d")
 
 end = end_2_F - timedelta(days=7)
-endDateStr = datetime.strftime(end,"%Y-%m-%d")
+endDateStr = datetime.strftime(end, "%Y-%m-%d")
 
 start = end - timedelta(days=7)
-startDateStr = datetime.strftime(start,"%Y-%m-%d")
-
-
+startDateStr = datetime.strftime(start, "%Y-%m-%d")
 
 start_date = start.strftime("%Y-%m-%d")
 end_date = end.strftime("%Y-%m-%d")
 
 start_date_2 = start_2.strftime("%Y-%m-%d")
 end_date_2 = end_2_F.strftime("%Y-%m-%d")
-
 
 print("start_date::", start_date)
 print("end_date::", end_date)
@@ -31,10 +31,10 @@ print("start_date_2::", start_date_2)
 print("end_date_2::", end_date_2)
 
 
-
 # note: execute at 12 pm every time because of crone set time.
 
 class TestLegal:
+
     @pytest.fixture
     def url(self):
         global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3
@@ -48,9 +48,8 @@ class TestLegal:
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 2, "adminId": 134,
                                            "download": "true"})  # current date
 
-
     def test_DemandLetter(self, url):
-        global loanID, uniqLIdListDemand
+        # global loanID, uniqLIdListDemand
         countOfLegalDemandLetter = legalDemandLetter.json()["data"]["count"]
         print("countOfLegalDemandLetter::", countOfLegalDemandLetter)
 
@@ -93,7 +92,11 @@ class TestLegal:
         daysPostLetterSent = []
 
         for ld in demandAllData:
-            if ld["Emi 3 status"] == "UNPAID":
+            if (ld["Emi 4 status"] == "UNPAID"):
+                if ld["Loan ID"]:
+                    loanID.append(ld["Loan ID"])
+
+            if (ld["Emi 3 status"] == "UNPAID"):
                 if ld["Loan ID"]:
                     loanID.append(ld["Loan ID"])
 
@@ -133,9 +136,7 @@ class TestLegal:
                 if ld["Email date"]:
                     emailDate.append(ld["Email date"])
 
-
-
-            if ld["Emi 2 status"] == "UNPAID" and (ld["Emi 3 status"] == "UNPAID" or ld["Emi 3 status"] == "-"):
+            if (ld["Emi 2 status"] == "UNPAID") and (ld["Emi 3 status"] == "-"):
                 if ld["Loan ID"]:
                     loanID.append(ld["Loan ID"])
 
@@ -175,11 +176,7 @@ class TestLegal:
                 if ld["Email date"]:
                     emailDate.append(ld["Email date"])
 
-
-
-
-            if (ld["Emi 1 status"] == "UNPAID" and (ld["Emi 2 status"] == "UNPAID" or ld["Emi 2 status"] == "-") and (
-                    ld["Emi 3 status"] == "UNPAID" or ld["Emi 3 status"] == "-")):
+            if ((ld["Emi 1 status"] == "UNPAID") and (ld["Emi 2 status"] == "-") and (ld["Emi 3 status"] == "-")):
                 if ld["Loan ID"]:
                     loanID.append(ld["Loan ID"])
 
@@ -227,13 +224,14 @@ class TestLegal:
         # print(dueDate)
 
         uLIdSet = set(loanID)
+        global uniqLIdListDemand
         uniqLIdListDemand = list(uLIdSet)
         print("count of demand unique loan ids list ::", len(uniqLIdListDemand))
         print("demand loan ids::", loanID)
         print("demand uniqLIdList::", uniqLIdListDemand)
 
     def test_NoticeSent(self, url):
-        global lIdNS, missedDemandWithNotice, matchedDemandWithNotice
+        global lIdNS, missedDemandWithNotice, matchedDemandWithNotice, noticeNotSent
         countOfNoticeSent = legalNotice.json()["data"]["count"]
         print("countOfNoticeSent::", countOfNoticeSent)
 
@@ -246,9 +244,17 @@ class TestLegal:
         adPlDateNS = []
         daysPostLetterSentNS = []
 
+        noticeNotSent = []
+        noticeOpenStatus = []
         for ns in noticeAllData:
             if ns["Loan ID"]:
                 lIdNS.append(ns["Loan ID"])
+
+            if ns["Sent on email"] == "Not sent":
+                noticeNotSent.append(ns["Loan ID"])
+
+            if ns["Sent on email"] == "Opened":
+                noticeOpenStatus.append(ns["Loan ID"])
 
             if ns["Legal created date"]:
                 legalCrDateNS.append(ns["Legal created date"])
@@ -263,6 +269,8 @@ class TestLegal:
                 daysPostLetterSentNS.append(ns["Days post letter sent"])
 
         print("lIdNS::", lIdNS)
+        print("noticeNotSent::", noticeNotSent)
+        print("noticeOpenStatus::", noticeOpenStatus)
         # print(legalCrDateNS)
         # print(typeNS)
         # print(adPlDateNS)
@@ -277,8 +285,8 @@ class TestLegal:
             else:
                 duplNotice.append(d)
 
-        print("duplNotice::",duplNotice)
-        print("count_of_duplNotice::",len(duplNotice))
+        print("duplNotice::", duplNotice)
+        print("count_of_duplNotice::", len(duplNotice))
 
         if len(duplNotice) == 0:
             print("No duplicate found in notice sent")
@@ -287,11 +295,9 @@ class TestLegal:
 
         assert len(duplNotice) == 0
 
-
-
         matchedDemandWithNotice = []
         missedDemandWithNotice = []
-
+        global uniqLIdListDemand
         # checking demand against notice sent
         for unl in uniqLIdListDemand:
             if unl in lIdNS:
@@ -302,16 +308,21 @@ class TestLegal:
                 missedDemandWithNotice.append(unl)
                 # print("loanID not in lIdNS::", unl)
 
-        print("matchedDemandWithNotice::",matchedDemandWithNotice)
-        print("missedDemandWithNotice::",missedDemandWithNotice)
-
-
+        print("matchedDemandWithNotice::", matchedDemandWithNotice)
+        print("missedDemandWithNotice::", missedDemandWithNotice)
 
         if len(missedDemandWithNotice) == 0:
             print("demand letter matched with notice menu in legal section")
         else:
             print("Error:: demand letter not matched with notice menu in legal section")
         assert len(missedDemandWithNotice) == 0
+
+    def test_notice_not_sent(self):
+        if len(noticeNotSent) > 0:
+            print(f"Notice not sent found ::{noticeNotSent}")
+            assert False
+        else:
+            print("All demand gone/notice sent")
 
 
 

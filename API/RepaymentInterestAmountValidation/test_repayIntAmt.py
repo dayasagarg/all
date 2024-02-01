@@ -7,7 +7,7 @@ class TestRepaymentInterest:
     def test_getRepaymentIntAmt(self):
         # global
         responseAllLoanID = requests.get(
-            "https://lendittfinserve.com/prod/admin/transaction/allRepaidLoans?start_date=2023-10-19T10:00:00.000Z&end_date=2023-10-19T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true",
+            "https://lendittfinserve.com/prod/admin/transaction/allRepaidLoans?start_date=2023-12-30T10:00:00.000Z&end_date=2023-12-30T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true",
             verify=False)  # current date
 
         '''getting loan ids from Repayment '''

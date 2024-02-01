@@ -3,9 +3,8 @@ import json
 import math
 # sample LIDs:430144,572277,532329
 
-lIDs = []
-f_lid = []
 
+f_lid = []
 
 
 class TestRepayment:
@@ -18,7 +17,7 @@ class TestRepayment:
         '''getting loan ids from Repayment'''
         loanIDs = responseAllLoanID.json()["data"]["rows"]
         # print(loanIDs)
-
+        lIDs = []
         for lid in loanIDs:
 
             if "Loan id":
@@ -35,6 +34,7 @@ class TestRepayment:
 
         missMatchOfPaid = []
         missMatchOfUnpaid = []
+
         # Upcoming EMI
         for i in lIDs:
 

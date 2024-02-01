@@ -3,24 +3,24 @@ import pytest
 
 
 # note: execute at 12 pm every time because of crone set time.
-
+uniqLIdList = None
 class TestLegal:
     @pytest.fixture
     def url(self):
         global legalDemandLetter, legalAutoDebit, legalNotice, todayAutoDebitFailed,todayAutoDebitFailed2
         legalDemandLetter = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",
-                                         params={"page": 1, "startDate": "2023-10-16T10:00:00.000Z",
-                                                 "endDate": "2023-10-16T10:00:00.000Z", "type": 1, "adminId": 134,
+                                         params={"page": 1, "startDate": "2024-01-01T10:00:00.000Z",
+                                                 "endDate": "2024-01-02T10:00:00.000Z", "type": 1, "adminId": 134,
                                                  "download": "true"})  # date = 5 days before todayAutoDebitFailed
 
         todayAutoDebitFailed = requests.get("https://lendittfinserve.com/prod/admin/dashboard/todayAutoDebitData",
-                                            params={"pagesize": 10, "start_date": "2023-10-21T10:00:00.000Z",
-                                                    "end_date": "2023-10-21T10:00:00.000Z", "status": 4,
-                                                    "page": 1})  # current day after demand letter
+                                            params={"pagesize": 10, "start_date": "2024-01-02T10:00:00.000Z",
+                                                    "end_date": "2024-01-08T10:00:00.000Z", "status": 4,
+                                                    "page": 1})  # current day
 
         todayAutoDebitFailed2 = requests.get("https://lendittfinserve.com/prod/admin/dashboard/todayAutoDebitData",
-                                             params={"pagesize": 10, "start_date": "2023-10-20T10:00:00.000Z",
-                                                     "end_date": "2023-10-20T10:00:00.000Z", "status": 4,
+                                             params={"pagesize": 10, "start_date": "2024-01-06T10:00:00.000Z",
+                                                     "end_date": "2024-01-07T10:00:00.000Z", "status": 4,
                                                      "page": 1})  # 1 day before todayAutoDebitFailed
 
     def test_DemandLetter(self, url):
@@ -67,7 +67,15 @@ class TestLegal:
         daysPostLetterSent = []
 
         for ld in demandAllData:
-            if ld["Emi 3 status"] == "UNPAID":
+            if (ld["Emi 4 status"] == "UNPAID" or ld["Emi 4 status"] == "PENDING"):
+                if ld["Loan ID"]:
+                    loanID.append(ld["Loan ID"])
+
+            if (ld["Emi 3 status"] == "UNPAID" or ld["Emi 3 status"] == "PENDING") and (ld["Emi 4 status"] == "-"):
+                if ld["Loan ID"]:
+                    loanID.append(ld["Loan ID"])
+
+            if (ld["Emi 3 status"] == "UNPAID" or ld["Emi 3 status"] == "PENDING"):
                 if ld["Loan ID"]:
                     loanID.append(ld["Loan ID"])
 
@@ -107,7 +115,7 @@ class TestLegal:
                 if ld["Email date"]:
                     emailDate.append(ld["Email date"])
 
-            if ld["Emi 2 status"] == "UNPAID" and (ld["Emi 3 status"] == "UNPAID" or ld["Emi 3 status"] == "-"):
+            if (ld["Emi 2 status"] == "UNPAID" or ld["Emi 2 status"] == "PENDING") and (ld["Emi 3 status"] == "-"):
                 if ld["Loan ID"]:
                     loanID.append(ld["Loan ID"])
 
@@ -147,8 +155,8 @@ class TestLegal:
                 if ld["Email date"]:
                     emailDate.append(ld["Email date"])
 
-            if (ld["Emi 1 status"] == "UNPAID" and (ld["Emi 2 status"] == "UNPAID" or ld["Emi 2 status"] == "-") and (
-                    ld["Emi 3 status"] == "UNPAID" or ld["Emi 3 status"] == "-")):
+            if (ld["Emi 1 status"] == "UNPAID" or ld["Emi 1 status"] == "PENDING" and (ld["Emi 2 status"] == "-") and (
+                    ld["Emi 3 status"] == "-")):
                 if ld["Loan ID"]:
                     loanID.append(ld["Loan ID"])
 

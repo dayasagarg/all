@@ -16,7 +16,6 @@ previousDate3 = currentDateF - timedelta(days=14)
 previousDateStr3 = datetime.strftime(previousDate3, "%Y-%m-%d")
 
 
-
 # print("currentDateStr::", currentDateStr)
 # print("previousDateStr1::", previousDateStr1)
 # print("previousDateStr2::", previousDateStr2)
@@ -138,3 +137,4 @@ class TestMissedLID:
             print("Error::Duplicate found in demand letter")
 
         assert len(duplicateDemandLetter) == 0
+
