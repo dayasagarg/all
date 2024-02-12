@@ -45,6 +45,7 @@ class TestMissedLID:
                                          "download": "true", "verify": False})  # current date
 
     def test_getAutoDebitFailAndDemandLetter(self, url):
+        global demandLetterLoanId_notSent
         # '''getting loan id of AutoDebitFail'''
         rows = []
         allEMiList = response.json()["data"]['rows']
@@ -83,11 +84,15 @@ class TestMissedLID:
         # print(rows2)
 
         demandLetterLoanId = []
+        demandLetterLoanId_notSent = []
 
         ''' adding loan id of DemandLetter api into DemandLetterLoanId list'''
         for i in rows2:
             if "Loan ID" in i:
                 demandLetterLoanId.append(i['Loan ID'])
+
+            if i["Sent on email"] == "Not sent":
+                demandLetterLoanId_notSent.append(i['Loan ID'])
 
         print("DemandLetterLoanId::", demandLetterLoanId)
         print("Count of DemandLetterLoanId::", len(demandLetterLoanId))
@@ -138,3 +143,11 @@ class TestMissedLID:
 
         assert len(duplicateDemandLetter) == 0
 
+    def test_DemandLetter_notsent(self, url):
+
+        if len(demandLetterLoanId_notSent) == 0:
+            print("All demand letter sent")
+        else:
+            print(f"Error:: demand letter not sent found:: {demandLetterLoanId_notSent}")
+
+        assert len(demandLetterLoanId_notSent) == 0

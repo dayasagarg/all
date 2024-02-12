@@ -27,8 +27,22 @@ c = []
 
 
 
-for i in aa:
-    if 7 >= i >= 3:
-        c.append(i)
+# for i in aa:
+#     if 7 >= i >= 3:
+#         c.append(i)
+#
+# print(c)
 
-print(c)
+l = [1,2,3,4,5,1,3]
+
+un = []
+du = []
+
+for i in l:
+    if i not in un:
+        un.append(i)
+    else:
+        du.append(i)
+
+print("un::",un)
+print("du::",du)

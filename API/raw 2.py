@@ -1,47 +1,35 @@
 import requests
-from datetime import datetime,timedelta
-
-currTime = datetime.now()
-currTimeStr = datetime.strftime(currTime, "%Y-%m-%d")
-
-prevTime = currTime - timedelta(days=4)
-prevTimeStr = datetime.strftime(prevTime, "%Y-%m-%d")
+import pytest
+from datetime import datetime, timedelta
 
 
+# uniqLIdListDemand = None
 
-disAPI = requests.get("https://lendittfinserve.com/admin-prod/admin/dashboard/allDisbursedLoans",
-                      params={"start_date": f"{prevTimeStr}T10:00:00.000Z",
-                              "end_date": f"{currTimeStr}T10:00:00.000Z",
-                              "page": 1, "download": "true"})
+currentFullTime = datetime.now()  # whole date
 
-# dis_lid = []
-# for dis in disAPI:
-#     if dis["Loan ID"]:
-#         dis_lid.append(dis["Loan ID"])
+currentDate_str = datetime.strftime(currentFullTime, "%Y-%m-%d")
+currentDate_date = datetime.strptime(currentDate_str, "%Y-%m-%d")
 
-loanAgrAPI = requests.get("http://lendittfinserve.com/prod/admin/esign/getLoanAgreement",
-                      params={"loanId": f"{729602}", "verify": "False"})
+end_2 = datetime.strftime(currentFullTime, "%Y-%m-%d")  # date to string format
+end_2_F = datetime.strptime(end_2, "%Y-%m-%d")  # string to date format
 
+start_2 = end_2_F - timedelta(days=15)
+start_2_DateStr = datetime.strftime(start_2, "%Y-%m-%d")
 
-print(loanAgrAPI.json()["data"]["eSign_agree_data"]["loanAmount"])
+end = end_2_F - timedelta(days=7)
+endDateStr = datetime.strftime(end, "%Y-%m-%d")
 
+start = end - timedelta(days=7)
+startDateStr = datetime.strftime(start, "%Y-%m-%d")
 
+start_date = start.strftime("%Y-%m-%d")
+end_date = end.strftime("%Y-%m-%d")
 
+start_date_2 = start_2.strftime("%Y-%m-%d")
+end_date_2 = end_2_F.strftime("%Y-%m-%d")
 
+print("start_date::", start_date)
+print("end_date::", end_date)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print("start_date_2::", start_date_2)
+print("end_date_2::", end_date_2)

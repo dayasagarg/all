@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 # uniqLIdListDemand = None
 
 currentFullTime = datetime.now()  # whole date
+
 end_2 = datetime.strftime(currentFullTime, "%Y-%m-%d")  # date to string format
 end_2_F = datetime.strptime(end_2, "%Y-%m-%d")  # string to date format
 
@@ -37,7 +38,7 @@ class TestLegal:
 
     @pytest.fixture
     def url(self):
-        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3
+        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3,caseAssigned
         legalDemandLetter = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",
                                          params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
                                                  "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
@@ -48,7 +49,14 @@ class TestLegal:
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 2, "adminId": 134,
                                            "download": "true"})  # current date
 
+        caseAssigned = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",params={"page": 1, "startDate": f"{start_date_2}T10:00:00.000Z",
+                                           "endDate": f"{end_date_2}T10:00:00.000Z", "type": 11, "adminId": 153,
+                                           "download": "true"})
+
     def test_DemandLetter(self, url):
+        print("start_date_2::", start_date_2)
+        print("end_date_2::", end_date_2)
+
         # global loanID, uniqLIdListDemand
         countOfLegalDemandLetter = legalDemandLetter.json()["data"]["count"]
         print("countOfLegalDemandLetter::", countOfLegalDemandLetter)
@@ -229,7 +237,7 @@ class TestLegal:
         print("count of demand unique loan ids list ::", len(uniqLIdListDemand))
         print("demand loan ids::", loanID)
         print("demand uniqLIdList::", uniqLIdListDemand)
-
+    #
     def test_NoticeSent(self, url):
         global lIdNS, missedDemandWithNotice, matchedDemandWithNotice, noticeNotSent
         countOfNoticeSent = legalNotice.json()["data"]["count"]
@@ -325,4 +333,62 @@ class TestLegal:
             print("All demand gone/notice sent")
 
 
+    def test_case_assign_to_collection_1(self):
+        global paidPrincipleInterest, principleInterest, cal_less_than_70
+        case_data = caseAssigned.json()["data"]["rows"]
+
+        # print(case_data)
+        #
+        perc_loanId = []
+
+        cal_less_than_70 = []
+        # paidPrincipleInterest = []
+        # principleInterest = []
+        for c in case_data:
+            # print(c)
+            if c["Paid percentage(%)"] == "100.00":
+                # print(c)
+                perc_loanId.append(c["Loan ID"])
+
+            if c["Paid principal & interest"]:
+                paidPrincipleInterest = int(c["Paid principal & interest"].replace(",",""))
+                # print("paidPrincipleInterest::",paidPrincipleInterest)
+
+            if c["Principal & interest"]:
+                principleInterest = int(c["Principal & interest"].replace(",",""))
+                # print("principleInterest::",principleInterest)
+
+            # print("paidPrincipleInterest::",paidPrincipleInterest)
+            # print("principleInterest::",principleInterest)
+
+            if round((paidPrincipleInterest / principleInterest) * 100 ,2) < 70.0:
+                cal_less_than_70.append(c["Loan ID"])
+
+        print("cal_less_than_70::",cal_less_than_70)
+
+
+
+        count_perc_loanId = len(perc_loanId)
+        print("count_perc_loanId :: ",count_perc_loanId)
+        #
+        if count_perc_loanId > 0:
+            print(f"Error:: Paid percentage 100% found in case assigned to collection :: {perc_loanId}")
+            assert False
+        else:
+            print("Paid percentage is below 100% in case assigned to collection")
+        #
+        # print("perc_loanId:: ",perc_loanId)
+        #
+        #
+
+    def test_case_assign_to_collection_2(self):
+        count_cal_less_than_70 = len(cal_less_than_70)
+        print("count_cal_less_than_70 :: ", count_cal_less_than_70)
+        #
+        if count_cal_less_than_70 > 0:
+            print(f"Error:: Paid percentage less than 70% found in case assigned to collection :: {cal_less_than_70}")
+            assert False
+
+        else:
+            print("Paid percentage is above 70% in case assigned to collection")
 

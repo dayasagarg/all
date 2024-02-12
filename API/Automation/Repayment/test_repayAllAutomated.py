@@ -136,11 +136,7 @@ class TestRepayment:
 
 
 
-            # print('EMI DATA:>','emiDate::',emiDateE,'emiAmount::',emiAmountE,'principalAmount::',principalAmountE,'interestAmount::',interestAmountE,'penaltyDays::',penaltyDaysE,'penaltyAmount::',penaltyAmountE,'totalPaidAmount::',totalPaidAmountE,'paidPenaltyAmount::',paidPenaltyAmountE,'totalUnpaidAmount::',totalUnpaidAmountE,'UnpaidEMIAmount::',UnpaidEMIAmountE,'UnpaidPenaltyAmount::',UnpaidPenaltyAmountE)
-
-            # print("totalPaidAmountE::",sum(totalPaidAmountE))
-            # print("emiAmountE::", sum(emiAmountE))
-            # print("totalUnpaidAmountE::", sum(totalUnpaidAmountE))
+            #
 
             '''getting transactionData data of Repayment'''
             tranData = response.json()["data"]["transactionData"]

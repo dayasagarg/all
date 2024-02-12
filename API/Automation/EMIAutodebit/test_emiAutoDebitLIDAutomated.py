@@ -18,6 +18,7 @@ class TestMissedLIDInRepayment:
                     "end_date": f"{currentDate}T10:00:00.000Z", "emiStatus": 2, "download": "true"},
             verify=False)  # current date
 
+
         response2 = requests.get(
             "https://lendittfinserve.com/prod/admin/emi/repaymentStatus",
             params={"fromDate":f"{currentDate}T10:00:00.000Z", "endDate":f"{currentDate}T10:00:00.000Z", "type": "TOTAL",
@@ -91,8 +92,5 @@ class TestMissedLIDInRepayment:
 
         assert count_of_missed_lid == 0, "All upcoming EMI Loan IDs are present in repayment API / auto-debit list"
         print("******************************************************************************")
-
-
-
 
 

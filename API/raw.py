@@ -1,44 +1,45 @@
 import requests
 from datetime import datetime
 
-# response = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
-#                         params={"loanId": 735576, "verify": "False"})
+autoDebitFailedAPI = requests.get(
+    "https://lendittfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData?start_date=2024-02-10T10:00:00.000Z&end_date=2024-02-11T10:00:00.000Z&status=4&page=1&skipPageLimit=true")
 
+autoDebitData = autoDebitFailedAPI.json()["data"]["finalData"]
 
-# response = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": 735576,"verify":"False"})  # current date
+emiRepaymentStatus = requests.get(
+    "https://lendittfinserve.com/prod/admin/emi/repaymentStatus?fromDate=2024-02-10T10:00:00.000Z&endDate=2024-02-11T10:00:00.000Z&type=TOTAL&page=1&download=true")
 
-
-# print(response.json())
-currentFullTime = datetime.now() # whole date
-currentDateStr = datetime.strftime(currentFullTime,"%Y-%m-%d")
-
-responseAllLoanID = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans", params={"start_date":f"{currentDateStr}T10:00:00.000Z","end_date":f"{currentDateStr}T10:00:00.000Z","page":1,"pagesize":10,"getTotal":"true","download":"true",
-            "verify":"False"})  # current date
-
-'''getting loan ids from Repayment'''
-loanIDs = responseAllLoanID.json()["data"]["rows"]
-# print(loanIDs)
-lIDs = []
-for lid in loanIDs:
-
-    if lid["Loan id"] not in lIDs:
-
-        lIDs.append(lid["Loan id"])
-        # print(i["Loan id"])
-
-    else:
-        pass
+emiRepaymentStatus_data = emiRepaymentStatus.json()["data"]["rows"]
 
 
 
-# print("unique lids::", lIDs)
-# print('count of unique lids::', len(lIDs))
+emi_aut_status = []
+emi_ers_status = []
 
 
-# Upcoming EMI
-for i in lIDs:
+emi_date_miss_match_aut_ers = []
 
-    response = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i,"verify":"False"})  # current date
-    print(response.json())
-#
+for aut in autoDebitData:
+    if aut["Today's EMI status"] != "FAILED":
+
+
+        emi_aut_status.append(aut["Loan ID"])
+
+for ers in emiRepaymentStatus_data:
+    if ers["Loan ID"]:
+        emi_ers_status.append(ers["Loan ID"])
+
+emiDate = []
+
+# https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails?loanId=685459
+# for o in emi_ers_status:
+#     emi = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
+#                        params={"loanId": o, "encoding": 'utf-8', "errors": 'ignore'})
+#     emiD = emi.json()["data"]["EMIData"]
+#     print(emiD)
+
+for o in emi_ers_status:
+    emi = requests.get("https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails",
+                       params={"loanId": o, "encoding": 'utf-8', "errors": 'ignore'})
+    emiD = emi.json()["data"]
+    print(emiD)
