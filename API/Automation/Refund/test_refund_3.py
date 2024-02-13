@@ -3,6 +3,7 @@ import requests
 
 class TestRefund:
     def test_ref_url(self):
+
         global allRepay, refund_compl, refund_pend, emiRepaymentStatus
 
         emiRepaymentStatus = requests.get(

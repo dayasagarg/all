@@ -136,8 +136,6 @@ class TestRepayment:
 
 
 
-            #
-
             '''getting transactionData data of Repayment'''
             tranData = response.json()["data"]["transactionData"]
             # print(tranData)
