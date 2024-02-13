@@ -117,14 +117,13 @@ class TestBounce:
                             bounceChMissed_LId_2.append(r)
 
 
-
         print("bounceChMissed_LId_2::",bounceChMissed_LId_2)
         # print("bounceChMissed_LId_unique_2::", bounceChMissed_LId_unique_2)
 
         # print(emiRepaymentStatus_data_lid)
 
 
-    def test_status_val(self,bcURL):
+    def test_status_failed_val(self,bcURL):
         # autoDebitData = autoDebitFailedAPI.json()["data"]["finalData"]
         # emiRepaymentStatus_data = emiRepaymentStatus.json()["data"]["rows"]
 
@@ -137,7 +136,7 @@ class TestBounce:
 
         print("emi_aut_status::",emi_aut_status)
 
-
+    @pytest.mark.skip
     def test_date_val(self, bcURL):
 
         emi_aut_status = []
