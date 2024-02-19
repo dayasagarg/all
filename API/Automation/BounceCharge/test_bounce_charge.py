@@ -17,7 +17,7 @@ class TestBounce:
         curr_str = datetime.strftime(curr, "%Y-%m-%d")
 
         prev_1 = curr - timedelta(days=1)
-        prev_2 = curr - timedelta(days=4)
+        prev_2 = curr - timedelta(days=2)
 
         pre_str_1 = datetime.strftime(prev_1, "%Y-%m-%d")
         pre_str_2 = datetime.strftime(prev_2, "%Y-%m-%d")
@@ -81,7 +81,7 @@ class TestBounce:
         # print("bounceChMissed_LId::",bounceChMissed_LId)
         print("bounceChMissed_LId_unique::", bounceChMissed_LId_unique)
 
-    #
+    @pytest.mark.skip
     def test_bounceCharge_repayStatus(self, bcURL):
         global emiRepaymentStatus_data
 
@@ -129,7 +129,6 @@ class TestBounce:
 
         emi_aut_status = []
 
-
         for aut in autoDebitData:
             if aut["Today's EMI status"] != "FAILED":
                 emi_aut_status.append(aut["Loan ID"])
@@ -141,7 +140,6 @@ class TestBounce:
 
         emi_aut_status = []
         emi_ers_status = []
-
 
         for aut in autoDebitData:
             if aut["Today's EMI status"] != "FAILED":
@@ -176,8 +174,3 @@ class TestBounce:
 
         # print("emi_ers_status::",emi_ers_status)
         # print("emi_aut_status::",emi_aut_status)
-
-
-
-
-

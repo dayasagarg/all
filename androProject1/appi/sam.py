@@ -39,6 +39,3 @@ driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", desired_caps)
 ele_id = driver.find_element(AppiumBy.ID, "com.mahalaxmi.marathi.pro:id/imageViewVarshikAlokan")
 ele_id.click()
 
-
-
-

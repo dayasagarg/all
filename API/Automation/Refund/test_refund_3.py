@@ -10,20 +10,22 @@ class TestRefund:
             "https://lendittfinserve.com/prod/admin/emi/repaymentStatus?fromDate=2024-02-10T10:00:00.000Z&endDate=2024-02-12T10:00:00.000Z&type=TOTAL&page=1&download=true")
 
         allRepay = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-10T10:00:00.000Z&end_date=2024-02-12T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")
+            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-15T10:00:00.000Z&end_date=2024-02-16T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")
         # print(allRepay.json())
 
         headers = {"adminid": "37"}
+
         # refund_compl = requests.get("https://lendittfinserve.com/stag/admin/transaction/getRefundableData",params={"startDate":"2024-02-01T10:00:00.000Z","endDate":"2024-02-05T10:00:00.000Z","status":1},headers=headers,verify=False)
         refund_compl = requests.get(
-            "https://lendittfinserve.com/stag/admin/transaction/getRefundableData?startDate=2024-02-04T10:00:00.000Z&endDate=2024-02-08T10:00:00.000Z&status=1",
+            "https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData?skipPageLimit=true&endDate=2024-02-15T10:00:00.000Z&startDate=2024-02-17T10:00:00.000Z&status=1",
             headers=headers)
+
         refund_pend = requests.get(
-            "https://lendittfinserve.com/stag/admin/transaction/getRefundableData?startDate=2024-02-01T10:00:00.000Z&endDate=2024-02-04T10:00:00.000Z&status=-1",
+            "https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData?skipPageLimit=true&endDate=2024-02-13T10:00:00.000Z&startDate=2024-02-08T10:00:00.000Z&status=-1",
             headers=headers)
 
     def test_refund_amt(self):
-        global dupl_repay_lid, match_app_auto
+        global dupl_repay_lid, match_app_auto, all_refund, all_refund_unique
 
         allRepay_data = allRepay.json()["data"]["rows"]
 
@@ -51,14 +53,27 @@ class TestRefund:
         web_emi_4 = []
         auto_emi_4 = []
 
+
         full_pay_1 = []
         full_pay_2 = []
         full_pay_3 = []
         full_pay_4 = []
 
-        lid = []
+        autodebit_miss_match_razorpay = []
+        cashfree_miss_match_ICICI_UPI = []
 
         for r in allRepay_data:
+            if r["Repayment via"] == "AUTODEBIT":
+                if r["Payment mode"] != "RAZORPAY":
+                    autodebit_miss_match_razorpay.append(r["Loan id"])
+
+            if r["Repayment via"] == "APP":
+                if r["Payment mode"] != "ICICI_UPI":
+                    cashfree_miss_match_ICICI_UPI.append(r["Loan id"])
+
+
+
+
             if r["EMI Types"] == "EMIPAY 1":
                 emi_1.append(r["Loan id"])
 
@@ -130,6 +145,9 @@ class TestRefund:
                 if "4" in r["EMI Types"]:
                     full_pay_4.append(r["Loan id"])
 
+        print("autodebit_miss_match_razorpay::",autodebit_miss_match_razorpay)
+        print("cashfree_miss_match_ICICI_UPI::", cashfree_miss_match_ICICI_UPI)
+
 
         # APP
         match_app_auto_1 = []
@@ -200,39 +218,83 @@ class TestRefund:
             if ap4f in full_pay_4:
                 match_app_auto_4_f.append(ap4f)
 
+        all_refund = match_app_auto_1 + match_web_auto_2 + match_app_auto_3 + match_app_auto_4 + match_web_auto_1 + match_web_auto_2 + match_web_auto_3 + match_web_auto_4 + match_app_auto_1_f + match_app_auto_2_f + match_app_auto_3_f + match_app_auto_4_f
+        all_refund_unique = []
+        [all_refund_unique.append(i) for i in all_refund if i not in all_refund_unique]
 
-        print("match_app_auto_1::", match_app_auto_1)
-        print("match_app_auto_2::", match_app_auto_2)
-        print("match_app_auto_3::", match_app_auto_3)
-        print("match_app_auto_4::", match_app_auto_4)
+        print("all_refund::",all_refund)
+        print("all_refund_unique::", all_refund_unique)
 
-        print("match_app_auto_1_f::::" ,match_app_auto_1_f)
-        print("match_app_auto_2_f::::", match_app_auto_2_f)
-        print("match_app_auto_3_f::::", match_app_auto_3_f)
-        print("match_app_auto_4_f::::", match_app_auto_4_f)
+        # print("match_app_auto_1::", match_app_auto_1)
+        # print("match_app_auto_2::", match_app_auto_2)
+        # print("match_app_auto_3::", match_app_auto_3)
+        # print("match_app_auto_4::", match_app_auto_4)
+        #
+        # print("match_app_auto_1_f::::" ,match_app_auto_1_f)
+        # print("match_app_auto_2_f::::", match_app_auto_2_f)
+        # print("match_app_auto_3_f::::", match_app_auto_3_f)
+        # print("match_app_auto_4_f::::", match_app_auto_4_f)
+        #
+        #
+        # print("match_web_auto_1::", match_web_auto_1)
+        # print("match_web_auto_2::", match_web_auto_2)
+        # print("match_web_auto_3::", match_web_auto_3)
+        # print("match_web_auto_4::", match_web_auto_4)
 
-
-        print("match_web_auto_1::", match_web_auto_1)
-        print("match_web_auto_2::", match_web_auto_2)
-        print("match_web_auto_3::", match_web_auto_3)
-        print("match_web_auto_4::", match_web_auto_4)
-
-        print("full_pay_1::",full_pay_1)
-        print("full_pay_2::", full_pay_2)
-        print("full_pay_3::", full_pay_3)
-        print("full_pay_4::", full_pay_4)
-
-        print("emi_1::",emi_1)
-        print("emi_2::", emi_2)
-        print("emi_3::", emi_3)
-        print("emi_4::", emi_4)
-
-
-
-
-
+        # print("full_pay_1::",full_pay_1)
+        # print("full_pay_2::", full_pay_2)
+        # print("full_pay_3::", full_pay_3)
+        # print("full_pay_4::", full_pay_4)
+        #
+        # print("emi_1::",emi_1)
+        # print("emi_2::", emi_2)
+        # print("emi_3::", emi_3)
+        # print("emi_4::", emi_4)
 
 
 
 
+    def test_ref_completed(self):
+        refund_compl_data = refund_compl.json()["data"]["rows"]
+        refund_compl_data_count = refund_compl.json()["data"]["count"]
+
+        print("refund_compl_data::",refund_compl_data)
+        print("refund_compl_data_count::", refund_compl_data_count)
+
+        refund_comp_loan_ids = []
+        for rc in refund_compl_data:
+            if rc["loanId"]:
+                refund_comp_loan_ids.append(rc["loanId"])
+
+        duplicateRefund_compl = []
+        uniqRefund_compl = []
+
+        for d in refund_comp_loan_ids:
+            if d not in uniqRefund_compl:
+                uniqRefund_compl.append(d)
+            else:
+                duplicateRefund_compl.append(d)
+
+
+        if len(duplicateRefund_compl) == 0:
+            print("No duplicate found in refund completed")
+        else:
+            print("Error::Duplicate found in refund completed")
+
+        assert len(duplicateRefund_compl) == 0
+
+
+
+        ref_miss_compl = []
+        for dut in all_refund_unique:
+            if dut in refund_comp_loan_ids:
+                continue
+            else:
+                ref_miss_compl.append(dut)
+
+            # if dut not in refund_comp_loan_ids:
+            #     ref_miss_compl.append(dut)
+
+        # print("refund_comp_loan_ids::", refund_comp_loan_ids)
+        print("refund_miss_in_compl::", ref_miss_compl)
 
