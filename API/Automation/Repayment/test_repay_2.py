@@ -100,40 +100,40 @@ class TestRepayment:
 
             diffPaidAmt = totalPaidEMI - totalTransAmt
 
-            # print(f"difference of PaidAmt in emi and paidAmt in trans::lid::{r}::",diffPaidAmt)
+            print(f"difference of PaidAmt in emi and paidAmt in trans::lid::{r}::",diffPaidAmt)
     #
 
         # print("totalPaidAmount_mismatch::", totalPaidAmount_mismatch)
 
-        # print("fullPay_unpaid_misssMatch::", fullPay_unpaid_misssMatch)
+        git
 
 
-        # if len(totalPaidAmount_mismatch) > 0:
-        #     print(f"totalPaidAmount_mismatch found in repayment::{totalPaidAmount_mismatch}")
-        #     assert False
-        # else:
-        #     print("No totalPaidAmount_mismatch found in repayment")
-        #
-        # assert len(totalPaidAmount_mismatch) > 0, "totalPaidAmount_mismatch found in repayment"
+        if len(totalPaidAmount_mismatch) > 0:
+            print(f"totalPaidAmount_mismatch found in repayment::{totalPaidAmount_mismatch}")
+            assert False
+        else:
+            print("No totalPaidAmount_mismatch found in repayment")
+
+        assert len(totalPaidAmount_mismatch) > 0, "totalPaidAmount_mismatch found in repayment"
 
 
     #
-    # def test_fullpay_unpaid(self):
+    def test_fullpay_unpaid(self):
+
+        if len(fullPay_unpaid_misssMatch) > 0:
+            print(f"fullPay_unpaid_misssMatch found in repayment::{fullPay_unpaid_misssMatch}")
+            assert False, "fullPay_unpaid_misssMatch found in repayment"
+        else:
+            print("No fullPay_unpaid_misssMatch found in repayment")
+
+
+    # def test_using_per_loan_id(self):
+    #     for i in lIDs:
+    #         response = requests.get(
+    #             "https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
+    #             verify=False)  # current date
     #
-    #     if len(fullPay_unpaid_misssMatch) > 0:
-    #         print(f"fullPay_unpaid_misssMatch found in repayment::{fullPay_unpaid_misssMatch}")
-    #         assert False, "fullPay_unpaid_misssMatch found in repayment"
-    #     else:
-    #         print("No fullPay_unpaid_misssMatch found in repayment")
-
-
-    def test_using_per_loan_id(self):
-        for i in lIDs:
-            response = requests.get(
-                "https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
-                verify=False)  # current date
-
-            print('status code of get Repayment::', response.status_code)
+    #         print('status code of get Repayment::', response.status_code)
             # print(response.json())
 
 
