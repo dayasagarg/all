@@ -7,7 +7,7 @@ class TestRefund:
         global allRepay, refund_compl, refund_pend, emiRepaymentStatus
 
         emiRepaymentStatus = requests.get(
-            "https://lendittfinserve.com/prod/admin/emi/repaymentStatus?fromDate=2024-02-10T10:00:00.000Z&endDate=2024-02-12T10:00:00.000Z&type=TOTAL&page=1&download=true")
+            "https://lendittfinserve.com/prod/admin/emi/repaymentStatus?fromDate=2024-02-18T10:00:00.000Z&endDate=2024-02-19T10:00:00.000Z&type=TOTAL&page=1&download=true")
 
         allRepay = requests.get(
             "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-15T10:00:00.000Z&end_date=2024-02-16T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")
@@ -24,7 +24,7 @@ class TestRefund:
             "https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData?skipPageLimit=true&endDate=2024-02-13T10:00:00.000Z&startDate=2024-02-08T10:00:00.000Z&status=-1",
             headers=headers)
 
-    def test_refund_amt(self):
+    def test_refund_amt_allRepaid(self):
         global dupl_repay_lid, match_app_auto, all_refund, all_refund_unique
 
         allRepay_data = allRepay.json()["data"]["rows"]
@@ -252,8 +252,6 @@ class TestRefund:
         # print("emi_4::", emi_4)
 
 
-
-
     def test_ref_completed(self):
         refund_compl_data = refund_compl.json()["data"]["rows"]
         refund_compl_data_count = refund_compl.json()["data"]["count"]
@@ -297,4 +295,70 @@ class TestRefund:
 
         # print("refund_comp_loan_ids::", refund_comp_loan_ids)
         print("refund_miss_in_compl::", ref_miss_compl)
+
+
+    def test_refund_repay_status(self):
+        repayStatus = emiRepaymentStatus.json()["data"]["rows"]
+        # print("repayStatus::",repayStatus)
+
+        emi_1_r = []
+        emi_2_r = []
+        emi_3_r = []
+        emi_4_r = []
+
+        app_emi_1_r = []
+        web_emi_1_r = []
+        auto_emi_1_r = []
+
+        app_emi_2_r = []
+        web_emi_2_r = []
+        auto_emi_2_r = []
+
+        for rr in repayStatus:
+            if rr["Emi number"] == 1:
+                emi_1_r.append(rr["Loan ID"])
+
+            if rr["Emi number"] == 2:
+                emi_2_r.append(rr["Loan ID"])
+
+            if rr["Emi number"] == 3:
+                emi_3_r.append(rr["Loan ID"])
+
+            if rr["Emi number"] == 4:
+                emi_4_r.append(rr["Loan ID"])
+
+
+
+            if ((rr["Emi number"] == 1) and (rr["Emi number"] == 1)):
+
+                if rr["Payment type"] == "APP":
+                    app_emi_1_r.append(rr["Loan ID"])
+
+                elif rr["Payment type"] == "WEB":
+                    web_emi_1_r.append(rr["Loan ID"])
+
+                elif rr["Payment type"] == "AUTODEBIT":
+                    auto_emi_1_r.append(rr["Loan ID"])
+
+
+            if ((rr["Emi number"] == 2) and (rr["Emi number"] == 2)):
+
+                if rr["Payment type"] == "APP":
+                    app_emi_2_r.append(rr["Loan ID"])
+
+                elif rr["Payment type"] == "WEB":
+                    web_emi_2_r.append(rr["Loan ID"])
+
+                elif rr["Payment type"] == "AUTODEBIT":
+                    auto_emi_2_r.append(rr["Loan ID"])
+
+
+
+
+        # print("emi_1_r::",emi_1_r)
+        # print("app_emi_1_r::",app_emi_1_r)
+
+        print("emi_2_r::", emi_2_r)
+        print("app_emi_2_r::", app_emi_2_r)
+
 

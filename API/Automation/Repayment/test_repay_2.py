@@ -105,7 +105,7 @@ class TestRepayment:
 
         # print("totalPaidAmount_mismatch::", totalPaidAmount_mismatch)
 
-        git
+
 
 
         if len(totalPaidAmount_mismatch) > 0:

@@ -1,6 +1,5 @@
 import requests
 
-
 class TestRefund:
     def test_ref_url(self):
         global allRepay, refund_compl, refund_pend, emiRepaymentStatus
@@ -17,11 +16,12 @@ class TestRefund:
         refund_compl = requests.get(
             "https://lendittfinserve.com/stag/admin/transaction/getRefundableData?startDate=2024-02-04T10:00:00.000Z&endDate=2024-02-08T10:00:00.000Z&status=1",
             headers=headers)
+
         refund_pend = requests.get(
             "https://lendittfinserve.com/stag/admin/transaction/getRefundableData?startDate=2024-02-01T10:00:00.000Z&endDate=2024-02-04T10:00:00.000Z&status=-1",
             headers=headers)
 
-    def test_refund_amt(self):
+    def test_refund_amt_allRepay(self):
         global dupl_repay_lid,match_app_auto
 
         allRepay_data = allRepay.json()["data"]["rows"]
