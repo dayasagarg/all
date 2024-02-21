@@ -22,9 +22,7 @@ class TestBounce:
         pre_str_1 = datetime.strftime(prev_1, "%Y-%m-%d")
         pre_str_2 = datetime.strftime(prev_2, "%Y-%m-%d")
 
-        print("curr_str::",curr_str)
-        print("pre_str_1::",pre_str_1)
-        print("pre_str_2::", pre_str_2)
+
 
         # emi date < current date
 
@@ -81,7 +79,7 @@ class TestBounce:
         # print("bounceChMissed_LId::",bounceChMissed_LId)
         print("bounceChMissed_LId_unique::", bounceChMissed_LId_unique)
 
-    @pytest.mark.skip
+    #@pytest.mark.skip
     def test_bounceCharge_repayStatus(self, bcURL):
         global emiRepaymentStatus_data
 

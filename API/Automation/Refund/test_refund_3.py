@@ -1,4 +1,5 @@
 import requests
+import pytest
 
 
 class TestRefund:
@@ -7,17 +8,17 @@ class TestRefund:
         global allRepay, refund_compl, refund_pend, emiRepaymentStatus
 
         emiRepaymentStatus = requests.get(
-            "https://lendittfinserve.com/prod/admin/emi/repaymentStatus?fromDate=2024-02-18T10:00:00.000Z&endDate=2024-02-19T10:00:00.000Z&type=TOTAL&page=1&download=true")
+            "https://lendittfinserve.com/prod/admin/emi/repaymentStatus?fromDate=2024-02-15T10:00:00.000Z&endDate=2024-02-21T10:00:00.000Z&type=TOTAL&page=1&download=true")
 
         allRepay = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-15T10:00:00.000Z&end_date=2024-02-16T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")
+            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-18T10:00:00.000Z&end_date=2024-02-20T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")
         # print(allRepay.json())
 
         headers = {"adminid": "37"}
 
         # refund_compl = requests.get("https://lendittfinserve.com/stag/admin/transaction/getRefundableData",params={"startDate":"2024-02-01T10:00:00.000Z","endDate":"2024-02-05T10:00:00.000Z","status":1},headers=headers,verify=False)
         refund_compl = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData?skipPageLimit=true&endDate=2024-02-15T10:00:00.000Z&startDate=2024-02-17T10:00:00.000Z&status=1",
+            "https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData?skipPageLimit=true&endDate=2024-02-21T10:00:00.000Z&startDate=2024-02-15T10:00:00.000Z&status=1",
             headers=headers)
 
         refund_pend = requests.get(
@@ -145,8 +146,8 @@ class TestRefund:
                 if "4" in r["EMI Types"]:
                     full_pay_4.append(r["Loan id"])
 
-        print("autodebit_miss_match_razorpay::",autodebit_miss_match_razorpay)
-        print("cashfree_miss_match_ICICI_UPI::", cashfree_miss_match_ICICI_UPI)
+        # print("autodebit_miss_match_razorpay::",autodebit_miss_match_razorpay)
+        # print("cashfree_miss_match_ICICI_UPI::", cashfree_miss_match_ICICI_UPI)
 
 
         # APP
@@ -222,7 +223,7 @@ class TestRefund:
         all_refund_unique = []
         [all_refund_unique.append(i) for i in all_refund if i not in all_refund_unique]
 
-        print("all_refund::",all_refund)
+        # print("all_refund::",all_refund)
         print("all_refund_unique::", all_refund_unique)
 
         # print("match_app_auto_1::", match_app_auto_1)
@@ -294,9 +295,16 @@ class TestRefund:
             #     ref_miss_compl.append(dut)
 
         # print("refund_comp_loan_ids::", refund_comp_loan_ids)
-        print("refund_miss_in_compl::", ref_miss_compl)
+        # print("refund_miss_in_compl::", ref_miss_compl)
 
+        if len(ref_miss_compl) > 0:
+            print(f"refund missed found:: {ref_miss_compl}")
+            assert False, "refund missed found"
 
+        else:
+            print("refund not missed with refund completed")
+
+    @pytest.mark.skip
     def test_refund_repay_status(self):
         repayStatus = emiRepaymentStatus.json()["data"]["rows"]
         # print("repayStatus::",repayStatus)
@@ -313,6 +321,14 @@ class TestRefund:
         app_emi_2_r = []
         web_emi_2_r = []
         auto_emi_2_r = []
+
+        app_emi_3_r = []
+        web_emi_3_r = []
+        auto_emi_3_r = []
+
+        app_emi_4_r = []
+        web_emi_4_r = []
+        auto_emi_4_r = []
 
         for rr in repayStatus:
             if rr["Emi number"] == 1:
@@ -352,13 +368,102 @@ class TestRefund:
                 elif rr["Payment type"] == "AUTODEBIT":
                     auto_emi_2_r.append(rr["Loan ID"])
 
+            if ((rr["Emi number"] == 3) and (rr["Emi number"] == 3)):
+
+                if rr["Payment type"] == "APP":
+                    app_emi_3_r.append(rr["Loan ID"])
+
+                elif rr["Payment type"] == "WEB":
+                    web_emi_3_r.append(rr["Loan ID"])
+
+                elif rr["Payment type"] == "AUTODEBIT":
+                    auto_emi_3_r.append(rr["Loan ID"])
+
+            if ((rr["Emi number"] == 4) and (rr["Emi number"] == 4)):
+
+                if rr["Payment type"] == "APP":
+                    app_emi_4_r.append(rr["Loan ID"])
+
+                elif rr["Payment type"] == "WEB":
+                    web_emi_4_r.append(rr["Loan ID"])
+
+                elif rr["Payment type"] == "AUTODEBIT":
+                    auto_emi_4_r.append(rr["Loan ID"])
 
 
 
-        # print("emi_1_r::",emi_1_r)
-        # print("app_emi_1_r::",app_emi_1_r)
+        # APP
+        match_app_auto_1_r = []
+        for ap1_r in app_emi_1_r:
+            if ap1_r in auto_emi_1_r:
+                match_app_auto_1_r.append(ap1_r)
 
-        print("emi_2_r::", emi_2_r)
+
+        match_app_auto_2_r = []
+        for ap2_r in app_emi_2_r:
+            if ap2_r in auto_emi_2_r:
+                match_app_auto_2_r.append(ap2_r)
+
+        match_app_auto_3_r = []
+        for ap3_r in app_emi_3_r:
+            if ap3_r in auto_emi_3_r:
+                match_app_auto_3_r.append(ap3_r)
+
+        match_app_auto_4_r = []
+        for ap4_r in app_emi_4_r:
+            if ap4_r in auto_emi_4_r:
+                match_app_auto_4_r.append(ap4_r)
+
+
+
+        # WEB
+        match_web_auto_1_r = []
+        for wb1_r in web_emi_1_r:
+            if wb1_r in auto_emi_1_r:
+                match_web_auto_1_r.append(wb1_r)
+
+        match_web_auto_2_r = []
+        for wb2_r in web_emi_2_r:
+            if wb2_r in auto_emi_2_r:
+                match_web_auto_2_r.append(wb2_r)
+
+        match_web_auto_3_r = []
+        for wb3_r in web_emi_3_r:
+            if wb3_r in auto_emi_3_r:
+                match_web_auto_3_r.append(wb3_r)
+
+        match_web_auto_4_r = []
+        for wb4_r in web_emi_4_r:
+            if wb4_r in auto_emi_4_r:
+                match_web_auto_4_r.append(wb4_r)
+
+
+        #
+        print("app_emi_1_r::",app_emi_1_r)
+        print("auto_emi_1_r::", auto_emi_1_r)
+
         print("app_emi_2_r::", app_emi_2_r)
+        print("auto_emi_2_r::", auto_emi_2_r)
+
+        print("app_emi_3_r::", app_emi_3_r)
+        print("auto_emi_3_r::", auto_emi_3_r)
+
+        print("app_emi_4_r::", app_emi_4_r)
+        print("auto_emi_4_r::", auto_emi_4_r)
+
+
+
+        print("match_app_auto_1_r::", match_app_auto_1_r)
+        print("match_app_auto_2_r::", match_app_auto_2_r)
+        print("match_app_auto_3_r::", match_app_auto_3_r)
+        print("match_app_auto_4_r::", match_app_auto_4_r)
+
+
+        print("match_web_auto_1_r::", match_web_auto_1_r)
+        print("match_web_auto_2_r::", match_web_auto_2_r)
+        print("match_web_auto_3_r::", match_web_auto_3_r)
+        print("match_web_auto_4_r::", match_web_auto_4_r)
+
+
 
 

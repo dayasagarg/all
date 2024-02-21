@@ -32,7 +32,8 @@ desired_caps = {
     "app": "C://APK files//Mahalaxmi Dindarshika 2023_41.0_Apkpure.apk",
     "appPackage": "com.mahalaxmi.marathi.pro",
     "appActivity": "com.mahalaxmi.marathi.pro.MainActivity",
-    "udid": "emulator-5554"}
+    "udid": "emulator-5554"
+}
 
 driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", desired_caps)
 
