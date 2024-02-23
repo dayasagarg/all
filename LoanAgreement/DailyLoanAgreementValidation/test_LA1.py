@@ -164,7 +164,7 @@ class TestDashRepo:
 
         '''LOAN DETAILS'''
         # # Loan Amount
-        apprAmount = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[9]").text
+        apprAmount = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[10]").text
         time.sleep(2)
         lSpace = apprAmount.replace(" ","")
 
@@ -283,8 +283,8 @@ class TestDashRepo:
 
 
         # # # Loan Tenure
-        loanDurInDays = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[16]").text
-        print("loanDurInDays::",loanDurInDays)
+        loanDurInDays = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[17]").text
+        # print("loanDurInDays::",loanDurInDays)
         # time.sleep(1)
         loanDurationInDays = loanDurInDays
 
@@ -320,7 +320,10 @@ class TestDashRepo:
 
         # Loan End Date
         loanStartDate = datetime.strptime(loanDisbursedDate,"%d-%m-%Y")
+        print("loanStartDate::",loanStartDate)
         loanEndDateTimeFromY = loanStartDate + timedelta(days=int(loanDurInDays)-1)
+        print("loanEndDateTimeFromY::",loanEndDateTimeFromY)
+
         loanEndDateFromD = datetime.strftime(loanEndDateTimeFromY,'%d-%m-%Y')
         loanEndDate = str(loanEndDateFromD).split(" ")[0]
 

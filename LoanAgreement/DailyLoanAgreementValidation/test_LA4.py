@@ -283,7 +283,7 @@ class TestDashRepo:
 
 
         # # # Loan Tenure
-        loanDurInDays = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[16]").text
+        loanDurInDays = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[17]").text
         time.sleep(1)
         loanDurationInDays = loanDurInDays + " Days"
         if loanDurationInDays in firstPage:
