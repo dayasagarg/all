@@ -77,7 +77,13 @@ class TestBounce:
         [bounceChMissed_LId_unique.append(ul) for ul in bounceChMissed_LId if ul not in bounceChMissed_LId_unique]
 
         # print("bounceChMissed_LId::",bounceChMissed_LId)
-        print("bounceChMissed_LId_unique::", bounceChMissed_LId_unique)
+        # print("bounceChMissed_LId_unique::", bounceChMissed_LId_unique)
+
+        if len(bounceChMissed_LId_unique) > 0:
+            print(f"bounce charge missing found::{bounceChMissed_LId_unique}")
+            assert False, "bounce charge missing found"
+        else:
+            print("No bounce charge missed")
 
     #@pytest.mark.skip
     def test_bounceCharge_repayStatus(self, bcURL):
@@ -119,6 +125,12 @@ class TestBounce:
         # print("bounceChMissed_LId_unique_2::", bounceChMissed_LId_unique_2)
 
         # print(emiRepaymentStatus_data_lid)
+        
+        if len(bounceChMissed_LId_2) > 0:
+            print(f"bounce charge missing found::{bounceChMissed_LId_2}")
+            assert False, "bounce charge missing found"
+        else:
+            print("No bounce charge missed")
 
 
     def test_status_failed_val(self,bcURL):
