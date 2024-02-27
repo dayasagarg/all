@@ -164,7 +164,7 @@ class TestDashRepo:
 
         '''LOAN DETAILS'''
         # # Loan Amount
-        apprAmount = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[9]").text
+        apprAmount = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[10]").text
         time.sleep(2)
         lSpace = apprAmount.replace(" ","")
 
@@ -284,14 +284,16 @@ class TestDashRepo:
 
         # # # Loan Tenure
         loanDurInDays = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[17]").text
-        time.sleep(1)
-        loanDurationInDays = loanDurInDays + " Days"
+        # print("loanDurInDays::",loanDurInDays)
+        # time.sleep(1)
+        loanDurationInDays = loanDurInDays
+
         if loanDurationInDays in firstPage:
             print(f" *** 'loanDurationInDays' :'{loanDurationInDays}' is matched with LOAN DETAILS in first Page of pdf *** ")
         else:
             print(f"Error :: 'loanDurationInDays' :'{loanDurationInDays}' is not matched with LOAN DETAILS in first Page of pdf ")
 
-        # assert loanDurationInDays in firstPage, "loanDurationInDays is matched with LOAN DETAILS in first Page of pdf"
+        assert loanDurationInDays in firstPage, "loanDurationInDays is matched with LOAN DETAILS in first Page of pdf"
 
 
         # # Loan Start Date
@@ -318,7 +320,10 @@ class TestDashRepo:
 
         # Loan End Date
         loanStartDate = datetime.strptime(loanDisbursedDate,"%d-%m-%Y")
+        print("loanStartDate::",loanStartDate)
         loanEndDateTimeFromY = loanStartDate + timedelta(days=int(loanDurInDays)-1)
+        print("loanEndDateTimeFromY::",loanEndDateTimeFromY)
+
         loanEndDateFromD = datetime.strftime(loanEndDateTimeFromY,'%d-%m-%Y')
         loanEndDate = str(loanEndDateFromD).split(" ")[0]
 
@@ -470,7 +475,7 @@ class TestDashRepo:
                 else:
                     print(f"Error :: 'sgst3' :'{sgst3}' is not matched with CHARGES Section in first Page of pdf ")
 
-                # assert sgst3 in firstPage, "is matched with CHARGES Section in first Page of pdf"
+                assert sgst3 in firstPage, "is matched with CHARGES Section in first Page of pdf"
 
 
 
@@ -506,7 +511,7 @@ class TestDashRepo:
                     print(f" *** 'cgst3' :'{cgst3}' is matched with CHARGES Section in first Page of pdf *** ")
                 else:
                     print(f"Error :: 'cgst3' :'{cgst3}' is not matched with CHARGES Section in first Page of pdf ")
-                # assert cgst3 in firstPage, "is matched with CHARGES Section in first Page of pdf"
+                assert cgst3 in firstPage, "is matched with CHARGES Section in first Page of pdf"
 
         #
 
@@ -1062,7 +1067,7 @@ class TestDashRepo:
                     print(
                         f"Error :: 'loanInterestPerDay3' :'{loanInterestPerDay3}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
 
-                # assert loanInterestPerDay3 in eighthPage, "loanInterestPerDay3 is matched with LOAN AGREEMENT in eighth Page of pdf"
+                assert loanInterestPerDay3 in eighthPage, "loanInterestPerDay3 is matched with LOAN AGREEMENT in eighth Page of pdf"
 
         #per annum
 
@@ -1079,7 +1084,7 @@ class TestDashRepo:
             else:
                 print(f"Error :: 'loanIntPerAnnumStr2' :'{loanIntPerAnnumStr2}%'  is not matched with LOAN DETAILS in eighth Page of pdf ")
 
-            # assert loanIntPerAnnumStr2 in eighthPage, "loanIntPerAnnumStr2 is matched with LOAN DETAILS in eighth Page of pdf"
+            assert loanIntPerAnnumStr2 in eighthPage, "loanIntPerAnnumStr2 is matched with LOAN DETAILS in eighth Page of pdf"
 
 
 
@@ -1090,7 +1095,7 @@ class TestDashRepo:
         else:
             print(f"Error :: 'latePaymentChargePerDayString' :'{latePaymentChargePerDayString}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
 
-        # assert latePaymentChargePerDayString in eighthPage, "latePaymentChargePerDayString is matched with LOAN AGREEMENT in eighth Page of pdf"
+        assert latePaymentChargePerDayString in eighthPage, "latePaymentChargePerDayString is matched with LOAN AGREEMENT in eighth Page of pdf"
 
         # per annum
         try:
@@ -1119,7 +1124,7 @@ class TestDashRepo:
                     print(
                         f"Error :: 'latePaymentChargePerAnnualString3' :'{latePaymentChargePerAnnualString3}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
 
-                # assert latePaymentChargePerAnnualString3 in eighthPage, "latePaymentChargePerAnnualString3 is matched with LOAN AGREEMENT in eighth Page of pdf"
+                assert latePaymentChargePerAnnualString3 in eighthPage, "latePaymentChargePerAnnualString3 is matched with LOAN AGREEMENT in eighth Page of pdf"
 
         '''Borrower Name in ninth page'''
 

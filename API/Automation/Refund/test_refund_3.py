@@ -1,15 +1,16 @@
 import requests
 import pytest
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
+
 
 class TestRefund:
     def test_ref_url(self):
         global allRepay, refund_compl, refund_pend, emiRepaymentStatus
 
         currTime = datetime.now()
-        currTimeStr = datetime.strftime(currTime,"%Y-%m-%d")
+        currTimeStr = datetime.strftime(currTime, "%Y-%m-%d")
         preTime = currTime - timedelta(days=5)
-        preTimeStr = datetime.strftime(preTime,"%Y-%m-%d")
+        preTimeStr = datetime.strftime(preTime, "%Y-%m-%d")
         # print(currTimeStr)
         # print(preTimeStr)
 
@@ -17,14 +18,16 @@ class TestRefund:
             "https://lendittfinserve.com/prod/admin/emi/repaymentStatus?fromDate=2024-02-18T10:00:00.000Z&endDate=2024-02-23T10:00:00.000Z&type=TOTAL&page=1&download=true")
 
         allRepay = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans", params={"start_date":f"{preTimeStr}T10:00:00.000Z","end_date":f"{currTimeStr}T10:00:00.000Z","page":1,"pagesize":10,"getTotal":"true","download":"true"})
+            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans",
+            params={"start_date": f"{preTimeStr}T10:00:00.000Z", "end_date": f"{currTimeStr}T10:00:00.000Z", "page": 1,
+                    "pagesize": 10, "getTotal": "true", "download": "true"})
         # print(allRepay.json())
 
         headers = {"adminid": "37"}
 
-
-        refund_compl = requests.get("https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData",params={"skipPageLimit":"true","endDate":f"{currTimeStr}T10:00:00.000Z","startDate":f"{preTimeStr}T10:00:00.000Z","status":1},headers=headers)
-
+        refund_compl = requests.get("https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData",
+                                    params={"skipPageLimit": "true", "endDate": f"{currTimeStr}T10:00:00.000Z",
+                                            "startDate": f"{preTimeStr}T10:00:00.000Z", "status": 1}, headers=headers)
 
         refund_pend = requests.get(
             "https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData?skipPageLimit=true&endDate=2024-02-13T10:00:00.000Z&startDate=2024-02-08T10:00:00.000Z&status=-1",
@@ -59,7 +62,6 @@ class TestRefund:
         web_emi_4 = []
         auto_emi_4 = []
 
-
         full_pay_1 = []
         full_pay_2 = []
         full_pay_3 = []
@@ -77,7 +79,6 @@ class TestRefund:
                 if r["Payment mode"] != "ICICI_UPI":
                     cashfree_miss_match_ICICI_UPI.append(r["Loan id"])
 
-
             if r["EMI Types"] == "EMIPAY 1":
                 emi_1.append(r["Loan id"])
 
@@ -89,7 +90,6 @@ class TestRefund:
 
             if (r["EMI Types"] == "EMIPAY 4"):
                 emi_4.append(r["Loan id"])
-
 
             if ((r["EMI Types"] == "EMIPAY 1") and (r["EMI Types"] == "EMIPAY 1")):
 
@@ -152,14 +152,11 @@ class TestRefund:
         # print("autodebit_miss_match_razorpay::",autodebit_miss_match_razorpay)
         # print("cashfree_miss_match_ICICI_UPI::", cashfree_miss_match_ICICI_UPI)
 
-
         # APP
         match_app_auto_1 = []
         for ap1 in app_emi_1:
             if ap1 in auto_emi_1:
                 match_app_auto_1.append(ap1)
-
-
 
         match_app_auto_2 = []
         for ap2 in app_emi_2:
@@ -175,9 +172,6 @@ class TestRefund:
         for ap4 in app_emi_4:
             if ap4 in auto_emi_4:
                 match_app_auto_4.append(ap4)
-
-
-
 
         # WEB
         match_web_auto_1 = []
@@ -199,7 +193,6 @@ class TestRefund:
         for wb4 in web_emi_4:
             if wb4 in auto_emi_4:
                 match_web_auto_4.append(wb4)
-
 
         # full pay
         match_app_auto_1_f = []
@@ -255,8 +248,8 @@ class TestRefund:
         # print("emi_3::", emi_3)
         # print("emi_4::", emi_4)
 
-
     def test_ref_completed(self):
+        global uniqRefund_compl
         refund_compl_data = refund_compl.json()["data"]["rows"]
         refund_compl_data_count = refund_compl.json()["data"]["count"]
 
@@ -264,10 +257,23 @@ class TestRefund:
         print("refund_compl_data_count::", refund_compl_data_count)
 
         refund_comp_loan_ids = []
+        ref_source_wrong = []
+
         for rc in refund_compl_data:
             if rc["loanId"]:
                 refund_comp_loan_ids.append(rc["loanId"])
-        print("refund_comp_loan_ids::",refund_comp_loan_ids)
+
+            if rc["source"] != "RAZORPAY":
+                ref_source_wrong.append(rc["loanId"])
+
+        print("refund_comp_loan_ids::", refund_comp_loan_ids)
+        print("ref_source_wrong::", ref_source_wrong)
+
+        if len(ref_source_wrong) == 0:
+            print("No ref_source_wrong found in refund completed")
+        else:
+            print("Error::ref_source_wrong found in refund completed")  # it should be razorpay only not ICICI_UPI
+            assert False, "ref_source_wrong found in refund completed"
 
         duplicateRefund_compl = []
         uniqRefund_compl = []
@@ -278,15 +284,12 @@ class TestRefund:
             else:
                 duplicateRefund_compl.append(d)
 
-
         if len(duplicateRefund_compl) == 0:
             print("No duplicate found in refund completed")
         else:
             print("Error::Duplicate found in refund completed")
 
         assert len(duplicateRefund_compl) == 0
-
-
 
         ref_miss_compl = []
         for dut in all_refund_unique:
@@ -307,7 +310,20 @@ class TestRefund:
         else:
             print("refund not missed with refund completed")
 
+    def test_ref_amt_emi_check(self):
 
+        for r in uniqRefund_compl:
+            trans = requests.get("https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails",
+                                 params={"loanId": r})
+
+            transData = trans.json()["data"]
+
+            for td in transData:
+                if td["Status"] == "COMPLETED":
+                    if td["Repay Amount"] == td["Repay Amount"]:
+                        print(td["Repay Amount"])
+
+            # print(transData)
 
     #
     # @pytest.mark.skip
