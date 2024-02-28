@@ -33,18 +33,19 @@ class TestLoanStatus:
 
         # print("repay_loan_id::",repay_loan_id)
 
+        l_h_compl = []
         for uid in repay_user_id:
 
             l_hist = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getLoanHistory",params={"userId":uid})
             l_hist_data = l_hist.json()["data"]["loanData"]
             # print("l_hist_data::",l_hist_data)
 
-            l_h_compl = []
+
             for lh in l_hist_data:
                 if lh["loanStatus"] == "Complete":
                     l_h_compl.append(lh["id"])
 
-            print("l_h_compl::",l_h_compl)
+
 
             # Upcoming EMI
 
@@ -61,3 +62,5 @@ class TestLoanStatus:
             for md in response_data:
                 loan_d = response_data[md]
                 print("loan_d::",loan_d)
+
+        print("l_h_compl::", l_h_compl)
