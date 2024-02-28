@@ -123,7 +123,7 @@ class TestBounce:
                             bounceChMissed_LId_2.append(r)
 
 
-        print("bounceChMissed_LId_2::",bounceChMissed_LId_2)
+        # print("bounceChMissed_LId_2::",bounceChMissed_LId_2)
         # print("bounceChMissed_LId_unique_2::", bounceChMissed_LId_unique_2)
 
         # print(emiRepaymentStatus_data_lid)
