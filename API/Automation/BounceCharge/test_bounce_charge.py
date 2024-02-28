@@ -95,12 +95,14 @@ class TestBounce:
 
         for rs in emiRepaymentStatus_data:
 
+
             # emi date < current date
             # if rs["Emi date"] == "09-02-2024":
 
-            if rs["Today's EMI status"] == "FAILED":
-                if rs["Loan ID"]:
-                    emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
+            # if rs["Today's EMI status"] == "FAILED":
+
+            if rs["Loan ID"]:
+                emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
 
         # print(emiRepaymentStatus_data_lid_2)
         #
