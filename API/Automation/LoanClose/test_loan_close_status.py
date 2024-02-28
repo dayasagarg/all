@@ -61,6 +61,6 @@ class TestLoanStatus:
 
             for md in response_data:
                 loan_d = response_data[md]
-                print("loan_d::",loan_d)
+                # print("loan_d::",loan_d)
 
         print("l_h_compl::", l_h_compl)
