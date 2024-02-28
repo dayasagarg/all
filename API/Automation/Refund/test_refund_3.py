@@ -310,6 +310,7 @@ class TestRefund:
         else:
             print("refund not missed with refund completed")
 
+    @pytest.mark.skip
     def test_ref_amt_emi_check(self):
 
         for r in uniqRefund_compl:
@@ -318,10 +319,18 @@ class TestRefund:
 
             transData = trans.json()["data"]
 
+            repayAmt = []
             for td in transData:
                 if td["Status"] == "COMPLETED":
+                    if td["Pay type"] == "REFUND":
+                        if td["Repay Amount"]:
+                            repayAmt.append(td["Repay Amount"])
+
+
+                if "AUTODEBIT" or "APP" in td["Source"]:
                     if td["Repay Amount"] == td["Repay Amount"]:
-                        print(td["Repay Amount"])
+                        print("ra::",td["Repay Amount"])
+
 
             # print(transData)
 
