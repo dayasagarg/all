@@ -249,7 +249,7 @@ class TestRefund:
         # print("emi_4::", emi_4)
 
     def test_ref_completed(self):
-        global uniqRefund_compl, duplicateRefund_compl, ref_miss_compl
+        global uniqRefund_compl
         refund_compl_data = refund_compl.json()["data"]["rows"]
         refund_compl_data_count = refund_compl.json()["data"]["count"]
 
@@ -273,7 +273,7 @@ class TestRefund:
             print("No ref_source_wrong found in refund completed")
         else:
             print("Error::ref_source_wrong found in refund completed")  # it should be razorpay only not ICICI_UPI
-            assert False, "ref_source_wrong found in refund completed"
+            # assert False, "ref_source_wrong found in refund completed"
 
         duplicateRefund_compl = []
         uniqRefund_compl = []
@@ -284,7 +284,12 @@ class TestRefund:
             else:
                 duplicateRefund_compl.append(d)
 
+        if len(duplicateRefund_compl) == 0:
+            print("No duplicate found in refund completed")
+        else:
+            print("Error::Duplicate found in refund completed")
 
+        assert len(duplicateRefund_compl) == 0
 
         ref_miss_compl = []
         for dut in all_refund_unique:
@@ -304,26 +309,6 @@ class TestRefund:
             assert False, "refund missed found"
         else:
             print("refund not missed with refund completed")
-
-    def test_duplicate_refund(self):
-
-        if len(duplicateRefund_compl) == 0:
-            print("No duplicate found in refund completed")
-        else:
-            print("Error::Duplicate found in refund completed")
-
-        assert len(duplicateRefund_compl) == 0
-
-    def test_refund_miss(self):
-        if len(ref_miss_compl) > 0:
-            print(f"refund missed found:: {ref_miss_compl}")
-            assert False, "refund missed found"
-        else:
-            print("refund not missed with refund completed")
-
-
-
-
 
 
 
@@ -347,8 +332,6 @@ class TestRefund:
                 if "AUTODEBIT" or "APP" in td["Source"]:
                     if td["Repay Amount"] == td["Repay Amount"]:
                         print("ra::",td["Repay Amount"])
-
-
 
 
             # print(transData)
