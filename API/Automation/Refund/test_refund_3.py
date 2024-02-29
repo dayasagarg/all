@@ -11,8 +11,8 @@ class TestRefund:
         currTimeStr = datetime.strftime(currTime, "%Y-%m-%d")
         preTime = currTime - timedelta(days=5)
         preTimeStr = datetime.strftime(preTime, "%Y-%m-%d")
-        # print(currTimeStr)
-        # print(preTimeStr)
+        print("currTimeStr::",currTimeStr)
+        print("preTimeStr::",preTimeStr)
 
         emiRepaymentStatus = requests.get(
             "https://lendittfinserve.com/prod/admin/emi/repaymentStatus?fromDate=2024-02-18T10:00:00.000Z&endDate=2024-02-23T10:00:00.000Z&type=TOTAL&page=1&download=true")
@@ -28,10 +28,10 @@ class TestRefund:
         refund_compl = requests.get("https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData",
                                     params={"skipPageLimit": "true", "endDate": f"{currTimeStr}T10:00:00.000Z",
                                             "startDate": f"{preTimeStr}T10:00:00.000Z", "status": 1}, headers=headers)
-
+        headers_2 = {"adminid": "37"}
         refund_pend = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData?skipPageLimit=true&endDate=2024-02-13T10:00:00.000Z&startDate=2024-02-08T10:00:00.000Z&status=-1",
-            headers=headers)
+            "https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData",params={"skipPageLimit":"true","endDate":f"{currTimeStr}T10:00:00.000Z","startDate":f"{preTimeStr}T10:00:00.000Z","status":-1},
+            headers=headers_2)
 
     def test_refund_amt_allRepaid(self):
         global dupl_repay_lid, match_app_auto, all_refund, all_refund_unique
@@ -249,7 +249,7 @@ class TestRefund:
         # print("emi_4::", emi_4)
 
     def test_ref_completed(self):
-        global uniqRefund_compl
+        global uniqRefund_compl,ref_miss_compl
         refund_compl_data = refund_compl.json()["data"]["rows"]
         refund_compl_data_count = refund_compl.json()["data"]["count"]
 
@@ -309,6 +309,40 @@ class TestRefund:
             assert False, "refund missed found"
         else:
             print("refund not missed with refund completed")
+
+
+
+
+
+
+
+
+
+
+
+
+    def test_refund_pending(self):
+        refund_pend_data = refund_pend.json()["data"]["filteredData"]
+
+        pend_lid = []
+        for p in refund_pend_data:
+            if p["loanId"]:
+                pend_lid.append(p["loanId"])
+
+        miss_with_pend = []
+        for m in ref_miss_compl:
+            if m not in pend_lid:
+                miss_with_pend.append(m)
+
+        if len(miss_with_pend) > 0:
+            print(f"Error:: refund miss_with_pend found::{miss_with_pend}")
+            assert False, "refund miss_with_pend found"
+        else:
+            print("No refund miss_with_pend found")
+
+        # print("miss_with_pend::",miss_with_pend)
+
+
 
 
 
