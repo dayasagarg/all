@@ -243,7 +243,7 @@ class TestLoanAgrDis:
         if procFees == procFees_la:
             print("procFees is equal in both loan agreement and disbursement")
         else:
-            print("procFees is mismatched")
+            print(f"procFees is mismatched::{lid}")
             assert False
 
 

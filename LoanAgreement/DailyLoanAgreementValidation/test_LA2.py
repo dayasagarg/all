@@ -46,15 +46,15 @@ class TestDashRepo:
         driver.maximize_window()
         driver.implicitly_wait(5)
         driver.get("https://lendittfinserve.com/lenditt/#/dashboard") # url
-        time.sleep(1)
+        time.sleep(2)
         driver.find_element(By.ID, "email").send_keys(email) #email
-        # time.sleep(1)
+        time.sleep(2)
         driver.find_element(By.ID, "login-btn").click() #button
-        time.sleep(1)
+        time.sleep(2)
         driver.find_element(By.ID, "login-password").send_keys(password) #password
-        time.sleep(1)
+        time.sleep(2)
         driver.find_element(By.ID, "login-btn2").click() #button
-        time.sleep(1)
+        time.sleep(2)
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[1]").send_keys(otp1) #otp
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[2]").send_keys(otp2)  # otp
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[3]").send_keys(otp3)  # otp
