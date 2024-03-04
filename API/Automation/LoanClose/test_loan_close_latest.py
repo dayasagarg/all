@@ -43,10 +43,8 @@ class TestLoanStatus:
         #     print("emi_data::",emi_data)
 
 
-
-        # print("repay_loan_id::",repay_loan_id)
-        # print("repay_loan_id_count::", len(repay_loan_id))
-
+        print("repay_loan_id_count::", len(repay_loan_id))
+        print("repay_loan_id::",repay_loan_id)
 
 
         # Upcoming EMI
