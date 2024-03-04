@@ -56,7 +56,7 @@ class TestBounce:
                     aut_failed_loan_ids.append(ad["Loan ID"])
                 # print(ad)
 
-            # print("aut_failed_loan_ids::",aut_failed_loan_ids)
+        print("aut_failed_loan_ids::",aut_failed_loan_ids)
 
         for e in aut_failed_loan_ids:
             emiAPI = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
@@ -104,7 +104,8 @@ class TestBounce:
             if rs["Loan ID"]:
                 emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
 
-        # print(emiRepaymentStatus_data_lid_2)
+        print("emiRepaymentStatus_data_lid_2_count::", len(emiRepaymentStatus_data_lid_2))
+        print("emiRepaymentStatus_data_lid_2::",emiRepaymentStatus_data_lid_2)
         #
         bounceChMissed_LId_2 = []
         for r in emiRepaymentStatus_data_lid_2:
@@ -186,3 +187,5 @@ class TestBounce:
 
         # print("emi_ers_status::",emi_ers_status)
         # print("emi_aut_status::",emi_aut_status)
+
+

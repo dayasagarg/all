@@ -31,7 +31,7 @@ class TestLoanStatus:
                 repay_user_id.append(al["userId"])
 
 
-        # print("repay_loan_id::",repay_loan_id)
+        # print("repay_user_id::",repay_user_id)
 
         l_h_compl = []
         for uid in repay_user_id:
