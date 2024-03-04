@@ -49,18 +49,23 @@ class TestLoanStatus:
 
             # Upcoming EMI
 
-            url = "https://lendittfinserve.com/prod/admin/loan/massEMIRepaymentDetails"
+            # url = "https://lendittfinserve.com/prod/admin/loan/massEMIRepaymentDetails"
+
+            url = "https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
             # print(lIDs)
 
             data = {"loanIds": l_h_compl}
 
-            # headers = {"qa-test-key": "28947f203896ea859233415d1904c927098484d2"}
+            headers = {"qa-test-key": "28947f203896ea859233415d1904c927098484d2"}
 
-            response = requests.post(url, json=data, verify=False)  # current date
+            response = requests.post(url, json=data, verify=False, headers=headers)  # current date
             response_data = response.json()["data"]
 
-            for md in response_data:
-                loan_d = response_data[md]
-                # print("loan_d::",loan_d)
+            print("response_data::",response_data)
 
-        print("l_h_compl::", l_h_compl)
+            # for md in response_data:
+            #     loan_d = response_data[md]
+            #     print("loan_d::",loan_d)
+
+        # print("l_h_compl::", l_h_compl)
+
