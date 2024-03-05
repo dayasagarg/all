@@ -56,7 +56,8 @@ class TestBounce:
                     autdebit_failed_loan_ids.append(ad["Loan ID"])
                 # print(ad)
 
-        print("auto-debit_failed_loan_ids::",autdebit_failed_loan_ids)
+        print("auto-debit_failed_loan_ids_count::",len(autdebit_failed_loan_ids))
+        print("auto-debit_failed_loan_ids::", autdebit_failed_loan_ids)
 
         for e in autdebit_failed_loan_ids:
             emiAPI = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
@@ -81,10 +82,10 @@ class TestBounce:
 
 
         if len(bounceChMissed_LId_unique) > 0:
-            print(f"bounce charge missing found for bounceChMissed_LId_unique_unpaid::{bounceChMissed_LId_unique}")
+            print(f"bounce charge missing found for bounceChMissed_LId_unique_unpaid_autodebit::{bounceChMissed_LId_unique}")
             assert False, "bounce charge missing found"
         else:
-            print("No bounce charge missed for bounceChMissed_LId_unique_unpaid")
+            print("No bounce charge missed for bounceChMissed_LId_unique_unpaid_autodebit")
 
 
     def test_bounce_charg_autodebit_total(self, bcURL):
@@ -105,7 +106,8 @@ class TestBounce:
                     aut_failed_loan_ids_2.append(ad["Loan ID"])
                 # print(ad)
 
-        print("aut_failed_loan_ids_2::",aut_failed_loan_ids_2)
+        # print("autdebit_failed_loan_ids_2_count::", len(aut_failed_loan_ids_2))
+        # print("autodebit_failed_loan_ids_2::",aut_failed_loan_ids_2)
 
         for f in aut_failed_loan_ids_2:
             emiAPI = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
@@ -130,14 +132,14 @@ class TestBounce:
 
 
         if len(bounceChMissed_LId_unique_2) > 0:
-            print(f"bounce charge missing found for bounceChMissed_LId_unique_total::{bounceChMissed_LId_unique_2}")
+            print(f"bounce charge missing found for bounceChMissed_LId_unique_total_autodebit::{bounceChMissed_LId_unique_2}")
             assert False, "bounce charge missing found"
         else:
-            print("No bounce charge missed for bounceChMissed_LId_unique_total")
+            print("No bounce charge missed for bounceChMissed_LId_unique_total_autodebit")
 
 
 
-    #@pytest.mark.skip
+
     def test_bounceCharge_repayStatus_unpaid(self, bcURL):
         global emiRepaymentStatus_data
 
@@ -182,10 +184,10 @@ class TestBounce:
         # print(emiRepaymentStatus_data_lid)
 
         if len(bounceChMissed_LId_2) > 0:
-            print(f"bounce charge missing found for bounceChMissed_LId_2_unpaid::{bounceChMissed_LId_2}")
+            print(f"bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay::{bounceChMissed_LId_2}")
             assert False, "bounce charge missing found"
         else:
-            print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid ***")
+            print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay ***")
 
 
     def test_bounceCharge_repayStatus_total(self, bcURL):
@@ -232,10 +234,10 @@ class TestBounce:
         # print(emiRepaymentStatus_data_lid)
 
         if len(bounceChMissed_LId_3) > 0:
-            print(f"bounce charge missing found for bounceChMissed_LId_3_total::{bounceChMissed_LId_3}")
+            print(f"bounce charge missing found for bounceChMissed_LId_3_total_emi_repay::{bounceChMissed_LId_3}")
             assert False, "bounce charge missing found"
         else:
-            print("*** No bounce charge missed for bounceChMissed_LId_3_total ***")
+            print("*** No bounce charge missed for bounceChMissed_LId_3_total_emi_repay ***")
 
 
     def test_status_failed_val(self,bcURL):
