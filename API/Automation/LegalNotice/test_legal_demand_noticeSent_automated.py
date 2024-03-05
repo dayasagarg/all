@@ -337,7 +337,7 @@ class TestLegal:
         global paidPrincipleInterest, principleInterest, cal_less_than_70
         case_data = caseAssigned.json()["data"]["rows"]
 
-        # print(case_data)
+        # print("case_data::",case_data)
         #
         perc_loanId = []
 
@@ -346,7 +346,7 @@ class TestLegal:
         # principleInterest = []
         for c in case_data:
             # print(c)
-            if c["Paid percentage(%)"] == "100.00":
+            if c["Paid principal & interest percentage(%)"] == "100.00":
                 # print(c)
                 perc_loanId.append(c["Loan ID"])
 
