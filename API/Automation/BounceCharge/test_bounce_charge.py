@@ -79,6 +79,7 @@ class TestBounce:
         # print("bounceChMissed_LId::",bounceChMissed_LId)
         # print("bounceChMissed_LId_unique::", bounceChMissed_LId_unique)
 
+
         if len(bounceChMissed_LId_unique) > 0:
             print(f"bounce charge missing found::{bounceChMissed_LId_unique}")
             assert False, "bounce charge missing found"
@@ -133,7 +134,57 @@ class TestBounce:
             print(f"bounce charge missing found::{bounceChMissed_LId_2}")
             assert False, "bounce charge missing found"
         else:
-            print("No bounce charge missed")
+            print("*** No bounce charge missed for bounceChMissed_LId_2 ***")
+
+
+    def test_bounceCharge_repayStatus_2(self, bcURL):
+        global emiRepaymentStatus_data_2
+
+        emiRepaymentStatus_data_2 = emiRepaymentStatus.json()["data"]["rows"]
+
+        emiRepaymentStatus_data_lid_3 = []
+
+        for rs in emiRepaymentStatus_data_2:
+
+
+            # emi date < current date
+            # if rs["Emi date"] == "09-02-2024":
+
+            # if rs["Today's EMI status"] == "FAILED":
+
+            if rs["Loan ID"]:
+                emiRepaymentStatus_data_lid_3.append(rs["Loan ID"])
+
+        print("emiRepaymentStatus_data_lid_3_count::", len(emiRepaymentStatus_data_lid_3))
+        print("emiRepaymentStatus_data_lid_3::",emiRepaymentStatus_data_lid_3)
+        #
+
+        bounceChMissed_LId_3 = []
+        for s in emiRepaymentStatus_data_lid_3:
+            emiAPI_3 = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                                    params={"loanId": s}, verify=False)
+            # print(emiAPI.json())
+            emiAPI_data3 = emiAPI_3.json()["data"]["EMIData"]
+
+            # print(emiAPI_data2)
+        #
+            for ed3 in emiAPI_data3:
+                if ed3["penaltyDays"] > 0:
+
+                    if ed3["bounceCharge"] == 0:
+                        bounceChMissed_LId_3.append(s)
+
+
+        # print("bounceChMissed_LId_2::",bounceChMissed_LId_2)
+        # print("bounceChMissed_LId_unique_2::", bounceChMissed_LId_unique_2)
+
+        # print(emiRepaymentStatus_data_lid)
+
+        if len(bounceChMissed_LId_3) > 0:
+            print(f"bounce charge missing found::{bounceChMissed_LId_3}")
+            assert False, "bounce charge missing found"
+        else:
+            print("*** No bounce charge missed for bounceChMissed_LId_3 ***")
 
 
     def test_status_failed_val(self,bcURL):

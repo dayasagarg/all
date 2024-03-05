@@ -135,6 +135,3 @@ class TestRepayment:
     #
     #         print('status code of get Repayment::', response.status_code)
             # print(response.json())
-
-
-
