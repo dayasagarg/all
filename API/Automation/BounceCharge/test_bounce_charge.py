@@ -82,7 +82,7 @@ class TestBounce:
 
 
         if len(bounceChMissed_LId_unique) > 0:
-            print(f"bounce charge missing found for bounceChMissed_LId_unique_unpaid_autodebit::{bounceChMissed_LId_unique}")
+            print(f"Error::bounce charge missing found for bounceChMissed_LId_unique_unpaid_autodebit::{bounceChMissed_LId_unique}")
             assert False, "bounce charge missing found"
         else:
             print("No bounce charge missed for bounceChMissed_LId_unique_unpaid_autodebit")
@@ -132,7 +132,7 @@ class TestBounce:
 
 
         if len(bounceChMissed_LId_unique_2) > 0:
-            print(f"bounce charge missing found for bounceChMissed_LId_unique_total_autodebit::{bounceChMissed_LId_unique_2}")
+            print(f"Error::bounce charge missing found for bounceChMissed_LId_unique_total_autodebit::{bounceChMissed_LId_unique_2}")
             assert False, "bounce charge missing found"
         else:
             print("No bounce charge missed for bounceChMissed_LId_unique_total_autodebit")
@@ -184,7 +184,7 @@ class TestBounce:
         # print(emiRepaymentStatus_data_lid)
 
         if len(bounceChMissed_LId_2) > 0:
-            print(f"bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay::{bounceChMissed_LId_2}")
+            print(f"Error::bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay::{bounceChMissed_LId_2}")
             assert False, "bounce charge missing found"
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay ***")
@@ -234,7 +234,7 @@ class TestBounce:
         # print(emiRepaymentStatus_data_lid)
 
         if len(bounceChMissed_LId_3) > 0:
-            print(f"bounce charge missing found for bounceChMissed_LId_3_total_emi_repay::{bounceChMissed_LId_3}")
+            print(f"Error::bounce charge missing found for bounceChMissed_LId_3_total_emi_repay::{bounceChMissed_LId_3}")
             assert False, "bounce charge missing found"
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_3_total_emi_repay ***")
