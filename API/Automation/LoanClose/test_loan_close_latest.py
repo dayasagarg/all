@@ -40,11 +40,81 @@ class TestLoanStatus:
         for l in repay_loan_id:
             emi = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",params={"loanId":l})
             emi_data = emi.json()["data"]["EMIData"]
-            print("emi_data::",emi_data)
+            # print("emi_data::",emi_data)
+            # print("emi_data::",emi_data)
+
+            for d in emi_data:
+                if d["dueStatus"] == "delay":
+                    print(l)
+
+
 
 
         # print("repay_loan_id_count::", len(repay_loan_id))
         # print("repay_loan_id::",repay_loan_id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         # # Upcoming EMI
