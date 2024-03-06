@@ -594,7 +594,7 @@ class TestDashRepo:
         # Total amount to be paid  //*[@class="border-gray bg-mail font-weight-bold ng-star-inserted"]//td[6]
         # totalCost = driver.find_element(By.XPATH,"//div[contains(@class,'font-weight-bold numbers mobile-text')]").text
         totalCost = driver.find_element(By.XPATH, "//*[contains(@class,'border-gray bg-mail font-weight-bold ng-star-inserted')]//td[6]").text
-        print("totalCost::",totalCost)
+        # print("totalCost::",totalCost)
 
 
         if totalCost in thirdPage:

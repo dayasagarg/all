@@ -37,44 +37,44 @@ class TestLoanStatus:
                     # print(type(al["Repaid amount"]))
 
 
-        # for l in repay_loan_id:
-        #     emi = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",params={"loanId":l})
-        #     emi_data = emi.json()["data"]["EMIData"]
-        #     print("emi_data::",emi_data)
+        for l in repay_loan_id:
+            emi = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",params={"loanId":l})
+            emi_data = emi.json()["data"]["EMIData"]
+            print("emi_data::",emi_data)
 
 
-        print("repay_loan_id_count::", len(repay_loan_id))
-        print("repay_loan_id::",repay_loan_id)
+        # print("repay_loan_id_count::", len(repay_loan_id))
+        # print("repay_loan_id::",repay_loan_id)
 
 
-        # Upcoming EMI
-
-        # url = "https://lendittfinserve.com/prod/admin/loan/massEMIRepaymentDetails"
-        url = "https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
-        # print(lIDs)
-
-        data = {"loanIds": repay_loan_id}
-
-        headers = {"qa-test-key": "28947f203896ea859233415d1904c927098484d2"}
-
-        response = requests.post(url, json=data, headers=headers,verify=False)  # current date
-        response_data = response.json()["data"]
-
-        print("response_data::",response_data)
-
-
-
+        # # Upcoming EMI
+        #
+        # # url = "https://lendittfinserve.com/prod/admin/loan/massEMIRepaymentDetails"
+        # url = "https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
+        # # print(lIDs)
+        #
+        # data = {"loanIds": repay_loan_id}
+        #
+        # headers = {"qa-test-key": "28947f203896ea859233415d1904c927098484d2"}
+        #
+        # response = requests.post(url, json=data, headers=headers,verify=False)  # current date
+        # response_data = response.json()["data"]
+        #
+        # # print("response_data::",response_data)
+        #
+        #
+        #
         # delay_lid = []
         # for md in response_data:
         #     loan_d = response_data[md]
         #     emi_details = loan_d["emiDetails"]
-            # print("emi_details::",emi_details)
-
-            # for d in emi_details:
-            #     print(d)
-                    # delay_lid.append(loan_d)
-
-        # print("delay_lid::",delay_lid)
+        #     print("emi_details::",emi_details)
+        #
+        #     # for d in emi_details:
+        #     #     print(d)
+        #     #     delay_lid.append(loan_d)
+        #
+        # # print("delay_lid::",delay_lid)
 
 
 
