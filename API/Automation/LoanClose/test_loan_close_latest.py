@@ -44,8 +44,9 @@ class TestLoanStatus:
             # print("emi_data::",emi_data)
 
             for d in emi_data:
-                if d["dueStatus"] == "delay":
-                    print(l)
+                print(d)
+                # if d["dueStatus"] == "DELAY":
+                #     print(d["dueStatus"])
 
 
 
