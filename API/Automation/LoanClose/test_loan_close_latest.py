@@ -26,6 +26,7 @@ class TestLoanStatus:
         allRepay_data = allRepay.json()["data"]["rows"]
 
         repay_loan_id = []
+        delay_lid = []
         for al in allRepay_data:
             if al["Loan id"]:
                 repay_loan_id.append(al["Loan id"])
@@ -44,7 +45,12 @@ class TestLoanStatus:
             # print("emi_data::",emi_data)
 
             for d in emi_data:
-                print(d)
+                if d["dueStatus"]=="DELAY":
+                    delay_lid.append(l)
+
+
+
+        print("delay_lid:",delay_lid)
                 # if d["dueStatus"] == "DELAY":
                 #     print(d["dueStatus"])
 
