@@ -9,7 +9,7 @@ from datetime import datetime,timedelta
 class TestBounce:
     @pytest.fixture
     def bcURL(self):
-        global autoDebitFailedAPI, emiRepaymentStatus
+        global autoDebitFailedAPI, emiRepaymentStatus, curr_str
 
         from datetime import datetime, timedelta
 
@@ -67,9 +67,10 @@ class TestBounce:
 
 
             for ed in emiAPI_data:
+                if ed["emiDate"] == curr_str:
 
-                if ed["bounceCharge"] == 0:
-                    bounceChMissed_LId.append(e)
+                    if ed["bounceCharge"] == 0:
+                        bounceChMissed_LId.append(e)
 
         bounceChMissed_LId_unique = []
 
