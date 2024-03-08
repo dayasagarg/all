@@ -16,6 +16,7 @@ class TestBounce:
         curr = datetime.now()
         curr_str = datetime.strftime(curr, "%d-%m-%Y")
 
+        curr_s = datetime.strftime(curr, "%Y-%m-%d")
         prev_1 = curr - timedelta(days=1)
         prev_2 = curr - timedelta(days=3)
 
@@ -30,7 +31,7 @@ class TestBounce:
         # emi date < current date
 
         autoDebitFailedAPI = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{pre_str_2}T10:00:00.000Z","end_date":f"{pre_str_1}T10:00:00.000Z","status":4,"page":1,"skipPageLimit":"true"})
+            "https://lendittfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{pre_str_2}T10:00:00.000Z","end_date":f"{curr_s}T10:00:00.000Z","status":4,"page":1,"skipPageLimit":"true"})
 
         # autoDebitFailedAPI = requests.get(
         #     "https://lendittfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData?start_date=2024-02-04T10:00:00.000Z&end_date=2024-02-05T10:00:00.000Z&status=4&page=1") # 10 data / page
@@ -38,7 +39,7 @@ class TestBounce:
         # autoDebitFailedAPI = requests.get("https://lendittfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData?start_date=2024-02-03T10:00:00.000Z&end_date=2024-02-05T10:00:00.000Z&status=9&page=4")
 
         emiRepaymentStatus = requests.get(
-            "https://lendittfinserve.com/prod/admin/emi/repaymentStatus",params={"fromDate":f"{pre_str_2}T10:00:00.000Z","endDate":f"{pre_str_1}T10:00:00.000Z","type":"TOTAL","page":1,"download":"true"})
+            "https://lendittfinserve.com/prod/admin/emi/repaymentStatus",params={"fromDate":f"{pre_str_2}T10:00:00.000Z","endDate":f"{curr_s}T10:00:00.000Z","type":"TOTAL","page":1,"download":"true"})
 
 
 
