@@ -9,7 +9,7 @@ from datetime import datetime,timedelta
 class TestBounce:
     @pytest.fixture
     def bcURL(self):
-        global autoDebitFailedAPI, emiRepaymentStatus, curr_str,curr_str_emi
+        global autoDebitFailedAPI, emiRepaymentStatus, curr_str,curr_str_emi,pre_str_emi
 
         from datetime import datetime, timedelta
 
@@ -22,6 +22,7 @@ class TestBounce:
 
         pre_str_1 = datetime.strftime(prev_1, "%Y-%m-%d")
         pre_str_2 = datetime.strftime(prev_2, "%Y-%m-%d")
+        pre_str_emi = datetime.strftime(prev_1, "%d/%m/%Y")
 
 
 
@@ -39,7 +40,7 @@ class TestBounce:
             "https://lendittfinserve.com/prod/admin/emi/repaymentStatus",params={"fromDate":f"{pre_str_2}T10:00:00.000Z","endDate":f"{pre_str_1}T10:00:00.000Z","type":"TOTAL","page":1,"download":"true"})
 
 
-    def test_bounce_charg_autodebit_unpaid(self, bcURL):
+    def test_bounce_charg_autodebit_unpaid_current_date(self, bcURL):
         global autoDebitData
 
         autoDebitData = autoDebitFailedAPI.json()["data"]["finalData"]
@@ -82,12 +83,62 @@ class TestBounce:
 
 
         if len(bounceChMissed_LId_unique) > 0:
-            print(f"Error::bounce charge missing found for bounceChMissed_LId_unique_unpaid_autodebit::{bounceChMissed_LId_unique}")
+            print(f"Error::bounce charge missing found for bounceChMissed_LId_unique_unpaid_autodebit_current_date::{bounceChMissed_LId_unique}")
             assert False, "bounce charge missing found"
         else:
-            print("No bounce charge missed for bounceChMissed_LId_unique_unpaid_autodebit")
+            print("No bounce charge missed for bounceChMissed_LId_unique_unpaid_autodebit_current_date")
 
-    @pytest.mark.skip
+
+    def test_bounce_charg_autodebit_unpaid_yestarday_date(self, bcURL):
+        global autoDebitData
+
+        autoDebitData = autoDebitFailedAPI.json()["data"]["finalData"]
+        # print(autoDebitData)
+        bounceChMissed_LId = []
+        autdebit_failed_loan_ids = []
+
+
+        for ad in autoDebitData:
+
+            # if ad["AD Response date"] == "05-02-2024":
+
+            if ad["Today's EMI status"] == "FAILED":
+                if ad["Loan ID"]:
+                    autdebit_failed_loan_ids.append(ad["Loan ID"])
+                # print(ad)
+
+        # print("auto-debit_failed_loan_ids_count::",len(autdebit_failed_loan_ids))
+        # print("auto-debit_failed_loan_ids::", autdebit_failed_loan_ids)
+
+        for e in autdebit_failed_loan_ids:
+            emiAPI = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                                  params={"loanId": e}, verify=False)
+            # print(emiAPI.json())
+            emiAPI_data = emiAPI.json()["data"]["EMIData"]
+
+
+            for ed in emiAPI_data:
+                if ed["emiDate"] == pre_str_emi:
+
+                    if ed["bounceCharge"] == 0:
+                        bounceChMissed_LId.append(e)
+
+        bounceChMissed_LId_unique = []
+
+        [bounceChMissed_LId_unique.append(ul) for ul in bounceChMissed_LId if ul not in bounceChMissed_LId_unique]
+
+        # print("bounceChMissed_LId::",bounceChMissed_LId)
+        # print("bounceChMissed_LId_unique::", bounceChMissed_LId_unique)
+
+
+        if len(bounceChMissed_LId_unique) > 0:
+            print(f"Error::bounce charge missing found for bounceChMissed_LId_unique_unpaid_autodebit_yestarday_date::{bounceChMissed_LId_unique}")
+            assert False, "bounce charge missing found"
+        else:
+            print("No bounce charge missed for bounceChMissed_LId_unique_unpaid_autodebit_yestarday_date")
+
+
+    # @pytest.mark.skip
     def test_bounce_charg_autodebit_total(self, bcURL):
         global autoDebitData
 
@@ -137,7 +188,7 @@ class TestBounce:
         else:
             print("No bounce charge missed for bounceChMissed_LId_unique_total_autodebit")
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_bounceCharge_repayStatus_unpaid(self, bcURL):
         global emiRepaymentStatus_data
 
@@ -156,8 +207,8 @@ class TestBounce:
             if rs["Loan ID"]:
                 emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
 
-        print("emiRepaymentStatus_data_lid_2_count::", len(emiRepaymentStatus_data_lid_2))
-        print("emiRepaymentStatus_data_lid_2::",emiRepaymentStatus_data_lid_2)
+        # print("emiRepaymentStatus_data_lid_2_count::", len(emiRepaymentStatus_data_lid_2))
+        # print("emiRepaymentStatus_data_lid_2::",emiRepaymentStatus_data_lid_2)
         #
         bounceChMissed_LId_2 = []
         for r in emiRepaymentStatus_data_lid_2:
@@ -187,7 +238,8 @@ class TestBounce:
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay ***")
 
-    @pytest.mark.skip
+
+    # @pytest.mark.skip
     def test_bounceCharge_repayStatus_total(self, bcURL):
         global emiRepaymentStatus_data_2
 
@@ -237,18 +289,7 @@ class TestBounce:
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_3_total_emi_repay ***")
 
-    @pytest.mark.skip
-    def test_status_failed_val(self,bcURL):
-        # autoDebitData = autoDebitFailedAPI.json()["data"]["finalData"]
-        # emiRepaymentStatus_data = emiRepaymentStatus.json()["data"]["rows"]
 
-        emi_aut_status = []
-
-        for aut in autoDebitData:
-            if aut["Today's EMI status"] != "FAILED":
-                emi_aut_status.append(aut["Loan ID"])
-
-        print("emi_aut_status::",emi_aut_status)
 
 
     @pytest.mark.skip

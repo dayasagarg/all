@@ -46,7 +46,7 @@ class TestBounce:
 
 
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_bounceCharge_repayStatus_unpaid(self, bcURL):
         global emiRepaymentStatus_data
 
@@ -95,7 +95,7 @@ class TestBounce:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay ***")
 
 
-    def test_bounceCharge_repayStatus_unpaid_failed_emi(self, bcURL):
+    def test_bounceCharge_repayStatus_unpaid_failed_emi_current_date(self, bcURL):
         global emiRepaymentStatus_data
 
         emiRepaymentStatus_data_f = emiRepaymentStatus.json()["data"]["rows"]
@@ -109,8 +109,8 @@ class TestBounce:
                     if f["Loan ID"]:
                         emiRepaymentStatus_data_lid_2_f.append(f["Loan ID"])
 
-        print("emiRepaymentStatus_data_lid_2_count_f::", len(emiRepaymentStatus_data_lid_2_f))
-        print("emiRepaymentStatus_data_lid_2_f::",emiRepaymentStatus_data_lid_2_f)
+        # print("emiRepaymentStatus_data_lid_2_count_f::", len(emiRepaymentStatus_data_lid_2_f))
+        # print("emiRepaymentStatus_data_lid_2_f::",emiRepaymentStatus_data_lid_2_f)
         #
         bounceChMissed_LId_2_f = []
         for rf in emiRepaymentStatus_data_lid_2_f:
@@ -128,15 +128,13 @@ class TestBounce:
                         bounceChMissed_LId_2_f.append(rf)
 
 
-
-
         if len(bounceChMissed_LId_2_f) > 0:
-            print(f"Error::bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi::{bounceChMissed_LId_2_f}")
+            print(f"Error::bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_currenr_date::{bounceChMissed_LId_2_f}")
             assert False, "bounce charge missing found"
         else:
-            print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi ***")
+            print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_current_date ***")
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_bounceCharge_repayStatus_paid(self, bcURL):
         global emiRepaymentStatus_data
 
@@ -153,7 +151,7 @@ class TestBounce:
                 if rs["Loan ID"]:
                     emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
 
-        print("emiRepaymentStatus_data_lid_2_count::", len(emiRepaymentStatus_data_lid_2))
+        # print("emiRepaymentStatus_data_lid_2_count::", len(emiRepaymentStatus_data_lid_2))
         # print("emiRepaymentStatus_data_lid_2::",emiRepaymentStatus_data_lid_2)
         #
         bounceChMissed_LId_2 = []
@@ -184,7 +182,7 @@ class TestBounce:
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_2_paid_emi_repay ***")
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_bounceCharge_repayStatus_total(self, bcURL):
         global emiRepaymentStatus_data_2
 
@@ -232,5 +230,4 @@ class TestBounce:
             assert False, "bounce charge missing found"
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_3_total_emi_repay ***")
-
 
