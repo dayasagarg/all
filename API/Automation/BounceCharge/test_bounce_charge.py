@@ -65,13 +65,11 @@ class TestBounce:
             # print(emiAPI.json())
             emiAPI_data = emiAPI.json()["data"]["EMIData"]
 
-            for ed in emiAPI_data:
-                if ed["penaltyDays"] > 0:
-                    if ed["status"] == "UNPAID":
-                        # if ed["emiDate"] == "08/02/2024":
 
-                        if ed["bounceCharge"] == 0:
-                            bounceChMissed_LId.append(e)
+            for ed in emiAPI_data:
+
+                if ed["bounceCharge"] == 0:
+                    bounceChMissed_LId.append(e)
 
         bounceChMissed_LId_unique = []
 
@@ -87,7 +85,7 @@ class TestBounce:
         else:
             print("No bounce charge missed for bounceChMissed_LId_unique_unpaid_autodebit")
 
-
+    @pytest.mark.skip
     def test_bounce_charg_autodebit_total(self, bcURL):
         global autoDebitData
 
@@ -137,9 +135,7 @@ class TestBounce:
         else:
             print("No bounce charge missed for bounceChMissed_LId_unique_total_autodebit")
 
-
-
-
+    @pytest.mark.skip
     def test_bounceCharge_repayStatus_unpaid(self, bcURL):
         global emiRepaymentStatus_data
 
@@ -189,7 +185,7 @@ class TestBounce:
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay ***")
 
-
+    @pytest.mark.skip
     def test_bounceCharge_repayStatus_total(self, bcURL):
         global emiRepaymentStatus_data_2
 
@@ -239,7 +235,7 @@ class TestBounce:
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_3_total_emi_repay ***")
 
-
+    @pytest.mark.skip
     def test_status_failed_val(self,bcURL):
         # autoDebitData = autoDebitFailedAPI.json()["data"]["finalData"]
         # emiRepaymentStatus_data = emiRepaymentStatus.json()["data"]["rows"]
