@@ -9,12 +9,13 @@ from datetime import datetime,timedelta
 class TestBounce:
     @pytest.fixture
     def bcURL(self):
-        global autoDebitFailedAPI, emiRepaymentStatus, curr_str
+        global autoDebitFailedAPI, emiRepaymentStatus, curr_str,curr_str_emi
 
         from datetime import datetime, timedelta
 
         curr = datetime.now()
         curr_str = datetime.strftime(curr, "%Y-%m-%d")
+        curr_str_emi = datetime.strftime(curr, "%d/%m/%Y")
 
         prev_1 = curr - timedelta(days=1)
         prev_2 = curr - timedelta(days=3)
@@ -67,7 +68,7 @@ class TestBounce:
 
 
             for ed in emiAPI_data:
-                if ed["emiDate"] == curr_str:
+                if ed["emiDate"] == curr_str_emi:
 
                     if ed["bounceCharge"] == 0:
                         bounceChMissed_LId.append(e)
