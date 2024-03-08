@@ -35,22 +35,59 @@ class TestLoanStatus:
             #     if al["EMI Types"] == "EMIPAY 2" or al["EMI Types"] == "EMIPAY 3" or al["EMI Types"] == "EMIPAY 4":
 
 
-                    # print(type(al["Repaid amount"]))
-
-
-        for l in repay_loan_id:
-            emi = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",params={"loanId":l})
-            emi_data = emi.json()["data"]["EMIData"]
-            # print("emi_data::",emi_data)
-            # print("emi_data::",emi_data)
-
-            for d in emi_data:
-                if d["dueStatus"]=="DELAY":
-                    delay_lid.append(l)
+        print(repay_loan_id)
 
 
 
-        print("delay_lid:",delay_lid)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            # for l in repay_loan_id:
+            #     emi = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",params={"loanId":l})
+            #     emi_data = emi.json()["data"]["EMIData"]
+            #     # print("emi_data::",emi_data)
+            #     # print("emi_data::",emi_data)
+            #
+            #     for d in emi_data:
+            #         if d["dueStatus"]=="DELAY":
+            #             delay_lid.append(al)
+
+
+
+        # print("delay_lid:",delay_lid)
                 # if d["dueStatus"] == "DELAY":
                 #     print(d["dueStatus"])
 

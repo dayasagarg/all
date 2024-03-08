@@ -460,3 +460,48 @@ class TestPost:
         assert response.status_code == 201
         assert response.json()['valid'] == True
 
+    def test_postHSBC_c_21(self):
+        url = "http://144.24.112.239/bankingpro/statement/extractData"  # API URL
+        pdfFile = r"C:\Users\lendi\OneDrive\Desktop\Daily Task\API\Bank Statement API\2023\bank_statements\HSBC.pdf"
+        files = {"pdfFile": open(pdfFile, "rb")}
+
+        headers = {
+
+            "secretKey": "U2FsdGVkX1+HiPbHmuY6O1hS+QdwL4BiPCxFz3heNro=",
+            "appId": "e2caf6fe-beae-4c4d-bda8-8b489a24538c"
+        }
+
+        data = {"bankCode": "HSBC"}
+
+        response = requests.post(url, files=files, headers=headers, data=data)
+        print('statusCode::', response.status_code)
+        print('valid::', response.json()['valid'])
+
+        # print(response.json())
+
+        assert response.status_code == 201
+        assert response.json()['valid'] == True
+
+
+    def test_post_DBS_c_22(self):
+        url = "http://144.24.112.239/bankingpro/statement/extractData"  # API URL
+        pdfFile = r"C:\Users\lendi\OneDrive\Desktop\Daily Task\API\Bank Statement API\2023\bank_statements\dbs.pdf"
+        files = {"pdfFile": open(pdfFile, "rb")}
+
+        headers = {
+
+            "secretKey": "U2FsdGVkX1+HiPbHmuY6O1hS+QdwL4BiPCxFz3heNro=",
+            "appId": "e2caf6fe-beae-4c4d-bda8-8b489a24538c"
+        }
+
+        data = {"bankCode": "DBS"}
+
+        response = requests.post(url, files=files, headers=headers, data=data)
+        print('statusCode::', response.status_code)
+        print('valid::', response.json()['valid'])
+
+        # print(response.json())
+
+        assert response.status_code == 201
+        assert response.json()['valid'] == True
+

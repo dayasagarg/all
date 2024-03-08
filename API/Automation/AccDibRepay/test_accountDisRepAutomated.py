@@ -242,8 +242,6 @@ class TestAccount:
         print("disbAmtTOBorrFloat::", disbAmtTOBorrFloat)
 
 
-
-
         try:
             if round((cTBTotalCreditFloat + disbAmtTOBorrFloat),2) == totalAmountCreditFloat:
                 print("Addition of cTBTotalCreditFloat and disbAmtTOBorrFloat matched with totalAmountCreditFloat")

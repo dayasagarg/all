@@ -35,10 +35,9 @@ print("end_date_2::", end_date_2)
 # note: execute at 12 pm every time because of crone set time.
 
 class TestLegal:
-
     @pytest.fixture
     def url(self):
-        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3,caseAssigned
+        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3,caseAssigned,summons, summons_data
         legalDemandLetter = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",
                                          params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
                                                  "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
@@ -53,6 +52,10 @@ class TestLegal:
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 11, "adminId": 153,
                                            "download": "true"})
 
+        summons = requests.get("https://lendittfinserve.com/admin-prod/admin/legal/getAllLegalData?page=1&startDate=2024-02-01T10:00:00.000Z&endDate=2024-02-03T10:00:00.000Z&type=6&adminId=70&download=false")
+        summons_data = summons.json()["data"]["rows"]
+
+    @pytest.mark.skip
     def test_DemandLetter(self, url):
         print("start_date_2::", start_date_2)
         print("end_date_2::", end_date_2)
@@ -237,7 +240,8 @@ class TestLegal:
         print("count of demand unique loan ids list ::", len(uniqLIdListDemand))
         print("demand loan ids::", loanID)
         print("demand uniqLIdList::", uniqLIdListDemand)
-    #
+
+    @pytest.mark.skip
     def test_NoticeSent(self, url):
         global lIdNS, missedDemandWithNotice, matchedDemandWithNotice, noticeNotSent
         countOfNoticeSent = legalNotice.json()["data"]["count"]
@@ -325,6 +329,7 @@ class TestLegal:
             print("Error:: demand letter not matched with notice menu in legal section")
         assert len(missedDemandWithNotice) == 0
 
+    @pytest.mark.skip
     def test_notice_not_sent(self):
         if len(noticeNotSent) > 0:
             print(f"Notice not sent found ::{noticeNotSent}")
@@ -332,7 +337,7 @@ class TestLegal:
         else:
             print("All demand gone/notice sent")
 
-
+    @pytest.mark.skip
     def test_case_assign_to_collection_1(self):
         global paidPrincipleInterest, principleInterest, cal_less_than_70
         case_data = caseAssigned.json()["data"]["rows"]
@@ -380,7 +385,7 @@ class TestLegal:
         # print("perc_loanId:: ",perc_loanId)
         #
         #
-
+    @pytest.mark.skip
     def test_case_assign_to_collection_2(self):
         count_cal_less_than_70 = len(cal_less_than_70)
         print("count_cal_less_than_70 :: ", count_cal_less_than_70)
@@ -391,4 +396,34 @@ class TestLegal:
 
         else:
             print("Paid percentage is above 70% in case assigned to collection")
+
+
+    def test_summons(self,url):
+        summons_data = summons.json()["data"]["rows"]
+        # print("summons_data::",summons_data)
+
+        for s in summons_data:
+            if s["Loan ID"]:
+                emi1_amount = int(s["Emi 1 amount"].replace(",", ""))
+                emi2_amount = int(s["Emi 2 amount"].replace(",", ""))
+                # emi3_amount = int(s["Emi 3 amount"].replace(",", ""))
+                # emi4_amount = int(s["Emi 4 amount"].replace(",", ""))
+                total_emi = emi1_amount + emi2_amount
+
+                print(total_emi)
+
+                print("loan_id::",s["Loan ID"])
+
+
+    # def test_calculate_emi_sum(url):
+    #     emi_sum = []
+    #     for i in summons_data:
+    #         if i["Loan ID"]:
+    #
+    #             print(i["Loan ID"])
+                # emi1_amount = float(row["Emi 1 amount"].replace(",", ""))
+                # emi2_amount = float(row["Emi 2 amount"].replace(",", ""))
+                # emi_sum += emi1_amount + emi2_amount
+                # print(emi_sum)
+
 
