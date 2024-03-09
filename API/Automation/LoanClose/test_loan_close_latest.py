@@ -22,20 +22,45 @@ class TestLoanStatus:
             params={"start_date": f"{preTimeStr}T10:00:00.000Z", "end_date": f"{currTimeStr}T10:00:00.000Z", "page": 1,
                     "pagesize": 10, "getTotal": "true", "download": "true"})
 
+
+
     def test_loan_status(self,url):
+        global principal, interest, totalPaid
         allRepay_data = allRepay.json()["data"]["rows"]
 
         repay_loan_id = []
-        delay_lid = []
+        less_total_paid = []
         for al in allRepay_data:
             if al["Loan id"]:
                 repay_loan_id.append(al["Loan id"])
 
-            # if al["Repaid flag"] == "Delayed":
-            #     if al["EMI Types"] == "EMIPAY 2" or al["EMI Types"] == "EMIPAY 3" or al["EMI Types"] == "EMIPAY 4":
+            if al["Repaid flag"] == "Delayed":
+                if al["Principal"]:
+                    principal = al["Principal"]
+                if al["Interest"]:
+                    interest = al["Interest"]
+                if al["Total paid Amt"]:
+                    totalPaid = al["Total paid Amt"]
+
+                pi = principal + interest
+                if totalPaid < pi:
+                    less_total_paid.append(al["userId"])
+
+                # print("pi::",pi)
+                # print("totalPaid::",totalPaid)
+        # print("less_total_paid::", less_total_paid)
 
 
-        print(repay_loan_id)
+
+        for l in less_total_paid:
+            loanStatus = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getLoanHistory", params={"userId":l})
+
+            print("loanStatus::",loanStatus)
+
+
+
+
+        # print(repay_loan_id)
 
 
 

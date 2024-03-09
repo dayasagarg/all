@@ -55,7 +55,7 @@ class TestLegal:
         summons = requests.get("https://lendittfinserve.com/admin-prod/admin/legal/getAllLegalData?page=1&startDate=2024-02-01T10:00:00.000Z&endDate=2024-02-03T10:00:00.000Z&type=6&adminId=70&download=false")
         summons_data = summons.json()["data"]["rows"]
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_DemandLetter(self, url):
         print("start_date_2::", start_date_2)
         print("end_date_2::", end_date_2)
@@ -241,7 +241,7 @@ class TestLegal:
         print("demand loan ids::", loanID)
         print("demand uniqLIdList::", uniqLIdListDemand)
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_NoticeSent(self, url):
         global lIdNS, missedDemandWithNotice, matchedDemandWithNotice, noticeNotSent
         countOfNoticeSent = legalNotice.json()["data"]["count"]
@@ -329,7 +329,7 @@ class TestLegal:
             print("Error:: demand letter not matched with notice menu in legal section")
         assert len(missedDemandWithNotice) == 0
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_notice_not_sent(self):
         if len(noticeNotSent) > 0:
             print(f"Notice not sent found ::{noticeNotSent}")
@@ -337,7 +337,7 @@ class TestLegal:
         else:
             print("All demand gone/notice sent")
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_case_assign_to_collection_1(self):
         global paidPrincipleInterest, principleInterest, cal_less_than_70
         case_data = caseAssigned.json()["data"]["rows"]
@@ -385,7 +385,7 @@ class TestLegal:
         # print("perc_loanId:: ",perc_loanId)
         #
         #
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_case_assign_to_collection_2(self):
         count_cal_less_than_70 = len(cal_less_than_70)
         print("count_cal_less_than_70 :: ", count_cal_less_than_70)
@@ -397,7 +397,7 @@ class TestLegal:
         else:
             print("Paid percentage is above 70% in case assigned to collection")
 
-
+    @pytest.mark.skip
     def test_summons(self,url):
         summons_data = summons.json()["data"]["rows"]
         # print("summons_data::",summons_data)
