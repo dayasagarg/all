@@ -51,173 +51,31 @@ class TestLoanStatus:
         # print("less_total_paid::", less_total_paid)
 
 
-
+        # Complete, Active
+        loanStatus_wrong = []
         for l in less_total_paid:
             loanStatus = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getLoanHistory", params={"userId":l})
+            loanStatusData = loanStatus.json()["data"]["loanData"]
 
-            print("loanStatus::",loanStatus)
+            # loanStatus_wrong = []
+            for l in loanStatusData:
+                if l["loanStatus"]:
+                    if l["loanStatus"] == "Complete":
+                        loan_St_id = l["id"]
+                        # loanStatus_wrong_d += loan_St_id
+                        loanStatus_wrong.append(loan_St_id)
+                        # print("loan_St_id::",loan_St_id)
+                        # print(l["id"])
 
+                    break
 
+        # print("loanStatus_wrong::",loanStatus_wrong)
 
 
-        # print(repay_loan_id)
+        if len(loanStatus_wrong) > 0:
+            print(f"Error::paid amount is less than emi amount found in loan complete/close::{loanStatus_wrong}")
+            assert False, "paid amount is less than emi amount found"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            # for l in repay_loan_id:
-            #     emi = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",params={"loanId":l})
-            #     emi_data = emi.json()["data"]["EMIData"]
-            #     # print("emi_data::",emi_data)
-            #     # print("emi_data::",emi_data)
-            #
-            #     for d in emi_data:
-            #         if d["dueStatus"]=="DELAY":
-            #             delay_lid.append(al)
-
-
-
-        # print("delay_lid:",delay_lid)
-                # if d["dueStatus"] == "DELAY":
-                #     print(d["dueStatus"])
-
-
-
-
-        # print("repay_loan_id_count::", len(repay_loan_id))
-        # print("repay_loan_id::",repay_loan_id)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # # Upcoming EMI
-        #
-        # # url = "https://lendittfinserve.com/prod/admin/loan/massEMIRepaymentDetails"
-        # url = "https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
-        # # print(lIDs)
-        #
-        # data = {"loanIds": repay_loan_id}
-        #
-        # headers = {"qa-test-key": "28947f203896ea859233415d1904c927098484d2"}
-        #
-        # response = requests.post(url, json=data, headers=headers,verify=False)  # current date
-        # response_data = response.json()["data"]
-        #
-        # # print("response_data::",response_data)
-        #
-        #
-        #
-        # delay_lid = []
-        # for md in response_data:
-        #     loan_d = response_data[md]
-        #     emi_details = loan_d["emiDetails"]
-        #     print("emi_details::",emi_details)
-        #
-        #     # for d in emi_details:
-        #     #     print(d)
-        #     #     delay_lid.append(loan_d)
-        #
-        # # print("delay_lid::",delay_lid)
-
-
-
-
-
-
+        else:
+            print("*** loan status is active ***")
 

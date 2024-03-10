@@ -22,50 +22,198 @@ class TestLoanStatus:
             params={"start_date": f"{preTimeStr}T10:00:00.000Z", "end_date": f"{currTimeStr}T10:00:00.000Z", "page": 1,
                     "pagesize": 10, "getTotal": "true", "download": "true"})
 
+
+
     def test_loan_status(self,url):
+        global principal, interest, totalPaid
         allRepay_data = allRepay.json()["data"]["rows"]
 
-        repay_user_id = []
+        repay_loan_id = []
+        less_total_paid = []
         for al in allRepay_data:
-            if al["userId"]:
-                repay_user_id.append(al["userId"])
+            if al["Loan id"]:
+                repay_loan_id.append(al["Loan id"])
+
+            if al["Repaid flag"] == "Delayed":
+                if al["Principal"]:
+                    principal = al["Principal"]
+                if al["Interest"]:
+                    interest = al["Interest"]
+                if al["Total paid Amt"]:
+                    totalPaid = al["Total paid Amt"]
+
+                pi = principal + interest
+                if totalPaid < pi:
+                    less_total_paid.append(al["userId"])
+
+                # print("pi::",pi)
+                # print("totalPaid::",totalPaid)
+        # print("less_total_paid::", less_total_paid)
 
 
-        # print("repay_user_id::",repay_user_id)
+        # Complete, Active
+        loanStatus_wrong = []
+        for l in less_total_paid:
+            loanStatus = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getLoanHistory", params={"userId":l})
+            loanStatusData = loanStatus.json()["data"]["loanData"]
 
-        l_h_compl = []
-        for uid in repay_user_id:
+            # loanStatus_wrong = []
+            for l in loanStatusData:
+                if l["loanStatus"]:
+                    if l["loanStatus"] == "Complete":
+                        loan_St_id = l["id"]
+                        # loanStatus_wrong_d += loan_St_id
+                        loanStatus_wrong.append(loan_St_id)
+                        # print("loan_St_id::",loan_St_id)
+                        # print(l["id"])
 
-            l_hist = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getLoanHistory",params={"userId":uid})
-            l_hist_data = l_hist.json()["data"]["loanData"]
-            # print("l_hist_data::",l_hist_data)
+                    break
 
-
-            for lh in l_hist_data:
-                if lh["loanStatus"] == "Complete":
-                    l_h_compl.append(lh["id"])
+        # print("loanStatus_wrong::",loanStatus_wrong)
 
 
 
-            # Upcoming EMI
+        if len(loanStatus_wrong) > 0:
+            print(f"Error::paid amount is less than emi amount found in loan complete/close::{loanStatus_wrong}")
+            assert False, "paid amount is less than emi amount found"
 
-            # url = "https://lendittfinserve.com/prod/admin/loan/massEMIRepaymentDetails"
+        else:
+            print("*** loan status is active ***")
 
-            url = "https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
-            # print(lIDs)
+            loanStatusData = [
+                {"id": 1, "loanStatus": "Active"},
+                {"id": 2, "loanStatus": "Inactive"},
+                {"id": 3, "loanStatus": "Active"},
+                {"id": 4, "loanStatus": "Closed"},
+            ]
 
-            data = {"loanIds": l_h_compl}
+            # Create a dictionary with id as key and loanStatus as value
+            loan_dict = {l["id"]: l["loanStatus"] for l in loanStatusData}
 
-            headers = {"qa-test-key": "28947f203896ea859233415d1904c927098484d2"}
+            # Filter the dictionary for "Active" loanStatus
+            loanStatus_wrong = [key for key, value in loan_dict.items() if value == "Active"]
 
-            response = requests.post(url, json=data, verify=False, headers=headers)  # current date
-            response_data = response.json()["data"]
+            print("loanStatus_wrong::", loanStatus_wrong)
 
-            print("response_data::",response_data)
 
-            # for md in response_data:
-            #     loan_d = response_data[md]
-            #     print("loan_d::",loan_d)
+            # for l in repay_loan_id:
+            #     emi = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",params={"loanId":l})
+            #     emi_data = emi.json()["data"]["EMIData"]
+            #     # print("emi_data::",emi_data)
+            #     # print("emi_data::",emi_data)
+            #
+            #     for d in emi_data:
+            #         if d["dueStatus"]=="DELAY":
+            #             delay_lid.append(al)
 
-        # print("l_h_compl::", l_h_compl)
+
+
+        # print("delay_lid:",delay_lid)
+                # if d["dueStatus"] == "DELAY":
+                #     print(d["dueStatus"])
+
+
+
+
+        # print("repay_loan_id_count::", len(repay_loan_id))
+        # print("repay_loan_id::",repay_loan_id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # # Upcoming EMI
+        #
+        # # url = "https://lendittfinserve.com/prod/admin/loan/massEMIRepaymentDetails"
+        # url = "https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
+        # # print(lIDs)
+        #
+        # data = {"loanIds": repay_loan_id}
+        #
+        # headers = {"qa-test-key": "28947f203896ea859233415d1904c927098484d2"}
+        #
+        # response = requests.post(url, json=data, headers=headers,verify=False)  # current date
+        # response_data = response.json()["data"]
+        #
+        # # print("response_data::",response_data)
+        #
+        #
+        #
+        # delay_lid = []
+        # for md in response_data:
+        #     loan_d = response_data[md]
+        #     emi_details = loan_d["emiDetails"]
+        #     print("emi_details::",emi_details)
+        #
+        #     # for d in emi_details:
+        #     #     print(d)
+        #     #     delay_lid.append(loan_d)
+        #
+        # # print("delay_lid::",delay_lid)
+
+
+
+
+
+
 
