@@ -28,7 +28,7 @@ class TestRefund:
         refund_compl = requests.get("https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData",
                                     params={"skipPageLimit": "true", "endDate": f"{currTimeStr}T10:00:00.000Z",
                                             "startDate": f"{preTimeStr}T10:00:00.000Z", "status": 1}, headers=headers)
-        headers_2 = {"adminid": "37"}
+        headers_2 = {"adminid": "164"}
         refund_pend = requests.get(
             "https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData",params={"skipPageLimit":"true","endDate":f"{currTimeStr}T10:00:00.000Z","startDate":f"{preTimeStr}T10:00:00.000Z","status":-1},
             headers=headers_2)
@@ -270,7 +270,7 @@ class TestRefund:
         print("ref_source_wrong::", ref_source_wrong)
 
         if len(ref_source_wrong) == 0:
-            print("No ref_source_wrong found in refund completed")
+            print("*** No ref_source_wrong found in refund completed ***")
         else:
             print("Error::ref_source_wrong found in refund completed")  # it should be razorpay only not ICICI_UPI
             # assert False, "ref_source_wrong found in refund completed"
@@ -285,7 +285,7 @@ class TestRefund:
                 duplicateRefund_compl.append(d)
 
         if len(duplicateRefund_compl) == 0:
-            print("No duplicate found in refund completed")
+            print("*** No duplicate found in refund completed ***")
         else:
             print("Error::Duplicate found in refund completed")
 
@@ -308,21 +308,13 @@ class TestRefund:
             print(f"refund missed found:: {ref_miss_compl}")
             assert False, "refund missed found"
         else:
-            print("refund not missed with refund completed")
-
-
-
-
-
-
-
-
-
-
+            print("*** refund not missed with refund completed ***")
 
 
     def test_refund_pending(self):
         refund_pend_data = refund_pend.json()["data"]["filteredData"]
+        # refund_pend_data = refund_pend.json()
+        # print("refund_pend_data::",refund_pend_data)
 
         pend_lid = []
         for p in refund_pend_data:
@@ -338,7 +330,7 @@ class TestRefund:
             print(f"Error:: refund miss_with_pend found::{miss_with_pend}")
             assert False, "refund miss_with_pend found"
         else:
-            print("No refund miss_with_pend found")
+            print("*** No refund miss_with_pend found ***")
 
         # print("miss_with_pend::",miss_with_pend)
 
