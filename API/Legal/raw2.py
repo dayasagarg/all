@@ -1,5 +1,6 @@
-from datetime import datetime, timedelta
 import requests
+import pytest
+from datetime import datetime, timedelta
 
 
 # uniqLIdListDemand = None
@@ -13,17 +14,22 @@ end_2_F = datetime.strptime(end_2, "%Y-%m-%d")  # string to date format
 start_2 = end_2_F - timedelta(days=15)
 start_2_DateStr = datetime.strftime(start_2, "%Y-%m-%d")
 
-print("curr_str::",curr_str)
-print("start_2_DateStr::",start_2_DateStr)
+start_3 = end_2_F - timedelta(days=30)
+start_3_DateStr = datetime.strftime(start_3, "%Y-%m-%d")
 
+end = end_2_F - timedelta(days=7)
+endDateStr = datetime.strftime(end, "%Y-%m-%d")
 
-summons = requests.get("https://lendittfinserve.com/admin-prod/admin/legal/getAllLegalData",params={"page":1,"startDate":f"{start_2_DateStr}T10:00:00.000Z","endDate":f"{curr_str}T10:00:00.000Z","type":6,"adminId":70,"download":"true"})
-summons_data = summons.json()["data"]["rows"]
-summons_data_count = summons.json()["data"]["count"]
+start = end - timedelta(days=7)
+startDateStr = datetime.strftime(start, "%Y-%m-%d")
 
+start_date = start.strftime("%Y-%m-%d")
+end_date = end.strftime("%Y-%m-%d")
 
-# print("summons_data::",summons_data_count)
-# print("summons_data::",summons_data)
+start_date_2 = start_2.strftime("%Y-%m-%d")
+end_date_2 = end_2_F.strftime("%Y-%m-%d")
+
+print("end_date_2::",end_date_2)
 
 
 

@@ -14,6 +14,9 @@ end_2_F = datetime.strptime(end_2, "%Y-%m-%d")  # string to date format
 start_2 = end_2_F - timedelta(days=15)
 start_2_DateStr = datetime.strftime(start_2, "%Y-%m-%d")
 
+start_3 = end_2_F - timedelta(days=30)
+start_3_DateStr = datetime.strftime(start_3, "%Y-%m-%d")
+
 end = end_2_F - timedelta(days=7)
 endDateStr = datetime.strftime(end, "%Y-%m-%d")
 
@@ -49,14 +52,16 @@ class TestLegal:
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 2, "adminId": 134,
                                            "download": "true"})  # current date
 
-        caseAssigned = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",params={"page": 1, "startDate": f"{start_date_2}T10:00:00.000Z",
+        caseAssigned = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 11, "adminId": 153,
                                            "download": "true"})
 
         summons = requests.get("https://lendittfinserve.com/admin-prod/admin/legal/getAllLegalData",
-                               params={"page": 1, "startDate": f"{start_2_DateStr}T10:00:00.000Z",
+                               params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
                                        "endDate": f"{curr_str}T10:00:00.000Z", "type": 6, "adminId": 70,
                                        "download": "true"})
+
+
         summons_data = summons.json()["data"]["rows"]
         summons_data_count = summons.json()["data"]["count"]
 
