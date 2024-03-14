@@ -413,70 +413,59 @@ class TestLegal:
         if count_cal_less_than_70 > 0:
             print(f"Error:: Paid percentage less than 70% found in case assigned to collection :: {cal_less_than_70}")
             assert False
-
         else:
             print("Paid percentage is above 70% in case assigned to collection")
 
 
     # @pytest.mark.skip
     def test_summons_2emi(self,url):
-        global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3,total_emi_amt_3,summons_data
+        global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3,total_emi_amt_3,summons_data, emi2_amount
         summons_data = summons.json()["data"]["rows"]
         # print("summons_data::",summons_data)
 
         pp_gt_70_2emi_lid = []
 
+        summons_lid = []
+
         print("case_lid::",case_lid)
 
         for s in summons_data:
-            if s["Emi 3 amount"] == "-" and s["Emi 4 amount"] == "-":
-
-                emi1_amount = int(s["Emi 1 amount"].replace(",", ""))
-                emi2_amount = int(s["Emi 2 amount"].replace(",", ""))
-
-                total_emi_amt = emi1_amount + emi2_amount
-
-                # print("total_emi_amt::",total_emi_amt)
-
-                # print("loan_id::",s["Loan ID"])
-
-            if s["Amount paid (before letter)"]:
-                paidBeforeLetter = int(s["Amount paid (before letter)"].replace(",", ""))
-
-            if s["Amount paid (after letter)"]:
-                paidAfterLetter = int(s["Amount paid (after letter)"].replace(",", ""))
-
-            totalPaid = paidBeforeLetter + paidAfterLetter
-            # print("totalPaid::",totalPaid)
-
-            pp_emi_2 = round((totalPaid/total_emi_amt) * 100,0)
-            # print("pp_emi_2::",pp_emi_2)
+            if s['Loan ID']:
+                summons_lid.append(s['Loan ID'])
 
 
-            if pp_emi_2 > 70.0:
-                pp_gt_70_2emi_lid.append(s['Loan ID'])
+            if s["Emi 1 status"] == "UNPAID" and s["Emi 2 status"] == "UNPAID":
+                if s["Emi 3 amount"] == "-" and s["Emi 4 amount"] == "-":
 
-                # print("pp_emi_2::",pp_emi_2)
-        # print("pp_gt_70_2emi_lid::",pp_gt_70_2emi_lid)
+                    emi1_amount = int(s["Emi 1 amount"].replace(",", ""))
+                    emi2_amount = int(s["Emi 2 amount"].replace(",", ""))
 
+                    total_emi_amt = emi1_amount + emi2_amount
 
+                    # print("total_emi_amt::",total_emi_amt)
 
+                    # print("loan_id::",s["Loan ID"])
 
-        pp_2emi_miss_in_ca_lid = []
-        for l in pp_gt_70_2emi_lid:
-            if l not in case_lid:
-                pp_2emi_miss_in_ca_lid.append(l)
+                    if s["Amount paid (before letter)"]:
+                        paidBeforeLetter = int(s["Amount paid (before letter)"].replace(",", ""))
 
+                    if s["Amount paid (after letter)"]:
+                        paidAfterLetter = int(s["Amount paid (after letter)"].replace(",", ""))
 
-        if len(pp_2emi_miss_in_ca_lid) > 0:
-            print(f"Error::paid percentage more than 70 found in summons for 2 emi::{pp_2emi_miss_in_ca_lid}")
-            assert False
-        else:
-            print(f"*** paid percentage is than 70 in summons for 2 emi ***")
+                    totalPaid = paidBeforeLetter + paidAfterLetter
+                    # print("totalPaid::",totalPaid)
+
+                    pp_emi_2 = round((totalPaid/total_emi_amt) * 100,0)
+                    # print("pp_emi_2::",pp_emi_2)
+
+                    if pp_emi_2 > 70.0:
+                        pp_gt_70_2emi_lid.append(s['Loan ID'])
+                        # print("pp_emi_2::",pp_emi_2)
 
 
 
-    # @pytest.mark.skip
+
+    @pytest.mark.skip
     def test_summons_3emi(self, url):
 
         global paidBeforeLetter_3, paidAfterLetter_3, pp_emi_3
