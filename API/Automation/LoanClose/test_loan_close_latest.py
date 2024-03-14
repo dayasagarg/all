@@ -9,7 +9,7 @@ class TestLoanStatus:
 
         currTime = datetime.now()
         currTimeStr = datetime.strftime(currTime, "%Y-%m-%d")
-        preTime = currTime - timedelta(days=1)
+        preTime = currTime - timedelta(days=2)
         preTimeStr = datetime.strftime(preTime, "%Y-%m-%d")
         # print(currTimeStr)
         # print(preTimeStr)
