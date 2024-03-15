@@ -41,7 +41,7 @@ print("end_date_2::", end_date_2)
 class TestLegal:
     @pytest.fixture
     def url(self):
-        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3,caseAssigned,summons, summons_data, summons_data_count
+        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3,caseAssigned,summons, summons_data, summons_data_count, warrent
         legalDemandLetter = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",
                                          params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
                                                  "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
@@ -65,8 +65,16 @@ class TestLegal:
         summons_data = summons.json()["data"]["rows"]
         summons_data_count = summons.json()["data"]["count"]
 
+        warrent = requests.get(
+            "https://lendittfinserve.com/admin-prod/admin/legal/getAllLegalData",
+            params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
+                    "endDate": f"{curr_str}T10:00:00.000Z", "type": 7, "adminId": 70,
+                    "download": "true"}
+        )
 
-    @pytest.mark.skip
+
+
+    # @pytest.mark.skip
     def test_DemandLetter(self, url):
         print("start_date_2::", start_date_2)
         print("end_date_2::", end_date_2)
@@ -252,7 +260,7 @@ class TestLegal:
         print("demand loan ids::", loanID)
         print("demand uniqLIdList::", uniqLIdListDemand)
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_NoticeSent(self, url):
         global lIdNS, missedDemandWithNotice, matchedDemandWithNotice, noticeNotSent
         countOfNoticeSent = legalNotice.json()["data"]["count"]
@@ -340,7 +348,7 @@ class TestLegal:
             print("Error:: demand letter not matched with notice menu in legal section")
         assert len(missedDemandWithNotice) == 0
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_notice_not_sent(self):
         if len(noticeNotSent) > 0:
             print(f"Notice not sent found ::{noticeNotSent}")
@@ -349,7 +357,7 @@ class TestLegal:
             print("All demand gone/notice sent")
 
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_case_assign_to_collection_1(self):
         global paidPrincipleInterest, principleInterest, cal_less_than_70, case_lid
         case_data = caseAssigned.json()["data"]["rows"]
@@ -404,7 +412,7 @@ class TestLegal:
         #
 
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_case_assign_to_collection_2(self):
         count_cal_less_than_70 = len(cal_less_than_70)
         print("count_cal_less_than_70 :: ", count_cal_less_than_70)
@@ -477,7 +485,7 @@ class TestLegal:
 
 
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_summons_3emi(self, url):
 
         global paidBeforeLetter_3, paidAfterLetter_3, pp_emi_3
@@ -529,7 +537,7 @@ class TestLegal:
             print("*** remaining paid percentage less than 70 for 3 emi ***")
 
 
-
+    @pytest.mark.skip
     def test_summons_emi(self,url):
 
         s_e_lid = []
@@ -550,17 +558,111 @@ class TestLegal:
 
 
 
+    def test_warrent_2emi(self,url):
+        global paidBeforeLetter_w, paidAfterLetter_w, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3,total_emi_amt_3,summons_data, emi2_amount
+
+        warrent_data = warrent.json()["data"]["rows"]
+
+        pp_gt_70_2emi_lid_w = []
+
+        warrent_lid = []
+
+        # print("case_lid::",case_lid)
+
+        for w in warrent_data:
+            if w['Loan ID']:
+                warrent_lid.append(w['Loan ID'])
+
+
+            if w["Emi 1 status"] == "UNPAID" and w["Emi 2 status"] == "UNPAID":
+                if w["Emi 3 amount"] == "-" and w["Emi 4 amount"] == "-":
+
+                    emi1_amount_w = int(w["Emi 1 amount"].replace(",", ""))
+                    emi2_amount_w = int(w["Emi 2 amount"].replace(",", ""))
+
+                    total_emi_amt_w = emi1_amount_w + emi2_amount_w
+
+                    # print("total_emi_amt::",total_emi_amt)
+
+                    # print("loan_id::",s["Loan ID"])
+
+                    if w["Amount paid (before letter)"]:
+                        paidBeforeLetter_w = int(w["Amount paid (before letter)"].replace(",", ""))
+
+                    if w["Amount paid (after letter)"]:
+                        paidAfterLetter_w = int(w["Amount paid (after letter)"].replace(",", ""))
+
+                    totalPaid_w = paidBeforeLetter_w + paidAfterLetter_w
+                    # print("totalPaid_w::",totalPaid_w)
+
+                    pp_emi_2_w = round((totalPaid_w/total_emi_amt_w) * 100,0)
+                    # print("pp_emi_2_w::",pp_emi_2_w)
+
+                    if pp_emi_2_w > 70.0:
+                        pp_gt_70_2emi_lid_w.append(w['Loan ID'])
+                        # print("pp_emi_2::",pp_emi_2)
+
+        pp_2emi_miss_in_ca_lid_w = []
+        for w in pp_gt_70_2emi_lid_w:
+            if w not in case_lid:
+                pp_2emi_miss_in_ca_lid_w.append(w)
+
+
+        if len(pp_2emi_miss_in_ca_lid_w) > 0:
+            print(f"Error:: paid percentage more than 70 found for 2 emi inside warrent::{pp_2emi_miss_in_ca_lid_w}")
+            assert False
+        else:
+            print("*** paid percentage is less than 70 for 2 emi inside warrent section***")
 
 
 
+    def test_warrent_3emi(self, url,warrent_data):
+
+        global paidBeforeLetter_3_w, paidAfterLetter_3_w, pp_emi_3
+
+        pp_gt_70_3emi_lid_w = []
+        for ww in warrent_data:
+
+            if ww["Emi 3 amount"]== "UNPAID":
+                emi1_amount_e3_w = int(ww["Emi 1 amount"].replace(",", ""))
+                emi2_amount_e3_w = int(ww["Emi 2 amount"].replace(",", ""))
+                # print("emi1_amount::",emi1_amount)
 
 
+                if ww["Emi 3 amount"] != "-":
+
+                    emi3_amount_e3_w = int(ww["Emi 3 amount"].replace(",", ""))
+                    # print("emi3_amount_e3::",emi3_amount_e3)
+
+                    total_emi_amt_3_w = emi1_amount_e3_w + emi2_amount_e3_w + emi3_amount_e3_w
+                    # print("total_emi_amt_3_w::",total_emi_amt_3_w)
+
+                    if ww["Amount paid (before letter)"]:
+                        paidBeforeLetter_3 = int(ww["Amount paid (before letter)"].replace(",", ""))
+
+                    if ww["Amount paid (after letter)"]:
+                        paidAfterLetter_3 = int(ww["Amount paid (after letter)"].replace(",", ""))
+
+                    # print("loan_id::", ww["Loan ID"])
+
+                    totalPaid_3_w = paidBeforeLetter_3_w + paidAfterLetter_3_w
+                    # print("totalPaid_3_w::",totalPaid_3_w)
+
+                    pp_emi_3_w = round((totalPaid_3_w/total_emi_amt_3_w) * 100,2)
+                    # print("pp_emi_3_w::",pp_emi_3_w)
+
+                    if pp_emi_3_w > 70.0:
+                        pp_gt_70_3emi_lid_w.append(ww['Loan ID'])
+
+        pp_3emi_miss_in_ca_lid_w = []
+        for v in pp_gt_70_3emi_lid_w:
+            if v not in case_lid:
+                pp_3emi_miss_in_ca_lid_w.append(v)
 
 
-
-
-
-
-
-
+        if len(pp_3emi_miss_in_ca_lid_w) > 0:
+            print(f"Error:: paid percentage more than 70 found for 3 emi inside warrent::{pp_3emi_miss_in_ca_lid_w}")
+            assert False
+        else:
+            print("*** paid percentage is less than 70 for 3 emi inside warrent ***")
 
