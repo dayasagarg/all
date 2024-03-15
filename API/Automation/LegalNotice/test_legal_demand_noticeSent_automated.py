@@ -66,7 +66,7 @@ class TestLegal:
         summons_data_count = summons.json()["data"]["count"]
 
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_DemandLetter(self, url):
         print("start_date_2::", start_date_2)
         print("end_date_2::", end_date_2)
@@ -252,7 +252,7 @@ class TestLegal:
         print("demand loan ids::", loanID)
         print("demand uniqLIdList::", uniqLIdListDemand)
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_NoticeSent(self, url):
         global lIdNS, missedDemandWithNotice, matchedDemandWithNotice, noticeNotSent
         countOfNoticeSent = legalNotice.json()["data"]["count"]
@@ -340,7 +340,7 @@ class TestLegal:
             print("Error:: demand letter not matched with notice menu in legal section")
         assert len(missedDemandWithNotice) == 0
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_notice_not_sent(self):
         if len(noticeNotSent) > 0:
             print(f"Notice not sent found ::{noticeNotSent}")
@@ -349,7 +349,7 @@ class TestLegal:
             print("All demand gone/notice sent")
 
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_case_assign_to_collection_1(self):
         global paidPrincipleInterest, principleInterest, cal_less_than_70, case_lid
         case_data = caseAssigned.json()["data"]["rows"]
@@ -404,7 +404,7 @@ class TestLegal:
         #
 
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_case_assign_to_collection_2(self):
         count_cal_less_than_70 = len(cal_less_than_70)
         print("count_cal_less_than_70 :: ", count_cal_less_than_70)
@@ -419,7 +419,7 @@ class TestLegal:
 
     # @pytest.mark.skip
     def test_summons_2emi(self,url):
-        global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3,total_emi_amt_3,summons_data, emi2_amount
+        global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3,total_emi_amt_3,summons_data, emi2_amount, summons_lid
         summons_data = summons.json()["data"]["rows"]
         # print("summons_data::",summons_data)
 
@@ -427,7 +427,7 @@ class TestLegal:
 
         summons_lid = []
 
-        print("case_lid::",case_lid)
+        # print("case_lid::",case_lid)
 
         for s in summons_data:
             if s['Loan ID']:
@@ -477,7 +477,7 @@ class TestLegal:
 
 
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_summons_3emi(self, url):
 
         global paidBeforeLetter_3, paidAfterLetter_3, pp_emi_3
@@ -527,6 +527,37 @@ class TestLegal:
             assert False
         else:
             print("*** remaining paid percentage less than 70 for 3 emi ***")
+
+
+
+    def test_summons_emi(self,url):
+
+        s_e_lid = []
+        for e in summons_lid:
+            emi = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                                    params={"loanId": e}, verify=False)
+
+            emi_data = emi.json()["data"]["EMIData"]
+
+            for ed in emi_data:
+                if ed["status"] == "UNPAID":
+                    s_e_lid.append(e)
+
+
+
+
+        print("s_e_lid::",s_e_lid)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
