@@ -477,10 +477,10 @@ class TestLegal:
 
 
         if len(pp_2emi_miss_in_ca_lid) > 0:
-            print(f"Error:: paid percentage more than 70 found for 2 emi::{pp_2emi_miss_in_ca_lid}")
+            print(f"Error:: paid percentage more than 70 found for 2 emi in summons ::{pp_2emi_miss_in_ca_lid}")
             assert False
         else:
-            print("*** remaining paid percentage less than 70 for 2 emi ***")
+            print("*** remaining paid percentage less than 70 for 2 emi in summons ***")
 
 
 
@@ -531,10 +531,10 @@ class TestLegal:
 
 
         if len(pp_3emi_miss_in_ca_lid) > 0:
-            print(f"Error:: paid percentage more than 70 found for 3 emi::{pp_3emi_miss_in_ca_lid}")
+            print(f"Error:: paid percentage more than 70 found for 3 emi in summons::{pp_3emi_miss_in_ca_lid}")
             assert False
         else:
-            print("*** remaining paid percentage less than 70 for 3 emi ***")
+            print("*** remaining paid percentage less than 70 for 3 emi in summons ***")
 
 
     @pytest.mark.skip
@@ -613,8 +613,6 @@ class TestLegal:
             assert False
         else:
             print("*** paid percentage is less than 70 for 2 emi inside warrent section***")
-
-
 
     def test_warrent_3emi(self, url):
 
