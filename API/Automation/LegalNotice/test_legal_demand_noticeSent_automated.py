@@ -462,10 +462,22 @@ class TestLegal:
                         pp_gt_70_2emi_lid.append(s['Loan ID'])
                         # print("pp_emi_2::",pp_emi_2)
 
+        pp_2emi_miss_in_ca_lid = []
+        for l in pp_gt_70_2emi_lid:
+            if l not in case_lid:
+                pp_2emi_miss_in_ca_lid.append(l)
+
+
+        if len(pp_2emi_miss_in_ca_lid) > 0:
+            print(f"Error:: paid percentage more than 70 found for 2 emi::{pp_2emi_miss_in_ca_lid}")
+            assert False
+        else:
+            print("*** remaining paid percentage less than 70 for 2 emi ***")
 
 
 
-    @pytest.mark.skip
+
+    # @pytest.mark.skip
     def test_summons_3emi(self, url):
 
         global paidBeforeLetter_3, paidAfterLetter_3, pp_emi_3
@@ -473,7 +485,7 @@ class TestLegal:
         pp_gt_70_3emi_lid = []
         for s in summons_data:
 
-            if s["Emi 3 amount"]:
+            if s["Emi 3 amount"]== "UNPAID":
                 emi1_amount_e3 = int(s["Emi 1 amount"].replace(",", ""))
                 emi2_amount_e3 = int(s["Emi 2 amount"].replace(",", ""))
                 # print("emi1_amount::",emi1_amount)
