@@ -559,7 +559,7 @@ class TestLegal:
 
 
     def test_warrent_2emi(self,url):
-        global paidBeforeLetter_w, paidAfterLetter_w, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3,total_emi_amt_3,summons_data, emi2_amount
+        global paidBeforeLetter_w, paidAfterLetter_w, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3,total_emi_amt_3,warrent_data, emi2_amount
 
         warrent_data = warrent.json()["data"]["rows"]
 
@@ -616,7 +616,7 @@ class TestLegal:
 
 
 
-    def test_warrent_3emi(self, url,warrent_data):
+    def test_warrent_3emi(self, url):
 
         global paidBeforeLetter_3_w, paidAfterLetter_3_w, pp_emi_3
 
