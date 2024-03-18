@@ -537,8 +537,7 @@ class TestLegal:
             print("*** remaining paid percentage less than 70 for 3 emi in summons ***")
 
 
-    # @pytest.mark.skip
-    @pytest.mark.xfail
+    @pytest.mark.skip
     def test_summons_emi(self,url):
 
         global paidEMIAmt, emiAmt
