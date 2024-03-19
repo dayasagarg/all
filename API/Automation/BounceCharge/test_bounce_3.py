@@ -1,7 +1,7 @@
 import requests
 import json
 
-# emiTranAPI = requests.post("https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails")
+# emiTranAPI = requests.post("https://chinmayfinserve.com/admin-prod/admin/qa/bulkEMIDetails")
 
 class TestBounce:
 
@@ -9,7 +9,7 @@ class TestBounce:
     def test_bounce_charg(self):
 
         allRepaidAPI = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-01T10:00:00.000Z&end_date=2024-02-02T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")
+            "https://chinmayfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-01T10:00:00.000Z&end_date=2024-02-02T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")
         # print(allRepaidAPI.json())
 
         allRepaidData = allRepaidAPI.json()["data"]["rows"]
@@ -33,7 +33,7 @@ class TestBounce:
         }
 
         data = {"loanIds": allRepaid_loan_ids}
-        url = "https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
+        url = "https://chinmayfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
 
         emiTranAPI = requests.post(url,headers=headers,data=json.dumps(data))
         emiTranAPIData = emiTranAPI.json()["data"]
@@ -108,7 +108,7 @@ class TestBounce:
 
         #
         # for e in allRepaid_loan_ids:
-        #     emiAPI = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": e},verify=False)
+        #     emiAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": e},verify=False)
         #     # print(emiAPI.json())
         #     emiAPI_data = emiAPI.json()["data"]["EMIData"]
         #

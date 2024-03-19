@@ -15,22 +15,22 @@ class TestRefund:
         print("preTimeStr::",preTimeStr)
 
         emiRepaymentStatus = requests.get(
-            "https://lendittfinserve.com/prod/admin/emi/repaymentStatus?fromDate=2024-02-18T10:00:00.000Z&endDate=2024-02-23T10:00:00.000Z&type=TOTAL&page=1&download=true")
+            "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus?fromDate=2024-02-18T10:00:00.000Z&endDate=2024-02-23T10:00:00.000Z&type=TOTAL&page=1&download=true")
 
         allRepay = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans",
+            "https://chinmayfinserve.com/admin-prod/admin/transaction/allRepaidLoans",
             params={"start_date": f"{preTimeStr}T10:00:00.000Z", "end_date": f"{currTimeStr}T10:00:00.000Z", "page": 1,
                     "pagesize": 10, "getTotal": "true", "download": "true"})
         # print(allRepay.json())
 
         headers = {"adminid": "37"}
 
-        refund_compl = requests.get("https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData",
+        refund_compl = requests.get("https://chinmayfinserve.com/admin-prod/admin/transaction/getRefundableData",
                                     params={"skipPageLimit": "true", "endDate": f"{currTimeStr}T10:00:00.000Z",
                                             "startDate": f"{preTimeStr}T10:00:00.000Z", "status": 1}, headers=headers)
         headers_2 = {"adminid": "164"}
         refund_pend = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/getRefundableData",params={"skipPageLimit":"true","endDate":f"{currTimeStr}T10:00:00.000Z","startDate":f"{preTimeStr}T10:00:00.000Z","status":-1},
+            "https://chinmayfinserve.com/admin-prod/admin/transaction/getRefundableData",params={"skipPageLimit":"true","endDate":f"{currTimeStr}T10:00:00.000Z","startDate":f"{preTimeStr}T10:00:00.000Z","status":-1},
             headers=headers_2)
 
     def test_refund_amt_allRepaid(self):
@@ -342,7 +342,7 @@ class TestRefund:
     def test_ref_amt_emi_check(self):
 
         for r in uniqRefund_compl:
-            trans = requests.get("https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails",
+            trans = requests.get("https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails",
                                  params={"loanId": r})
 
             transData = trans.json()["data"]

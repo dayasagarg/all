@@ -3,7 +3,7 @@ import requests
 from datetime import datetime,timedelta
 
 
-# emiTranAPI = requests.post("https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails")
+# emiTranAPI = requests.post("https://chinmayfinserve.com/admin-prod/admin/qa/bulkEMIDetails")
 
 
 class TestBounce:
@@ -34,15 +34,15 @@ class TestBounce:
         # emi date < current date
 
         autoDebitFailedAPI = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{pre_str_2}T10:00:00.000Z","end_date":f"{curr_s}T10:00:00.000Z","status":4,"page":1,"skipPageLimit":"true"})
+            "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{pre_str_2}T10:00:00.000Z","end_date":f"{curr_s}T10:00:00.000Z","status":4,"page":1,"skipPageLimit":"true"})
 
         # autoDebitFailedAPI = requests.get(
-        #     "https://lendittfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData?start_date=2024-02-04T10:00:00.000Z&end_date=2024-02-05T10:00:00.000Z&status=4&page=1") # 10 data / page
+        #     "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData?start_date=2024-02-04T10:00:00.000Z&end_date=2024-02-05T10:00:00.000Z&status=4&page=1") # 10 data / page
 
-        # autoDebitFailedAPI = requests.get("https://lendittfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData?start_date=2024-02-03T10:00:00.000Z&end_date=2024-02-05T10:00:00.000Z&status=9&page=4")
+        # autoDebitFailedAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData?start_date=2024-02-03T10:00:00.000Z&end_date=2024-02-05T10:00:00.000Z&status=9&page=4")
 
         emiRepaymentStatus = requests.get(
-            "https://lendittfinserve.com/prod/admin/emi/repaymentStatus",params={"fromDate":f"{pre_str_2}T10:00:00.000Z","endDate":f"{curr_s}T10:00:00.000Z","type":"TOTAL","page":1,"download":"true"})
+            "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus",params={"fromDate":f"{pre_str_2}T10:00:00.000Z","endDate":f"{curr_s}T10:00:00.000Z","type":"TOTAL","page":1,"download":"true"})
 
 
 
@@ -68,7 +68,7 @@ class TestBounce:
         #
         bounceChMissed_LId_2 = []
         for r in emiRepaymentStatus_data_lid_2:
-            emiAPI_2 = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
+            emiAPI_2 = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
                                     params={"loanId": r}, verify=False)
             # print(emiAPI.json())
             emiAPI_data2 = emiAPI_2.json()["data"]["EMIData"]
@@ -114,7 +114,7 @@ class TestBounce:
         #
         bounceChMissed_LId_2_f = []
         for rf in emiRepaymentStatus_data_lid_2_f:
-            emiAPI_2_f = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
+            emiAPI_2_f = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
                                     params={"loanId": rf}, verify=False)
             # print(emiAPI.json())
             emiAPI_data2_f = emiAPI_2_f.json()["data"]["EMIData"]
@@ -156,7 +156,7 @@ class TestBounce:
         #
         bounceChMissed_LId_2 = []
         for r in emiRepaymentStatus_data_lid_2:
-            emiAPI_2 = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
+            emiAPI_2 = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
                                     params={"loanId": r}, verify=False)
             # print(emiAPI.json())
             emiAPI_data2 = emiAPI_2.json()["data"]["EMIData"]
@@ -206,7 +206,7 @@ class TestBounce:
 
         bounceChMissed_LId_3 = []
         for s in emiRepaymentStatus_data_lid_3:
-            emiAPI_3 = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
+            emiAPI_3 = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
                                     params={"loanId": s}, verify=False)
             # print(emiAPI.json())
             emiAPI_data3 = emiAPI_3.json()["data"]["EMIData"]

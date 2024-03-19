@@ -39,17 +39,17 @@ class TestLegal:
     @pytest.fixture
     def url(self):
         global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3,caseAssigned,summons, summons_data
-        legalDemandLetter = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",
+        legalDemandLetter = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                          params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
                                                  "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
                                                  "download": "true"})  # date = 6 days before notice sent
 
-        legalNotice = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",
+        legalNotice = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                    params={"page": 1, "startDate": f"{start_date_2}T10:00:00.000Z",
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 2, "adminId": 134,
                                            "download": "true"})  # current date
 
-        caseAssigned = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",params={"page": 1, "startDate": f"{start_date_2}T10:00:00.000Z",
+        caseAssigned = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",params={"page": 1, "startDate": f"{start_date_2}T10:00:00.000Z",
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 11, "adminId": 153,
                                            "download": "true"})
 

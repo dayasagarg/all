@@ -14,12 +14,12 @@ class TestLoanAgrDis:
         prev = curr - timedelta(days=1)
         pre_str = datetime.strftime(prev, "%Y-%m-%d")
 
-        disAPI = requests.get("https://lendittfinserve.com/stag/admin/dashboard/allDisbursedLoans",
+        disAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/dashboard/allDisbursedLoans",
                               params={"start_date": f"{pre_str}T10:00:00.000Z",
                                       "end_date": f"{curr_str}T10:00:00.000Z",
                                       "page": 1, "download": "true"})
 
-        # loanAgrAPI = requests.get("http: // lendittfinserve.com / prod / admin / esign / getLoanAgreement", params={"loanId":726301})
+        # loanAgrAPI = requests.get("https://chinmayfinserve.com/admin-prod/ admin / esign / getLoanAgreement", params={"loanId":726301})
 
     def test_agr_disb(self, url_agr_dis):
         global loanAmount,app_amt,loanAgrAPI,intRate,int_rate_la,emi_la,totalEMI,loanAgrAPIDataTenure,loanTenure,loan_tenure_la,name_la,name,nbfc,nbfc_la,procFees,procFees_la, sr,loanAgrAPIDataLoanId,dis_lid,riskFees,riskFees_la,docFees,docFees_la,gstAmt,gst_la,a
@@ -92,7 +92,7 @@ class TestLoanAgrDis:
 
         for lid in dis_lid:
 
-            loanAgrAPI = requests.get("http://lendittfinserve.com/stag/admin/esign/getLoanAgreement",
+            loanAgrAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/esign/getLoanAgreement",
                                       params={"loanId": lid})
 
             loanAgrAPIData = loanAgrAPI.json()["data"]["eSign_agree_data"]["emiTotalPrincipal"]

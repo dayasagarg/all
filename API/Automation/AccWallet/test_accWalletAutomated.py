@@ -25,7 +25,7 @@ class TestAccountWallet:
 
         '''# WALLET SETTLEMENT TOTAL'''
         walletSettlAPIResp = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/tally/getWalletSettlementDetails",params={"startDate":f"{currentDateStr}T10:00:00.000Z","endDate":f"{currentDateStr}T10:00:00.000Z"})  # current date
+            "https://chinmayfinserve.com/admin-prod/admin/tally/getWalletSettlementDetails",params={"startDate":f"{currentDateStr}T10:00:00.000Z","endDate":f"{currentDateStr}T10:00:00.000Z"})  # current date
 
 
         '''# RAZORPAY-1'''

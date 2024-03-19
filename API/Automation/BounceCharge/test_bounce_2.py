@@ -2,7 +2,7 @@ import requests
 from datetime import datetime,timedelta
 
 
-# emiTranAPI = requests.post("https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails")
+# emiTranAPI = requests.post("https://chinmayfinserve.com/admin-prod/admin/qa/bulkEMIDetails")
 
 
 class TestBounce:
@@ -18,7 +18,7 @@ class TestBounce:
         print(currentDateStr)
 
         allRepaidAPI = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-05T10:00:00.000Z&end_date=2024-02-06T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")   # end date < current date
+            "https://chinmayfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-05T10:00:00.000Z&end_date=2024-02-06T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")   # end date < current date
         # print(allRepaidAPI.json())
 
         allRepaidData = allRepaidAPI.json()["data"]["rows"]
@@ -38,7 +38,7 @@ class TestBounce:
 
 
         for e in allRepaid_loan_ids:
-            emiAPI = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": e},verify=False)
+            emiAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": e},verify=False)
             # print(emiAPI.json())
             emiAPI_data = emiAPI.json()["data"]["EMIData"]
 

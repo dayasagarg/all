@@ -18,7 +18,7 @@ class TestRepayment:
     def test_getRepayment(self):
         global totalUnpaidAmountForm, fullPay_unpaid_misssMatch
         responseAllLoanID = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans",
+            "https://chinmayfinserve.com/admin-prod/admin/transaction/allRepaidLoans",
             params={"start_date": f"{currentDateStr}T10:00:00.000Z", "end_date": f"{currentDateStr}T10:00:00.000Z",
                     "page": 1, "pagesize": 10, "getTotal": "true", "download": "true",
                     "verify": "False"})  # current date
@@ -46,7 +46,7 @@ class TestRepayment:
 
         # Upcoming EMI
 
-        url = "https://lendittfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
+        url = "https://chinmayfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
         # print(lIDs)
 
         data = {"loanIds": lIDs}
@@ -130,7 +130,7 @@ class TestRepayment:
     # def test_using_per_loan_id(self):
     #     for i in lIDs:
     #         response = requests.get(
-    #             "https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
+    #             "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
     #             verify=False)  # current date
     #
     #         print('status code of get Repayment::', response.status_code)

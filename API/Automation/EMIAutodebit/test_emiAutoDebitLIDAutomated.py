@@ -13,14 +13,14 @@ class TestMissedLIDInRepayment:
         global response, response2
         # Upcoming EMI
         response = requests.get(
-            "https://lendittfinserve.com/prod/admin/emi/getUpcomingEmi",
+            "https://chinmayfinserve.com/admin-prod/admin/emi/getUpcomingEmi",
             params={"page": 1, "pagesize": 10, "start_date": f"{currentDate}T10:00:00.000Z",
                     "end_date": f"{currentDate}T10:00:00.000Z", "emiStatus": 2, "download": "true"},
             verify=False)  # current date
 
 
         response2 = requests.get(
-            "https://lendittfinserve.com/prod/admin/emi/repaymentStatus",
+            "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus",
             params={"fromDate":f"{currentDate}T10:00:00.000Z", "endDate":f"{currentDate}T10:00:00.000Z", "type": "TOTAL",
                     "page": 1, "download": "true",
                     "verify": False})  # current date

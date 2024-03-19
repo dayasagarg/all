@@ -12,7 +12,7 @@ class TestLoanTenure:
         prevTimeStr = datetime.strftime(prevTime, "%Y-%m-%d")
 
 
-        dApi = requests.get("https://lendittfinserve.com/admin-prod/admin/dashboard/allDisbursedLoans",
+        dApi = requests.get("https://chinmayfinserve.com/admin-prod/admin/dashboard/allDisbursedLoans",
                             params={"start_date": f"{prevTimeStr}T10:00:00.000Z",
                                     "end_date": f"{currTimeStr}T10:00:00.000Z",
                                     "page": 1, "download": "true"})

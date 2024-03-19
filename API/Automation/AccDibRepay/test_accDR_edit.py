@@ -11,12 +11,12 @@ class TestAccount:
     @pytest.fixture
     def url(self):
         global response1, response2, response5, response4
-        prod_dd = "https://lendittfinserve.com/admin-prod/admin/tally/getAllDisbursementDetails"
+        prod_dd = "https://chinmayfinserve.com/admin-prod/admin/tally/getAllDisbursementDetails"
         response1 = requests.get(url=prod_dd
             ,params={"startDate":f"{currentDateStr}T10:00:00.000Z","endDate":f"{currentDateStr}T10:00:00.000Z"})  # Current date
 
         ##REPAYMENT SUMMARY
-        prod_rd = "https://lendittfinserve.com/admin-prod/admin/tally/getAllRepaymentData"
+        prod_rd = "https://chinmayfinserve.com/admin-prod/admin/tally/getAllRepaymentData"
         uat_rd = "http://144.24.112.239/api/admin/tally/getAllRepaymentData"
         response2 = requests.get(url=uat_rd
             ,params={"startDate":f"{currentDateStr}T10:00:00.000Z","endDate":f"{currentDateStr}T10:00:00.000Z"})  # current date
@@ -24,13 +24,13 @@ class TestAccount:
         # AllDisbursedLoans
 
         response5 = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/dashboard/allDisbursedLoans",
+            "https://chinmayfinserve.com/admin-prod/admin/dashboard/allDisbursedLoans",
             params={"start_date": f"{currentDateStr}T10:00:00.000Z", "end_date": f"{currentDateStr}T10:00:00.000Z",
                     "page": 1, "download": "true"})  # current date
 
         # AllRepaidLoans
         response4 = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans",params={"start_date":f"{currentDateStr}T10:00:00.000Z","end_date":f"{currentDateStr}T10:00:00.000Z","page":1,"pagesize":10,"getTotal":"true","download":"true"})  # current date
+            "https://chinmayfinserve.com/admin-prod/admin/transaction/allRepaidLoans",params={"start_date":f"{currentDateStr}T10:00:00.000Z","end_date":f"{currentDateStr}T10:00:00.000Z","page":1,"pagesize":10,"getTotal":"true","download":"true"})  # current date
 
     @pytest.mark.skip
     def test_getDisbSummary(self, url):

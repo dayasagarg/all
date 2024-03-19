@@ -5,20 +5,20 @@ class TestRefund:
         global allRepay, refund_compl, refund_pend, emiRepaymentStatus
 
         emiRepaymentStatus = requests.get(
-            "https://lendittfinserve.com/prod/admin/emi/repaymentStatus?fromDate=2024-02-03T10:00:00.000Z&endDate=2024-02-07T10:00:00.000Z&type=TOTAL&page=1&download=true")
+            "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus?fromDate=2024-02-03T10:00:00.000Z&endDate=2024-02-07T10:00:00.000Z&type=TOTAL&page=1&download=true")
 
         allRepay = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-04T10:00:00.000Z&end_date=2024-02-07T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")
+            "https://chinmayfinserve.com/admin-prod/admin/transaction/allRepaidLoans?start_date=2024-02-04T10:00:00.000Z&end_date=2024-02-07T10:00:00.000Z&page=1&pagesize=10&getTotal=true&download=true")
         # print(allRepay.json())
 
         headers = {"adminid": "37"}
-        # refund_compl = requests.get("https://lendittfinserve.com/stag/admin/transaction/getRefundableData",params={"startDate":"2024-02-01T10:00:00.000Z","endDate":"2024-02-05T10:00:00.000Z","status":1},headers=headers,verify=False)
+        # refund_compl = requests.get("https://chinmayfinserve.com/admin-prod/admin/transaction/getRefundableData",params={"startDate":"2024-02-01T10:00:00.000Z","endDate":"2024-02-05T10:00:00.000Z","status":1},headers=headers,verify=False)
         refund_compl = requests.get(
-            "https://lendittfinserve.com/stag/admin/transaction/getRefundableData?startDate=2024-02-04T10:00:00.000Z&endDate=2024-02-08T10:00:00.000Z&status=1",
+            "https://chinmayfinserve.com/admin-prod/admin/transaction/getRefundableData?startDate=2024-02-04T10:00:00.000Z&endDate=2024-02-08T10:00:00.000Z&status=1",
             headers=headers)
 
         refund_pend = requests.get(
-            "https://lendittfinserve.com/stag/admin/transaction/getRefundableData?startDate=2024-02-01T10:00:00.000Z&endDate=2024-02-04T10:00:00.000Z&status=-1",
+            "https://chinmayfinserve.com/admin-prod/admin/transaction/getRefundableData?startDate=2024-02-01T10:00:00.000Z&endDate=2024-02-04T10:00:00.000Z&status=-1",
             headers=headers)
 
     def test_refund_amt_allRepay(self):

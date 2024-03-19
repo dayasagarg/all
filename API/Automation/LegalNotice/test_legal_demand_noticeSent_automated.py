@@ -42,21 +42,21 @@ class TestLegal:
     @pytest.fixture
     def url(self):
         global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3,caseAssigned,summons, summons_data, summons_data_count, warrent
-        legalDemandLetter = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",
+        legalDemandLetter = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                          params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
                                                  "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
                                                  "download": "true"})  # date = 6 days before notice sent
 
-        legalNotice = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",
+        legalNotice = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                    params={"page": 1, "startDate": f"{start_date_2}T10:00:00.000Z",
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 2, "adminId": 134,
                                            "download": "true"})  # current date
 
-        caseAssigned = requests.get("https://lendittfinserve.com/prod/admin/legal/getAllLegalData",params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
+        caseAssigned = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 11, "adminId": 153,
                                            "download": "true"})
 
-        summons = requests.get("https://lendittfinserve.com/admin-prod/admin/legal/getAllLegalData",
+        summons = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
                                        "endDate": f"{curr_str}T10:00:00.000Z", "type": 6, "adminId": 70,
                                        "download": "true"})
@@ -66,7 +66,7 @@ class TestLegal:
         summons_data_count = summons.json()["data"]["count"]
 
         warrent = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/legal/getAllLegalData",
+            "https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
             params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
                     "endDate": f"{curr_str}T10:00:00.000Z", "type": 7, "adminId": 70,
                     "download": "true"}
@@ -463,7 +463,7 @@ class TestLegal:
                     totalPaid = paidBeforeLetter + paidAfterLetter
                     # print("totalPaid::",totalPaid)
 
-                    pp_emi_2 = round((totalPaid/total_emi_amt) * 100,0)
+                    pp_emi_2 = round((totalPaid/total_emi_amt) * 100, 0)
                     # print("pp_emi_2::",pp_emi_2)
 
                     if pp_emi_2 > 70.0:
@@ -543,7 +543,7 @@ class TestLegal:
         global paidEMIAmt, emiAmt
         s_e_lid = []
         for e in summons_lid:
-            emi = requests.get("https://lendittfinserve.com/admin-prod/admin/loan/getEMIDetails",
+            emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
                                     params={"loanId": e}, verify=False)
 
             emi_data = emi.json()["data"]["EMIData"]

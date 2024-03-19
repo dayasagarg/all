@@ -21,8 +21,8 @@ previousDateStr3 = datetime.strftime(previousDate3, "%Y-%m-%d")
 # print("previousDateStr2::", previousDateStr2)
 # print("previousDateStr3::", previousDateStr3)
 
-# curl --location 'https://lendittfinserve.com/prod/admin/legal/getAllLegalData?page=1&startDate=2023-09-12T10%3A00%3A00.000Z&endDate=2023-09-12T10%3A00%3A00.000Z&type=1&adminId=65'
-# curl --location 'https://lendittfinserve.com/prod/admin/dashboard/todayAutoDebitData?start_date=2023-09-11T10%3A00%3A00.000Z&end_date=2023-09-11T10%3A00%3A00.000Z&status=9&page=1&Download=true'
+# curl --location 'https://https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData?page=1&startDate=2023-09-12T10%3A00%3A00.000Z&endDate=2023-09-12T10%3A00%3A00.000Z&type=1&adminId=65'
+# curl --location 'https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData?start_date=2023-09-11T10%3A00%3A00.000Z&end_date=2023-09-11T10%3A00%3A00.000Z&status=9&page=1&Download=true'
 
 # FAILED
 # AD NOT PLACED
@@ -34,12 +34,12 @@ class TestMissedLID:
         global response, response2
         # Auto-debit failed
         response = requests.get(
-            "https://lendittfinserve.com/admin-prod/admin/emi/repaymentStatus",
+            "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus",
             params={"fromDate": f"{previousDateStr1}T10:00:00.000Z", "endDate": f"{previousDateStr2}T10:00:00.000Z",
                     "type": "TOTAL", "page": 1, "download": "true"})  # previous date
 
         # Demand letter (Legal)
-        response2 = requests.get("https://lendittfinserve.com/admin-prod/admin/legal/getAllLegalData",
+        response2 = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                  params={"page": 1, "startDate": f"{previousDateStr3}T10:00:00.000Z",
                                          "endDate": f"{currentDateStr}T10:00:00.000Z", "type": 1, "adminId": 65,
                                          "download": "true", "verify": False})  # current date
