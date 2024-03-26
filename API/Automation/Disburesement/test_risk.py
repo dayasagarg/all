@@ -1,6 +1,5 @@
 import math
 
-
 class TestLoanAgrRisk:
     import pytest
     @pytest.fixture

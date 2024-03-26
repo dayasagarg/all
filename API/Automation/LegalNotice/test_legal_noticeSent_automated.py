@@ -126,7 +126,7 @@ class TestLegal:
                 if ld["Loan ID"]:
                     loanID.append(ld["Loan ID"])
 
-            if (ld["Emi 3 status"] == "UNPAID"):
+            if (ld["Emi 3 status"] == "UNPAID") and (ld["Emi 4 status"] == "-"):
                 if ld["Loan ID"]:
                     loanID.append(ld["Loan ID"])
 
@@ -206,45 +206,7 @@ class TestLegal:
                 if ld["Email date"]:
                     emailDate.append(ld["Email date"])
 
-            if ((ld["Emi 1 status"] == "UNPAID") and (ld["Emi 2 status"] == "-") and (ld["Emi 3 status"] == "-")):
-                if ld["Loan ID"]:
-                    loanID.append(ld["Loan ID"])
 
-                if ld["Demand created date"]:
-                    demandCreatedDate.append(ld["Demand created date"])
-
-                if ld["EMI number"]:
-                    emiNo.append(ld["EMI number"])
-
-                if ld["As on due amount"]:
-                    asOnDueAmt.append(ld["As on due amount"])
-
-                if ld["Due date"]:
-                    dueDate.append(ld["Due date"])
-
-                if ld["Emi 1 date"]:
-                    emi1Date.append(ld["Emi 1 date"])
-
-                if ld["Emi 1 status"]:
-                    emi1Status.append(ld["Emi 1 status"])
-
-                if ld["Emi 2 date"]:
-                    emi2Date.append(ld["Emi 2 date"])
-
-                if ld["Emi 2 status"]:
-                    emi2Status.append(ld["Emi 2 status"])
-
-                if ld["Emi 3 date"]:
-                    emi3Date.append(ld["Emi 3 date"])
-
-                if ld["Emi 3 status"]:
-                    emi3Status.append(ld["Emi 3 status"])
-
-                if ld["AD placed date"]:
-                    adPlDate.append(ld["AD placed date"])
-
-                if ld["Email date"]:
-                    emailDate.append(ld["Email date"])
 
         print("count of demand loan ids::", len(loanID))
         # print("unpaid loan ids::",loanID)
@@ -339,13 +301,13 @@ class TestLegal:
                 missedDemandWithNotice.append(unl)
                 # print("loanID not in lIdNS::", unl)
 
-        print("matchedDemandWithNotice::", matchedDemandWithNotice)
-        print("missedDemandWithNotice::", missedDemandWithNotice)
+        # print("matchedDemandWithNotice::", matchedDemandWithNotice)
+        # print("missedDemandWithNotice::", missedDemandWithNotice)
 
         if len(missedDemandWithNotice) == 0:
-            print("demand letter matched with notice menu in legal section")
+            print("*** Notice sent ***")
         else:
-            print("Error:: demand letter not matched with notice menu in legal section")
+            print(f"Error:: Notice not sent cases found::{missedDemandWithNotice}")
         assert len(missedDemandWithNotice) == 0
 
     # @pytest.mark.skip
@@ -354,7 +316,7 @@ class TestLegal:
             print(f"Notice not sent found ::{noticeNotSent}")
             assert False
         else:
-            print("All demand gone/notice sent")
+            print("*** All notice sent ***")
 
 
     # @pytest.mark.skip
@@ -391,7 +353,7 @@ class TestLegal:
             # print("paidPrincipleInterest::",paidPrincipleInterest)
             # print("principleInterest::",principleInterest)
 
-            if round((paidPrincipleInterest / principleInterest) * 100 ,2) < 70.0:
+            if round((paidPrincipleInterest / principleInterest) * 100, 2) < 70.0:
                 cal_less_than_70.append(c["Loan ID"])
 
         print("cal_less_than_70::",cal_less_than_70)

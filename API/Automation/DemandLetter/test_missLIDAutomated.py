@@ -54,7 +54,7 @@ class TestMissedLID:
         rows = []
         allEMiList = response.json()["data"]['rows']
         for el in allEMiList:
-            if el["Today's EMI status"] == 'FAILED' or el["Today's EMI status"] == 'AD NOT PLACED':
+            if el["Today's EMI status"] == 'FAILED' or el["Today's EMI status"] == 'AD NOT PLACED' or el["Today's EMI status"] == 'Response pending':
                 rows.append(el)
 
         # print('status code of get AutoDebitFail::', response.status_code)

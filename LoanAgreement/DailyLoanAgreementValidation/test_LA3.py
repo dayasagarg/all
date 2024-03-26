@@ -45,7 +45,7 @@ class TestDashRepo:
         driver = webdriver.Chrome(service = ser)
         driver.maximize_window()
         driver.implicitly_wait(5)
-        driver.get("https://lendittfinserve.com/lenditt/#/dashboard") # url
+        driver.get("https://chinmayfinserve.com/chinmay/#/dashboard") # url
         time.sleep(2)
         driver.find_element(By.ID, "email").send_keys(email) #email
         time.sleep(2)
