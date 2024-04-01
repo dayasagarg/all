@@ -20,7 +20,7 @@ start_3_DateStr = datetime.strftime(start_3, "%Y-%m-%d")
 end = end_2_F - timedelta(days=5)
 endDateStr = datetime.strftime(end, "%Y-%m-%d")
 
-start = end - timedelta(days=5)
+start = end - timedelta(days=15)
 startDateStr = datetime.strftime(start, "%Y-%m-%d")
 
 start_date = start.strftime("%Y-%m-%d")
@@ -162,4 +162,3 @@ class TestLegal:
         assert len(missedDemandWithAutodebit) == 0
 
 
-        
