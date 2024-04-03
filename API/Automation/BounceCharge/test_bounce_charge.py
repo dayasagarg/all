@@ -18,7 +18,7 @@ class TestBounce:
         curr_str_emi = datetime.strftime(curr, "%d/%m/%Y")
 
         prev_1 = curr - timedelta(days=1)
-        prev_2 = curr - timedelta(days=3)
+        prev_2 = curr - timedelta(days=2)
 
         pre_str_1 = datetime.strftime(prev_1, "%Y-%m-%d")
         pre_str_2 = datetime.strftime(prev_2, "%Y-%m-%d")
@@ -331,5 +331,6 @@ class TestBounce:
 
         # print("emi_ers_status::",emi_ers_status)
         # print("emi_aut_status::",emi_aut_status)
+
 
 

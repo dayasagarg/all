@@ -59,7 +59,7 @@ class TestDashRepo:
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[2]").send_keys(otp2)  # otp
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[3]").send_keys(otp3)  # otp
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[4]").send_keys(otp4)  # otp
-        time.sleep(11)
+        time.sleep(17)
         element = driver.find_element(By.ID, "login-btn2") #button
         time.sleep(1)
         driver.execute_script("arguments[0].scrollIntoView();", element)

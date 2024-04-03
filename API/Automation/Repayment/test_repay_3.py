@@ -48,7 +48,7 @@ class TestRepayment:
         ontime_emi_lid = []
 
         for n,i in enumerate(lIDs):
-            # if n == 15:
+            # if n == 5:
             #     break
 
             response = requests.get(
@@ -73,7 +73,7 @@ class TestRepayment:
 
         totalTransAmt_n = []
         for n,j in enumerate(ontime_emi_lid):
-            # if n == 15:
+            # if n == 5:
             #     break
 
             response = requests.get(

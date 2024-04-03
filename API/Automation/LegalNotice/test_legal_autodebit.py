@@ -20,7 +20,7 @@ start_3_DateStr = datetime.strftime(start_3, "%Y-%m-%d")
 end = end_2_F - timedelta(days=5)
 endDateStr = datetime.strftime(end, "%Y-%m-%d")
 
-start = end - timedelta(days=15)
+start = end - timedelta(days=5)
 startDateStr = datetime.strftime(start, "%Y-%m-%d")
 
 start_date = start.strftime("%Y-%m-%d")
@@ -132,11 +132,10 @@ class TestLegal:
         lId_autodebit = []
 
         for ns in noticeAllData:
-            if ns["Loan ID"]:
-                lId_autodebit.append(ns["Loan ID"])
+            if ns["Loan id"]:
+                lId_autodebit.append(ns["Loan id"])
 
         print("lId_autodebit::", lId_autodebit)
-
 
 
         matchedDemandWithAutodebit = []
@@ -160,5 +159,4 @@ class TestLegal:
             print(f"Error:: Autodebit not placed cases found::{missedDemandWithAutodebit}")
 
         assert len(missedDemandWithAutodebit) == 0
-
 

@@ -638,4 +638,3 @@ class TestLegal:
             assert False
         else:
             print("*** paid percentage is less than 70 for 3 emi inside warrent ***")
-
