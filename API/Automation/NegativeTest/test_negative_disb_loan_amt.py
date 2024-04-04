@@ -30,7 +30,7 @@ class TestAppAmt:
         loanID = []
         for d in disbData:
             # print(d)
-            if d["Approved amount"] <= 5000:
+            if d["Approved amount"] <= 10000:
                 loanID.append(d["Loan ID"])
         # print(loanID)
 

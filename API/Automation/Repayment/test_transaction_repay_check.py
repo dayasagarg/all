@@ -59,7 +59,7 @@ class TestRepayment:
         pre_time_1_str = datetime.strftime(pre_time_1,"%d/%m/%Y")
         pre_time_2_str = datetime.strftime(pre_time_2, "%d/%m/%Y")
 
-        last_2_day_with_current = [currentDateStr_2]
+        last_2_day_with_current = [currentDateStr_2,pre_time_1,pre_time_2]
         # print("currentDateStr_2::",currentDateStr_2)
 
         global trans_amt, trans_prin, trans_int, trans_penalty
@@ -67,8 +67,8 @@ class TestRepayment:
 
         missMatchTransAmt = []
         for n,j in enumerate(lIDs):
-            if n == 45:
-                break
+            # if n == 45:
+            #     break
 
             response = requests.get(
                 "https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
