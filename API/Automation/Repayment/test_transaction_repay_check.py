@@ -66,8 +66,10 @@ class TestRepayment:
         totalTransAmt_n = []
 
         missMatchTransAmt = []
+        transact_mismatch_lid = []
+
         for n,j in enumerate(lIDs):
-            # if n == 45:
+            # if n == 15:
             #     break
 
             response = requests.get(
@@ -117,10 +119,13 @@ class TestRepayment:
                         # print("trans_penalty::",trans_penalty)
                         # print("trans_lid::", j)
 
+
                         if trans_amt_pert_f != trans_amt:
                             print("Error::trans_amt_pert_f not match with trans_amt trans_lid::", j)
                             print("trans_amt_pert_f::", trans_amt_pert_f)
                             print("trans_amt::",trans_amt)
+                            transact_mismatch_lid.append(j)
+
                             # assert False
 
                         else:
@@ -128,5 +133,9 @@ class TestRepayment:
 
                             # missMatchTransAmt.append(j)
 
+        # print("transact_mismatch_lid::",transact_mismatch_lid)
 
-
+        if len(transact_mismatch_lid) > 0:
+            print(f"Error:: transaction amount is not as per principal, interest and penalty::{transact_mismatch_lid}")
+        else:
+            print("*** transaction amount is as per principal, interest and penalty ***")

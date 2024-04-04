@@ -147,6 +147,7 @@ class TestMissedLID:
 
         assert len(duplicateDemandLetter) == 0
 
+
     def test_DemandLetter_notsent(self, url):
 
         if len(demandLetterLoanId_notSent) == 0:

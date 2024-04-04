@@ -41,7 +41,7 @@ print("end_date_2::", end_date_2)
 class TestLegal:
     @pytest.fixture
     def url(self):
-        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3,caseAssigned, fillingInProgress_data
+        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3,caseAssigned,fillingInProgress, fillingInProgress_data, fillingInProgress_data_count, warrent
         legalDemandLetter = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                          params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
                                                  "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
@@ -64,6 +64,12 @@ class TestLegal:
 
         fillingInProgress_data = fillingInProgress.json()["data"]["rows"]
         fillingInProgress_data_count = fillingInProgress.json()["data"]["count"]
+
+
+
+
+
+
 
     #
     # @pytest.mark.skip
@@ -378,9 +384,10 @@ class TestLegal:
         else:
             print("Paid percentage is above 70% in case assigned to collection")
 
+
     # @pytest.mark.skip
-    def test_filingInProgress_2emi(self, url):
-        global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3, total_emi_amt_3, fillingInProgress_lid
+    def test_filingInProgress_2emi(self,url):
+        global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3,total_emi_amt_3, fillingInProgress_lid
 
         # print("summons_data::",summons_data)
 
@@ -393,6 +400,7 @@ class TestLegal:
         for s in fillingInProgress_data:
             if s['Loan ID']:
                 fillingInProgress_lid.append(s['Loan ID'])
+
 
             if s["Emi 1 status"] == "UNPAID" and s["Emi 2 status"] == "UNPAID":
                 if s["Emi 3 amount"] == "-" and s["Emi 4 amount"] == "-":
@@ -415,7 +423,7 @@ class TestLegal:
                     totalPaid = paidBeforeLetter + paidAfterLetter
                     # print("totalPaid::",totalPaid)
 
-                    pp_emi_2 = round((totalPaid / total_emi_amt) * 100, 0)
+                    pp_emi_2 = round((totalPaid/total_emi_amt) * 100, 0)
                     # print("pp_emi_2::",pp_emi_2)
 
                     if pp_emi_2 > 70.0:
@@ -427,15 +435,15 @@ class TestLegal:
             if l not in case_lid:
                 pp_2emi_miss_in_ca_lid_f.append(l)
 
+
         if len(pp_2emi_miss_in_ca_lid_f) > 0:
-            print(
-                f"Error:: paid percentage more than 70 found for 2 emi in fillingInProgress ::{pp_2emi_miss_in_ca_lid_f}")
+            print(f"Error:: paid percentage more than 70 found for 2 emi in fillingInProgress ::{pp_2emi_miss_in_ca_lid_f}")
             assert False
         else:
             print("*** remaining paid percentage less than 70 for 2 emi in fillingInProgress ***")
+    #
+    #
 
-    #
-    #
 
     # @pytest.mark.skip
     def test_filingInProgress_3emi(self, url):
@@ -445,10 +453,11 @@ class TestLegal:
         pp_gt_70_3emi_lid_f = []
         for f in fillingInProgress_data:
 
-            if f["Emi 3 amount"] == "UNPAID":
+            if f["Emi 3 amount"]== "UNPAID":
                 emi1_amount_e3 = int(f["Emi 1 amount"].replace(",", ""))
                 emi2_amount_e3 = int(f["Emi 2 amount"].replace(",", ""))
                 # print("emi1_amount::",emi1_amount)
+
 
                 if f["Emi 3 amount"] != "-":
 
@@ -469,7 +478,7 @@ class TestLegal:
                     totalPaid_3 = paidBeforeLetter_3 + paidAfterLetter_3
                     # print("totalPaid_3::",totalPaid_3)
 
-                    pp_emi_3 = round((totalPaid_3 / total_emi_amt_3) * 100, 2)
+                    pp_emi_3 = round((totalPaid_3/total_emi_amt_3) * 100,2)
                     # print("pp_emi_3::",pp_emi_3)
 
                     if pp_emi_3 > 70.0:
@@ -480,15 +489,16 @@ class TestLegal:
             if ll not in case_lid:
                 pp_3emi_miss_in_ca_lid.append(ll)
 
+
         if len(pp_3emi_miss_in_ca_lid) > 0:
-            print(
-                f"Error:: paid percentage more than 70 found for 3 emi in fillingInProgress::{pp_3emi_miss_in_ca_lid}")
+            print(f"Error:: paid percentage more than 70 found for 3 emi in fillingInProgress::{pp_3emi_miss_in_ca_lid}")
             assert False
         else:
             print("*** remaining paid percentage less than 70 for 3 emi in fillingInProgress ***")
 
+
     # @pytest.mark.skip
-    def test_filingInprogress_emi(self, url):
+    def test_filingInprogress_emi(self,url):
 
         global paidEMIAmt, emiAmt
         s_e_lid = []
@@ -496,12 +506,12 @@ class TestLegal:
 
         for e in fillingInProgress_lid:
             emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
-                               params={"loanId": e}, verify=False)
+                                    params={"loanId": e}, verify=False)
 
             emi_data = emi.json()["data"]["EMIData"]
             # print("emi_data::",emi_data)
 
-            for n, ed in enumerate(emi_data):
+            for n,ed in enumerate(emi_data):
                 # if n == 2:
                 #     break
 
@@ -509,18 +519,19 @@ class TestLegal:
                     # s_e_lid.append(e)
                     # if ed["paidEmiAmount"]:
                     paidEMIAmt = ed["paidEmiAmount"]
-                    # print("paidEMIAmt::",paidEMIAmt)
+                        # print("paidEMIAmt::",paidEMIAmt)
 
                     # if ed["emiAmount"]:
                     emiAmt = ed["emiAmount"]
-                    # print("emiAmt::",emiAmt)
+                        # print("emiAmt::",emiAmt)
 
-                    pp_f = round((paidEMIAmt / emiAmt) * 100, 0)
+                    pp_f = round((paidEMIAmt / emiAmt) * 100,0)
 
                     if pp_f >= 70.0:
+
                         pp_more_than_70_filingInProgres.append(e)
 
-        print("Error::pp_more_than_70_filingInProgres::", pp_more_than_70_filingInProgres)
+        print("Error::pp_more_than_70_filingInProgres::",pp_more_than_70_filingInProgres)
 
         # if len(pp_more_than_70_filingInProgres) > 0:
         #     print("pp_more_than_70_filingInProgres ")

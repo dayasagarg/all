@@ -30,17 +30,17 @@ class TestAppAmt:
         loanID = []
         for d in disbData:
             # print(d)
-            if d["Approved amount"] <= 10000:
+            if d["Approved amount"] < 10000:
                 loanID.append(d["Loan ID"])
         # print(loanID)
 
         count_loan = len(loanID)
 
         if count_loan > 0:
-            print(f"Error::Approved amount is below Rs.5000 found :: loanID :: {loanID}")
+            print(f"Error::Approved amount is below Rs.10000 found :: loanID :: {loanID}")
             assert False
         else:
-            print("Approved amount is above Rs.5000")
+            print("Approved amount is above Rs.10000")
 
     def test_dis_loan_amt_upper(self):
 
