@@ -129,7 +129,7 @@ class TestRepayment:
                             # assert False
 
                         else:
-                            print("*** trans_amt is correct ***")
+                            print(f"*** trans_amt is correct :: LID :: {j} ***")
 
                             # missMatchTransAmt.append(j)
 
