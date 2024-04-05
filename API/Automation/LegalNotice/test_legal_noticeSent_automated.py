@@ -492,7 +492,7 @@ class TestLegal:
 
         global paidEMIAmt, emiAmt
         s_e_lid = []
-        pp_more_than_70_filingInProgres = []
+        pp_more_than_70_filingInProgres_lid = []
 
         for e in fillingInProgress_lid:
             emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
@@ -518,12 +518,21 @@ class TestLegal:
                     pp_f = round((paidEMIAmt / emiAmt) * 100, 0)
 
                     if pp_f >= 70.0:
-                        pp_more_than_70_filingInProgres.append(e)
+                        pp_more_than_70_filingInProgres_lid.append(e)
 
-        print("Error::pp_more_than_70_filingInProgres::", pp_more_than_70_filingInProgres)
+        print("pp_more_than_70_filingInProgres::", pp_more_than_70_filingInProgres_lid)
 
-        # if len(pp_more_than_70_filingInProgres) > 0:
-        #     print("pp_more_than_70_filingInProgres ")
+        pp_more_than_70_filingInProgres_lid_missed_collection = []
+        for m in pp_more_than_70_filingInProgres_lid:
+            if m not in case_lid:
+                pp_more_than_70_filingInProgres_lid_missed_collection.append(m)
+
+
+        if len(pp_more_than_70_filingInProgres_lid_missed_collection) > 0:
+            print(f"Error:: pp_more_than_70_filingInProgres found::{pp_more_than_70_filingInProgres_lid_missed_collection}")
+
+        else:
+            print("*** paid percentage inside filing in progress is below 70 % ***")
 
 
 
