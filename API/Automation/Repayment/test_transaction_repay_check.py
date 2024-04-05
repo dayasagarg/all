@@ -59,7 +59,7 @@ class TestRepayment:
         pre_time_1_str = datetime.strftime(pre_time_1,"%d/%m/%Y")
         pre_time_2_str = datetime.strftime(pre_time_2, "%d/%m/%Y")
 
-        last_2_day_with_current = [currentDateStr_2,pre_time_1]
+        last_2_day_with_current = [currentDateStr_2]
         # print("currentDateStr_2::",currentDateStr_2)
 
         global trans_amt, trans_prin, trans_int, trans_penalty
@@ -137,5 +137,6 @@ class TestRepayment:
 
         if len(transact_mismatch_lid) > 0:
             print(f"Error:: transaction amount is not as per principal, interest and penalty::{transact_mismatch_lid}")
+            assert False
         else:
             print("*** transaction amount is as per principal, interest and penalty ***")

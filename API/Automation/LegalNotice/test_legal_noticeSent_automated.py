@@ -529,10 +529,8 @@ class TestLegal:
 
 
         if len(pp_more_than_70_filingInProgres_lid_missed_collection) > 0:
-            print(f"Error:: pp_more_than_70_filingInProgres found::{pp_more_than_70_filingInProgres_lid_missed_collection}")
-
+            print(f"Error:: missing of pp_more_than_70_filingInProgres found with collection::{pp_more_than_70_filingInProgres_lid_missed_collection}")
+            assert False
         else:
             print("*** paid percentage inside filing in progress is below 70 % ***")
-
-
 
