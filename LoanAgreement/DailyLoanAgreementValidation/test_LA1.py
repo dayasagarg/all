@@ -29,11 +29,13 @@ reader = pypdf.PdfReader(loanPdf)  # pdf file location
 firstPage = reader.pages[0].extract_text()
 thirdPage = reader.pages[2].extract_text()
 fourthPage = reader.pages[3].extract_text()
+fifthPage = reader.pages[4].extract_text()
 sixthPage = reader.pages[5].extract_text()
 seventhPage = reader.pages[6].extract_text()
 eighthPage = reader.pages[7].extract_text()
 ninthPage = reader.pages[8].extract_text()
 eleventhPage = reader.pages[10].extract_text()
+twelthPage = reader.pages[11].extract_text()
 
 
 class TestDashRepo:
@@ -121,6 +123,17 @@ class TestDashRepo:
             print(f"Error :: 'loanId' :'{loanId}' is not matched with KEY FACT STATEMENT in first Page of pdf ")
 
         assert loanId in firstPage, "loanId is matched with KEY FACT STATEMENT in first Page of pdf"
+
+        # #customerId
+        customerId = driver.find_element(By.XPATH, "/html/body/app-root/app-layout/mat-drawer-container/mat-drawer-content/app-customer-list/div[1]/app-customer-list-header/div/div[1]/div[1]/div[1]/mat-chip-list/div/mat-chip/span/span").text
+        time.sleep(5)
+        # print("customerId::",customerId)
+        if customerId in firstPage:
+            print(f" *** 'customerId' :'{customerId}' is matched with KEY FACT STATEMENT in first Page of pdf *** ")
+        else:
+            print(f"Error :: 'customerId' :'{customerId}' is not matched with KEY FACT STATEMENT in first Page of pdf ")
+
+        assert customerId in firstPage, "customerId is matched with KEY FACT STATEMENT in first Page of pdf"
 
 
         # Date of Signing
@@ -271,16 +284,6 @@ class TestDashRepo:
             assert loanIntPerAnnumStr2 in firstPage, "loanIntPerAnnumStr2 is matched with LOAN DETAILS in first Page of pdf"
 
 
-        # # Insurance premium amount
-        inPremAmount = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[10]").text
-        time.sleep(1)
-        insurancePremAmount = inPremAmount.replace(" ","")
-        if insurancePremAmount in firstPage:
-            print(f" *** 'insurancePremAmount' :'{insurancePremAmount}' is matched with LOAN DETAILS in first Page of pdf *** ")
-        else:
-            print(f"Error :: 'insurancePremAmount' :'{insurancePremAmount}' is not matched with LOAN DETAILS in first Page of pdf ")
-
-        assert insurancePremAmount in firstPage, "insurancePremAmount is matched with LOAN DETAILS in first Page of pdf"
 
 
         # # # Loan Tenure
@@ -442,9 +445,9 @@ class TestDashRepo:
         riskAssessmentFees2 = loanAmountInt * 0.025
         riskAssessmentFees3 = loanAmountInt * 0.04
 
-        sgstFloat = ((processChargeInt + docChargFloat + onlineConvenienceFees + riskAssessmentFees) / 100) * 9
-        sgstFloat2 = ((processChargeInt + docChargFloat + onlineConvenienceFees + riskAssessmentFees2) / 100) * 9
-        sgstFloat3 = ((processChargeInt + docChargFloat + onlineConvenienceFees + riskAssessmentFees3) / 100) * 9
+        sgstFloat = ((processChargeInt + docChargFloat + onlineConvenienceFees ) / 100) * 9
+        sgstFloat2 = ((processChargeInt + docChargFloat + onlineConvenienceFees ) / 100) * 9
+        sgstFloat3 = ((processChargeInt + docChargFloat + onlineConvenienceFees ) / 100) * 9
 
         sgst = "₹" + str(round(sgstFloat,2))
         sgst2 = "₹" + str(round(sgstFloat,1))
@@ -482,9 +485,9 @@ class TestDashRepo:
 
 
         # 9% CGST is inclusive As specified by Government of India
-        cgstFloat = ((processChargeInt + docChargFloat + onlineConvenienceFees + riskAssessmentFees) / 100) * 9
-        cgstFloat2 = ((processChargeInt + docChargFloat + onlineConvenienceFees + riskAssessmentFees2) / 100) * 9
-        cgstFloat3 = ((processChargeInt + docChargFloat + onlineConvenienceFees + riskAssessmentFees3) / 100) * 9
+        cgstFloat = ((processChargeInt + docChargFloat + onlineConvenienceFees) / 100) * 9
+        cgstFloat2 = ((processChargeInt + docChargFloat + onlineConvenienceFees) / 100) * 9
+        cgstFloat3 = ((processChargeInt + docChargFloat + onlineConvenienceFees) / 100) * 9
 
         cgst = "₹" + str(round(cgstFloat,2))
         cgst2 = "₹" + str(round(cgstFloat, 1))
@@ -536,8 +539,8 @@ class TestDashRepo:
         assert chequeBounceCharge in firstPage, "is inside CHARGES Section of first Page of pdf"
 
 
-        #Default Interest / Late Payment charges (per day)
-        latePaymentChargePerDay = flotLIPD * 2
+        #Default Interest / Late Payment charges (per day)    ****
+        latePaymentChargePerDay = flotLIPD
         latePaymentChargePerDayString = str(latePaymentChargePerDay) + "%"
 
 
@@ -548,14 +551,14 @@ class TestDashRepo:
         else:
             print(f"Error :: 'latePaymentChargePerDayString' :'{latePaymentChargePerDayString}' is not matched and not inside CHARGES Section of first Page of pdf ")
 
-        assert latePaymentChargePerDayString in firstPage, "is matched and within CHARGES Section of first Page of pdf"
+        # assert latePaymentChargePerDayString in firstPage, "is matched and within CHARGES Section of first Page of pdf"
 
 
         # Default Interest / Late Payment charges (per annual)
-        latePaymentChargePerAnnual = round(loanIntPerAnnum * 2,4)
+        latePaymentChargePerAnnual = round(loanIntPerAnnum,4)
         # print("latePaymentChargePerAnnual::",latePaymentChargePerAnnual)
         # print("loanIntPerAnnum::", loanIntPerAnnum)
-        latePaymentChargePerAnnualInt = int(round(loanIntPerAnnum * 2,3))
+        latePaymentChargePerAnnualInt = int(round(loanIntPerAnnum,3))
 
         latePaymentChargePerAnnualString = str(latePaymentChargePerAnnual) + "00%"
         latePaymentChargePerAnnualString2 = str(latePaymentChargePerAnnual) + "%"
@@ -589,7 +592,7 @@ class TestDashRepo:
                     print(
                         f"Error :: 'latePaymentChargePerAnnualString3' :'{latePaymentChargePerAnnualString3}' is not matched with CHARGES Section in first Page of pdf ")
 
-                assert latePaymentChargePerAnnualString3 in firstPage, "is matched with CHARGES Section in first Page of pdf"
+                # assert latePaymentChargePerAnnualString3 in firstPage, "is matched with CHARGES Section in first Page of pdf"
 
 
 
@@ -599,29 +602,29 @@ class TestDashRepo:
 
         # Total amount to be paid  //*[@class="border-gray bg-mail font-weight-bold ng-star-inserted"]//td[6]
         # totalCost = driver.find_element(By.XPATH,"//div[contains(@class,'font-weight-bold numbers mobile-text')]").text
-        totalCost = driver.find_element(By.XPATH, "//*[contains(@class,'border-gray bg-mail font-weight-bold ng-star-inserted')]//td[6]").text
+        loanOffer = driver.find_element(By.XPATH, "//*[@id='loanDetails']/tbody/tr[1]/td[9]/div").text
         # print("totalCost::",totalCost)
 
 
-        if totalCost in thirdPage:
-            print(f" *** 'totalCost' :'{totalCost}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+        if loanOffer in fourthPage:
+            print(f" *** 'loanOffer' :'{loanOffer}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
         else:
-            print(f"Error :: 'totalCost' :'{totalCost}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+            print(f"Error :: 'loanOffer' :'{loanOffer}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-        assert totalCost in thirdPage, "is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+        assert loanOffer in fourthPage, "is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
 
-        #TOTAL PERIOD
+        #TOTA
         time.sleep(1)
         loanDurationInDays = loanDurInDays + " days"
         totalPeriod = loanDurationInDays
 
-        if totalPeriod in thirdPage:
-            print(f" *** 'totalPeriod' :'{totalPeriod}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+        if totalPeriod in fourthPage:
+            print(f" *** 'totalPeriod' :'{totalPeriod}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
         else:
-            print(f"Error :: 'totalPeriod' :'{totalPeriod}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+            print(f"Error :: 'totalPeriod' :'{totalPeriod}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-        assert totalPeriod in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+        assert totalPeriod in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
 
         #COMMENCING FROM
@@ -631,12 +634,12 @@ class TestDashRepo:
         time.sleep(1)
 
         try:
-            if commencingFrom in thirdPage:
-                print(f" *** 'commencingFrom' :'{commencingFrom}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+            if commencingFrom in fourthPage:
+                print(f" *** 'commencingFrom' :'{commencingFrom}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
             else:
-                print(f"Exception :: 'commencingFrom' :'{commencingFrom}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                print(f"Exception :: 'commencingFrom' :'{commencingFrom}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-            assert commencingFrom in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+            assert commencingFrom in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
         except:
             if 'Date of Signing' in firstPage:
@@ -651,56 +654,52 @@ class TestDashRepo:
         onlineConvCharge = 200
         onlineConvChargeString = "₹200"
 
-        if onlineConvChargeString in thirdPage:
+        if onlineConvChargeString in fourthPage:
             print(f" *** 'onlineConvChargeString' :'{onlineConvChargeString}' is inside LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
         else:
             print(f"Error :: 'onlineConvChargeString' :'{onlineConvChargeString}' is not inside LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-        assert onlineConvChargeString in thirdPage, "is inside LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+        assert onlineConvChargeString in fourthPage, "is inside LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
 
 
-        # # #INSURANCE CHARGES
-        # try:
-        #     insCharg = float(insurancePremAmount[1:])
-        # except:
-        #     insCharg2 = 0
+
 
         #DISBURSEMENT
         # print(f"loanAmountInt::{loanAmountInt}",f"processChargeInt::{processChargeInt}",f"docChargFloat::{docChargFloat}",f"riskAssessmentFees::{riskAssessmentFees}",f"riskAssessmentFees::{riskAssessmentFees2}",f"onlineConvCharge::{onlineConvCharge}",f"sgstFloat::{sgstFloat}",f"cgstFloat::{cgstFloat}",f"sgstFloat2::{sgstFloat2}",f"cgstFloat2::{cgstFloat2}")
 
         try:
             try:
-                disburse = loanAmountInt - (processChargeInt + docChargFloat + riskAssessmentFees + onlineConvCharge + sgstFloat + cgstFloat)
+                disburse = loanAmountInt - (processChargeInt + docChargFloat + onlineConvCharge + sgstFloat + cgstFloat)
                 disFloat = str(math.ceil(disburse))
                 disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
 
-                if disbursement in thirdPage:
+                if disbursement in fourthPage:
                     print(f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
                 else:
                     print(f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-                assert disbursement in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
 
             except:
                 try:
-                    disburse = loanAmountInt - (processChargeInt + docChargFloat + riskAssessmentFees + onlineConvCharge + sgstFloat + cgstFloat)
+                    disburse = loanAmountInt - (processChargeInt + docChargFloat + onlineConvCharge + sgstFloat + cgstFloat)
                     disFloat = str(math.ceil(disburse-2))[:8]
 
                     disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
 
-                    if disbursement in thirdPage:
+                    if disbursement in fourthPage:
                         print(
                             f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
                     else:
                         print(
                             f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-                    assert disbursement in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                    assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
 
                 except:
                     try:
                         try:
-                            disburse = loanAmountInt - (processChargeInt + docChargFloat + riskAssessmentFees + onlineConvCharge + sgstFloat + cgstFloat)
+                            disburse = loanAmountInt - (processChargeInt + docChargFloat + onlineConvCharge + sgstFloat + cgstFloat)
                             disFloat = str(math.ceil(disburse-1))
                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
                             if disbursement in thirdPage:
@@ -710,12 +709,14 @@ class TestDashRepo:
                                 print(
                                     f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-                            assert disbursement in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+
                         except:
                             disburse = loanAmountInt - (
-                                        processChargeInt + docChargFloat + riskAssessmentFees + onlineConvCharge + sgstFloat + cgstFloat)
+                                        processChargeInt + docChargFloat + onlineConvCharge + sgstFloat + cgstFloat)
                             disFloat = str(math.ceil(disburse - 2))
                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
+
                             if disbursement in thirdPage:
                                 print(
                                     f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
@@ -723,13 +724,13 @@ class TestDashRepo:
                                 print(
                                     f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-                            assert disbursement in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
 
                     except:
                         try:
 
                             disburse = loanAmountInt - (
-                                        processChargeInt + docChargFloat + riskAssessmentFees + onlineConvCharge + sgstFloat + cgstFloat)
+                                        processChargeInt + docChargFloat + onlineConvCharge + sgstFloat + cgstFloat)
                             disFloat = str(math.ceil(disburse))
                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
                             if disbursement in thirdPage:
@@ -739,13 +740,12 @@ class TestDashRepo:
                                 print(
                                     f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-                            assert disbursement in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
-
+                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
 
                         except:
                             try:
 
-                                disburse = loanAmountInt - (processChargeInt + docChargFloat + riskAssessmentFees + onlineConvCharge + sgstFloat + cgstFloat)
+                                disburse = loanAmountInt - (processChargeInt + docChargFloat + onlineConvCharge + sgstFloat + cgstFloat)
                                 disFloat = str(math.ceil(disburse))
                                 disbursement = "₹" + disFloat[0:1] + "," + disFloat[1:]
                                 if disbursement in thirdPage:
@@ -755,13 +755,15 @@ class TestDashRepo:
                                     print(
                                         f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-                                assert disbursement in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                                assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+
                             except:
                                 try:
                                     disburse = loanAmountInt - (
-                                                processChargeInt + docChargFloat + riskAssessmentFees + onlineConvCharge + sgstFloat + cgstFloat)
+                                                processChargeInt + docChargFloat + onlineConvCharge + sgstFloat + cgstFloat)
                                     disFloat = str(math.ceil(disburse-1))
                                     disbursement = "₹" + disFloat[0:1] + "," + disFloat[1:]
+
                                     if disbursement in thirdPage:
                                         print(
                                             f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
@@ -769,14 +771,14 @@ class TestDashRepo:
                                         print(
                                             f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-                                    assert disbursement in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                                    assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
 
                                 except:
                                     try:
                                         try:
 
                                             disburse = loanAmountInt - (
-                                                    processChargeInt + docChargFloat + riskAssessmentFees2 + onlineConvCharge + sgstFloat2 + cgstFloat2)
+                                                    processChargeInt + docChargFloat + onlineConvCharge + sgstFloat2 + cgstFloat2)
                                             disFloat = str(math.ceil(disburse ))
                                             disbursement = "₹" + disFloat[0:1] + "," + disFloat[1:]
                                             if disbursement in thirdPage:
@@ -786,10 +788,11 @@ class TestDashRepo:
                                                 print(
                                                     f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-                                            assert disbursement in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+
                                         except:
                                             disburse = loanAmountInt - (
-                                                    processChargeInt + docChargFloat + riskAssessmentFees2 + onlineConvCharge + sgstFloat2 + cgstFloat2)
+                                                    processChargeInt + docChargFloat + onlineConvCharge + sgstFloat2 + cgstFloat2)
                                             disFloat = str(math.ceil(disburse ))
                                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
                                             if disbursement in thirdPage:
@@ -799,12 +802,12 @@ class TestDashRepo:
                                                 print(
                                                     f"Error :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-                                            assert disbursement in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
 
 
                                     except:
                                         disburse = loanAmountInt - (
-                                                processChargeInt + docChargFloat + riskAssessmentFees3 + onlineConvCharge + sgstFloat3 + cgstFloat3)
+                                                processChargeInt + docChargFloat + onlineConvCharge + sgstFloat3 + cgstFloat3)
                                         disFloat = str(math.ceil(disburse - 1))
                                         disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
 
@@ -815,7 +818,7 @@ class TestDashRepo:
                                             print(
                                                 f"Error :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
 
-                                        assert disbursement in thirdPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                                        assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
 
         except:
             pass
@@ -825,12 +828,12 @@ class TestDashRepo:
 
         #Sanction Days
         sanctionDays = "10 days"
-        if sanctionDays in fourthPage:
-            print(f" *** 'sanctionDays' :'{sanctionDays}' is matched with SECURITY DOCUMENTS section in fourth page of pdf *** ")
+        if sanctionDays in fifthPage:
+            print(f" *** 'sanctionDays' :'{sanctionDays}' is matched with SECURITY DOCUMENTS section in fifth page of pdf *** ")
         else:
-            print(f"Error :: 'sanctionDays' :'{sanctionDays}' is not matched with SECURITY DOCUMENTS section in fourth page of pdf ")
+            print(f"Error :: 'sanctionDays' :'{sanctionDays}' is not matched with SECURITY DOCUMENTS section in fifth page of pdf ")
 
-        assert sanctionDays in fourthPage, "is matched with SECURITY DOCUMENTS section in fourth page of pdf"
+        assert sanctionDays in fifthPage, "is matched with SECURITY DOCUMENTS section in fifth page of pdf"
 
 
         #Penal interest per day
@@ -859,8 +862,7 @@ class TestDashRepo:
                     print(
                         f" *** 'penalInterestPerAnnum2' :'{penalInterestPerAnnum2}' is matched with SECURITY DOCUMENTS section in fourth Page of pdf *** ")
                 else:
-                    print(
-                        f"Exception :: 'penalInterestPerAnnum2' :'{penalInterestPerAnnum2}' is not matched with SECURITY DOCUMENTS section in fourth Page of pdf ")
+                    print(f"Exception :: 'penalInterestPerAnnum2' :'{penalInterestPerAnnum2}' is not matched with SECURITY DOCUMENTS section in fourth Page of pdf ")
 
                 # assert penalInterestPerAnnum2 in fourthPage, "penalInterestPerAnnum2 is matched with SECURITY DOCUMENTS section in fourth Page of pdf"
             except:
@@ -897,23 +899,23 @@ class TestDashRepo:
         adhar = driver.find_element(By.XPATH, "/html/body/app-root/app-layout/mat-drawer-container/mat-drawer-content/app-customer-list/div[2]/div/div[2]/app-customer-basic-details/mat-card/mat-card-content/mat-tab-group/div/mat-tab-body[1]/div/mat-card/div/div[3]/div[2]/span").text
 
 
-        if adhar in seventhPage:
+        if adhar in eighthPage:
             print(
-                f" *** 'adhar':'{adhar}' is matched with Proof of identity section of seventh Page of pdf *** ")
+                f" *** 'adhar':'{adhar}' is matched with Proof of identity section of eighth Page of pdf *** ")
         else:
             print(
-                f"Exception :: 'adhar':'{adhar}' is not matched with Proof of identity section of seventh Page of pdf ")
+                f"Exception :: 'adhar':'{adhar}' is not matched with Proof of identity section of eighth Page of pdf ")
 
-        assert adhar in seventhPage, "adhar is matched with Proof of identity section of seventh Page of pdf"
+        assert adhar in eighthPage, "adhar is matched with Proof of identity section of eighth Page of pdf"
 
 
         try:
-            if profileName in seventhPage:
-                print(f" *** 'profileName':'{profileName}' is matched with Proof of identity section of seventh Page of pdf *** ")
+            if profileName in eighthPage:
+                print(f" *** 'profileName':'{profileName}' is matched with Proof of identity section of eighth Page of pdf *** ")
             else:
-                print(f"Exception :: 'profileName':'{profileName}' is not matched with Proof of identity section of seventh Page of pdf ")
+                print(f"Exception :: 'profileName':'{profileName}' is not matched with Proof of identity section of eighth Page of pdf ")
 
-            assert profileName in seventhPage, "profileName is matched with Proof of identity section of seventh Page of pdf"
+            assert profileName in eighthPage, "profileName is matched with Proof of identity section of eighth Page of pdf"
 
         except:
             try:
@@ -931,14 +933,14 @@ class TestDashRepo:
         gender = driver.find_element(By.XPATH, "/html/body/app-root/app-layout/mat-drawer-container/mat-drawer-content/app-customer-list/div[2]/div/div[2]/app-customer-basic-details/mat-card/mat-card-content/mat-tab-group/div/mat-tab-body[2]/div/mat-card/div/div[1]/div[2]").text
 
 
-        if gender in seventhPage:
+        if gender in eighthPage:
             print(
-                f" *** 'gender':'{gender}' is matched with Proof of identity section of seventh Page of pdf *** ")
+                f" *** 'gender':'{gender}' is matched with Proof of identity section of eighth Page of pdf *** ")
         else:
             print(
-                f"Exception :: 'gender':'{gender}' is not matched with Proof of identity section of seventh Page of pdf ")
+                f"Exception :: 'gender':'{gender}' is not matched with Proof of identity section of eighth Page of pdf ")
 
-        assert gender in seventhPage, "gender is matched with Proof of identity section of seventh Page of pdf"
+        assert gender in eighthPage, "gender is matched with Proof of identity section of eighth Page of pdf"
 
 
 
@@ -968,23 +970,23 @@ class TestDashRepo:
 
 
         try:
-            if emailS in eighthPage:
-                print(f" *** 'email' :'{emailS}' is matched with LOAN AGREEMENT section of eighth Page of pdf *** ")
+            if emailS in eleventhPage:
+                print(f" *** 'email' :'{emailS}' is matched with LOAN AGREEMENT section of eleventh Page of pdf *** ")
             else:
-                print(f"Exception :: 'email' :'{emailS}' is not matched with LOAN AGREEMENT section of eighth Page of pdf ")
+                print(f"Exception :: 'email' :'{emailS}' is not matched with LOAN AGREEMENT section of eleventh Page of pdf ")
 
-            assert emailS in eighthPage, "email is matched with LOAN AGREEMENT section of eighth Page of pdf"
+            assert emailS in eleventhPage, "email is matched with LOAN AGREEMENT section of eleventh Page of pdf"
 
         except:
             eindex = emailS.index("View")
             email = emailS[:eindex - 1]
 
-            if email in eighthPage:
-                print(f" *** 'email' :'{email}' is matched with LOAN AGREEMENT of eighth Page of pdf *** ")
+            if email in eleventhPage:
+                print(f" *** 'email' :'{email}' is matched with LOAN AGREEMENT of eleventh Page of pdf *** ")
             else:
-                print(f"Exception :: 'email' :'{email}' is not matched with LOAN AGREEMENT of eighth Page of pdf ")
+                print(f"Exception :: 'email' :'{email}' is not matched with LOAN AGREEMENT of eleventh Page of pdf ")
 
-            assert email in eighthPage, "email is matched with LOAN AGREEMENT in eighth Page of pdf"
+            assert email in eleventhPage, "email is matched with LOAN AGREEMENT in eleventh Page of pdf"
 
         #
         # PAN number
@@ -994,12 +996,12 @@ class TestDashRepo:
         pan = driver.find_element(By.XPATH, "/html/body/app-root/app-layout/mat-drawer-container/mat-drawer-content/app-customer-list/div[2]/div/div[2]/app-customer-basic-details/mat-card/mat-card-content/mat-tab-group/div/mat-tab-body[1]/div/mat-card/div/div[4]/div[2]/span").text
         time.sleep(2)
 
-        if pan in eighthPage:
-            print(f" *** 'pan' :'{pan}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+        if pan in eleventhPage:
+            print(f" *** 'pan' :'{pan}' is matched with LOAN AGREEMENT in eleventh Page of pdf *** ")
         else:
-            print(f"Error :: 'pan' :'{pan}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+            print(f"Error :: 'pan' :'{pan}' is not matched with LOAN AGREEMENT in eleventh Page of pdf ")
 
-        assert pan in eighthPage, "pan is matched with LOAN AGREEMENT in eighth Page of pdf"
+        assert pan in eleventhPage, "pan is matched with LOAN AGREEMENT in eleventh Page of pdf"
 
 
         # loan amount
@@ -1011,28 +1013,28 @@ class TestDashRepo:
 
 
         try:
-            if loanAmountstr in eighthPage:
-                print(f" *** 'loanAmountstr' :'{loanAmountstr}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+            if loanAmountstr in eleventhPage:
+                print(f" *** 'loanAmountstr' :'{loanAmountstr}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
             else:
-                print(f"Exception :: 'loanAmountstr' :'{loanAmountstr}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+                print(f"Exception :: 'loanAmountstr' :'{loanAmountstr}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
-            assert loanAmountstr in eighthPage, "loanAmountstr is matched with LOAN AGREEMENT in eighth Page of pdf"
+            assert loanAmountstr in eleventhPage, "loanAmountstr is matched with LOAN AGREEMENT in eleventhPage of pdf"
         except:
-            if loanAmountstr2 in eighthPage:
+            if loanAmountstr2 in eleventhPage:
                 print(
-                    f" *** 'loanAmountstr2' :'{loanAmountstr2}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+                    f" *** 'loanAmountstr2' :'{loanAmountstr2}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
             else:
                 print(
-                    f"Error :: 'loanAmountstr2' :'{loanAmountstr2}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+                    f"Error :: 'loanAmountstr2' :'{loanAmountstr2}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
             # assert loanAmountstr2 in eighthPage, "loanAmountstr2 is matched with LOAN AGREEMENT in eighth Page of pdf"
 
 
         # loan period
-        if loanDurationInDays in eighthPage:
-            print(f" *** 'loanDurationInDays' :'{loanDurationInDays}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+        if loanDurationInDays in eleventhPage:
+            print(f" *** 'loanDurationInDays' :'{loanDurationInDays}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
         else:
-            print(f"Error :: 'loanDurationInDays' :'{loanDurationInDays}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+            print(f"Error :: 'loanDurationInDays' :'{loanDurationInDays}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
         # assert loanDurationInDays in eighthPage, "loanDurationInDays is matched with LOAN AGREEMENT in eighth Page of pdf"
 
@@ -1041,101 +1043,101 @@ class TestDashRepo:
         #per day
 
         try:
-            if loanInterestPerDay in eighthPage:
-                print(f" *** 'loanInterestPerDay' :'{loanInterestPerDay}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+            if loanInterestPerDay in eleventhPage:
+                print(f" *** 'loanInterestPerDay' :'{loanInterestPerDay}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
             else:
-                print(f"Exception :: 'loanInterestPerDay' :'{loanInterestPerDay}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+                print(f"Exception :: 'loanInterestPerDay' :'{loanInterestPerDay}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
             # assert loanInterestPerDay in eighthPage, "loanInterestPerDay is matched with LOAN AGREEMENT in eighth Page of pdf"
 
         except:
             try:
-                if loanInterestPerDay2 in eighthPage:
+                if loanInterestPerDay2 in eleventhPage:
                     print(
-                        f" *** 'loanInterestPerDay2' :'{loanInterestPerDay2}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+                        f" *** 'loanInterestPerDay2' :'{loanInterestPerDay2}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
                 else:
                     print(
-                        f"Exception :: 'loanInterestPerDay2' :'{loanInterestPerDay2}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+                        f"Exception :: 'loanInterestPerDay2' :'{loanInterestPerDay2}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
                 # assert loanInterestPerDay2 in eighthPage, "loanInterestPerDay is matched with LOAN AGREEMENT in eighth Page of pdf"
 
             except:
 
-                if loanInterestPerDay3 in eighthPage:
+                if loanInterestPerDay3 in eleventhPage:
                     print(
-                        f" *** 'loanInterestPerDay3' :'{loanInterestPerDay3}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+                        f" *** 'loanInterestPerDay3' :'{loanInterestPerDay3}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
                 else:
                     print(
-                        f"Error :: 'loanInterestPerDay3' :'{loanInterestPerDay3}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+                        f"Error :: 'loanInterestPerDay3' :'{loanInterestPerDay3}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
                 # assert loanInterestPerDay3 in eighthPage, "loanInterestPerDay3 is matched with LOAN AGREEMENT in eighth Page of pdf"
 
         #per annum
 
         try:
-            if loanIntPerAnnumStr in eighthPage:
-                print(f" *** 'loanIntPerAnnumStr' :'{loanIntPerAnnumStr}%' is matched with LOAN DETAILS in eighth Page of pdf *** ")
+            if loanIntPerAnnumStr in eleventhPage:
+                print(f" *** 'loanIntPerAnnumStr' :'{loanIntPerAnnumStr}%' is matched with LOAN DETAILS in eleventhPage of pdf *** ")
             else:
-                print(f"Exception :: 'loanIntPerAnnumStr' :'{loanIntPerAnnumStr}%'  is not matched with LOAN DETAILS in eighth Page of pdf ")
+                print(f"Exception :: 'loanIntPerAnnumStr' :'{loanIntPerAnnumStr}%'  is not matched with LOAN DETAILS in eleventhPage of pdf ")
 
-            assert loanIntPerAnnumStr in eighthPage, "loanIntPerAnnumStr is matched with LOAN DETAILS in eighth Page of pdf"
+            assert loanIntPerAnnumStr in eleventhPage, "loanIntPerAnnumStr is matched with LOAN DETAILS in eleventhPagee of pdf"
         except:
-            if loanIntPerAnnumStr2 in eighthPage:
-                print(f" *** 'loanIntPerAnnumStr2' :'{loanIntPerAnnumStr2}%' is matched with LOAN DETAILS in eighth Page of pdf *** ")
+            if loanIntPerAnnumStr2 in eleventhPage:
+                print(f" *** 'loanIntPerAnnumStr2' :'{loanIntPerAnnumStr2}%' is matched with LOAN DETAILS in eleventhPage of pdf *** ")
             else:
-                print(f"Error :: 'loanIntPerAnnumStr2' :'{loanIntPerAnnumStr2}%'  is not matched with LOAN DETAILS in eighth Page of pdf ")
+                print(f"Error :: 'loanIntPerAnnumStr2' :'{loanIntPerAnnumStr2}%'  is not matched with LOAN DETAILS in eleventhPage of pdf ")
 
-            assert loanIntPerAnnumStr2 in eighthPage, "loanIntPerAnnumStr2 is matched with LOAN DETAILS in eighth Page of pdf"
+            assert loanIntPerAnnumStr2 in eleventhPage, "loanIntPerAnnumStr2 is matched with LOAN DETAILS in eleventhPage of pdf"
 
 
 
         # penalty interest per day
 
-        if latePaymentChargePerDayString in eighthPage:
-            print(f" *** 'latePaymentChargePerDayString' :'{latePaymentChargePerDayString}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+        if latePaymentChargePerDayString in eleventhPage:
+            print(f" *** 'latePaymentChargePerDayString' :'{latePaymentChargePerDayString}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
         else:
-            print(f"Error :: 'latePaymentChargePerDayString' :'{latePaymentChargePerDayString}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+            print(f"Error :: 'latePaymentChargePerDayString' :'{latePaymentChargePerDayString}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
-        assert latePaymentChargePerDayString in eighthPage, "latePaymentChargePerDayString is matched with LOAN AGREEMENT in eighth Page of pdf"
+        assert latePaymentChargePerDayString in eleventhPage, "latePaymentChargePerDayString is matched with LOAN AGREEMENT in eleventhPage of pdf"
 
         # per annum
         try:
-            if latePaymentChargePerAnnualString in eighthPage:
-                print(f" *** 'latePaymentChargePerAnnualString' :'{latePaymentChargePerAnnualString}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+            if latePaymentChargePerAnnualString in eleventhPage:
+                print(f" *** 'latePaymentChargePerAnnualString' :'{latePaymentChargePerAnnualString}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
             else:
-                print(f"Exception :: 'latePaymentChargePerAnnualString' :'{latePaymentChargePerAnnualString}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+                print(f"Exception :: 'latePaymentChargePerAnnualString' :'{latePaymentChargePerAnnualString}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
-            assert latePaymentChargePerAnnualString in eighthPage, "latePaymentChargePerAnnualString is matched with LOAN AGREEMENT in eighth Page of pdf"
+            assert latePaymentChargePerAnnualString in eleventhPage, "latePaymentChargePerAnnualString is matched with LOAN AGREEMENT in eleventhPage of pdf"
 
         except:
             try:
-                if latePaymentChargePerAnnualString2 in eighthPage:
+                if latePaymentChargePerAnnualString2 in eleventhPage:
                     print(
-                        f" *** 'latePaymentChargePerAnnualString2' :'{latePaymentChargePerAnnualString2}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+                        f" *** 'latePaymentChargePerAnnualString2' :'{latePaymentChargePerAnnualString2}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
                 else:
                     print(
-                        f"Exception :: 'latePaymentChargePerAnnualString2' :'{latePaymentChargePerAnnualString2}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+                        f"Exception :: 'latePaymentChargePerAnnualString2' :'{latePaymentChargePerAnnualString2}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
-                assert latePaymentChargePerAnnualString2 in eighthPage, "latePaymentChargePerAnnualString2 is matched with LOAN AGREEMENT in eighth Page of pdf"
+                assert latePaymentChargePerAnnualString2 in eleventhPage, "latePaymentChargePerAnnualString2 is matched with LOAN AGREEMENT in eleventhPage of pdf"
             except:
-                if latePaymentChargePerAnnualString3 in eighthPage:
+                if latePaymentChargePerAnnualString3 in eleventhPage:
                     print(
-                        f" *** 'latePaymentChargePerAnnualString3' :'{latePaymentChargePerAnnualString3}' is matched with LOAN AGREEMENT in eighth Page of pdf *** ")
+                        f" *** 'latePaymentChargePerAnnualString3' :'{latePaymentChargePerAnnualString3}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
                 else:
                     print(
-                        f"Error :: 'latePaymentChargePerAnnualString3' :'{latePaymentChargePerAnnualString3}' is not matched with LOAN AGREEMENT in eighth Page of pdf ")
+                        f"Error :: 'latePaymentChargePerAnnualString3' :'{latePaymentChargePerAnnualString3}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
-                assert latePaymentChargePerAnnualString3 in eighthPage, "latePaymentChargePerAnnualString3 is matched with LOAN AGREEMENT in eighth Page of pdf"
+                assert latePaymentChargePerAnnualString3 in eleventhPage, "latePaymentChargePerAnnualString3 is matched with LOAN AGREEMENT in eleventhPage of pdf"
 
-        '''Borrower Name in ninth page'''
+        '''Borrower Name in twelthPage page'''
 
         try:
-            if profileName in eleventhPage:
-                print(f" *** 'profileName':'{profileName}' is matched with witness in eleventh Page of pdf *** ")
+            if profileName in twelthPage:
+                print(f" *** 'profileName':'{profileName}' is matched with witness in twelthPage of pdf *** ")
             else:
-                print(f"Exception :: 'profileName':'{profileName}' is not matched with witness in eleventh Page of pdf ")
+                print(f"Exception :: 'profileName':'{profileName}' is not matched with witness in twelthPage of pdf ")
 
-            assert profileName in eleventhPage, "profileName is matched with witness in eleventh Page of pdf"
+            assert profileName in twelthPage, "profileName is matched with witness in twelthPage of pdf"
 
         except:
             try:

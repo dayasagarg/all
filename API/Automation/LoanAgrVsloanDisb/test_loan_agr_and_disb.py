@@ -34,7 +34,6 @@ class TestLoanAgrDis:
         name = []
         procFees = []
         docFees = []
-        riskFees = []
         gstAmt = []
 
 
@@ -46,7 +45,7 @@ class TestLoanAgrDis:
                 app_amt.append(dis["Approved amount"])
 
             if dis["Interest Rate"]:
-                intRate.append(dis["Interest Rate"])
+                intRate.append(float(dis["Interest Rate"].replace("%","")))
 
             if dis["Total Emi"]:
                 totalEMI.append(dis["Total Emi"])
@@ -62,9 +61,6 @@ class TestLoanAgrDis:
 
             if dis["Document Charges"]:
                 docFees.append(dis["Document Charges"])
-
-            if dis["Risk assessment fees"]:
-                riskFees.append(dis["Risk assessment fees"])
 
             if dis["GST Amount"]:
                 gstAmt.append(dis["GST Amount"])
@@ -149,6 +145,7 @@ class TestLoanAgrDis:
         # print("sgst_str_la::", sgst_str_la)
         # print("gst_la", gst_la)
         print("dis_lid::",dis_lid)
+        print("dis_lid_count::", len(dis_lid))
         # print("gstAmt::",gstAmt)
 
 
@@ -204,8 +201,14 @@ class TestLoanAgrDis:
     def test_int_rate(self):
         if intRate == int_rate_la:
             print("intRate and int_rate_la are equal")
+            print("intRate::",intRate)
+            print("int_rate_la::",int_rate_la)
         else:
             print("intRate and int_rate_la are not equal")
+            print("intRate::",intRate)
+            print("int_rate_la::",int_rate_la)
+            print("intRate_count::", len(intRate))
+            print("int_rate_la_count::", len(int_rate_la))
             assert False
 
     def test_total_emi(self):
@@ -256,14 +259,7 @@ class TestLoanAgrDis:
             assert False
 
 
-    def test_risk(self):
-        # print(riskFees)
-        # print(riskFees_la)
-        if riskFees == riskFees_la:
-            print("riskFees is equal in both loan agreement and disbursement")
-        else:
-            print("Error::riskFees mismatched")
-            assert False
+
 
     def test_gst(self):
         # print("gstAmt::",gstAmt)

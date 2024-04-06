@@ -16,13 +16,16 @@
       <change beforePath="$PROJECT_DIR$/API/Automation/DemandLetter/test_missLIDAutomated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/DemandLetter/test_missLIDAutomated.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_autodebit.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/legal_autodebit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb/test_loan_agr_and_disb.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb/test_loan_agr_and_disb.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_amt.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_amt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_interest.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_interest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/Repayment/test_repay_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_repay_2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/input.json" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/input.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all" beforeDir="false" afterPath="$PROJECT_DIR$/all" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +93,7 @@
     "Python tests.pytest in test_loan_close_latest.py.executor": "Run",
     "Python tests.pytest in test_missLIDAutomated.py.executor": "Run",
     "Python tests.pytest in test_negative_disb_loan_amt.py.executor": "Run",
+    "Python tests.pytest in test_negative_disb_loan_interest.py.executor": "Run",
     "Python tests.pytest in test_refund_3.py.executor": "Run",
     "Python tests.pytest in test_repay_2.py.executor": "Run",
     "Python tests.pytest in test_repay_3.py.executor": "Run",
@@ -107,7 +111,7 @@
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_LA1.py">
+  <component name="RunManager" selected="Python tests.pytest in test_loan_agr_and_disb.py">
     <configuration name="pytest in test_LA1.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
@@ -142,23 +146,6 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_LA3.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="pytest in test_LA4.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
@@ -176,30 +163,47 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_transaction_repay_check.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_loan_agr_and_disb.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/Repayment" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/Repayment/test_transaction_repay_check.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb/test_loan_agr_and_disb.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_negative_disb_loan_interest.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/NegativeTest" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_interest.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest in test_loan_agr_and_disb.py" />
         <item itemvalue="Python tests.pytest in test_LA1.py" />
-        <item itemvalue="Python tests.pytest in test_LA4.py" />
-        <item itemvalue="Python tests.pytest in test_LA3.py" />
         <item itemvalue="Python tests.pytest in test_LA2.py" />
-        <item itemvalue="Python tests.pytest in test_transaction_repay_check.py" />
+        <item itemvalue="Python tests.pytest in test_negative_disb_loan_interest.py" />
+        <item itemvalue="Python tests.pytest in test_LA4.py" />
       </list>
     </recent_temporary>
   </component>
