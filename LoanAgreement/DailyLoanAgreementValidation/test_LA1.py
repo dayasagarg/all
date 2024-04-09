@@ -614,7 +614,7 @@ class TestDashRepo:
         assert loanOffer in fourthPage, "is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
 
-        #TOTA
+        #TOTAL PERIOD
         time.sleep(1)
         loanDurationInDays = loanDurInDays + " days"
         totalPeriod = loanDurationInDays
@@ -655,11 +655,11 @@ class TestDashRepo:
         onlineConvChargeString = "₹200"
 
         if onlineConvChargeString in fourthPage:
-            print(f" *** 'onlineConvChargeString' :'{onlineConvChargeString}' is inside LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+            print(f" *** 'onlineConvChargeString' :'{onlineConvChargeString}' is inside LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
         else:
-            print(f"Error :: 'onlineConvChargeString' :'{onlineConvChargeString}' is not inside LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+            print(f"Error :: 'onlineConvChargeString' :'{onlineConvChargeString}' is not inside LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-        assert onlineConvChargeString in fourthPage, "is inside LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+        assert onlineConvChargeString in fourthPage, "is inside LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
 
 
@@ -674,11 +674,11 @@ class TestDashRepo:
                 disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
 
                 if disbursement in fourthPage:
-                    print(f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+                    print(f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                 else:
-                    print(f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                    print(f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-                assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
             except:
                 try:
@@ -689,12 +689,12 @@ class TestDashRepo:
 
                     if disbursement in fourthPage:
                         print(
-                            f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+                            f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                     else:
                         print(
-                            f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                            f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-                    assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                    assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
                 except:
                     try:
@@ -704,12 +704,12 @@ class TestDashRepo:
                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
                             if disbursement in thirdPage:
                                 print(
-                                    f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+                                    f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                             else:
                                 print(
-                                    f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                                    f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
                         except:
                             disburse = loanAmountInt - (
@@ -719,12 +719,12 @@ class TestDashRepo:
 
                             if disbursement in thirdPage:
                                 print(
-                                    f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+                                    f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                             else:
                                 print(
-                                    f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                                    f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
                     except:
                         try:
@@ -735,12 +735,12 @@ class TestDashRepo:
                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
                             if disbursement in thirdPage:
                                 print(
-                                    f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+                                    f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                             else:
                                 print(
-                                    f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                                    f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
                         except:
                             try:
@@ -750,12 +750,12 @@ class TestDashRepo:
                                 disbursement = "₹" + disFloat[0:1] + "," + disFloat[1:]
                                 if disbursement in thirdPage:
                                     print(
-                                        f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+                                        f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                                 else:
                                     print(
-                                        f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                                        f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-                                assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                                assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
                             except:
                                 try:
@@ -766,12 +766,12 @@ class TestDashRepo:
 
                                     if disbursement in thirdPage:
                                         print(
-                                            f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+                                            f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                                     else:
                                         print(
-                                            f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                                            f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-                                    assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                                    assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
                                 except:
                                     try:
@@ -783,12 +783,12 @@ class TestDashRepo:
                                             disbursement = "₹" + disFloat[0:1] + "," + disFloat[1:]
                                             if disbursement in thirdPage:
                                                 print(
-                                                    f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+                                                    f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                                             else:
                                                 print(
-                                                    f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                                                    f"Exception :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-                                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
                                         except:
                                             disburse = loanAmountInt - (
@@ -797,12 +797,12 @@ class TestDashRepo:
                                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
                                             if disbursement in thirdPage:
                                                 print(
-                                                    f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+                                                    f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                                             else:
                                                 print(
-                                                    f"Error :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                                                    f"Error :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-                                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                                            assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
 
                                     except:
@@ -813,12 +813,12 @@ class TestDashRepo:
 
                                         if disbursement in thirdPage:
                                             print(
-                                                f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf *** ")
+                                                f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                                         else:
                                             print(
-                                                f"Error :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf ")
+                                                f"Error :: 'disbursement' :'{disbursement}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-                                        assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in third page of pdf"
+                                        assert disbursement in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
         except:
             pass
@@ -1140,12 +1140,7 @@ class TestDashRepo:
             assert profileName in twelthPage, "profileName is matched with witness in twelthPage of pdf"
 
         except:
-            try:
-                if 'Name of Borrower' in firstPage:
-                    index1 = firstPage.index('Name of Borrower')
-                    index2 = firstPage.index('NBFC NameChinmay Finlease')
-                    text = firstPage[index1 + 16:index2]
-                    print(f"Name by pdf module :: {text}")
-            except:
-                pass
+            pass
+
+
 

@@ -69,8 +69,7 @@ class TestRepayment:
         transact_mismatch_lid = []
 
         for n,j in enumerate(lIDs):
-            # if n == 15:
-            #     break
+
 
             response = requests.get(
                 "https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
@@ -134,7 +133,7 @@ class TestRepayment:
         # print("transact_mismatch_lid::",transact_mismatch_lid)
 
         if len(transact_mismatch_lid) > 0:
-            print(f"Error:: transaction amount is not as per principal, interest and penalty::{transact_mismatch_lid}")
+            print(f"Error:: transaction amount is not as per principal, interest and penalty::{set(transact_mismatch_lid)}")
             assert False
         else:
             print("*** transaction amount is as per principal, interest and penalty ***")
