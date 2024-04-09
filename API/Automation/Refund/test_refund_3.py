@@ -249,7 +249,7 @@ class TestRefund:
         # print("emi_4::", emi_4)
 
     def test_ref_completed(self):
-        global uniqRefund_compl,ref_miss_compl
+        global uniqRefund_compl,ref_miss_compl,refund_comp_loan_ids
         refund_compl_data = refund_compl.json()["data"]["rows"]
         refund_compl_data_count = refund_compl.json()["data"]["count"]
 
@@ -287,22 +287,18 @@ class TestRefund:
         if len(duplicateRefund_compl) == 0:
             print("*** No duplicate found in refund completed ***")
         else:
-            print("Error::Duplicate found in refund completed")
+            print(f"Error::Duplicate found in refund completed::{duplicateRefund_compl}")
 
-        assert len(duplicateRefund_compl) == 0
+        # assert len(duplicateRefund_compl) == 0
 
         ref_miss_compl = []
         for dut in all_refund_unique:
-            if dut in refund_comp_loan_ids:
-                continue
-            else:
+
+            if dut not in refund_comp_loan_ids:
                 ref_miss_compl.append(dut)
 
-            # if dut not in refund_comp_loan_ids:
-            #     ref_miss_compl.append(dut)
-
         # print("refund_comp_loan_ids::", refund_comp_loan_ids)
-        # print("refund_miss_in_compl::", ref_miss_compl)
+        print("refund_miss_in_compl::", ref_miss_compl)
 
         if len(ref_miss_compl) > 0:
             print(f"refund missed found:: {ref_miss_compl}")

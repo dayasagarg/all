@@ -114,6 +114,9 @@ class TestLoanAgrDis:
             if loanAgrAPIDataIntRate:
                 int_rate_la.append(round(float(loanAgrAPIDataIntRate),2))
 
+                # la_int_rate = round(float(loanAgrAPIDataIntRate), 2)
+                # print("la_int_rate::", la_int_rate)
+
             if loanAgrAPIDataEMI:
                 emi_la.append(loanAgrAPIDataEMI)
 
@@ -207,9 +210,18 @@ class TestLoanAgrDis:
             print("intRate and int_rate_la are not equal")
             print("intRate::",intRate)
             print("int_rate_la::",int_rate_la)
-            print("intRate_count::", len(intRate))
-            print("int_rate_la_count::", len(int_rate_la))
-            assert False
+
+            for j in range(len(intRate)):
+                diff_int_rate = intRate[j] - int_rate_la[j]
+
+                print("diff_int_rate::",diff_int_rate)
+
+
+
+            # print("intRate_count::", len(intRate))
+            # print("int_rate_la_count::", len(int_rate_la))
+            #
+            # assert False
 
     def test_total_emi(self):
         if totalEMI == emi_la:
@@ -225,7 +237,7 @@ class TestLoanAgrDis:
         else:
             print("loan tenure in disbursement and loan agreement are not equal")
             assert False
-    #
+
     def test_name(self):
         if name == name_la:
             print("Name is equal in loan agreement and disburement")

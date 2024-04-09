@@ -60,25 +60,46 @@ class TestMissedLID:
         # print('status code of get AutoDebitFail::', response.status_code)
         # print(response.json())
 
+        # print("rows::",rows)
+
         autoDebitFailLoanId = []
 
-        # ''' adding loan id of AutoDebitFail api into AutoDebitFail list'''
+        # '''loan id of AutoDebitFail api into AutoDebitFail list'''  'AD Response date': '-'
         for i in rows:
-            if "Loan ID" in i:
+            if i["Today's EMI status"] == 'FAILED':
                 autoDebitFailLoanId.append(i['Loan ID'])
                 # print(i)
+
 
         print("AutoDebitFailLoanId::", autoDebitFailLoanId)
         print("Count of AutoDebitFailLoanId::", len(autoDebitFailLoanId))
 
         autoDebitNotPlaced = []
+        autoDebitResponsePending = []
+        adRespnseDateDash = []
 
-        for i in rows:
-            if "Today's EMI status" == 'AD NOT PLACED':
-                autoDebitNotPlaced.append(i)
+        for j in rows:
+            if "Today's EMI status" in j == 'AD NOT PLACED':
+                autoDebitNotPlaced.append(j['Loan ID'])
 
-        print("Auto Debit not placed::", autoDebitNotPlaced)
-        print("Count of auto debit not placed::", len(autoDebitNotPlaced))
+            if j["Today's EMI status"] == 'Response pending':
+                autoDebitResponsePending.append(j['Loan ID'])
+
+            if j["AD Response date"] == '-':
+                adRespnseDateDash.append(j['Loan ID'])
+
+
+        print("Auto Debit not placed (AD NOT PLACED status)::", autoDebitNotPlaced)
+        print("Count of auto debit not placed (AD NOT PLACED status)::", len(autoDebitNotPlaced))
+
+        print("Auto Debit response pending::", autoDebitResponsePending)
+        print("Count of auto debit response pending::", len(autoDebitResponsePending))
+
+        # print("Auto Debit adRespnseDateDash::", adRespnseDateDash)
+        # print("Count of auto debit adRespnseDateDash::", len(adRespnseDateDash))
+
+        # print("r-d::",set(autoDebitResponsePending) - set(adRespnseDateDash))
+        # print("r-d_count::", len(set(autoDebitResponsePending) - set(adRespnseDateDash)))
 
         # print('status code of get DemandLetter::', response2.status_code)
         # print('valid::', response2.json())
@@ -123,11 +144,12 @@ class TestMissedLID:
         print("count of missedLID::", count_of_missed_lid)
 
         if count_of_missed_lid == 0:
-            print("All auto-debit failed loan ids are present in demand letter")
+            print("All auto-debit failed are listed in demand letter")
         else:
             print("Error::Auto-debit failed loan ids are missing in demand letter")
 
         assert count_of_missed_lid == 0, "All auto-debit failed loan ids are present in demand letter"
+
 
         duplicateDemandLetter = []
         uniqDemand = []
@@ -148,7 +170,7 @@ class TestMissedLID:
         assert len(duplicateDemandLetter) == 0
 
 
-    def test_DemandLetter_notsent(self, url):
+    def test_DemandLetter(self, url):
 
         if len(demandLetterLoanId_notSent) == 0:
             print("All demand letter sent")

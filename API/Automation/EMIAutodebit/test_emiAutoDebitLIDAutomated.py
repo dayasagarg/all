@@ -52,34 +52,48 @@ class TestMissedLIDInRepayment:
 
         # '''getting loan id of repayment api'''
         rows2 = response2.json()["data"]["rows"]
-        # print(rows2)
+        # print("rows2::",rows2)
 
         repaymentLoanId = []
+        lid_except_rp_comp_fail = []
+        ad_not_placed = []
+
 
         ''' adding loan id of repayment api into repaymentLoanId list'''
-        for i in rows2:
-            if "Loan ID" in i:
-                repaymentLoanId.append(i['Loan ID'])
+        for j in rows2:
+            if "Loan ID" in j:
+                repaymentLoanId.append(j['Loan ID'])
+
+            if j["Today's EMI status"] != "Response pending" and j["Today's EMI status"] != "COMPLETED" and j["Today's EMI status"] != "FAILED":
+                lid_except_rp_comp_fail.append(j["Loan ID"])
+
+            if j["Today's EMI status"] == "AD NOT PLACED":
+                ad_not_placed.append(j["Loan ID"])
 
         print("RepaymentLoanId::", repaymentLoanId)
         print("Count of repaymentLoanId::", len(repaymentLoanId))
 
+        print("lid_except_rp_comp_fail::",lid_except_rp_comp_fail)
+        print("ad_not_placed::",ad_not_placed)
+        print("count_lid_except_rp_comp_fail::", len(lid_except_rp_comp_fail))
+        print("count_ad_not_placed::", len(ad_not_placed))
+
         matchedLID = []
 
-        for i in upcomingEMILoanId:
-            if i in repaymentLoanId:
-                matchedLID.append(i)
-                # print("matchedLID ::",i)
+        for k in upcomingEMILoanId:
+            if k in repaymentLoanId:
+                matchedLID.append(k)
+                # print("matchedLID ::",k)
 
         print("matchedLID::", matchedLID)
         print("count of matchedLID::", len(matchedLID))
 
         missedLID = []
 
-        for i in upcomingEMILoanId:
-            if i not in repaymentLoanId:
-                missedLID.append(i)
-                # print("missed loan id::",i)
+        for l in upcomingEMILoanId:
+            if l not in repaymentLoanId:
+                missedLID.append(l)
+                # print("missed loan id::",l)
 
         print("missedLID::", missedLID)
         count_of_missed_lid = len(missedLID)
