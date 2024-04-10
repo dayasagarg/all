@@ -13,7 +13,7 @@ currentDateStr = datetime.strftime(currentFullTime, "%Y-%m-%d")  # date to strin
 
 
 # print("currentDateStr::",currentDateStr)
-
+#
 class TestRepayment:
     def test_getRepayment(self):
         global totalUnpaidAmountForm, fullPay_unpaid_misssMatch
@@ -37,101 +37,98 @@ class TestRepayment:
 
                 else:
                     pass
+#
+#
 
-        print("unique lids::", lIDs)
-        # print('count of unique lids::', len(lIDs))
+    def test_using_per_loan_id(self):
 
-        missMatchOfPaid = []
-        missMatchOfUnpaid = []
+        global emiDataTotalReceived, totalTransAmt, j
 
-        # Upcoming EMI
+        emiDataTotalReceived = []
+        ontime_emi_lid = []
 
-        url = "https://chinmayfinserve.com/admin-prod/admin/qa/bulkEMIDetails"
-        # print(lIDs)
+        for n,i in enumerate(lIDs):
+            # if n == 5:
+            #     break
 
-        data = {"loanIds": lIDs}
+            response = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
+                verify=False)  # current date
 
-        headers = {"qa-test-key": "28947f203896ea859233415d1904c927098484d2"}
-
-        response = requests.post(url, headers=headers, json=data, verify=False)  # current date
-        response_data = response.json()["data"]
-
-
-        totalPaidAmount_mismatch = []
-        fullPay_unpaid_misssMatch = []
-
-        for r in response_data:
-            loanData = response_data[r]
-
-            emiDetails = loanData['emiDetails']["EMIData"]
-            tranDetails = loanData["transactions"]
-            # print("emiDetails::",emiDetails)
-
-            emiPaid = []
-            emiPenalty = []
-            emiBounce = []
-            for emi in emiDetails:
-                if emi["status"] == "PAID":
-                    if "emiAmount" in emi:
-                        emiPaid.append(emi["emiAmount"])
-
-                    if emi["paidPenalty"]:
-                        emiPenalty.append(emi["paidPenalty"])
-
-                    if emi["bounceCharge"]:
-                        emiPenalty.append(emi["bounceCharge"])
-
-            # print("emiPaid::",emiPaid)
-            # print("emiPenalty::", emiPenalty)
-
-            totalPaidEMI = sum(emiPaid) + sum(emiPenalty) + sum(emiBounce)
-            # print("totalPaidEMI::",totalPaidEMI)
-
-            TransPaidAmt = []
-            for tr in tranDetails:
-                if tr["paidAmount"]:
-                    TransPaidAmt.append(round(tr["paidAmount"], 0))
-
-            totalTransAmt = sum(TransPaidAmt)
-            # print("totalTransAmt::", totalTransAmt)
-
-            if totalPaidEMI != totalTransAmt:
-                totalPaidAmount_mismatch.append(r)
-
-            diffPaidAmt = totalPaidEMI - totalTransAmt
-
-            print(f"difference of PaidAmt in emi and paidAmt in trans::lid::{r}::",diffPaidAmt)
-    #
-
-        # print("totalPaidAmount_mismatch::", totalPaidAmount_mismatch)
-
-
-
-
-        if len(totalPaidAmount_mismatch) > 0:
-            print(f"totalPaidAmount_mismatch found in repayment::{totalPaidAmount_mismatch}")
-            assert False
-        else:
-            print("No totalPaidAmount_mismatch found in repayment")
-
-        # assert len(totalPaidAmount_mismatch) > 0, "totalPaidAmount_mismatch found in repayment"
-
-
-    #
-    def test_fullpay_unpaid(self):
-
-        if len(fullPay_unpaid_misssMatch) > 0:
-            print(f"fullPay_unpaid_misssMatch found in repayment::{fullPay_unpaid_misssMatch}")
-            assert False, "fullPay_unpaid_misssMatch found in repayment"
-        else:
-            print("No fullPay_unpaid_misssMatch found in repayment")
-
-
-    # def test_using_per_loan_id(self):
-    #     for i in lIDs:
-    #         response = requests.get(
-    #             "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
-    #             verify=False)  # current date
-    #
-    #         print('status code of get Repayment::', response.status_code)
+            # print('status code of get Repayment::', response.status_code)
             # print(response.json())
+
+            data = response.json()["data"]
+            # print(emiData)
+
+            if data['loanStatus'] == 'OnTime':
+                ontime_emi_lid.append(i)
+                emiData = data["EMIData"]
+
+                if data["totalReceived"]:
+                    emiDataTotalReceived.append(data["totalReceived"])
+
+
+
+
+        totalTransAmt_n = []
+        for n,j in enumerate(ontime_emi_lid):
+            # if n == 5:
+            #     break
+
+            response = requests.get(
+                "https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
+                verify=False)  # current date
+
+            # print('status code of get Repayment::', response.status_code)
+            # print(response.json())
+
+            transData = response.json()["data"]
+
+            trans_amt = []
+            for t in transData:
+                if t["Status"] == "COMPLETED":
+
+                    if t["Repay Amount"]:
+                        trans_amt.append(t["Repay Amount"])
+
+
+            # print("totalTransAmt::",sum(trans_amt))
+            # print("loanID_trans::",j)
+
+            totalTransAmt = sum(trans_amt)
+
+            if totalTransAmt:
+                totalTransAmt_n.append(totalTransAmt)
+
+
+
+        # print("totalTransAmt::",totalTransAmt)
+        print("totalTransAmt_n::", totalTransAmt_n)
+
+
+        print("emiDataTotalReceived::", emiDataTotalReceived)
+        print("ontime_emi_lid::",ontime_emi_lid)
+
+        if len(emiDataTotalReceived) == len(totalTransAmt_n):
+            differences = []  # Initialize an empty list to store the differences
+
+            # Iterate through the lists and calculate the differences
+            for i in range(len(emiDataTotalReceived)):
+                diff = emiDataTotalReceived[i] - totalTransAmt_n[i]
+                differences.append(diff)
+
+                if diff > 0:
+                    print(f"difference more than 0 found in between EMI and Transaction::",diff)
+                    assert False, "difference more than 0 found in between EMI and Transaction"
+                else:
+                    print("*** No difference in EMI and transaction amount ***")
+
+
+            # Print or use the list of differences as needed
+            print(f"Differences between corresponding elements between total receivable in EMI and Paid amount in transaction:",differences)
+
+        else:
+            print("Error: Lists have different lengths.")
+
+

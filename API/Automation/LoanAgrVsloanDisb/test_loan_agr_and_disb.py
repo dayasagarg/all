@@ -95,6 +95,7 @@ class TestLoanAgrDis:
 
             loanAgrAPIDataLoanId = loanAgrAPI.json()["data"]["eSign_agree_data"]["loanId"]
             loanAgrAPIDataIntRate = loanAgrAPI.json()["data"]["eSign_agree_data"]["interestRatePerDay"]
+
             loanAgrAPIDataEMI = loanAgrAPI.json()["data"]["eSign_agree_data"]["numberOfEmis"]
             loanAgrAPIDataTenure = loanAgrAPI.json()["data"]["eSign_agree_data"]["loanTenure"]
             loanAgrAPIDataName = loanAgrAPI.json()["data"]["eSign_agree_data"]["borrowerName"]

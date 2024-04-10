@@ -9,7 +9,7 @@ from datetime import datetime,timedelta
 class TestBounce:
     @pytest.fixture
     def bcURL(self):
-        global autoDebitFailedAPI, emiRepaymentStatus, curr_str,curr_str_emi,pre_str_emi
+        global autoDebitFailedAPI, emiRepaymentStatus, curr_str,curr_str_emi,pre_str_emi,pre_str_emi_2,pre_str_emi_3
 
         from datetime import datetime, timedelta
 
@@ -19,17 +19,23 @@ class TestBounce:
 
         prev_1 = curr - timedelta(days=1)
         prev_2 = curr - timedelta(days=2)
+        prev_3 = curr - timedelta(days=3)
 
         pre_str_1 = datetime.strftime(prev_1, "%Y-%m-%d")
         pre_str_2 = datetime.strftime(prev_2, "%Y-%m-%d")
+        pre_str_3 = datetime.strftime(prev_3, "%Y-%m-%d")
+
+
         pre_str_emi = datetime.strftime(prev_1, "%d/%m/%Y")
+        pre_str_emi_2 = datetime.strftime(prev_2, "%d/%m/%Y")
+        pre_str_emi_3 = datetime.strftime(prev_3, "%d/%m/%Y")
 
 
 
         # emi date < current date
 
         autoDebitFailedAPI = requests.get(
-            "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{pre_str_2}T10:00:00.000Z","end_date":f"{curr_str}T10:00:00.000Z","status":4,"page":1,"skipPageLimit":"true"})
+            "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{pre_str_3}T10:00:00.000Z","end_date":f"{curr_str}T10:00:00.000Z","status":4,"page":1,"skipPageLimit":"true"})
 
         # autoDebitFailedAPI = requests.get(
         #     "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData?start_date=2024-02-04T10:00:00.000Z&end_date=2024-02-05T10:00:00.000Z&status=4&page=1") # 10 data / page
@@ -187,6 +193,7 @@ class TestBounce:
             assert False, "bounce charge missing found"
         else:
             print("No bounce charge missed for bounceChMissed_LId_unique_total_autodebit")
+
 
     # @pytest.mark.skip
     def test_bounceCharge_repayStatus_unpaid(self, bcURL):
