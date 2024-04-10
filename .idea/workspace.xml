@@ -28,7 +28,6 @@
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all" beforeDir="false" afterPath="$PROJECT_DIR$/all" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,24 +115,7 @@
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_loan_agreem_disb_updation.py">
-    <configuration name="pytest in test_LA1.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.pytest in test_loan_agr_and_disb.py">
     <configuration name="pytest in test_LA2.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
@@ -185,6 +167,23 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest in test_loan_agr_and_disb.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb/test_loan_agr_and_disb.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="pytest in test_loan_agreem_disb_updation.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
@@ -204,11 +203,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest in test_loan_agr_and_disb.py" />
         <item itemvalue="Python tests.pytest in test_loan_agreem_disb_updation.py" />
         <item itemvalue="Python tests.pytest in test_LA4.py" />
         <item itemvalue="Python tests.pytest in test_LA3.py" />
         <item itemvalue="Python tests.pytest in test_LA2.py" />
-        <item itemvalue="Python tests.pytest in test_LA1.py" />
       </list>
     </recent_temporary>
   </component>

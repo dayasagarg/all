@@ -113,7 +113,7 @@ class TestLoanAgrDis:
                 loanAmtStr.append(loanAgrAPIData)
 
             if loanAgrAPIDataIntRate:
-                int_rate_la.append(round(float(loanAgrAPIDataIntRate),2))
+                int_rate_la.append(round(float(loanAgrAPIDataIntRate),3))
 
                 # la_int_rate = round(float(loanAgrAPIDataIntRate), 2)
                 # print("la_int_rate::", la_int_rate)
@@ -212,10 +212,10 @@ class TestLoanAgrDis:
             print("intRate::",intRate)
             print("int_rate_la::",int_rate_la)
 
-            for j in range(len(intRate)):
-                diff_int_rate = intRate[j] - int_rate_la[j]
-
-                print("diff_int_rate::",diff_int_rate)
+            # for j in range(len(intRate)):
+            #     diff_int_rate = intRate[j] - int_rate_la[j]
+            #
+            #     print("diff_int_rate::",diff_int_rate)
 
 
 
