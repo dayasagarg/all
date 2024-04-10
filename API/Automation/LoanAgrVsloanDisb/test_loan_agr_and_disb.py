@@ -22,13 +22,13 @@ class TestLoanAgrDis:
         # loanAgrAPI = requests.get("https://chinmayfinserve.com/admin-prod/ admin / esign / getLoanAgreement", params={"loanId":726301})
 
     def test_agr_disb(self, url_agr_dis):
-        global loanAmount,app_amt,loanAgrAPI,intRate,int_rate_la,emi_la,totalEMI,loanAgrAPIDataTenure,loanTenure,loan_tenure_la,name_la,name,nbfc,nbfc_la,procFees,procFees_la, sr,loanAgrAPIDataLoanId,dis_lid,riskFees,riskFees_la,docFees,docFees_la,gstAmt,gst_la,a
+        global loanAmount,app_amt,loanAgrAPI,intRate_disb,int_rate_la,emi_la,totalEMI,loanAgrAPIDataTenure,loanTenure,loan_tenure_la,name_la,name,nbfc,nbfc_la,procFees,procFees_la, sr,loanAgrAPIDataLoanId,dis_lid,riskFees,riskFees_la,docFees,docFees_la,gstAmt,gst_la,a
         disAPIData = disAPI.json()["data"]["rows"]
 
         dis_lid = []
         app_amt = []
         loanAmtStr = []
-        intRate = []
+        intRate_disb = []
         totalEMI = []
         loanTenure = []
         name = []
@@ -45,7 +45,7 @@ class TestLoanAgrDis:
                 app_amt.append(dis["Approved amount"])
 
             if dis["Interest Rate"]:
-                intRate.append(float(dis["Interest Rate"].replace("%","")))
+                intRate_disb.append(float(dis["Interest Rate"].replace("%","")))
 
             if dis["Total Emi"]:
                 totalEMI.append(dis["Total Emi"])
@@ -203,17 +203,17 @@ class TestLoanAgrDis:
 
 
     def test_int_rate(self):
-        if intRate == int_rate_la:
-            print("intRate and int_rate_la are equal")
-            print("intRate::",intRate)
+        if intRate_disb == int_rate_la:
+            print("intRate_disb and int_rate_la are equal")
+            print("intRate_disb::",intRate_disb)
             print("int_rate_la::",int_rate_la)
         else:
             print("intRate and int_rate_la are not equal")
-            print("intRate::",intRate)
+            print("intRate_disb::",intRate_disb)
             print("int_rate_la::",int_rate_la)
 
-            # for j in range(len(intRate)):
-            #     diff_int_rate = intRate[j] - int_rate_la[j]
+            # for j in range(len(intRate_disb)):
+            #     diff_int_rate = intRate_disb[j] - int_rate_la[j]
             #
             #     print("diff_int_rate::",diff_int_rate)
 
