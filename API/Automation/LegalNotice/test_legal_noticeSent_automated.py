@@ -293,7 +293,7 @@ class TestLegal:
         # print("matchedDemandWithNotice::", matchedDemandWithNotice)
         # print("missedDemandWithNotice::", missedDemandWithNotice)
 
-        print("case_lid_in_notice", case_lid)
+        # print("case_lid_in_notice", case_lid)
 
         if len(missedDemandWithNotice) == 0:
             print("*** Notice sent ***")
@@ -376,161 +376,161 @@ class TestLegal:
         else:
             print("Paid percentage is above 70% in case assigned to collection")
 
-    # @pytest.mark.skip
-    def test_filingInProgress_2emi(self, url):
-        global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3, total_emi_amt_3, fillingInProgress_lid
-
-        # print("summons_data::",summons_data)
-
-        pp_gt_70_2emi_lid_f = []
-
-        fillingInProgress_lid = []
-
-        # print("case_lid::",case_lid)
-
-        for s in fillingInProgress_data:
-            if s['Loan ID']:
-                fillingInProgress_lid.append(s['Loan ID'])
-
-            if s["Emi 1 status"] == "UNPAID" and s["Emi 2 status"] == "UNPAID":
-                if s["Emi 3 amount"] == "-" and s["Emi 4 amount"] == "-":
-
-                    emi1_amount = int(s["Emi 1 amount"].replace(",", ""))
-                    emi2_amount = int(s["Emi 2 amount"].replace(",", ""))
-
-                    total_emi_amt = emi1_amount + emi2_amount
-
-                    # print("total_emi_amt::",total_emi_amt)
-
-                    # print("loan_id::",s["Loan ID"])
-
-                    if s["Amount paid (before letter)"]:
-                        paidBeforeLetter = int(s["Amount paid (before letter)"].replace(",", ""))
-
-                    if s["Amount paid (after letter)"]:
-                        paidAfterLetter = int(s["Amount paid (after letter)"].replace(",", ""))
-
-                    totalPaid = paidBeforeLetter + paidAfterLetter
-                    # print("totalPaid::",totalPaid)
-
-                    pp_emi_2 = round((totalPaid / total_emi_amt) * 100, 0)
-                    # print("pp_emi_2::",pp_emi_2)
-
-                    if pp_emi_2 > 70.0:
-                        pp_gt_70_2emi_lid_f.append(s['Loan ID'])
-                        # print("pp_emi_2::",pp_emi_2)
-
-        pp_2emi_miss_in_ca_lid_f = []
-        for l in pp_gt_70_2emi_lid_f:
-            if l not in case_lid:
-                pp_2emi_miss_in_ca_lid_f.append(l)
-
-        if len(pp_2emi_miss_in_ca_lid_f) > 0:
-            print(
-                f"Error:: paid percentage more than 70 found for 2 emi in fillingInProgress ::{pp_2emi_miss_in_ca_lid_f}")
-            assert False
-        else:
-            print("*** remaining paid percentage less than 70 for 2 emi in fillingInProgress ***")
-
+    # # @pytest.mark.skip
+    # def test_filingInProgress_2emi(self, url):
+    #     global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3, total_emi_amt_3, fillingInProgress_lid
     #
+    #     # print("summons_data::",summons_data)
     #
-
-    # @pytest.mark.skip
-    def test_filingInProgress_3emi(self, url):
-
-        global paidBeforeLetter_3, paidAfterLetter_3, pp_emi_3
-
-        pp_gt_70_3emi_lid_f = []
-        for f in fillingInProgress_data:
-
-            if f["Emi 3 amount"] == "UNPAID":
-                emi1_amount_e3 = int(f["Emi 1 amount"].replace(",", ""))
-                emi2_amount_e3 = int(f["Emi 2 amount"].replace(",", ""))
-                # print("emi1_amount::",emi1_amount)
-
-                if f["Emi 3 amount"] != "-":
-
-                    emi3_amount_e3 = int(f["Emi 3 amount"].replace(",", ""))
-                    # print("emi3_amount_e3::",emi3_amount_e3)
-
-                    total_emi_amt_3 = emi1_amount_e3 + emi2_amount_e3 + emi3_amount_e3
-                    # print("total_emi_amt_3::",total_emi_amt_3)
-
-                    if f["Amount paid (before letter)"]:
-                        paidBeforeLetter_3 = int(f["Amount paid (before letter)"].replace(",", ""))
-
-                    if f["Amount paid (after letter)"]:
-                        paidAfterLetter_3 = int(f["Amount paid (after letter)"].replace(",", ""))
-
-                    # print("loan_id::", s["Loan ID"])
-
-                    totalPaid_3 = paidBeforeLetter_3 + paidAfterLetter_3
-                    # print("totalPaid_3::",totalPaid_3)
-
-                    pp_emi_3 = round((totalPaid_3 / total_emi_amt_3) * 100, 2)
-                    # print("pp_emi_3::",pp_emi_3)
-
-                    if pp_emi_3 > 70.0:
-                        pp_gt_70_3emi_lid_f.append(f['Loan ID'])
-
-        pp_3emi_miss_in_ca_lid = []
-        for ll in pp_gt_70_3emi_lid_f:
-            if ll not in case_lid:
-                pp_3emi_miss_in_ca_lid.append(ll)
-
-        if len(pp_3emi_miss_in_ca_lid) > 0:
-            print(
-                f"Error:: paid percentage more than 70 found for 3 emi in fillingInProgress::{pp_3emi_miss_in_ca_lid}")
-            assert False
-        else:
-            print("*** remaining paid percentage less than 70 for 3 emi in fillingInProgress ***")
-
-    # @pytest.mark.skip
-    def test_filingInprogress_emi_70(self, url):
-
-        global paidEMIAmt, emiAmt
-        s_e_lid = []
-        pp_more_than_70_filingInProgres_lid = []
-
-        for e in fillingInProgress_lid:
-            emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
-                               params={"loanId": e}, verify=False)
-
-            emi_data = emi.json()["data"]["EMIData"]
-            # print("emi_data::",emi_data)
-
-            for n, ed in enumerate(emi_data):
-                # if n == 2:
-                #     break
-
-                if ed["status"] == "UNPAID":
-                    # s_e_lid.append(e)
-                    # if ed["paidEmiAmount"]:
-                    paidEMIAmt = ed["paidEmiAmount"]
-                    # print("paidEMIAmt::",paidEMIAmt)
-
-                    # if ed["emiAmount"]:
-                    emiAmt = ed["emiAmount"]
-                    # print("emiAmt::",emiAmt)
-
-                    pp_f = round((paidEMIAmt / emiAmt) * 100, 0)
-
-                    if pp_f >= 70.0:
-                        pp_more_than_70_filingInProgres_lid.append(e)
-
-        print("pp_more_than_70_filingInProgres::", pp_more_than_70_filingInProgres_lid)
-
-        pp_more_than_70_filingInProgres_lid_missed_collection = []
-        for m in pp_more_than_70_filingInProgres_lid:
-            if m not in case_lid:
-                pp_more_than_70_filingInProgres_lid_missed_collection.append(m)
-
-        if len(pp_more_than_70_filingInProgres_lid_missed_collection) > 0:
-            print(
-                f"Error:: missing of pp_more_than_70_filingInProgres found with collection::{pp_more_than_70_filingInProgres_lid_missed_collection}")
-            assert False
-        else:
-            print("*** paid percentage inside filing in progress is below 70 % ***")
+    #     pp_gt_70_2emi_lid_f = []
+    #
+    #     fillingInProgress_lid = []
+    #
+    #     # print("case_lid::",case_lid)
+    #
+    #     for s in fillingInProgress_data:
+    #         if s['Loan ID']:
+    #             fillingInProgress_lid.append(s['Loan ID'])
+    #
+    #         if s["Emi 1 status"] == "UNPAID" and s["Emi 2 status"] == "UNPAID":
+    #             if s["Emi 3 amount"] == "-" and s["Emi 4 amount"] == "-":
+    #
+    #                 emi1_amount = int(s["Emi 1 amount"].replace(",", ""))
+    #                 emi2_amount = int(s["Emi 2 amount"].replace(",", ""))
+    #
+    #                 total_emi_amt = emi1_amount + emi2_amount
+    #
+    #                 # print("total_emi_amt::",total_emi_amt)
+    #
+    #                 # print("loan_id::",s["Loan ID"])
+    #
+    #                 if s["Amount paid (before letter)"]:
+    #                     paidBeforeLetter = int(s["Amount paid (before letter)"].replace(",", ""))
+    #
+    #                 if s["Amount paid (after letter)"]:
+    #                     paidAfterLetter = int(s["Amount paid (after letter)"].replace(",", ""))
+    #
+    #                 totalPaid = paidBeforeLetter + paidAfterLetter
+    #                 # print("totalPaid::",totalPaid)
+    #
+    #                 pp_emi_2 = round((totalPaid / total_emi_amt) * 100, 0)
+    #                 # print("pp_emi_2::",pp_emi_2)
+    #
+    #                 if pp_emi_2 > 70.0:
+    #                     pp_gt_70_2emi_lid_f.append(s['Loan ID'])
+    #                     # print("pp_emi_2::",pp_emi_2)
+    #
+    #     pp_2emi_miss_in_ca_lid_f = []
+    #     for l in pp_gt_70_2emi_lid_f:
+    #         if l not in case_lid:
+    #             pp_2emi_miss_in_ca_lid_f.append(l)
+    #
+    #     if len(pp_2emi_miss_in_ca_lid_f) > 0:
+    #         print(
+    #             f"Error:: paid percentage more than 70 found for 2 emi in fillingInProgress ::{pp_2emi_miss_in_ca_lid_f}")
+    #         assert False
+    #     else:
+    #         print("*** remaining paid percentage less than 70 for 2 emi in fillingInProgress ***")
+    #
+    # #
+    # #
+    #
+    # # @pytest.mark.skip
+    # def test_filingInProgress_3emi(self, url):
+    #
+    #     global paidBeforeLetter_3, paidAfterLetter_3, pp_emi_3
+    #
+    #     pp_gt_70_3emi_lid_f = []
+    #     for f in fillingInProgress_data:
+    #
+    #         if f["Emi 3 amount"] == "UNPAID":
+    #             emi1_amount_e3 = int(f["Emi 1 amount"].replace(",", ""))
+    #             emi2_amount_e3 = int(f["Emi 2 amount"].replace(",", ""))
+    #             # print("emi1_amount::",emi1_amount)
+    #
+    #             if f["Emi 3 amount"] != "-":
+    #
+    #                 emi3_amount_e3 = int(f["Emi 3 amount"].replace(",", ""))
+    #                 # print("emi3_amount_e3::",emi3_amount_e3)
+    #
+    #                 total_emi_amt_3 = emi1_amount_e3 + emi2_amount_e3 + emi3_amount_e3
+    #                 # print("total_emi_amt_3::",total_emi_amt_3)
+    #
+    #                 if f["Amount paid (before letter)"]:
+    #                     paidBeforeLetter_3 = int(f["Amount paid (before letter)"].replace(",", ""))
+    #
+    #                 if f["Amount paid (after letter)"]:
+    #                     paidAfterLetter_3 = int(f["Amount paid (after letter)"].replace(",", ""))
+    #
+    #                 # print("loan_id::", s["Loan ID"])
+    #
+    #                 totalPaid_3 = paidBeforeLetter_3 + paidAfterLetter_3
+    #                 # print("totalPaid_3::",totalPaid_3)
+    #
+    #                 pp_emi_3 = round((totalPaid_3 / total_emi_amt_3) * 100, 2)
+    #                 # print("pp_emi_3::",pp_emi_3)
+    #
+    #                 if pp_emi_3 > 70.0:
+    #                     pp_gt_70_3emi_lid_f.append(f['Loan ID'])
+    #
+    #     pp_3emi_miss_in_ca_lid = []
+    #     for ll in pp_gt_70_3emi_lid_f:
+    #         if ll not in case_lid:
+    #             pp_3emi_miss_in_ca_lid.append(ll)
+    #
+    #     if len(pp_3emi_miss_in_ca_lid) > 0:
+    #         print(
+    #             f"Error:: paid percentage more than 70 found for 3 emi in fillingInProgress::{pp_3emi_miss_in_ca_lid}")
+    #         assert False
+    #     else:
+    #         print("*** remaining paid percentage less than 70 for 3 emi in fillingInProgress ***")
+    #
+    # # @pytest.mark.skip
+    # def test_filingInprogress_emi_70(self, url):
+    #
+    #     global paidEMIAmt, emiAmt
+    #     s_e_lid = []
+    #     pp_more_than_70_filingInProgres_lid = []
+    #
+    #     for e in fillingInProgress_lid:
+    #         emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
+    #                            params={"loanId": e}, verify=False)
+    #
+    #         emi_data = emi.json()["data"]["EMIData"]
+    #         # print("emi_data::",emi_data)
+    #
+    #         for n, ed in enumerate(emi_data):
+    #             # if n == 2:
+    #             #     break
+    #
+    #             if ed["status"] == "UNPAID":
+    #                 # s_e_lid.append(e)
+    #                 # if ed["paidEmiAmount"]:
+    #                 paidEMIAmt = ed["paidEmiAmount"]
+    #                 # print("paidEMIAmt::",paidEMIAmt)
+    #
+    #                 # if ed["emiAmount"]:
+    #                 emiAmt = ed["emiAmount"]
+    #                 # print("emiAmt::",emiAmt)
+    #
+    #                 pp_f = round((paidEMIAmt / emiAmt) * 100, 0)
+    #
+    #                 if pp_f >= 70.0:
+    #                     pp_more_than_70_filingInProgres_lid.append(e)
+    #
+    #     print("pp_more_than_70_filingInProgres::", pp_more_than_70_filingInProgres_lid)
+    #
+    #     pp_more_than_70_filingInProgres_lid_missed_collection = []
+    #     for m in pp_more_than_70_filingInProgres_lid:
+    #         if m not in case_lid:
+    #             pp_more_than_70_filingInProgres_lid_missed_collection.append(m)
+    #
+    #     if len(pp_more_than_70_filingInProgres_lid_missed_collection) > 0:
+    #         print(
+    #             f"Error:: missing of pp_more_than_70_filingInProgres found with collection::{pp_more_than_70_filingInProgres_lid_missed_collection}")
+    #         assert False
+    #     else:
+    #         print("*** paid percentage inside filing in progress is below 70 % ***")
 
     def test_notice_sent_emi_70(self, url):
 
@@ -538,33 +538,54 @@ class TestLegal:
 
         pp_more_than_70_notice_sent_lid = []
 
-        for l in lIdNS:
+        for o,l in enumerate(lIdNS):
+            # if o == 5:
+            #     break
             emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
                                params={"loanId": l}, verify=False)
 
             emi_data_2 = emi.json()["data"]["EMIData"]
             # print("emi_data::",emi_data)
 
+            paid_emi = []
+            emi_amt = []
+
             for n, ed in enumerate(emi_data_2):
-                # if n == 2:
+                # if n == 5:
                 #     break
 
-                if ed["status"] == "UNPAID":
+                if ed["status"] == "UNPAID" or ed["status"] == "PAID":
                     # s_e_lid.append(e)
                     # if ed["paidEmiAmount"]:
                     paidEMIAmt = ed["paidEmiAmount"]
+                    paid_emi.append(paidEMIAmt)
                     # print("paidEMIAmt::",paidEMIAmt)
 
                     # if ed["emiAmount"]:
                     emiAmt = ed["emiAmount"]
+                    emi_amt.append(emiAmt)
                     # print("emiAmt::",emiAmt)
 
-                    pp_f = round((paidEMIAmt / emiAmt) * 100, 0)
+                    # print("lid::",l)
+                    # print("paid_emi::",paidEMIAmt)
+                    # print("emiAmt::",emiAmt)
 
-                    if pp_f >= 70.0:
-                        pp_more_than_70_notice_sent_lid.append(l)
+            # print("paid_emi::",paid_emi)
+            # print("emi_amt::",emi_amt)
 
-        print("pp_more_than_70_notice_sent_lid::", pp_more_than_70_notice_sent_lid)
+            total_paid_emi = sum(paid_emi)
+            total_emi = sum(emi_amt)
+
+            # print("lid::",l)
+            # print("total_paid_emi::",total_paid_emi)
+            # print("total_emi::",total_emi)
+
+            pp_f = round((total_paid_emi / total_emi) * 100, 0)
+
+            if pp_f >= 70.0:
+                pp_more_than_70_notice_sent_lid.append(l)
+
+        # print("pp_more_than_70_notice_sent_lid::", pp_more_than_70_notice_sent_lid)
 
         pp_more_than_70_noticeSent_lid_missed_collection = []
         for n in pp_more_than_70_notice_sent_lid:
