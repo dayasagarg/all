@@ -97,6 +97,8 @@ class TestRepayment:
             totalTransAmt = sum(trans_amt)
             # print("loanID_trans::",j)
 
+            for t in range(len())
+
             diff_emi_total_paid_total_transact = total_received_emi - totalTransAmt
 
             print("diff_emi_total_paid_total_transact::",diff_emi_total_paid_total_transact)
