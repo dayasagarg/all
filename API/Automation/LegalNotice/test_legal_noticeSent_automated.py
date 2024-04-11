@@ -376,7 +376,7 @@ class TestLegal:
         else:
             print("Paid percentage is above 70% in case assigned to collection")
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_filingInProgress_2emi(self, url):
         global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3, total_emi_amt_3, fillingInProgress_lid
 
@@ -435,7 +435,7 @@ class TestLegal:
     #
     #
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_filingInProgress_3emi(self, url):
 
         global paidBeforeLetter_3, paidAfterLetter_3, pp_emi_3
@@ -485,7 +485,7 @@ class TestLegal:
         else:
             print("*** remaining paid percentage less than 70 for 3 emi in fillingInProgress ***")
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_filingInprogress_emi_70(self, url):
 
         global paidEMIAmt, emiAmt
@@ -621,26 +621,27 @@ class TestLegal:
                 #     break
 
                 if ed["status"] == "UNPAID" or ed["status"] == "PAID":
-                    # s_e_lid.append(e)
-                    # if ed["paidEmiAmount"]:
-                    paidEMIAmt = ed["paidEmiAmount"]
+                    if ed["status"] == "UNPAID":
+                        # s_e_lid.append(e)
+                        # if ed["paidEmiAmount"]:
+                        paidEMIAmt = ed["paidEmiAmount"]
 
-                    # print("paidEMIAmt::",paidEMIAmt)
+                        # print("paidEMIAmt::",paidEMIAmt)
 
-                    # if ed["emiAmount"]:
-                    emiAmt = ed["emiAmount"]
+                        # if ed["emiAmount"]:
+                        emiAmt = ed["emiAmount"]
 
-                    # print("emiAmt::",emiAmt)
+                        # print("emiAmt::",emiAmt)
 
-                    # print("lid::",l)
-                    # print("paid_emi::",paidEMIAmt)
-                    # print("emiAmt::",emiAmt)
+                        # print("lid::",l)
+                        # print("paid_emi::",paidEMIAmt)
+                        # print("emiAmt::",emiAmt)
 
 
-                    pp_f = round((paidEMIAmt / emiAmt) * 100, 0)
+                        pp_f = round((paidEMIAmt / emiAmt) * 100, 0)
 
-                    if pp_f >= 70.0:
-                        pp_more_than_70_notice_sent_per_emi_lid.append(e)
+                        if pp_f >= 70.0:
+                            pp_more_than_70_notice_sent_per_emi_lid.append(e)
 
         # print("pp_more_than_70_notice_sent_lid::", pp_more_than_70_notice_sent_lid)
 
