@@ -599,6 +599,8 @@ class TestLegal:
         else:
             print("*** paid percentage inside notice sent is below 70 % for unpaid total ***")
 
+            
+
     def test_notice_sent_paid_unpaid_as_per_emi_70(self, url):
 
         global paidEMIAmt, emiAmt
@@ -614,22 +616,25 @@ class TestLegal:
             emi_data_2 = emi.json()["data"]["EMIData"]
             # print("emi_data::",emi_data)
 
-
+            paid_emi_2 = []
+            emi_amt_2 = []
 
             for n, ed in enumerate(emi_data_2):
                 # if n == 5:
                 #     break
 
-                if ed["status"] == "UNPAID" or ed["status"] == "PAID":
+                if ed["status"] == "PAID":
                     if ed["status"] == "UNPAID":
                         # s_e_lid.append(e)
                         # if ed["paidEmiAmount"]:
                         paidEMIAmt = ed["paidEmiAmount"]
+                        paid_emi_2.append(paidEMIAmt)
 
                         # print("paidEMIAmt::",paidEMIAmt)
 
                         # if ed["emiAmount"]:
                         emiAmt = ed["emiAmount"]
+                        emi_amt_2.append(emiAmt)
 
                         # print("emiAmt::",emiAmt)
 
@@ -637,11 +642,13 @@ class TestLegal:
                         # print("paid_emi::",paidEMIAmt)
                         # print("emiAmt::",emiAmt)
 
+            total_paid_emi_2 = sum(paid_emi_2)
+            total_emi_2 = sum(emi_amt_2)
 
-                        pp_f = round((paidEMIAmt / emiAmt) * 100, 0)
+            pp_f_2 = round((total_paid_emi_2 / total_emi_2) * 100, 0)
 
-                        if pp_f >= 70.0:
-                            pp_more_than_70_notice_sent_per_emi_lid.append(e)
+            if pp_f_2 >= 70.0:
+                pp_more_than_70_notice_sent_per_emi_lid.append(e)
 
         # print("pp_more_than_70_notice_sent_lid::", pp_more_than_70_notice_sent_lid)
 
