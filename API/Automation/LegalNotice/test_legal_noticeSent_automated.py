@@ -2,11 +2,10 @@ import requests
 import pytest
 from datetime import datetime, timedelta
 
-
 # uniqLIdListDemand = None
 
 currentFullTime = datetime.now()  # whole date
-curr_str = datetime.strftime(currentFullTime,"%Y-%m-%d")
+curr_str = datetime.strftime(currentFullTime, "%Y-%m-%d")
 
 end_2 = datetime.strftime(currentFullTime, "%Y-%m-%d")  # date to string format
 end_2_F = datetime.strptime(end_2, "%Y-%m-%d")  # string to date format
@@ -41,7 +40,7 @@ print("end_date_2::", end_date_2)
 class TestLegal:
     @pytest.fixture
     def url(self):
-        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3,caseAssigned, fillingInProgress_data
+        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3, caseAssigned, fillingInProgress_data
         legalDemandLetter = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                          params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
                                                  "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
@@ -52,15 +51,15 @@ class TestLegal:
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 2, "adminId": 134,
                                            "download": "true"})  # current date
 
-        caseAssigned = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
-                                           "endDate": f"{end_date_2}T10:00:00.000Z", "type": 11, "adminId": 153,
-                                           "download": "true"})
+        caseAssigned = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
+                                    params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
+                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 11, "adminId": 153,
+                                            "download": "true"})
 
         fillingInProgress = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
-                               params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
-                                       "endDate": f"{curr_str}T10:00:00.000Z", "type": 4, "adminId": 70,
-                                       "download": "true"})
-
+                                         params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
+                                                 "endDate": f"{curr_str}T10:00:00.000Z", "type": 4, "adminId": 70,
+                                                 "download": "true"})
 
         fillingInProgress_data = fillingInProgress.json()["data"]["rows"]
         fillingInProgress_data_count = fillingInProgress.json()["data"]["count"]
@@ -198,8 +197,6 @@ class TestLegal:
                 if ld["Email date"]:
                     emailDate.append(ld["Email date"])
 
-
-
         print("count of demand loan ids::", len(loanID))
         # print("unpaid loan ids::",loanID)
         # print(demandCreatedDate)
@@ -296,6 +293,8 @@ class TestLegal:
         # print("matchedDemandWithNotice::", matchedDemandWithNotice)
         # print("missedDemandWithNotice::", missedDemandWithNotice)
 
+        print("case_lid_in_notice", case_lid)
+
         if len(missedDemandWithNotice) == 0:
             print("*** Notice sent ***")
         else:
@@ -309,7 +308,6 @@ class TestLegal:
             assert False
         else:
             print("*** All notice sent ***")
-
 
     # @pytest.mark.skip
     def test_case_assign_to_collection_1(self):
@@ -325,6 +323,7 @@ class TestLegal:
         cal_less_than_70 = []
         # paidPrincipleInterest = []
         # principleInterest = []
+
         for c in case_data:
 
             if c["Loan ID"]:
@@ -335,11 +334,11 @@ class TestLegal:
                 perc_loanId.append(c["Loan ID"])
 
             if c["Paid principal & interest"]:
-                paidPrincipleInterest = int(c["Paid principal & interest"].replace(",",""))
+                paidPrincipleInterest = int(c["Paid principal & interest"].replace(",", ""))
                 # print("paidPrincipleInterest::",paidPrincipleInterest)
 
             if c["Principal & interest"]:
-                principleInterest = int(c["Principal & interest"].replace(",",""))
+                principleInterest = int(c["Principal & interest"].replace(",", ""))
                 # print("principleInterest::",principleInterest)
 
             # print("paidPrincipleInterest::",paidPrincipleInterest)
@@ -348,13 +347,11 @@ class TestLegal:
             if round((paidPrincipleInterest / principleInterest) * 100, 2) < 70.0:
                 cal_less_than_70.append(c["Loan ID"])
 
-        print("cal_less_than_70::",cal_less_than_70)
+        print("cal_less_than_70::", cal_less_than_70)
         # print("case_lid::",case_lid)
 
-
-
         count_perc_loanId = len(perc_loanId)
-        print("count_perc_loanId :: ",count_perc_loanId)
+        print("count_perc_loanId :: ", count_perc_loanId)
         #
         if count_perc_loanId > 0:
             print(f"Error:: Paid percentage 100% found in case assigned to collection :: {perc_loanId}")
@@ -364,6 +361,7 @@ class TestLegal:
         #
         # print("perc_loanId:: ",perc_loanId)
         #
+
     #
 
     # @pytest.mark.skip
@@ -488,7 +486,7 @@ class TestLegal:
             print("*** remaining paid percentage less than 70 for 3 emi in fillingInProgress ***")
 
     # @pytest.mark.skip
-    def test_filingInprogress_emi(self, url):
+    def test_filingInprogress_emi_70(self, url):
 
         global paidEMIAmt, emiAmt
         s_e_lid = []
@@ -527,10 +525,55 @@ class TestLegal:
             if m not in case_lid:
                 pp_more_than_70_filingInProgres_lid_missed_collection.append(m)
 
-
         if len(pp_more_than_70_filingInProgres_lid_missed_collection) > 0:
-            print(f"Error:: missing of pp_more_than_70_filingInProgres found with collection::{pp_more_than_70_filingInProgres_lid_missed_collection}")
+            print(
+                f"Error:: missing of pp_more_than_70_filingInProgres found with collection::{pp_more_than_70_filingInProgres_lid_missed_collection}")
             assert False
         else:
             print("*** paid percentage inside filing in progress is below 70 % ***")
 
+    def test_notice_sent_emi_70(self, url):
+
+        global paidEMIAmt, emiAmt
+
+        pp_more_than_70_notice_sent_lid = []
+
+        for l in lIdNS:
+            emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                               params={"loanId": l}, verify=False)
+
+            emi_data_2 = emi.json()["data"]["EMIData"]
+            # print("emi_data::",emi_data)
+
+            for n, ed in enumerate(emi_data_2):
+                # if n == 2:
+                #     break
+
+                if ed["status"] == "UNPAID":
+                    # s_e_lid.append(e)
+                    # if ed["paidEmiAmount"]:
+                    paidEMIAmt = ed["paidEmiAmount"]
+                    # print("paidEMIAmt::",paidEMIAmt)
+
+                    # if ed["emiAmount"]:
+                    emiAmt = ed["emiAmount"]
+                    # print("emiAmt::",emiAmt)
+
+                    pp_f = round((paidEMIAmt / emiAmt) * 100, 0)
+
+                    if pp_f >= 70.0:
+                        pp_more_than_70_notice_sent_lid.append(l)
+
+        print("pp_more_than_70_notice_sent_lid::", pp_more_than_70_notice_sent_lid)
+
+        pp_more_than_70_noticeSent_lid_missed_collection = []
+        for n in pp_more_than_70_notice_sent_lid:
+            if n not in case_lid:
+                pp_more_than_70_noticeSent_lid_missed_collection.append(n)
+
+        if len(pp_more_than_70_noticeSent_lid_missed_collection) > 0:
+            print(
+                f"Error:: missing of pp_more_than_70_notice_sent found with collection::{pp_more_than_70_noticeSent_lid_missed_collection}")
+            assert False
+        else:
+            print("*** paid percentage inside notice sent is below 70 % ***")
