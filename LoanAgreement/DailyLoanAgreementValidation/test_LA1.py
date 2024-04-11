@@ -335,19 +335,20 @@ class TestDashRepo:
         loanEndDateFromD2 = datetime.strftime(loanEndDateTimeFromY2, '%d-%m-%Y')
         loanEndDate2 = str(loanEndDateFromD2).split(" ")[0]
 
-        # try:
-        #     if loanEndDate in firstPage:
-        #         print(f" *** 'loanEndDate' :'{loanEndDate}' is matched with LOAN DETAILS in first Page of pdf *** ")
-        #
-        #     # assert loanEndDate in firstPage, "loanEndDate is matched with LOAN DETAILS in first Page of pdf"
-        #
-        # except:
-        #     if loanEndDate2 in firstPage:
-        #         print(f" *** 'loanEndDate2' :'{loanEndDate2}' is matched with LOAN DETAILS in first Page of pdf *** ")
-        #     else:
-        #         print(f"Error :: 'loanEndDate2' :'{loanEndDate2}' is not matched with LOAN DETAILS in first Page of pdf ")
-        #
-        #     # assert loanEndDate2 in firstPage, "loanEndDate2 is matched with LOAN DETAILS in first Page of pdf"
+
+        try:
+            if loanEndDate in firstPage:
+                print(f" *** 'loanEndDate' :'{loanEndDate}' is matched with LOAN DETAILS in first Page of pdf *** ")
+
+            # assert loanEndDate in firstPage, "loanEndDate is matched with LOAN DETAILS in first Page of pdf"
+
+        except:
+            if loanEndDate2 in firstPage:
+                print(f" *** 'loanEndDate2' :'{loanEndDate2}' is matched with LOAN DETAILS in first Page of pdf *** ")
+            else:
+                print(f"Error :: 'loanEndDate2' :'{loanEndDate2}' is not matched with LOAN DETAILS in first Page of pdf ")
+
+            assert loanEndDate2 in firstPage, "loanEndDate2 is matched with LOAN DETAILS in first Page of pdf"
 
 
         '''CHARGES (All charges are non-refundable & applicable post disbursement of loan)'''
@@ -627,26 +628,7 @@ class TestDashRepo:
         assert totalPeriod in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
 
-        #COMMENCING FROM
-        # LoanDisbursementDate = driver.find_element(By.XPATH,"//tr[contains(@class,'mat-row cdk-row loan-history-row bg-greywhite ng-star-inserted')]//td[6]//div").text
-        LoanDisbursementDate = driver.find_element(By.XPATH,"(//div[@class='mobile-text fnt-size-12 ng-star-inserted'])[3]").text
-        commencingFrom = LoanDisbursementDate.replace('/','-')
-        time.sleep(1)
 
-        # try:
-        #     if commencingFrom in fourthPage:
-        #         print(f" *** 'commencingFrom' :'{commencingFrom}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
-        #     else:
-        #         print(f"Exception :: 'commencingFrom' :'{commencingFrom}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
-        #
-        #     assert commencingFrom in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
-        #
-        # except:
-        #     if 'Date of Signing' in firstPage:
-        #         index1 = firstPage.index('Date of Signing')
-        #         index2 = firstPage.index('Name of Borrower')
-        #         text = firstPage[index1 + 28:index2]
-        #         print(f"By pdf :: {text}")
 
 
 
@@ -845,53 +827,23 @@ class TestDashRepo:
 
         assert penalInterestPerDay in fourthPage, "penalInterestPerDay is matched with SECURITY DOCUMENTS section in fourth Page of pdf"
 
-        # # Penal interest per annum
-        # try:
-        #     penalInterestPerAnnum = latePaymentChargePerAnnualString
-        #     if penalInterestPerAnnum in fourthPage:
-        #         print(f" *** 'penalInterestPerAnnum' :'{penalInterestPerAnnum}' is matched with SECURITY DOCUMENTS section in fourth Page of pdf *** ")
-        #     else:
-        #         print(f"Exception :: 'penalInterestPerAnnum' :'{penalInterestPerAnnum}' is not matched with SECURITY DOCUMENTS section in fourth Page of pdf ")
-        #
-        #     # assert penalInterestPerAnnum in fourthPage, "penalInterestPerAnnum is matched with SECURITY DOCUMENTS section in fourth Page of pdf"
-        #
-        # except:
-        #     try:
-        #         penalInterestPerAnnum2 = latePaymentChargePerAnnualString2
-        #         if penalInterestPerAnnum2 in fourthPage:
-        #             print(
-        #                 f" *** 'penalInterestPerAnnum2' :'{penalInterestPerAnnum2}' is matched with SECURITY DOCUMENTS section in fourth Page of pdf *** ")
-        #         else:
-        #             print(f"Exception :: 'penalInterestPerAnnum2' :'{penalInterestPerAnnum2}' is not matched with SECURITY DOCUMENTS section in fourth Page of pdf ")
-        #
-        #         # assert penalInterestPerAnnum2 in fourthPage, "penalInterestPerAnnum2 is matched with SECURITY DOCUMENTS section in fourth Page of pdf"
-        #     except:
-        #         penalInterestPerAnnum3 = latePaymentChargePerAnnualString3
-        #         if penalInterestPerAnnum3 in fourthPage:
-        #             print(
-        #                 f" *** 'penalInterestPerAnnum3' :'{penalInterestPerAnnum3}' is matched with SECURITY DOCUMENTS section in fourth Page of pdf *** ")
-        #         else:
-        #             print(
-        #                 f"Exception :: 'penalInterestPerAnnum3' :'{penalInterestPerAnnum3}' is not matched with SECURITY DOCUMENTS section in fourth Page of pdf ")
-
-                # assert penalInterestPerAnnum3 in fourthPage, "penalInterestPerAnnum3 is matched with SECURITY DOCUMENTS section in fourth Page of pdf"
 
 
         # Name of Borrower in security document
-        # try:
-        #     if profileName in fourthPage:
-        #         print(f" *** 'profileName':'{profileName}' is matched with security document section in fourth Page of pdf *** ")
-        #     else:
-        #         print(f"Exception :: 'profileName':'{profileName}' is not matched with security document section in fourth Page of pdf ")
-        #
-        #     assert profileName in fourthPage, "profileName is matched with security document section in fourth Page of pdf"
-        #
-        # except:
-        #     if 'Name of Borrower' in firstPage:
-        #         index1 = firstPage.index('Name of Borrower')
-        #         index2 = firstPage.index('NBFC NameChinmay Finlease')
-        #         text = firstPage[index1 + 16:index2]
-        #         print(f"Name by pdf module :: {text}")
+        try:
+            if profileName in fourthPage:
+                print(f" *** 'profileName':'{profileName}' is matched with security document section in fourth Page of pdf *** ")
+            else:
+                print(f"Exception :: 'profileName':'{profileName}' is not matched with security document section in fourth Page of pdf ")
+
+            assert profileName in fourthPage, "profileName is matched with security document section in fourth Page of pdf"
+
+        except:
+            if 'Name of Borrower' in firstPage:
+                index1 = firstPage.index('Name of Borrower')
+                index2 = firstPage.index('NBFC NameChinmay Finlease')
+                text = firstPage[index1 + 16:index2]
+                print(f"Name by pdf module :: {text}")
 
 
         '''Proof of identity'''
@@ -941,23 +893,6 @@ class TestDashRepo:
                 f"Exception :: 'gender':'{gender}' is not matched with Proof of identity section of eighth Page of pdf ")
 
         assert gender in eighthPage, "gender is matched with Proof of identity section of eighth Page of pdf"
-
-
-
-        '''LOAN AGREEMENT'''
-        #Name of Borrower in loan agreement
-        try:
-            if profileName in eighthPage:
-                print(f" *** 'profileName':'{profileName}' is matched with LOAN AGREEMENT section of eighth Page of pdf *** ")
-            else:
-                print(f"Exception :: 'profileName':'{profileName}' is not matched with LOAN AGREEMENT section of eighth Page of pdf ")
-
-            assert profileName in eighthPage, "profileName is matched with LOAN AGREEMENT section of eighth Page of pdf"
-        except:
-            pass
-
-
-
 
 
 
@@ -1048,7 +983,7 @@ class TestDashRepo:
             else:
                 print(f"Exception :: 'loanInterestPerDay' :'{loanInterestPerDay}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
-            # assert loanInterestPerDay in eighthPage, "loanInterestPerDay is matched with LOAN AGREEMENT in eighth Page of pdf"
+            assert loanInterestPerDay in eleventhPage, "loanInterestPerDay is matched with LOAN AGREEMENT in eleventhPage Page of pdf"
 
         except:
             try:
@@ -1059,7 +994,7 @@ class TestDashRepo:
                     print(
                         f"Exception :: 'loanInterestPerDay2' :'{loanInterestPerDay2}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
-                # assert loanInterestPerDay2 in eighthPage, "loanInterestPerDay is matched with LOAN AGREEMENT in eighth Page of pdf"
+                # assert loanInterestPerDay2 in eleventhPage, "loanInterestPerDay is matched with LOAN AGREEMENT in eleventhPage of pdf"
 
             except:
 
@@ -1070,7 +1005,7 @@ class TestDashRepo:
                     print(
                         f"Error :: 'loanInterestPerDay3' :'{loanInterestPerDay3}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
 
-                # assert loanInterestPerDay3 in eighthPage, "loanInterestPerDay3 is matched with LOAN AGREEMENT in eighth Page of pdf"
+                # assert loanInterestPerDay3 in eleventhPage, "loanInterestPerDay3 is matched with LOAN AGREEMENT in eleventhPage of pdf"
 
         #per annum
 
@@ -1100,34 +1035,6 @@ class TestDashRepo:
 
         assert latePaymentChargePerDayString in eleventhPage, "latePaymentChargePerDayString is matched with LOAN AGREEMENT in eleventhPage of pdf"
 
-        # per annum
-        # try:
-        #     if latePaymentChargePerAnnualString in eleventhPage:
-        #         print(f" *** 'latePaymentChargePerAnnualString' :'{latePaymentChargePerAnnualString}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
-        #     else:
-        #         print(f"Exception :: 'latePaymentChargePerAnnualString' :'{latePaymentChargePerAnnualString}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
-        #
-        #     assert latePaymentChargePerAnnualString in eleventhPage, "latePaymentChargePerAnnualString is matched with LOAN AGREEMENT in eleventhPage of pdf"
-        #
-        # except:
-        #     try:
-        #         if latePaymentChargePerAnnualString2 in eleventhPage:
-        #             print(
-        #                 f" *** 'latePaymentChargePerAnnualString2' :'{latePaymentChargePerAnnualString2}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
-        #         else:
-        #             print(
-        #                 f"Exception :: 'latePaymentChargePerAnnualString2' :'{latePaymentChargePerAnnualString2}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
-        #
-        #         assert latePaymentChargePerAnnualString2 in eleventhPage, "latePaymentChargePerAnnualString2 is matched with LOAN AGREEMENT in eleventhPage of pdf"
-        #     except:
-        #         if latePaymentChargePerAnnualString3 in eleventhPage:
-        #             print(
-        #                 f" *** 'latePaymentChargePerAnnualString3' :'{latePaymentChargePerAnnualString3}' is matched with LOAN AGREEMENT in eleventhPage of pdf *** ")
-        #         else:
-        #             print(
-        #                 f"Error :: 'latePaymentChargePerAnnualString3' :'{latePaymentChargePerAnnualString3}' is not matched with LOAN AGREEMENT in eleventhPage of pdf ")
-        #
-        #         assert latePaymentChargePerAnnualString3 in eleventhPage, "latePaymentChargePerAnnualString3 is matched with LOAN AGREEMENT in eleventhPage of pdf"
 
         '''Borrower Name in twelthPage page'''
 

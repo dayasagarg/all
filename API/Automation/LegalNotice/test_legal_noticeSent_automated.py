@@ -14,7 +14,7 @@ end_2_F = datetime.strptime(end_2, "%Y-%m-%d")  # string to date format
 start_2 = end_2_F - timedelta(days=15)
 start_2_DateStr = datetime.strftime(start_2, "%Y-%m-%d")
 
-start_3 = end_2_F - timedelta(days=13)
+start_3 = end_2_F - timedelta(days=30)
 start_3_DateStr = datetime.strftime(start_3, "%Y-%m-%d")
 
 end = end_2_F - timedelta(days=7)
