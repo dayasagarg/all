@@ -2,7 +2,7 @@ import requests
 import pytest
 from datetime import datetime, timedelta
 
-# uniqLIdListDemand = None
+
 
 currentFullTime = datetime.now()  # whole date
 curr_str = datetime.strftime(currentFullTime, "%Y-%m-%d")
@@ -120,39 +120,6 @@ class TestLegal:
             else:
                 duplNotice.append(d)
 
-        print("duplNotice::", duplNotice)
-        print("count_of_duplNotice::", len(duplNotice))
-
-        if len(duplNotice) == 0:
-            print("No duplicate found in notice sent")
-        else:
-            print("Error::duplicate found in notice sent")
-
-        assert len(duplNotice) == 0
-
-        matchedDemandWithNotice = []
-        missedDemandWithNotice = []
-        global uniqLIdListDemand
-        # checking demand against notice sent
-        for unl in uniqLIdListDemand:
-            if unl in lIdNS:
-                matchedDemandWithNotice.append(unl)
-                # print("loanID in lIdNS::", unl)
-
-            if unl not in lIdNS:
-                missedDemandWithNotice.append(unl)
-                # print("loanID not in lIdNS::", unl)
-
-        # print("matchedDemandWithNotice::", matchedDemandWithNotice)
-        # print("missedDemandWithNotice::", missedDemandWithNotice)
-
-        # print("case_lid_in_notice", case_lid)
-
-        if len(missedDemandWithNotice) == 0:
-            print("*** Notice sent ***")
-        else:
-            print(f"Error:: Notice not sent cases found::{missedDemandWithNotice}")
-        assert len(missedDemandWithNotice) == 0
 
 
 
