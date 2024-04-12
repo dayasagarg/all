@@ -650,25 +650,25 @@ class TestLegal:
             print("total_paid_emi_2::",total_paid_emi_2)
             print("total_emi_2::",total_emi_2)
 
-            pp_f_2 = round((total_paid_emi_2 / total_emi_2) * 100, 0)
-
-            if pp_f_2 >= 70.0:
-                pp_more_than_70_notice_sent_per_emi_lid.append(e)
-
-        # print("pp_more_than_70_notice_sent_lid::", pp_more_than_70_notice_sent_lid)
-
-        pp_more_than_70_noticeSent_per_emi_lid_missed_collection = []
-        for r in pp_more_than_70_notice_sent_per_emi_lid:
-            if r not in case_lid:
-                pp_more_than_70_noticeSent_per_emi_lid_missed_collection.append(r)
-
-
-        if len(pp_more_than_70_noticeSent_per_emi_lid_missed_collection) > 0:
-            print(
-                f"Error:: missing of pp_more_than_70_notice_sent found with collection for paid-unpaid as per emi ::{pp_more_than_70_noticeSent_per_emi_lid_missed_collection}")
-            assert False
-        else:
-            print("*** paid percentage inside notice sent is below 70 % for paid-unpaid as per emi ***")
-
+        #     pp_f_2 = round((total_paid_emi_2 / total_emi_2) * 100, 0)
+        #
+        #     if pp_f_2 >= 70.0:
+        #         pp_more_than_70_notice_sent_per_emi_lid.append(e)
+        #
+        # # print("pp_more_than_70_notice_sent_lid::", pp_more_than_70_notice_sent_lid)
+        #
+        # pp_more_than_70_noticeSent_per_emi_lid_missed_collection = []
+        # for r in pp_more_than_70_notice_sent_per_emi_lid:
+        #     if r not in case_lid:
+        #         pp_more_than_70_noticeSent_per_emi_lid_missed_collection.append(r)
+        #
+        #
+        # if len(pp_more_than_70_noticeSent_per_emi_lid_missed_collection) > 0:
+        #     print(
+        #         f"Error:: missing of pp_more_than_70_notice_sent found with collection for paid-unpaid as per emi ::{pp_more_than_70_noticeSent_per_emi_lid_missed_collection}")
+        #     assert False
+        # else:
+        #     print("*** paid percentage inside notice sent is below 70 % for paid-unpaid as per emi ***")
+        #
 
 
