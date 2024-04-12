@@ -531,7 +531,6 @@ class TestLegal:
             assert False
         else:
             print("*** paid percentage inside filing in progress is below 70 % ***")
-
     @pytest.mark.skip
     def test_notice_sent_unpaid_emi_total_70(self, url):
 
@@ -539,7 +538,7 @@ class TestLegal:
 
         pp_more_than_70_notice_sent_lid = []
 
-        for o,l in enumerate(lIdNS):
+        for o, l in enumerate(lIdNS):
             # if o == 5:
             #     break
             emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
@@ -600,8 +599,6 @@ class TestLegal:
         else:
             print("*** paid percentage inside notice sent is below 70 % for unpaid total ***")
 
-            
-
     def test_notice_sent_paid_unpaid_as_per_emi_70(self, url):
 
         global paidEMIAmt, emiAmt
@@ -657,7 +654,6 @@ class TestLegal:
         for r in pp_more_than_70_notice_sent_per_emi_lid:
             if r not in case_lid:
                 pp_more_than_70_noticeSent_per_emi_lid_missed_collection.append(r)
-
 
         if len(pp_more_than_70_noticeSent_per_emi_lid_missed_collection) > 0:
             print(

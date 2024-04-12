@@ -684,7 +684,7 @@ class TestDashRepo:
                             disburse = loanAmountInt - (processChargeInt + docChargFloat + onlineConvCharge + sgstFloat + cgstFloat)
                             disFloat = str(math.ceil(disburse-1))
                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
-                            if disbursement in thirdPage:
+                            if disbursement in fourthPage:
                                 print(
                                     f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                             else:
@@ -699,7 +699,7 @@ class TestDashRepo:
                             disFloat = str(math.ceil(disburse - 2))
                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
 
-                            if disbursement in thirdPage:
+                            if disbursement in fourthPage:
                                 print(
                                     f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                             else:
@@ -715,7 +715,7 @@ class TestDashRepo:
                                         processChargeInt + docChargFloat + onlineConvCharge + sgstFloat + cgstFloat)
                             disFloat = str(math.ceil(disburse))
                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
-                            if disbursement in thirdPage:
+                            if disbursement in fourthPage:
                                 print(
                                     f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                             else:
@@ -730,7 +730,7 @@ class TestDashRepo:
                                 disburse = loanAmountInt - (processChargeInt + docChargFloat + onlineConvCharge + sgstFloat + cgstFloat)
                                 disFloat = str(math.ceil(disburse))
                                 disbursement = "₹" + disFloat[0:1] + "," + disFloat[1:]
-                                if disbursement in thirdPage:
+                                if disbursement in fourthPage:
                                     print(
                                         f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                                 else:
@@ -746,7 +746,7 @@ class TestDashRepo:
                                     disFloat = str(math.ceil(disburse-1))
                                     disbursement = "₹" + disFloat[0:1] + "," + disFloat[1:]
 
-                                    if disbursement in thirdPage:
+                                    if disbursement in fourthPage:
                                         print(
                                             f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                                     else:
@@ -763,7 +763,7 @@ class TestDashRepo:
                                                     processChargeInt + docChargFloat + onlineConvCharge + sgstFloat2 + cgstFloat2)
                                             disFloat = str(math.ceil(disburse ))
                                             disbursement = "₹" + disFloat[0:1] + "," + disFloat[1:]
-                                            if disbursement in thirdPage:
+                                            if disbursement in fourthPage:
                                                 print(
                                                     f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                                             else:
@@ -777,7 +777,7 @@ class TestDashRepo:
                                                     processChargeInt + docChargFloat + onlineConvCharge + sgstFloat2 + cgstFloat2)
                                             disFloat = str(math.ceil(disburse ))
                                             disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
-                                            if disbursement in thirdPage:
+                                            if disbursement in fourthPage:
                                                 print(
                                                     f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                                             else:
@@ -793,7 +793,7 @@ class TestDashRepo:
                                         disFloat = str(math.ceil(disburse - 1))
                                         disbursement = "₹" + disFloat[0:2] + "," + disFloat[2:]
 
-                                        if disbursement in thirdPage:
+                                        if disbursement in fourthPage:
                                             print(
                                                 f" *** 'disbursement' :'{disbursement}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
                                         else:
