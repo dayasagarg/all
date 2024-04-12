@@ -646,6 +646,10 @@ class TestLegal:
             total_paid_emi_2 = sum(paid_emi_2)
             total_emi_2 = sum(emi_amt_2)
 
+            print("lid::",e)
+            print("total_paid_emi_2::",total_paid_emi_2)
+            print("total_emi_2::",total_emi_2)
+
             pp_f_2 = round((total_paid_emi_2 / total_emi_2) * 100, 0)
 
             if pp_f_2 >= 70.0:
