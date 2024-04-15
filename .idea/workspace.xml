@@ -30,12 +30,6 @@
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/AccWallet/test_accWalletAutomated.py" beforeDir="false" afterPath="$PROJECT_DIR$/all/API/Automation/AccWallet/test_accWalletAutomated.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_filling_in_progress.py" beforeDir="false" afterPath="$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_filling_in_progress.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" beforeDir="false" afterPath="$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Repayment/test_repay_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/all/API/Automation/Repayment/test_repay_3.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Repayment/test_transaction_repay_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/all/API/Automation/Repayment/test_transaction_repay_check.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/input.json" beforeDir="false" afterPath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/input.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
