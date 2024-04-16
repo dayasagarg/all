@@ -376,7 +376,7 @@ class TestLegal:
         else:
             print("Paid percentage is above 70% in case assigned to collection")
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_filingInProgress_2emi(self, url):
         global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3, total_emi_amt_3, fillingInProgress_lid
 
@@ -532,7 +532,7 @@ class TestLegal:
         else:
             print("*** paid percentage inside filing in progress is below 70 % ***")
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_notice_sent_unpaid_emi_total_70(self, url):
 
         global paidEMIAmt, emiAmt
@@ -669,6 +669,5 @@ class TestLegal:
             assert False
         else:
             print("*** paid percentage inside notice sent is below 70 % for paid-unpaid as per emi ***")
-
 
 

@@ -40,7 +40,7 @@ class TestRepayment:
 #
 #
 
-    def test_using_per_loan_id(self):
+    def test_using_per_loan_id_ontime_user(self):
 
         global emiDataTotalReceived, totalTransAmt, j
 
@@ -132,3 +132,91 @@ class TestRepayment:
             print("Error: Lists have different lengths.")
 
 
+
+    def test_using_per_loan_id_except_ontime_user(self):
+
+        global emiDataTotalReceived_eo, totalTransAmt_eo
+
+        emiDataTotalReceived_eo = []
+        emi_lid_eo = []
+
+        for m,k in enumerate(lIDs):
+            # if m == 5:
+            #     break
+
+            response = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": k},
+                verify=False)  # current date
+
+            # print('status code of get Repayment::', response.status_code)
+            # print(response.json())
+
+            data = response.json()["data"]
+            # print(emiData)
+
+            if data['loanStatus'] != 'OnTime':
+                emi_lid_eo.append(k)
+
+                emiData = data["EMIData"]
+
+                if data["totalReceived"]:
+                    emiDataTotalReceived_eo.append(data["totalReceived"])
+
+
+
+
+        totalTransAmt_n_eo = []
+        for n,l in enumerate(emi_lid_eo):
+            # if n == 5:
+            #     break
+
+            response = requests.get(
+                "https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": l},
+                verify=False)  # current date
+
+            # print('status code of get Repayment::', response.status_code)
+            # print(response.json())
+
+            transData = response.json()["data"]
+
+            trans_amt_eo = []
+            for t in transData:
+                if t["Status"] == "COMPLETED":
+
+                    if t["Repay Amount"]:
+                        trans_amt_eo.append(t["Repay Amount"])
+
+            totalTransAmt_eo = sum(trans_amt_eo)
+
+            if totalTransAmt_eo:
+                totalTransAmt_n_eo.append(totalTransAmt_eo)
+
+
+
+        # print("totalTransAmt_eo::",totalTransAmt_eo)
+        # print("totalTransAmt_n_eo::", totalTransAmt_n_eo)
+
+
+        # print("emiDataTotalReceived_eo::", emiDataTotalReceived_eo)
+        print("emi_lid_eo::",emi_lid_eo)
+
+        if len(emiDataTotalReceived_eo) == len(totalTransAmt_n_eo):
+            differences_eo = []  # Initialize an empty list to store the differences
+
+            # Iterate through the lists and calculate the differences
+            for o in range(len(emiDataTotalReceived_eo)):
+                diff_eo = emiDataTotalReceived_eo[o] - totalTransAmt_n_eo[o]
+                differences_eo.append(diff_eo)
+
+                if diff_eo > 0:
+                    print(f"difference more than 0 found in between EMI and Transaction on total amount except ontime users::",diff_eo)
+                    assert False, "difference more than 0 found in between EMI and Transaction on total amount except ontime users"
+                else:
+                    print("*** No difference found for EMI and transaction on total amount except ontime users ***")
+
+
+            # Print or use the list of differences as needed
+            print(f"Differences between corresponding elements between total receivable in EMI and Paid amount in transaction other than ontime users:",differences_eo)
+
+        else:
+            print("Error: Lists have different lengths other than ontime users.")

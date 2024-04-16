@@ -30,6 +30,7 @@
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all/API/Automation/AccWallet/test_accWalletAutomated.py" beforeDir="false" afterPath="$PROJECT_DIR$/all/API/Automation/AccWallet/test_accWalletAutomated.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +45,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/all" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -118,21 +119,21 @@
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_accWalletAutomated.py">
+  <component name="RunManager" selected="Python tests.pytest in test_repay_3.py">
     <configuration name="pytest in test_LA3.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -142,31 +143,14 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest in test_accWalletAutomated.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/all/API/Automation/AccWallet" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/all/API/Automation/AccWallet/test_accWalletAutomated.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -176,14 +160,14 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/all/API/Automation/LegalNotice" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/LegalNotice" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_filling_in_progress.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_filling_in_progress.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -193,20 +177,37 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/all/API/Automation/LegalNotice" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/LegalNotice" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_noticeSent_automated.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_repay_3.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/Repayment" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/Repayment/test_repay_3.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_accWalletAutomated.py" />
+        <item itemvalue="Python tests.pytest in test_repay_3.py" />
         <item itemvalue="Python tests.pytest in test_legal_filling_in_progress.py" />
         <item itemvalue="Python tests.pytest in test_legal_noticeSent_automated.py" />
         <item itemvalue="Python tests.pytest in test_LA4.py" />

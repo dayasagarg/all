@@ -121,9 +121,6 @@ class TestLegal:
                 duplNotice.append(d)
 
 
-
-
-
     def test_case_assign_to_collection_1(self):
         global paidPrincipleInterest, principleInterest, cal_less_than_70, case_lid
         case_data = caseAssigned.json()["data"]["rows"]
@@ -191,5 +188,6 @@ class TestLegal:
             assert False
         else:
             print("*** paid percentage inside notice sent is below 70 % per emi ***")
+
 
 
