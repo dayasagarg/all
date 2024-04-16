@@ -118,7 +118,7 @@
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_legal_filling_in_progress.py">
+  <component name="RunManager" selected="Python tests.pytest in test_accWalletAutomated.py">
     <configuration name="pytest in test_LA3.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
@@ -206,8 +206,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_legal_filling_in_progress.py" />
         <item itemvalue="Python tests.pytest in test_accWalletAutomated.py" />
+        <item itemvalue="Python tests.pytest in test_legal_filling_in_progress.py" />
         <item itemvalue="Python tests.pytest in test_legal_noticeSent_automated.py" />
         <item itemvalue="Python tests.pytest in test_LA4.py" />
         <item itemvalue="Python tests.pytest in test_LA3.py" />
