@@ -148,7 +148,7 @@ class TestLegal:
             print(f"Error:: paid percentage more than 70 found for 2 emi in fillingInProgress ::{pp_2emi_miss_in_ca_lid_f}")
             assert False
         else:
-            print("*** remaining paid percentage less than 70 for 2 emi in fillingInProgress ***")
+            print("*** paid percentage less than 70 for 2 emi in fillingInProgress ***")
     #
     #
 
@@ -202,7 +202,7 @@ class TestLegal:
             print(f"Error:: paid percentage more than 70 found for 3 emi in fillingInProgress::{pp_3emi_miss_in_ca_lid}")
             assert False
         else:
-            print("*** remaining paid percentage less than 70 for 3 emi in fillingInProgress ***")
+            print("*** paid percentage less than 70 for 3 emi in fillingInProgress ***")
 
 
     # @pytest.mark.skip

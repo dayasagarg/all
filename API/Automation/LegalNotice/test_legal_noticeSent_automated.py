@@ -362,7 +362,6 @@ class TestLegal:
         # print("perc_loanId:: ",perc_loanId)
         #
 
-    #
 
     # @pytest.mark.skip
     def test_case_assign_to_collection_2(self):
@@ -376,7 +375,7 @@ class TestLegal:
         else:
             print("Paid percentage is above 70% in case assigned to collection")
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_filingInProgress_2emi(self, url):
         global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3, total_emi_amt_3, fillingInProgress_lid
 
@@ -483,9 +482,9 @@ class TestLegal:
                 f"Error:: paid percentage more than 70 found for 3 emi in fillingInProgress::{pp_3emi_miss_in_ca_lid}")
             assert False
         else:
-            print("*** remaining paid percentage less than 70 for 3 emi in fillingInProgress ***")
+            print("*** paid percentage less than 70 for 3 emi in fillingInProgress ***")
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_filingInprogress_emi_70(self, url):
 
         global paidEMIAmt, emiAmt

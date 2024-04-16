@@ -119,17 +119,17 @@ class TestRepayment:
                 differences.append(diff)
 
                 if diff > 0:
-                    print(f"difference more than 0 found in between EMI and Transaction::",diff)
-                    assert False, "difference more than 0 found in between EMI and Transaction"
+                    print(f"difference more than 0 found in between EMI and Transaction for ontime users::",diff)
+                    assert False, "difference more than 0 found in between EMI and Transaction for ontime users"
                 else:
-                    print("*** No difference in EMI and transaction amount ***")
+                    print("*** No difference in EMI and transaction amount for ontime users ***")
 
 
             # Print or use the list of differences as needed
-            print(f"Differences between corresponding elements between total receivable in EMI and Paid amount in transaction:",differences)
+            print(f"Differences between corresponding elements between total receivable in EMI and Paid amount in transaction for ontime users:",differences)
 
         else:
-            print("Error: Lists have different lengths.")
+            print("Error: Lists have different lengths for ontime users.")
 
 
 
