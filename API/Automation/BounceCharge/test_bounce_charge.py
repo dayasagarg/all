@@ -194,8 +194,56 @@ class TestBounce:
         else:
             print("No bounce charge missed for bounceChMissed_LId_unique_total_autodebit")
 
+    def test_no_need_bounce_charg_autodebit_total(self, bcURL):
+        global autoDebitData
 
-    # @pytest.mark.skip
+        autoDebitData_2 = autoDebitFailedAPI.json()["data"]["finalData"]
+        # print(autoDebitData)
+        bounceChMissed_LId_2_n = []
+        aut_failed_loan_ids_2_n = []
+
+
+        for ad in autoDebitData_2:
+
+            # if ad["AD Response date"] == "05-02-2024":
+
+            if ad["Today's EMI status"] == "FAILED":
+                if ad["Loan ID"]:
+                    aut_failed_loan_ids_2_n.append(ad["Loan ID"])
+                # print(ad)
+
+        # print("autdebit_failed_loan_ids_2_count::", len(aut_failed_loan_ids_2))
+        # print("autodebit_failed_loan_ids_2::",aut_failed_loan_ids_2)
+
+        for f in aut_failed_loan_ids_2_n:
+            emiAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                                  params={"loanId": f}, verify=False)
+            # print(emiAPI.json())
+            emiAPI_data_2 = emiAPI.json()["data"]["EMIData"]
+
+            for ed in emiAPI_data_2:
+                if ed["penaltyDays"] == 0:
+
+                    # if ed["emiDate"] == "08/02/2024":
+
+                    if ed["bounceCharge"] > 0:
+                        bounceChMissed_LId_2_n.append(f)
+
+        bounceCh_LId_unique_not_required = []
+
+        [bounceCh_LId_unique_not_required.append(ul) for ul in bounceChMissed_LId_2_n if ul not in bounceCh_LId_unique_not_required]
+
+
+
+        if len(bounceCh_LId_unique_not_required) > 0:
+            print(f"Error::bounce charge found ::{bounceCh_LId_unique_not_required}")
+            assert False
+        else:
+            print("*** No bounce charge found on same day pay ***")
+
+
+
+    @pytest.mark.skip
     def test_bounceCharge_repayStatus_unpaid(self, bcURL):
         global emiRepaymentStatus_data
 
@@ -246,7 +294,7 @@ class TestBounce:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay ***")
 
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_bounceCharge_repayStatus_total(self, bcURL):
         global emiRepaymentStatus_data_2
 
@@ -296,48 +344,6 @@ class TestBounce:
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_3_total_emi_repay ***")
 
-
-
-
-    @pytest.mark.skip
-    def test_date_val(self, bcURL):
-
-        emi_aut_status = []
-        emi_ers_status = []
-
-        for aut in autoDebitData:
-            if aut["Today's EMI status"] != "FAILED":
-                emi_aut_status.append(aut["Loan ID"])
-
-        for ers in emiRepaymentStatus_data:
-            if ers["Loan ID"]:
-                emi_ers_status.append(ers["Loan ID"])
-
-        emiDate = []
-        for o in emi_ers_status:
-
-            emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
-                               params={"loanId": o, "encoding": 'utf-8', "errors": 'ignore'})
-
-            emiD = emi.json()["data"]["EMIData"]
-
-            for e in emiD:
-                if e["emiDate"] == e["repaymentDate"]:
-                    if e["penaltyDays"] != 0:
-                        emiDate.append(o)
-
-        print("emiDate::", emiDate)
-
-
-
-            # emi_ers_status.append(ers["Loan ID"])
-
-                # # if ers["Payment type"] == "AUTODEBIT":
-                # if aut["EMI date"] != ers["Emi date"]:
-                #     emi_date_miss_match_aut_ers.append(ers["Loan ID"])
-
-        # print("emi_ers_status::",emi_ers_status)
-        # print("emi_aut_status::",emi_aut_status)
 
 
 
