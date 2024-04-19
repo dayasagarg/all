@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e6bd174e-606d-432a-9fcc-a90df17ec2d4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/API/Automation/Disburesement/test_disb_cibil_pl.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_filling_in_progress.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated_2.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb/test_loan_agreem_disb_updation.py" afterDir="false" />
@@ -15,8 +16,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/pythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonProject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/BankStatement/test_bankStatement.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/BankStatement/test_bankStatement.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/BounceCharge/test_bounce_charge.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/BounceCharge/test_bounce_charge.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/DemandLetter/test_missLIDAutomated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/DemandLetter/test_missLIDAutomated.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/Disburesement/test_risk.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/EMIAutodebit/test_emiAutoDebitLIDAutomated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/EMIAutodebit/test_emiAutoDebitLIDAutomated.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_autodebit.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/legal_autodebit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" afterDir="false" />
@@ -25,6 +28,7 @@
       <change beforePath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_interest.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_interest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/Refund/test_refund_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/Refund/test_refund_3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/Repayment/test_repay_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_repay_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/UnpaidStatusOfCompletedEmi/test_unpaid_of_completed_loans_automated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/UnpaidStatusOfCompletedEmi/test_unpaid_of_completed_loans_automated.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Legal/test_legal.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Legal/test_legal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/input.json" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/input.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py" afterDir="false" />
@@ -32,336 +36,6 @@
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/all" beforeDir="false" afterPath="$PROJECT_DIR$/all" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/.idea/pythonProject.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/.idea/API.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/AccountValidation/1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/AccountValidation/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/AccountValidation/accountInDetail.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/AccountValidation/test_accWallet.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/AccountValidation/test_accWalletAutomated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/AccountValidation/test_accountDisRep.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/AccountValidation/test_accountDisRepAutomated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/AccDibRepay/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/AccDibRepay/test_accDR_edit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/AccDibRepay/test_accountDisRepAutomated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/AccWallet/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/AccWallet/test_accWalletAutomated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/BankStatement/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/BankStatement/test_bankStatement.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/BounceCharge/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/BounceCharge/test_bounce_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/BounceCharge/test_bounce_3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/BounceCharge/test_bounce_charge.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/BounceCharge/test_bounce_charge_2_automated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/BounceCharge/test_bounce_charge_3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/DemandLetter/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/DemandLetter/test_missLIDAutomated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/DemandLetter/test_sample.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Disburesement/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Disburesement/test_risk.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/EMIAutodebit/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/EMIAutodebit/test_emiAutoDebitLIDAutomated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/GetRecoevryRate/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/GetRecoevryRate/conf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/GetRecoevryRate/test_recovery_rate.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LegalNotice/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LegalNotice/legal_autodebit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_filling_in_progress.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_noticeSent_automated_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LoanAgrVsloanDisb/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LoanAgrVsloanDisb/test_loan_agr_and_disb.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LoanAgrVsloanDisb/test_loan_agreem_disb_updation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LoanClose/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LoanClose/test_loan_close_latest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/LoanClose/test_loan_close_status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/NegativeTest/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/NegativeTest/conftest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/NegativeTest/test_negative_disb_loan_amt.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/NegativeTest/test_negative_disb_loan_emi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/NegativeTest/test_negative_disb_loan_interest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/NegativeTest/test_negative_disb_loan_tenure.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Refund/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Refund/test_refund.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Refund/test_refund_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Refund/test_refund_3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Repayment/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Repayment/test_emi_transaction_total.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Repayment/test_repayAllAutomated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Repayment/test_repay_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Repayment/test_repay_3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Repayment/test_transaction_repay_check.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/UnpaidStatusOfCompletedEmi/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/UnpaidStatusOfCompletedEmi/test_unpaid_of_completed_loans_automated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/BankStatement/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/BankStatement/sample_BS.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/BankStatement/test_bankStatement.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Legal/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Legal/raw.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Legal/raw2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Legal/test_legal.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Legal/test_legal_demand_autodebit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Legal/test_legal_demand_autodebit_automated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Legal/test_legal_demand_noticeSent.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Legal/test_legal_demand_noticeSent_automated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/MissingLoanIDInDemandLetterAPI" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/EMI API/06_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/EMI API/06_09_2023/sam.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/EMI API/06_09_2023/test_emi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/EMI API/08_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/EMI API/08_09_2023/test_emi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/EMI API/11_09_2019/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/EMI API/11_09_2019/test_emi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/EMI API/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/01_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/01_09_2023/api1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/01_09_2023/api2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/01_09_2023/api3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/01_09_2023/api4.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/01_09_2023/api5.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/01_09_2023/sms.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/02_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/02_09_2023/test_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/04_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/04_09_2023/test_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/05_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/05_09_2023/test_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/06_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/06_09_2023/test_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/08_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/08_09_2023/sample.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/08_09_2023/test_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/11_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/11_09_2023/sample.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/11_09_2023/test_api.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/12_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/12_09_2023/sample.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/12_09_2023/test_apiBS.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/12_09_2023/test_standardChartered.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/PreviousDataBankStatementAPI/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Previous/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentDataValidationForSingleUser/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentDataValidationForSingleUser/sam.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentDataValidationForSingleUser/test_1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentDataValidationForSingleUser/test_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentDataValidationForSingleUser/test_repayAll.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentDataValidationForSingleUser/test_repayData.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentDataValidationForSingleUser/test_repayDataAll.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentInterestAmountValidation/1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentInterestAmountValidation/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentInterestAmountValidation/test_repayIntAmt.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentPrincipleVal/1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentPrincipleVal/2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentPrincipleVal/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentPrincipleVal/test_allRepayPrincipleVal.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/RepaymentPrincipleVal/test_allRepayPrincipleVal_automated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/UnpaidStatusOfCompletedEmi/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/UnpaidStatusOfCompletedEmi/a.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/UnpaidStatusOfCompletedEmi/test_unpaid.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/UnpaidStatusOfCompletedEmi/test_unpaid_of_completed_loans_automated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/UpcomingEMIANDRepayment/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/UpcomingEMIANDRepayment/test_emiAutoDebitLID.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/UpcomingEMIANDRepayment/test_emiAutoDebitLIDAutomated.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/raw 2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/raw.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/repaySampleAllUsers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/repaySampleSingleUser.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/repaySampleThreeUsers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/sampleForEMIAuto-debit.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/stagingAccDisbRepay.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/stagingAccWallet.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/test2/1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/test2/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/test2/test_2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/test_3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/unix to local time.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/.idea/Appium.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/Project/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/Project/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/Project/test_rough.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/Project/test_sample.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/Project/test_sample2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/Project/test_sample3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/Appium/test_onePlus.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/CardProject/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/CardProject/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/CardProject/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/CardProject/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/CardProject/.idea/pythonProject.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/CardProject/Cards/test_card_loan_disbursed.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/CardProject/Cards/test_card_todays_part_payment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/CardProject/Cards/test_card_todays_repayment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/CardProject/sample/report.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoadTest/.idea/LoadTest.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoadTest/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoadTest/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoadTest/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoadTest/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoadTest/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoadTest/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoadTest/locust/demo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/.idea/LoanAgreement.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/LA5.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/UAT.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/input.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/input_uat.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/sam.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/sample.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/toModify.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/Folder task/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/Folder task/aaa.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/Folder task/inputData2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/Folder task/test_folder.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/excel_loanAgreementValidation1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/excel_loanAgreementValidation2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/inputData.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/inputData2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/loanAgreementValidationSTD.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/ntest_ID.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/ntest_ID2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/ntest_loanAgVal2Format2(SGST,CGST).py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/ntest_loanAgValFormat1(18%GST).py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/ntest_userv3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/DashProfile/xlutls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA25-08-2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA25-08-2023/input_25-08-2023.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA25-08-2023/test_LA1_25-08-2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA25-08-2023/test_LA2_25-08-2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA25-08-2023/test_LA3_25-08-2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA25-08-2023/test_LA4_25-08-2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA25-08-2023/test_LA5_25_08_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA28_08_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA28_08_2023/input_28_08_2023.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA28_08_2023/test_LA1_28_08_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA28_08_2023/test_LA2_28_08_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA28_08_2023/test_LA3_28_08_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA28_08_2023/test_LA4_28_08_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LA28_08_2023/test_LA5_28_08_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/ML.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/input.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/ntest_LA5.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/report.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/samp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/samp2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/test_LA1.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/test_LA2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/test_LA3.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/LoanAgreement/test_LA4.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/August/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/06_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/06_09_2023/input_06_09_2023.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/06_09_2023/test_LA1_06_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/06_09_2023/test_LA2_06_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/06_09_2023/test_LA3_06_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/06_09_2023/test_LA4_06_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/06_09_2023/test_LA5_06_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/06_09_2023/test_LA6_06_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/06_09_2023/test_LA7_06_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/input_08_09_2023.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/test_LA10_08_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/test_LA1_08_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/test_LA2_08_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/test_LA3_08_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/test_LA4_08_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/test_LA5_08_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/test_LA6_08_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/test_LA7_08_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/test_LA8_08_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/08_09_2023/test_LA9_08_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/11-09-2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/11-09-2023/input_11_09_2023.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/11-09-2023/test_LA1_11_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/11-09-2023/test_LA2_11_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/11-09-2023/test_LA3_11_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/11-09-2023/test_LA4_11_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/11-09-2023/test_LA5_11_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/12-09-2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/12-09-2023/input_12_09_2023.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/12-09-2023/test_LA1_12_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/12-09-2023/test_LA2_12_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/12-09-2023/test_LA3_12_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/12-09-2023/test_LA4_12_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/12-09-2023/test_LA5_12_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA02_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA02_09_2023/folderTask.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA02_09_2023/inputData2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA02_09_2023/sample.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA04_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA04_09_2023/input_04_09_2023.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA04_09_2023/test_LA1_04_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA04_09_2023/test_LA2_04_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA04_09_2023/test_LA3_04_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA04_09_2023/test_LA4_04_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA04_09_2023/test_LA5_04_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/input_05_09_2023.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/sam.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA10_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA11_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA12_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA13_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA14_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA15_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA1_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA2_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA3_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA4_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA5_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA6_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA7_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA8_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/LA05_09_2023/test_LA9_05_09_2023.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/Sept/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/PreviousData/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/WebApp/WebAppTest/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/WebApp/WebAppTest/test_webApplication.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/WebApp/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/androProject1/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/androProject1/.idea/androProject1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/androProject1/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/androProject1/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/androProject1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/androProject1/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/androProject1/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/androProject1/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/androProject1/appi/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/androProject1/appi/sam.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/except.gitignore" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -414,13 +88,16 @@
     "Python tests.Python tests in test_repay_3.py.executor": "Run",
     "Python tests.Python tests in test_webApplication.py.executor": "Run",
     "Python tests.Python tests in test_working.py.executor": "Run",
+    "Python tests.pytest in DailyLoanAgreementValidation.executor": "Run",
     "Python tests.pytest in test_LA1.py.executor": "Run",
     "Python tests.pytest in test_LA2.py.executor": "Run",
     "Python tests.pytest in test_LA3.py.executor": "Run",
     "Python tests.pytest in test_LA4.py.executor": "Run",
     "Python tests.pytest in test_accWalletAutomated.py.executor": "Run",
     "Python tests.pytest in test_accountDisRepAutomated.py.executor": "Run",
+    "Python tests.pytest in test_bankStatement.py.executor": "Run",
     "Python tests.pytest in test_bounce_charge.py.executor": "Run",
+    "Python tests.pytest in test_disb_cibil_pl.py.executor": "Run",
     "Python tests.pytest in test_emiAutoDebitLIDAutomated.py.executor": "Run",
     "Python tests.pytest in test_emi_transaction_total.py.executor": "Run",
     "Python tests.pytest in test_legal_autodebit.py.executor": "Run",
@@ -437,7 +114,9 @@
     "Python tests.pytest in test_refund_3.py.executor": "Run",
     "Python tests.pytest in test_repay_2.py.executor": "Run",
     "Python tests.pytest in test_repay_3.py.executor": "Run",
+    "Python tests.pytest in test_risk.py.executor": "Run",
     "Python tests.pytest in test_transaction_repay_check.py.executor": "Run",
+    "Python tests.pytest in test_unpaid_of_completed_loans_automated.py.executor": "Run",
     "Python.legal_notice_pp.executor": "Run",
     "Python.sample.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -451,8 +130,8 @@
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_negative_disb_salary.py">
-    <configuration name="pytest in test_LA4.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest in test_unpaid_of_completed_loans_automated.py">
+    <configuration name="pytest in test_LA2.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -465,85 +144,85 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_legal_filling_in_progress.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_LA3.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/LegalNotice" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_filling_in_progress.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_legal_noticeSent_automated.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_disb_cibil_pl.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/LegalNotice" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/Disburesement" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/Disburesement/test_disb_cibil_pl.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_negative_disb_salary.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_missLIDAutomated.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/NegativeTest" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/DemandLetter" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_salary.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/DemandLetter/test_missLIDAutomated.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_repay_3.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_unpaid_of_completed_loans_automated.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/Repayment" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/UnpaidStatusOfCompletedEmi" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/Repayment/test_repay_3.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/UnpaidStatusOfCompletedEmi/test_unpaid_of_completed_loans_automated.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_negative_disb_salary.py" />
-        <item itemvalue="Python tests.pytest in test_repay_3.py" />
-        <item itemvalue="Python tests.pytest in test_legal_filling_in_progress.py" />
-        <item itemvalue="Python tests.pytest in test_legal_noticeSent_automated.py" />
-        <item itemvalue="Python tests.pytest in test_LA4.py" />
+        <item itemvalue="Python tests.pytest in test_unpaid_of_completed_loans_automated.py" />
+        <item itemvalue="Python tests.pytest in test_disb_cibil_pl.py" />
+        <item itemvalue="Python tests.pytest in test_missLIDAutomated.py" />
+        <item itemvalue="Python tests.pytest in test_LA3.py" />
+        <item itemvalue="Python tests.pytest in test_LA2.py" />
       </list>
     </recent_temporary>
   </component>

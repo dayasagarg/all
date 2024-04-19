@@ -4,7 +4,7 @@ from datetime import datetime,timedelta
 import json
 import math
 
-lIDs = []
+
 f_lid = []
 
 
@@ -31,9 +31,10 @@ class TestRepayment:
         # print(loanIDs)
         match = []
         missMatch = []
+        lIDs = []
         for lid in loanIDs:
 
-            if lid["Loan id"] not in lIDs:
+            if lid["Loan id"]:
 
                 lIDs.append(lid["Loan id"])
                 # print(i["Loan id"])
@@ -41,13 +42,15 @@ class TestRepayment:
             else:
                 pass
 
-        # print("unique lids::", lIDs)
+        print("lids::", lIDs)
         print('count of unique lids::', len(lIDs))
 
         unpaid = []
         withoutUnpaid = []
         # Upcoming EMI
-        for i in lIDs:
+        for n,i in enumerate(lIDs):
+            if n == 33:
+                break
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
@@ -64,7 +67,7 @@ class TestRepayment:
 
             '''getting EMIData data of Repayment '''
             emiData = response.json()["data"]["EMIData"]
-            print(emiData)
+            # print(emiData)
 
             # EMI Data
             paymentType = []
@@ -111,13 +114,13 @@ class TestRepayment:
         # print("match::", match)
         # print("missMatch::", missMatch)
 
-        print("unpaid::", unpaid)
-        print("withoutUnpaid::", withoutUnpaid)
+        # print("unpaid::", unpaid)
+        # print("withoutUnpaid::", withoutUnpaid)
 
         if len(unpaid) == 0:
-            print("No unpaid found")
+            print("*** No unpaid found ***")
         else:
-            print("unpaid found")
+            print(f"Error:: unpaid found::{unpaid}")
 
         assert len(unpaid) == 0
 

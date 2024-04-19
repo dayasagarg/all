@@ -603,16 +603,16 @@ class TestDashRepo:
 
         # Total amount to be paid  //*[@class="border-gray bg-mail font-weight-bold ng-star-inserted"]//td[6]
         # totalCost = driver.find_element(By.XPATH,"//div[contains(@class,'font-weight-bold numbers mobile-text')]").text
-        loanOffer = driver.find_element(By.XPATH, "//*[@id='loanDetails']/tbody/tr[1]/td[9]/div").text
+        userSelectedAmt = driver.find_element(By.XPATH, "//*[@id='loanDetails']/tbody/tr[1]/td[10]/div").text
         # print("totalCost::",totalCost)
 
 
-        if loanOffer in fourthPage:
-            print(f" *** 'loanOffer' :'{loanOffer}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
+        if userSelectedAmt in fourthPage:
+            print(f" *** 'userSelectedAmt' :'{userSelectedAmt}' is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf *** ")
         else:
-            print(f"Error :: 'loanOffer' :'{loanOffer}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
+            print(f"Error :: 'userSelectedAmt' :'{userSelectedAmt}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
-        assert loanOffer in fourthPage, "is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
+        assert userSelectedAmt in fourthPage, "is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
 
         #TOTAL PERIOD
@@ -626,8 +626,6 @@ class TestDashRepo:
             print(f"Error :: 'totalPeriod' :'{totalPeriod}' is not matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf ")
 
         assert totalPeriod in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
-
-
 
 
 
