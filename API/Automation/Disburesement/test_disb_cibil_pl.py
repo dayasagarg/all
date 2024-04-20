@@ -10,7 +10,7 @@ class TestLoanDisbCibil:
 
         curr = datetime.now()
         curr_str = datetime.strftime(curr, "%Y-%m-%d")
-        prev = curr - timedelta(days=5)
+        prev = curr - timedelta(days=-1)
         pre_str = datetime.strftime(prev, "%Y-%m-%d")
 
         disAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/dashboard/allDisbursedLoans",
@@ -41,11 +41,11 @@ class TestLoanDisbCibil:
         for r in disAPIData:
             if r["Completed loans"] <= 3:
 
-                if (r["Cibil Score"] < 700) and (r["Pl Score"] < 700):
+                if (r["Cibil Score"] < 700) or (r["Pl Score"] < 700):
                     # print("lid::",r["Loan ID"])
                     cibil_pl_less_than_700_lid.append(r["Loan ID"])
 
-                elif (700 >= r["Cibil Score"] <= 749) and 700 >= r["Pl Score"] <= 749:
+                elif (700 >= r["Cibil Score"] <= 749) or (700 >= r["Pl Score"] <= 749):
                     apprAmt = r["Approved amount"]
                     apprSalary_loan_amt_cal = r["Approved Salary"] * 0.50
                     apprSalary_loan_amt_cal_500_round = apprSalary_loan_amt_cal + 500
@@ -53,7 +53,9 @@ class TestLoanDisbCibil:
                     if apprAmt > apprSalary_loan_amt_cal_500_round:
                         cibil_pl_700_749_out_lid.append(r["Loan ID"])
 
-                elif (r["Approved Salary"] <= 50000) and (750 >= r["Cibil Score"] <= 799) and (750 >= r["Pl Score"] <= 799):
+                elif ((750 >= r["Cibil Score"] <= 799) or (750 >= r["Pl Score"] <= 799)) or (r["Approved Salary"] <= 50000):
+
+                    # print("lid::", r["Loan ID"])
                     # if (750 >= r["Cibil Score"] <= 799) or (750 >= r["Pl Score"] <= 799):
 
                     apprAmt_2 = r["Approved amount"]
@@ -63,18 +65,19 @@ class TestLoanDisbCibil:
                     if apprAmt_2 > apprSalary_loan_amt_cal_500_round_2:
                         cibil_pl_750_799_out_lid.append(r["Loan ID"])
 
-                elif r["Approved Salary"] >= 100000 and (750 >= r["Cibil Score"] <= 799) and (750 >= r["Pl Score"] <= 799):
-                    # if (750 >= r["Cibil Score"] <= 799) or (750 >= r["Pl Score"] <= 799):
+                elif (750 >= r["Cibil Score"] <= 799) or (750 >= r["Pl Score"] <= 799):
+                    if r["Approved Salary"] >= 100000:
+                        # if (750 >= r["Cibil Score"] <= 799) or (750 >= r["Pl Score"] <= 799):
 
-                    apprAmt_3 = r["Approved amount"]
-                    apprSalary_loan_amt_cal_3 = r["Approved Salary"] * 0.75
-                    apprSalary_loan_amt_cal_500_round_3 = apprSalary_loan_amt_cal_3 + 500
+                        apprAmt_3 = r["Approved amount"]
+                        apprSalary_loan_amt_cal_3 = r["Approved Salary"] * 0.75
+                        apprSalary_loan_amt_cal_500_round_3 = apprSalary_loan_amt_cal_3 + 500
 
-                    if apprAmt_3 > apprSalary_loan_amt_cal_500_round_3:
-                        cibil_pl_750_799_1_lac_out_lid.append(r["Loan ID"])
+                        if apprAmt_3 > apprSalary_loan_amt_cal_500_round_3:
+                            cibil_pl_750_799_1_lac_out_lid.append(r["Loan ID"])
 
 
-                elif r["Cibil Score"] >= 800 and r["Pl Score"] >= 800:
+                elif r["Cibil Score"] >= 800 or r["Pl Score"] >= 800:
                     apprAmt_4 = r["Approved amount"]
                     apprSalary_loan_amt_cal_4 = r["Approved Salary"] * 0.75
                     apprSalary_loan_amt_cal_500_round_4 = apprSalary_loan_amt_cal_4 + 500
@@ -188,7 +191,7 @@ class TestLoanDisbCibil:
                     if apprAmt_r > apprSalary_loan_amt_cal_500_round_r:
                         cibil_pl_700_749_out_lid_r.append(s["Loan ID"])
 
-                elif s["Approved Salary"] <= 50000 and (750 >= s["Cibil Score"] <= 799):
+                elif s["Approved Salary"] <= 50000 or (750 >= s["Cibil Score"] <= 799):
                     # if (750 >= r["Cibil Score"] <= 799) or (750 >= r["Pl Score"] <= 799):
 
                     apprAmt_2_r = s["Approved amount"]
@@ -198,7 +201,7 @@ class TestLoanDisbCibil:
                     if apprAmt_2_r > apprSalary_loan_amt_cal_500_round_2_r:
                         cibil_pl_750_799_out_lid_r.append(s["Loan ID"])
 
-                elif s["Approved Salary"] >= 100000 and (750 >= s["Cibil Score"] <= 799):
+                elif s["Approved Salary"] >= 100000 or (750 >= s["Cibil Score"] <= 799):
                     # if (750 >= r["Cibil Score"] <= 799) or (750 >= r["Pl Score"] <= 799):
 
                     apprAmt_3_r = s["Approved amount"]
