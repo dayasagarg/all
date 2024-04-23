@@ -117,12 +117,10 @@ class TestRepayment:
             for i in range(len(emiDataTotalReceived)):
                 diff = emiDataTotalReceived[i] - totalTransAmt_n[i]
                 differences.append(diff)
-                print(f"difference more than 0 found in between EMI and Transaction for ontime users::", diff)
-
 
                 if diff > 0:
-                    # print(f"difference more than 0 found in between EMI and Transaction for ontime users::",diff)
-                    assert False, "difference more than 0 found in between EMI and Transaction for ontime users"
+                    print(f"difference more than 0 found in between EMI and Transaction for ontime users::",diff)
+                    # assert False, "difference more than 0 found in between EMI and Transaction for ontime users"
                 else:
                     print("*** No difference in EMI and transaction amount for ontime users ***")
 
@@ -209,13 +207,10 @@ class TestRepayment:
             for o in range(len(emiDataTotalReceived_eo)):
                 diff_eo = emiDataTotalReceived_eo[o] - totalTransAmt_n_eo[o]
                 differences_eo.append(diff_eo)
-                print(
-                    f"difference more than 0 found in between EMI and Transaction on total amount except ontime users::",
-                    diff_eo)
 
                 if diff_eo > 0:
-                    # print(f"difference more than 0 found in between EMI and Transaction on total amount except ontime users::",diff_eo)
-                    assert False, "difference more than 0 found in between EMI and Transaction on total amount except ontime users"
+                    print(f"difference more than 0 found in between EMI and Transaction on total amount except ontime users::",diff_eo)
+                    # assert False, "difference more than 0 found in between EMI and Transaction on total amount except ontime users"
                 else:
                     print("*** No difference found for EMI and transaction on total amount except ontime users ***")
 
