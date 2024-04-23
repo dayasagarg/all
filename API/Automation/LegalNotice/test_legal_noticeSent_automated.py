@@ -531,7 +531,7 @@ class TestLegal:
         else:
             print("*** paid percentage inside filing in progress is below 70 % ***")
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_notice_sent_unpaid_emi_total_70(self, url):
 
         global paidEMIAmt, emiAmt
@@ -569,6 +569,7 @@ class TestLegal:
                     # print("lid::",l)
                     # print("paid_emi::",paidEMIAmt)
                     # print("emiAmt::",emiAmt)
+                    print("ed::",ed)
 
             # print("paid_emi::",paid_emi)
             # print("emi_amt::",emi_amt)
@@ -580,24 +581,24 @@ class TestLegal:
             # print("total_paid_emi::",total_paid_emi)
             # print("total_emi::",total_emi)
 
-            pp_f = round((total_paid_emi / total_emi) * 100, 0)
-
-            if pp_f >= 70.0:
-                pp_more_than_70_notice_sent_lid.append(l)
-
-        # print("pp_more_than_70_notice_sent_lid::", pp_more_than_70_notice_sent_lid)
-
-        pp_more_than_70_noticeSent_unpaid_total_lid_missed_collection = []
-        for n in pp_more_than_70_notice_sent_lid:
-            if n not in case_lid:
-                pp_more_than_70_noticeSent_unpaid_total_lid_missed_collection.append(n)
-
-        if len(pp_more_than_70_noticeSent_unpaid_total_lid_missed_collection) > 0:
-            print(
-                f"Error:: missing of pp_more_than_70_notice_sent found with collection::{pp_more_than_70_noticeSent_unpaid_total_lid_missed_collection}")
-            assert False
-        else:
-            print("*** paid percentage inside notice sent is below 70 % for unpaid total ***")
+        #     pp_f = round((total_paid_emi / total_emi) * 100, 0)
+        #
+        #     if pp_f >= 70.0:
+        #         pp_more_than_70_notice_sent_lid.append(l)
+        #
+        # # print("pp_more_than_70_notice_sent_lid::", pp_more_than_70_notice_sent_lid)
+        #
+        # pp_more_than_70_noticeSent_unpaid_total_lid_missed_collection = []
+        # for n in pp_more_than_70_notice_sent_lid:
+        #     if n not in case_lid:
+        #         pp_more_than_70_noticeSent_unpaid_total_lid_missed_collection.append(n)
+        #
+        # if len(pp_more_than_70_noticeSent_unpaid_total_lid_missed_collection) > 0:
+        #     print(
+        #         f"Error:: missing of pp_more_than_70_notice_sent found with collection::{pp_more_than_70_noticeSent_unpaid_total_lid_missed_collection}")
+        #     assert False
+        # else:
+        #     print("*** paid percentage inside notice sent is below 70 % for unpaid total ***")
 
             
     @pytest.mark.skip
