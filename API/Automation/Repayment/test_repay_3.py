@@ -194,10 +194,10 @@ class TestRepayment:
 
 
         # print("totalTransAmt_eo::",totalTransAmt_eo)
-        # print("totalTransAmt_n_eo::", totalTransAmt_n_eo)
+        print("totalTransAmt_n_eo::", totalTransAmt_n_eo)
 
 
-        # print("emiDataTotalReceived_eo::", emiDataTotalReceived_eo)
+        print("emiDataTotalReceived_eo::", emiDataTotalReceived_eo)
         print("emi_lid_eo::",emi_lid_eo)
 
         if len(emiDataTotalReceived_eo) == len(totalTransAmt_n_eo):
