@@ -133,7 +133,7 @@ class TestRepayment:
         print("ontime_emi_lid::", ontime_emi_lid)
 
 
-    @pytest.mark.skip
+
     def test_using_per_loan_id_except_ontime_user(self):
 
         global emiDataTotalReceived_eo, totalTransAmt_eo
