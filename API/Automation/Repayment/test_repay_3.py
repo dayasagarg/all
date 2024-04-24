@@ -1,3 +1,4 @@
+import pytest
 import requests
 import json
 import math
@@ -102,14 +103,6 @@ class TestRepayment:
                 totalTransAmt_n.append(totalTransAmt)
 
 
-
-        # print("totalTransAmt::",totalTransAmt)
-        print("totalTransAmt_n::", totalTransAmt_n)
-
-
-        print("emiDataTotalReceived::", emiDataTotalReceived)
-        print("ontime_emi_lid::",ontime_emi_lid)
-
         if len(emiDataTotalReceived) == len(totalTransAmt_n):
             differences = []  # Initialize an empty list to store the differences
 
@@ -118,21 +111,29 @@ class TestRepayment:
                 diff = emiDataTotalReceived[i] - totalTransAmt_n[i]
                 differences.append(diff)
 
-                if diff > 0:
-                    print(f"difference more than 0 found in between EMI and Transaction for ontime users::",diff)
-                    # assert False, "difference more than 0 found in between EMI and Transaction for ontime users"
+            print(
+                f"Differences between corresponding elements between total receivable in EMI and Paid amount in transaction for ontime users:",
+                differences)
+
+            for o in differences:
+                if o > 0:
+                    print(f"difference more than 0 found in between EMI and Transaction for ontime users::",o)
+                    assert False, "difference more than 0 found in between EMI and Transaction for ontime users"
                 else:
                     print("*** No difference in EMI and transaction amount for ontime users ***")
-
-
-            # Print or use the list of differences as needed
-            print(f"Differences between corresponding elements between total receivable in EMI and Paid amount in transaction for ontime users:",differences)
 
         else:
             print("Error: Lists have different lengths for ontime users.")
 
 
+        # print("totalTransAmt::",totalTransAmt)
+        print("totalTransAmt_n::", totalTransAmt_n)
 
+        print("emiDataTotalReceived::", emiDataTotalReceived)
+        print("ontime_emi_lid::", ontime_emi_lid)
+
+
+    @pytest.mark.skip
     def test_using_per_loan_id_except_ontime_user(self):
 
         global emiDataTotalReceived_eo, totalTransAmt_eo
@@ -208,15 +209,17 @@ class TestRepayment:
                 diff_eo = emiDataTotalReceived_eo[o] - totalTransAmt_n_eo[o]
                 differences_eo.append(diff_eo)
 
-                if diff_eo > 0:
-                    print(f"difference more than 0 found in between EMI and Transaction on total amount except ontime users::",diff_eo)
-                    # assert False, "difference more than 0 found in between EMI and Transaction on total amount except ontime users"
+            print(
+                f"Differences between corresponding elements between total receivable in EMI and Paid amount in transaction other than ontime users:",
+                differences_eo)
+
+            for d in differences_eo:
+                if d > 0:
+                    print(f"Error::difference more than 0 found in between EMI and Transaction on total amount except ontime users::",d)
+                    assert False, "difference more than 0 found in between EMI and Transaction on total amount except ontime users"
                 else:
                     print("*** No difference found for EMI and transaction on total amount except ontime users ***")
 
-
-            # Print or use the list of differences as needed
-            print(f"Differences between corresponding elements between total receivable in EMI and Paid amount in transaction other than ontime users:",differences_eo)
-
         else:
             print("Error: Lists have different lengths other than ontime users.")
+

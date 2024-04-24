@@ -35,6 +35,9 @@
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all" beforeDir="false" afterPath="$PROJECT_DIR$/all" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/all/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" beforeDir="false" afterPath="$PROJECT_DIR$/all/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
