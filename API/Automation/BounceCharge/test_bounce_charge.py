@@ -144,7 +144,7 @@ class TestBounce:
             print("No bounce charge missed for bounceChMissed_LId_unique_unpaid_autodebit_yestarday_date")
 
 
-    # @pytest.mark.skip
+
     def test_bounce_charg_autodebit_total(self, bcURL):
         global autoDebitData
 
@@ -195,51 +195,52 @@ class TestBounce:
             print("No bounce charge missed for bounceChMissed_LId_unique_total_autodebit")
 
     def test_no_need_bounce_charg_autodebit_total(self, bcURL):
-        global autoDebitData
+        global emiRepaymentStatus_data_500
 
-        autoDebitData_2 = autoDebitFailedAPI.json()["data"]["finalData"]
-        # print(autoDebitData)
-        bounceChMissed_LId_2_n = []
-        aut_failed_loan_ids_2_n = []
+        emiRepaymentStatus_data_500 = emiRepaymentStatus.json()["data"]["rows"]
 
+        emiRepaymentStatus_data_lid_500 = []
 
-        for ad in autoDebitData_2:
+        for rs in emiRepaymentStatus_data_500:
 
-            # if ad["AD Response date"] == "05-02-2024":
+            # emi date < current date
+            # if rs["Emi date"] == "09-02-2024":
 
-            if ad["Today's EMI status"] == "FAILED":
-                if ad["Loan ID"]:
-                    aut_failed_loan_ids_2_n.append(ad["Loan ID"])
-                # print(ad)
+            # if rs["Today's EMI status"] == "FAILED":
 
-        # print("autdebit_failed_loan_ids_2_count::", len(aut_failed_loan_ids_2))
-        # print("autodebit_failed_loan_ids_2::",aut_failed_loan_ids_2)
+            if rs["Loan ID"]:
+                emiRepaymentStatus_data_lid_500.append(rs["Loan ID"])
 
-        for f in aut_failed_loan_ids_2_n:
-            emiAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
-                                  params={"loanId": f}, verify=False)
+        # print("emiRepaymentStatus_data_lid_2_count::", len(emiRepaymentStatus_data_lid_2))
+        # print("emiRepaymentStatus_data_lid_2::",emiRepaymentStatus_data_lid_2)
+        #
+        bounceChMissed_LId_500 = []
+        for r in emiRepaymentStatus_data_lid_500:
+            emiAPI_500 = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                                    params={"loanId": r}, verify=False)
             # print(emiAPI.json())
-            emiAPI_data_2 = emiAPI.json()["data"]["EMIData"]
+            emiAPI_data500 = emiAPI_500.json()["data"]["EMIData"]
 
-            for ed in emiAPI_data_2:
-                if ed["penaltyDays"] == 0:
+            # print(emiAPI_data2)
+            #
+            for ed2 in emiAPI_data500:
+                if ed2["penaltyDays"] == 0:
+                    if ed2["status"] == "PAID":
 
-                    # if ed["emiDate"] == "08/02/2024":
+                        if ed2["bounceCharge"] > 0:
+                            bounceChMissed_LId_500.append(r)
 
-                    if ed["bounceCharge"] > 0:
-                        bounceChMissed_LId_2_n.append(f)
+        # print("bounceChMissed_LId_2::",bounceChMissed_LId_2)
+        # print("bounceChMissed_LId_unique_2::", bounceChMissed_LId_unique_2)
 
-        bounceCh_LId_unique_not_required = []
+        # print(emiRepaymentStatus_data_lid)
 
-        [bounceCh_LId_unique_not_required.append(ul) for ul in bounceChMissed_LId_2_n if ul not in bounceCh_LId_unique_not_required]
-
-
-
-        if len(bounceCh_LId_unique_not_required) > 0:
-            print(f"Error::bounce charge found ::{bounceCh_LId_unique_not_required}")
-            assert False
+        if len(bounceChMissed_LId_500) > 0:
+            print(
+                f"Error::bounce charge found ::{bounceChMissed_LId_500}")
+            assert False, "bounce charge found"
         else:
-            print("*** No bounce charge found on same day pay ***")
+            print("*** No bounce charge for ontime users ***")
 
 
 
@@ -276,7 +277,7 @@ class TestBounce:
         #
             for ed2 in emiAPI_data2:
                 if ed2["penaltyDays"] > 0:
-                    if ed2["status"] == "UNPAID":
+                    if ed2["status"] == "PAID":
 
                         if ed2["bounceCharge"] == 0:
                             bounceChMissed_LId_2.append(r)
