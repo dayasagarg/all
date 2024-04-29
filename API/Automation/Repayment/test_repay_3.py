@@ -18,11 +18,15 @@ currentDateStr = datetime.strftime(currentFullTime, "%Y-%m-%d")  # date to strin
 class TestRepayment:
     def test_getRepayment(self):
         global totalUnpaidAmountForm, fullPay_unpaid_misssMatch
+
         responseAllLoanID = requests.get(
             "https://chinmayfinserve.com/admin-prod/admin/transaction/allRepaidLoans",
             params={"start_date": f"{currentDateStr}T10:00:00.000Z", "end_date": f"{currentDateStr}T10:00:00.000Z",
                     "page": 1, "pagesize": 10, "getTotal": "true", "download": "true",
                     "verify": "False"})  # current date
+
+
+
 
         '''getting loan ids from Repayment'''
         loanIDs = responseAllLoanID.json()["data"]["rows"]

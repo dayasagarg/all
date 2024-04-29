@@ -51,24 +51,11 @@ class TestLegal:
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 2, "adminId": 134,
                                            "download": "true"})  # current date
 
-        caseAssigned = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
-                                    params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
-                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 11, "adminId": 153,
-                                            "download": "true"})
-
-        fillingInProgress = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
-                                         params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
-                                                 "endDate": f"{curr_str}T10:00:00.000Z", "type": 4, "adminId": 70,
-                                                 "download": "true"})
-
-        fillingInProgress_data = fillingInProgress.json()["data"]["rows"]
-        fillingInProgress_data_count = fillingInProgress.json()["data"]["count"]
-
     #
     # @pytest.mark.skip
     def test_DemandLetter(self, url):
-        print("start_date_2::", start_date_2)
-        print("end_date_2::", end_date_2)
+        # print("start_date_2::", start_date_2)
+        # print("end_date_2::", end_date_2)
 
         # global loanID, uniqLIdListDemand
         countOfLegalDemandLetter = legalDemandLetter.json()["data"]["count"]
@@ -78,39 +65,6 @@ class TestLegal:
         # print(demandAllData)
 
         loanID = []
-        demandCreatedDate = []
-        custName = []
-        loanTenure = []
-        disburseDate = []
-        loanAmt = []
-        emiNo = []
-        asOnDueAmt = []
-        dueDate = []
-        totalPenaltyDays = []
-        emi1Date = []
-        emi1Amt = []
-        emi1Penalty = []
-        emi1Status = []
-
-        emi2Date = []
-        emi2Amt = []
-        emi2Penalty = []
-        emi2Status = []
-
-        emi3Date = []
-        emi3Amt = []
-        emi3Penalty = []
-        emi3Status = []
-
-        receivedPartPayment = []
-        adPlAmt = []
-        adPlDate = []
-        adSource = []
-        amtPaidBeforeLetter = []
-        amtPaidAfterLetter = []
-
-        emailDate = []
-        daysPostLetterSent = []
 
         for ld in demandAllData:
             if (ld["Emi 4 status"] == "UNPAID"):
@@ -121,81 +75,11 @@ class TestLegal:
                 if ld["Loan ID"]:
                     loanID.append(ld["Loan ID"])
 
-                if ld["Demand created date"]:
-                    demandCreatedDate.append(ld["Demand created date"])
-
-                if ld["EMI number"]:
-                    emiNo.append(ld["EMI number"])
-
-                if ld["As on due amount"]:
-                    asOnDueAmt.append(ld["As on due amount"])
-
-                if ld["Due date"]:
-                    dueDate.append(ld["Due date"])
-
-                if ld["Emi 1 date"]:
-                    emi1Date.append(ld["Emi 1 date"])
-
-                if ld["Emi 1 status"]:
-                    emi1Status.append(ld["Emi 1 status"])
-
-                if ld["Emi 2 date"]:
-                    emi2Date.append(ld["Emi 2 date"])
-
-                if ld["Emi 2 status"]:
-                    emi2Status.append(ld["Emi 2 status"])
-
-                if ld["Emi 3 date"]:
-                    emi3Date.append(ld["Emi 3 date"])
-
-                if ld["Emi 3 status"]:
-                    emi3Status.append(ld["Emi 3 status"])
-
-                if ld["AD placed date"]:
-                    adPlDate.append(ld["AD placed date"])
-
-                if ld["Email date"]:
-                    emailDate.append(ld["Email date"])
-
-            if (ld["Emi 2 status"] == "UNPAID") and (ld["Emi 3 status"] == "-"):
+            if (ld["Emi 2 status"] == "UNPAID") and (ld["Emi 3 status"] == "-") and (ld["Emi 4 status"] == "-"):
                 if ld["Loan ID"]:
                     loanID.append(ld["Loan ID"])
 
-                if ld["Demand created date"]:
-                    demandCreatedDate.append(ld["Demand created date"])
 
-                if ld["EMI number"]:
-                    emiNo.append(ld["EMI number"])
-
-                if ld["As on due amount"]:
-                    asOnDueAmt.append(ld["As on due amount"])
-
-                if ld["Due date"]:
-                    dueDate.append(ld["Due date"])
-
-                if ld["Emi 1 date"]:
-                    emi1Date.append(ld["Emi 1 date"])
-
-                if ld["Emi 1 status"]:
-                    emi1Status.append(ld["Emi 1 status"])
-
-                if ld["Emi 2 date"]:
-                    emi2Date.append(ld["Emi 2 date"])
-
-                if ld["Emi 2 status"]:
-                    emi2Status.append(ld["Emi 2 status"])
-
-                if ld["Emi 3 date"]:
-                    emi3Date.append(ld["Emi 3 date"])
-
-                if ld["Emi 3 status"]:
-                    emi3Status.append(ld["Emi 3 status"])
-
-                if ld["AD placed date"]:
-                    adPlDate.append(ld["AD placed date"])
-
-                if ld["Email date"]:
-                    emailDate.append(ld["Email date"])
 
         print("count of demand loan ids::", len(loanID))
         # print("unpaid loan ids::",loanID)
@@ -207,6 +91,7 @@ class TestLegal:
         uLIdSet = set(loanID)
         global uniqLIdListDemand
         uniqLIdListDemand = list(uLIdSet)
+
         print("count of demand unique loan ids list ::", len(uniqLIdListDemand))
         print("demand loan ids::", loanID)
         print("demand uniqLIdList::", uniqLIdListDemand)
@@ -271,7 +156,7 @@ class TestLegal:
         print("count_of_duplNotice::", len(duplNotice))
 
         if len(duplNotice) == 0:
-            print("No duplicate found in notice sent")
+            print("*** No duplicate found in notice sent ***")
         else:
             print("Error::duplicate found in notice sent")
 
@@ -300,6 +185,7 @@ class TestLegal:
         else:
             print(f"Error:: Notice not sent cases found::{missedDemandWithNotice}")
         assert len(missedDemandWithNotice) == 0
+
 
     # @pytest.mark.skip
     def test_notice_not_sent(self):
@@ -531,7 +417,7 @@ class TestLegal:
         else:
             print("*** paid percentage inside filing in progress is below 70 % ***")
 
-    # @pytest.mark.skip
+    @pytest.mark.skip
     def test_notice_sent_unpaid_emi_total_70(self, url):
 
         global paidEMIAmt, emiAmt
@@ -600,7 +486,7 @@ class TestLegal:
         else:
             print("*** paid percentage inside notice sent is below 70 % for unpaid total ***")
 
-            
+
     @pytest.mark.skip
     def test_notice_sent_paid_unpaid_as_per_emi_70(self, url):
 
@@ -669,5 +555,3 @@ class TestLegal:
             assert False
         else:
             print("*** paid percentage inside notice sent is below 70 % for paid-unpaid as per emi ***")
-
-

@@ -829,15 +829,15 @@ class TestDashRepo:
 
         # Name of Borrower in security document
         try:
-            if profileName in fourthPage:
-                print(f" *** 'profileName':'{profileName}' is matched with security document section in fourth Page of pdf *** ")
+            if profileName in fifthPage:
+                print(f" *** 'profileName':'{profileName}' is matched with security document section in fifth Page of pdf *** ")
             else:
-                print(f"Exception :: 'profileName':'{profileName}' is not matched with security document section in fourth Page of pdf ")
+                print(f"Exception :: 'profileName':'{profileName}' is not matched with security document section in fifth Page of pdf ")
 
-            assert profileName in fourthPage, "profileName is matched with security document section in fourth Page of pdf"
+            assert profileName in fifthPage, "profileName is matched with security document section in fifth Page of pdf"
 
         except:
-            if 'Name of Borrower' in firstPage:
+            if 'Name of Borrower' in fifthPage:
                 index1 = firstPage.index('Name of Borrower')
                 index2 = firstPage.index('NBFC NameChinmay Finlease')
                 text = firstPage[index1 + 16:index2]
