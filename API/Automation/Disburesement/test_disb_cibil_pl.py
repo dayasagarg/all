@@ -126,41 +126,41 @@ class TestLoanDisbCibil:
 
     def test_cs_pl_less_than_700(self):
         if cibil_pl_less_than_700_lid_count > 0:
-            print(f" Error :: loans are not fit if cibil_and_pl_less_than_700:: {cibil_pl_less_than_700_lid}")
+            print(f" Error :: loans are not correct if cibil_and_pl_less_than_700:: {cibil_pl_less_than_700_lid}")
             assert False
         else:
-            print("*** loans are fit if cibil_and_pl_less_than_700 ***")
+            print("*** loans are correct if cibil_and_pl_less_than_700 ***")
 
 
     def test_cs_pl_700_749_out(self):
         if cibil_pl_700_749_out_lid_count > 0:
-            print(f" Error :: loan not fit, for cibil_pl_700_749 range and 50 % out salary:: {cibil_pl_700_749_out_lid}")
+            print(f" Error :: loans are not correct, for cibil_pl_700_749 range and 50 % out salary:: {cibil_pl_700_749_out_lid}")
             assert False
         else:
-            print("*** loans are fit, 50 % of salary for cibil_pl_700_749 ***")
+            print("*** loans are correct, 50 % of salary for cibil_pl_700_749 ***")
 
 
     def test_cs_pl_750_799_less_50000_out(self):
         if cibil_pl_750_799_out_lid_count > 0:
-            print(f" Error :: loans are not fit, 50 % of salary for cibil_pl_750_799 and salary <= 50 k :: {cibil_pl_750_799_out_lid}")
+            print(f" Error :: loans are not correct, 50 % of salary for cibil_pl_750_799 and salary <= 50 k :: {cibil_pl_750_799_out_lid}")
             assert False
         else:
-            print("*** loans are fit, 50 % of salary for cibil_pl_750_799 and salary <= 50 k ***")
+            print("*** loans are correct, 50 % of salary for cibil_pl_750_799 and salary <= 50 k ***")
 
 
     def test_cs_pl_750_799_1_lac_out(self):
         if cibil_pl_750_799_1_lac_out_lid_count > 0:
-            print(f" Error :: loans are not fit, 75 % of salary for cibil_pl_750_799 and salary 1 lac+:: {cibil_pl_750_799_1_lac_out_lid}")
+            print(f" Error :: loans are not correct, 75 % of salary for cibil_pl_750_799 and salary 1 lac+:: {cibil_pl_750_799_1_lac_out_lid}")
             assert False
         else:
-            print("*** loans are fit, 75 % of salary for cibil_pl_750_799 and salary 1 lac+ ***")
+            print("*** loans are correct, 75 % of salary for cibil_pl_750_799 and salary 1 lac+ ***")
 
 
     def test_cs_pl_800_800(self):
         if cibil_pl_800_800_lid_count > 0:
-            print(f" Error :: loans are not fit, 75 % of salary for cibil_pl_800_800 :: {cibil_pl_800_800_lid}")
+            print(f" Error :: loans are not correct, 75 % of salary for cibil_pl_800_800 :: {cibil_pl_800_800_lid}")
         else:
-            print("*** loans are fit, 75 % of salary for cibil_pl_800_800 ***")
+            print("*** loans are correct, 75 % of salary for cibil_pl_800_800 ***")
 
 
 
@@ -254,41 +254,41 @@ class TestLoanDisbCibil:
 
     def test_cs_pl_less_than_700_r(self):
         if cibil_pl_less_than_700_lid_count_r > 0:
-            print(f" Error :: loans are not fit if cibil_and_pl_less_than_700 ::Repeat User:: {cibil_pl_less_than_700_lid_r}")
+            print(f" Error :: loans are not correct if cibil_and_pl_less_than_700 ::Repeat User:: {cibil_pl_less_than_700_lid_r}")
             assert False
         else:
-            print("*** loans are fit if cibil_and_pl_less_than_700 ::Repeat User:: ***")
+            print("*** loans are correct if cibil_and_pl_less_than_700 ::Repeat User:: ***")
 
 
     def test_cs_pl_700_749_out_r(self):
         if cibil_pl_700_749_out_lid_count_r > 0:
-            print(f" Error :: loans are not fit for cibil_pl_700_749 range and 50 % out salary ::Repeat User:: {cibil_pl_700_749_out_lid_r}")
+            print(f" Error :: loans are not correct for cibil_pl_700_749 range and 50 % out salary ::Repeat User:: {cibil_pl_700_749_out_lid_r}")
             assert False
         else:
-            print("*** loans are fit, 50 % of salary for cibil_pl_700_749 ::Repeat User:: ***")
+            print("*** loans are correct, 50 % of salary for cibil_pl_700_749 ::Repeat User:: ***")
 
 
     def test_cs_pl_750_799_less_50000_out_r(self):
         if cibil_pl_750_799_out_lid_count_r > 0:
-            print(f" Error :: loans are not fit, 50 % of salary for cibil_pl_750_799 and salary <= 50 k ::Repeat User:: {cibil_pl_750_799_out_lid_r}")
+            print(f" Error :: loans are not correct, 50 % of salary for cibil_pl_750_799 and salary <= 50 k ::Repeat User:: {cibil_pl_750_799_out_lid_r}")
             assert False
         else:
-            print("*** loans are fit, 50 % of salary for cibil_pl_750_799 and salary <= 50 k ::Repeat User:: ***")
+            print("*** loans are correct, 50 % of salary for cibil_pl_750_799 and salary <= 50 k ::Repeat User:: ***")
 
 
     def test_cs_pl_750_799_1_lac_out_r(self):
         if cibil_pl_750_799_1_lac_out_lid_count_r > 0:
-            print(f" Error :: loans are not fit, 75 % of salary for cibil_pl_750_799 and salary 1 lac+ ::Repeat User:: {cibil_pl_750_799_1_lac_out_lid_r}")
+            print(f" Error :: loans are not correct, 75 % of salary for cibil_pl_750_799 and salary 1 lac+ ::Repeat User:: {cibil_pl_750_799_1_lac_out_lid_r}")
             assert False
         else:
-            print("*** loans are fit 75 % of salary for cibil_pl_750_799 and salary 1 lac+ ::Repeat User:: ***")
+            print("*** loans are correct, 75 % of salary for cibil_pl_750_799 and salary 1 lac+ ::Repeat User:: ***")
 
 
     def test_cs_pl_800_800_r(self):
         if cibil_pl_800_800_lid_count_r > 0:
-            print(f" Error :: loans are fit, 75 % of salary for cibil_pl_800_800 ::Repeat User:: {cibil_pl_800_800_lid_r}")
+            print(f" Error :: loans are not correct, 75 % of salary for cibil_pl_800_800 ::Repeat User:: {cibil_pl_800_800_lid_r}")
         else:
-            print("*** loans are fit, 75 % of salary for cibil_pl_800_800 ::Repeat User:: ***")
+            print("*** loans are correct, 75 % of salary for cibil_pl_800_800 ::Repeat User:: ***")
 
 
 print("Test Execution Completed")
