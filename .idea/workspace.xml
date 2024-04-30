@@ -14,8 +14,6 @@
       <change afterPath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_salary.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_emi_transaction_total.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_transaction_repay_check.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/all/API/Automation/LegalNotice/a.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/all/API/Automation/LegalNotice/legal_autodebit_updation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/pythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonProject.iml" afterDir="false" />
@@ -39,9 +37,6 @@
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all" beforeDir="false" afterPath="$PROJECT_DIR$/all" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/Disburesement/test_disb_cibil_pl.py" beforeDir="false" afterPath="$PROJECT_DIR$/all/API/Automation/Disburesement/test_disb_cibil_pl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/input.json" beforeDir="false" afterPath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/input.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +51,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/all" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
@@ -143,7 +138,7 @@
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in legal_autodebit_updation.py">
+  <component name="RunManager" selected="Python tests.pytest in C:/Users/lendi/PycharmProjects/pythonProject/all/API/Automation/LegalNotice/legal_autodebit_updation.py">
     <configuration name="a" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
@@ -166,7 +161,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in legal_autodebit_updation.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in C:/Users/lendi/PycharmProjects/pythonProject/all/API/Automation/LegalNotice/legal_autodebit_updation.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -236,7 +231,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in legal_autodebit_updation.py" />
+        <item itemvalue="Python tests.pytest in C:/Users/lendi/PycharmProjects/pythonProject/all/API/Automation/LegalNotice/legal_autodebit_updation.py" />
         <item itemvalue="Python.a" />
         <item itemvalue="Python tests.pytest in test_LA4.py" />
         <item itemvalue="Python tests.pytest in test_LA3.py" />
