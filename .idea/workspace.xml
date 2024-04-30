@@ -14,6 +14,8 @@
       <change afterPath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_salary.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_emi_transaction_total.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_transaction_repay_check.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/all/API/Automation/LegalNotice/a.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/all/API/Automation/LegalNotice/legal_autodebit_updation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/pythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonProject.iml" afterDir="false" />
@@ -37,6 +39,9 @@
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all" beforeDir="false" afterPath="$PROJECT_DIR$/all" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all/API/Automation/Disburesement/test_disb_cibil_pl.py" beforeDir="false" afterPath="$PROJECT_DIR$/all/API/Automation/Disburesement/test_disb_cibil_pl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/input.json" beforeDir="false" afterPath="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/input.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +96,7 @@
     "Python tests.Python tests in test_working.py.executor": "Run",
     "Python tests.pytest in DailyLoanAgreementValidation.executor": "Run",
     "Python tests.pytest in legal_autodebit.py.executor": "Run",
+    "Python tests.pytest in legal_autodebit_updation.py.executor": "Run",
     "Python tests.pytest in test_LA1.py.executor": "Run",
     "Python tests.pytest in test_LA2.py.executor": "Run",
     "Python tests.pytest in test_LA3.py.executor": "Run",
@@ -99,6 +105,7 @@
     "Python tests.pytest in test_accountDisRepAutomated.py.executor": "Run",
     "Python tests.pytest in test_bankStatement.py.executor": "Run",
     "Python tests.pytest in test_bounce_charge.py.executor": "Run",
+    "Python tests.pytest in test_disb_cibil_pl.py (1).executor": "Run",
     "Python tests.pytest in test_disb_cibil_pl.py.executor": "Run",
     "Python tests.pytest in test_dpd.py.executor": "Run",
     "Python tests.pytest in test_emiAutoDebitLIDAutomated.py.executor": "Run",
@@ -136,21 +143,43 @@
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_disb_cibil_pl.py">
-    <configuration name="pytest in test_LA1.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest in legal_autodebit_updation.py">
+    <configuration name="a" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/all/API/Automation/LegalNotice" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/all/API/Automation/LegalNotice/a.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in legal_autodebit_updation.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/all/API/Automation/LegalNotice" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/all/API/Automation/LegalNotice/legal_autodebit_updation.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -160,14 +189,14 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -177,14 +206,14 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -194,41 +223,24 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest in test_disb_cibil_pl.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/Disburesement" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/Disburesement/test_disb_cibil_pl.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/all/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_disb_cibil_pl.py" />
+        <item itemvalue="Python tests.pytest in legal_autodebit_updation.py" />
+        <item itemvalue="Python.a" />
         <item itemvalue="Python tests.pytest in test_LA4.py" />
         <item itemvalue="Python tests.pytest in test_LA3.py" />
         <item itemvalue="Python tests.pytest in test_LA2.py" />
-        <item itemvalue="Python tests.pytest in test_LA1.py" />
       </list>
     </recent_temporary>
   </component>

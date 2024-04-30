@@ -2,85 +2,83 @@ import requests
 import pytest
 from datetime import datetime, timedelta
 
-
 # uniqLIdListDemand = None
 
 currentFullTime = datetime.now()  # whole date
 curr_str = datetime.strftime(currentFullTime,"%Y-%m-%d")
 
+pre_15 = currentFullTime - timedelta(days=15)
+pre_15_DateStr = datetime.strftime(pre_15, "%Y-%m-%d")
 
-start_2 = currentFullTime - timedelta(days=15)
-start_2_DateStr = datetime.strftime(start_2, "%Y-%m-%d")
+pre_5 = currentFullTime - timedelta(days=5) # 4-5
+pre_5_DateStr = datetime.strftime(pre_5, "%Y-%m-%d")
 
-start_3 = currentFullTime - timedelta(days=13)
-start_3_DateStr = datetime.strftime(start_3, "%Y-%m-%d")
-
-end = currentFullTime - timedelta(days=5)
-endDateStr = datetime.strftime(end, "%Y-%m-%d")
-
-start = end - timedelta(days=5)
-startDateStr = datetime.strftime(start, "%Y-%m-%d")
-
-start_date = start.strftime("%Y-%m-%d")
-end_date = end.strftime("%Y-%m-%d")
-
-start_date_2 = start_2.strftime("%Y-%m-%d")
-end_date_2 = currentFullTime.strftime("%Y-%m-%d")
-
-print("start_date::", start_date)
-print("end_date::", end_date)
-
-print("start_date_2::", start_date_2)
-print("end_date_2::", end_date_2)
+pre_10 = pre_5 - timedelta(days=10)
+pre_10_DateStr = datetime.strftime(pre_10, "%Y-%m-%d")
 
 
-# note: execute at 12 pm every time because of crone set time.
+
+
+# note: execute at 12 am every time because of crone set time.
 
 class TestLegal:
     @pytest.fixture
     def url(self):
-        global legalDemandLetter, legalAutoDebit,caseAssigned,summons, summons_data, summons_data_count, warrent, legalAutoDebit, autoDebitFailedAPI, legalNotice
+        global legalDemandLetter, legalAutoDebit,caseAssigned,summons, summons_data, summons_data_count, warrent, legalAutoDebit, autoDebitFailedAPI, legalNotice, autoDebitFailedAPI_current
         legalDemandLetter = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
-                                         params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
-                                                 "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
-                                                 "download": "true"})  # date = 6 days before notice sent
+                                         params={"page": 1, "startDate": f"{pre_5_DateStr}T10:00:00.000Z",
+                                                 "endDate": f"{pre_5_DateStr}T10:00:00.000Z", "type": 1, "adminId": 134,
+                                                 "download": "true"})
 
         autoDebitFailedAPI = requests.get(
             "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",
-            params={"start_date": f"{endDateStr}T10:00:00.000Z", "end_date": f"{endDateStr}T10:00:00.000Z", "status": 4,
+            params={"start_date": f"{pre_5_DateStr}T10:00:00.000Z", "end_date": f"{pre_5_DateStr}T10:00:00.000Z", "status": 4,
+                    "page": 1, "skipPageLimit": "true"})
+
+        autoDebitFailedAPI_current = requests.get(
+            "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",
+            params={"start_date": f"{curr_str}T10:00:00.000Z", "end_date": f"{curr_str}T10:00:00.000Z",
+                    "status": 4,
                     "page": 1, "skipPageLimit": "true"})
 
 
-
-        legalAutoDebit = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/autoDebitList",params={"page":1,"startDate":f"{end_date_2}T10:00:00.000Z","endDate":f"{end_date_2}T10:00:00.000Z","download":"true"})
+        legalAutoDebit = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/autoDebitList", params={"page":1,"startDate":f"{curr_str}T10:00:00.000Z","endDate":f"{curr_str}T10:00:00.000Z","download":"true"})
 
         legalNotice = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
-                                   params={"page": 1, "startDate": f"{start_date_2}T10:00:00.000Z",
-                                           "endDate": f"{end_date_2}T10:00:00.000Z", "type": 2, "adminId": 134,
+                                   params={"page": 1, "startDate": f"{pre_15_DateStr}T10:00:00.000Z",
+                                           "endDate": f"{curr_str}T10:00:00.000Z", "type": 2, "adminId": 134,
                                            "download": "true"})  # current date
 
 
-
-
-
-
-
     def test_autodebit_failed(self, url):
-        global af_lid
-        afd = autoDebitFailedAPI.json()["data"]["finalData"]
+        print("curr_str::", curr_str)
+        print("pre_15_DateStr::", pre_15_DateStr)
+
+        print("pre_5_DateStr::", pre_5_DateStr)
+        print("pre_10_DateStr::", pre_10_DateStr)
+
+        global af_lid_5, af_lid_curr
+        afd_5 = autoDebitFailedAPI.json()["data"]["finalData"]
+        afd_curr = autoDebitFailedAPI_current.json()["data"]["finalData"]
         # print("afd::",afd)
         # print("endDateStr::",endDateStr)
 
-        af_lid = []
-        for a in afd:
+        af_lid_5 = []
+        for a in afd_5:
             if a["Today's EMI status"] == "FAILED":
-                af_lid.append(a["Loan ID"])
+                af_lid_5.append(a["Loan ID"])
+
+        af_lid_curr = []
+        for a in afd_curr:
+            if a["Today's EMI status"] == "FAILED":
+                af_lid_curr.append(a["Loan ID"])
+
 
 
 
     # @pytest.mark.skip
     def test_legal_autodebit(self, url):
-        global lId_autodebit
+        global lId_autodebit, trans_fullpay_failed_lid, emiAPI_d, lId_notice_sent
         countOfAutoDebit = legalAutoDebit.json()["data"]["count"]
         print("countOfLegalAutodebit::", countOfAutoDebit)
         # print("end_date_2::",end_date_2)
@@ -94,11 +92,11 @@ class TestLegal:
                 lId_autodebit.append(ns["Loan id"])
 
         print("legal_autodebit_lid::", lId_autodebit)
-        print("af_lid::",af_lid)
+        print("af_lid::",af_lid_5)
 
 
-        trans_full_lid = []
-        for n, j in enumerate(af_lid):
+        trans_full_lid_5 = []
+        for n, j in enumerate(af_lid_5):
             # if n == 5:
             #     break
 
@@ -113,14 +111,14 @@ class TestLegal:
 
 
             for t in transData:
+
                 if t["Pay type"] == "FULLPAY":
-                    trans_full_lid.append(j)
+                    trans_full_lid_5.append(j)
 
 
+        trans_fullpay_failed_lid =  set(trans_full_lid_5)
 
-        trans_fullpay_failed_lid =  set(trans_full_lid)
-
-        print("trans_fullpay_failed_lid::", trans_fullpay_failed_lid)
+        # print("trans_fullpay_failed_lid::", trans_fullpay_failed_lid)
 
         noticeAllData = legalNotice.json()["data"]["rows"]
 
@@ -131,13 +129,35 @@ class TestLegal:
                 lId_notice_sent.append(ns["Loan ID"])
 
 
+        miss_of_fullpay_in_notice_sent_u_p = trans_fullpay_failed_lid - set(lId_notice_sent)
+        print("miss_of_fullpay_in_notice_sent_u_p::",miss_of_fullpay_in_notice_sent_u_p)
 
-        miss_of_fullpay_in_notice_sent = trans_fullpay_failed_lid - set(lId_notice_sent)
-        print("miss_of_fullpay_in_notice_sent::",miss_of_fullpay_in_notice_sent)
+        miss_of_fullpay_in_notice_sent_u = []
 
+        for m in miss_of_fullpay_in_notice_sent_u_p:
+
+            emiAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                              params={"loanId": m}, verify=False)
+
+            emiAPI_d = emiAPI.json()["data"]["EMIData"]
+
+            for n,e in enumerate(emiAPI_d):
+
+                if e["status"] != "PAID":
+                    miss_of_fullpay_in_notice_sent_u.append(m)
+                # print("e::",e)
+
+        print("miss_of_fullpay_in_notice_sent_u::", miss_of_fullpay_in_notice_sent_u)
+
+        if len(miss_of_fullpay_in_notice_sent_u) > 0:
+            print("Error :: miss_of_fullpay_in_notice_sent_u::",miss_of_fullpay_in_notice_sent_u)
+            assert False
+        else:
+            print("*** No_miss_of_fullpay_in_notice_sent_u ***")
+
+
+    # @pytest.mark.skip
     def test_legalDemandLetter(self, url):
-        # print("start_date_2::", start_date_2)
-        # print("end_date_2::", end_date_2)
 
         # global loanID, uniqLIdListDemand
         countOfLegalDemandLetter = legalDemandLetter.json()["data"]["count"]
@@ -162,5 +182,48 @@ class TestLegal:
                     loanID_leg_demand.append(ld["Loan ID"])
 
         print("legal demand loan ids::", loanID_leg_demand)
+
+        # miss_last_emi_failed_demand_trans_full = set(loanID_leg_demand) - set(trans_fullpay_failed_lid)
+        # print("miss_last_emi_failed_demand_fullpay::",miss_last_emi_failed_demand_trans_full)
+
+
+
+        trans_full_lid_curr = []
+        for n, j in enumerate(af_lid_curr):
+            # if n == 5:
+            #     break
+
+            response = requests.get(
+                "https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
+                verify=False)  # current date
+
+            # print('status code of get Repayment::', response.status_code)
+            # print(response.json())
+
+            transData_curr = response.json()["data"]
+
+            for c in transData_curr:
+
+                if c["Pay type"] == "FULLPAY":
+                    trans_full_lid_curr.append(j)
+
+        trans_fullpay_failed_lid_curr = set(trans_full_lid_curr)
+
+        # print("trans_fullpay_failed_lid_curr::", trans_fullpay_failed_lid_curr)
+
+        miss_last_emi_failed_demand_trans_full = set(loanID_leg_demand) - set(trans_fullpay_failed_lid_curr)
+        print("miss_last_emi_failed_demand_fullpay::", miss_last_emi_failed_demand_trans_full)
+
+        miss_last_emi_failed_demand_trans_full_miss_with_notice = miss_last_emi_failed_demand_trans_full - set(lId_notice_sent)
+        print("miss_last_emi_failed_demand_trans_full_miss_with_notice::",miss_last_emi_failed_demand_trans_full_miss_with_notice)
+
+
+        if len(miss_last_emi_failed_demand_trans_full_miss_with_notice) > 0:
+            print("Error::last EMI failed miss found from fullpay atdbt &/ notice sent::",miss_last_emi_failed_demand_trans_full_miss_with_notice)
+            assert False
+        else:
+            print("*** No last EMI failed miss found from fullpay atdbt &/ notice sent ***")
+
+
 
 
