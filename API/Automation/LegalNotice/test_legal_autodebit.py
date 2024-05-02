@@ -10,10 +10,10 @@ curr_str = datetime.strftime(currentFullTime,"%Y-%m-%d")
 pre_15 = currentFullTime - timedelta(days=15)
 pre_15_DateStr = datetime.strftime(pre_15, "%Y-%m-%d")
 
-pre_5 = currentFullTime - timedelta(days=30) # 4-5
+pre_5 = currentFullTime - timedelta(days=5) # 4-5
 pre_5_DateStr = datetime.strftime(pre_5, "%Y-%m-%d")
 
-pre_10 = pre_5 - timedelta(days=2)
+pre_10 = pre_5 - timedelta(days=10)
 pre_10_DateStr = datetime.strftime(pre_10, "%Y-%m-%d")
 
 
@@ -24,7 +24,7 @@ pre_10_DateStr = datetime.strftime(pre_10, "%Y-%m-%d")
 class TestLegal:
     @pytest.fixture
     def url(self):
-        global legalDemandLetter, legalAutoDebit,caseAssigned,summons, summons_data, summons_data_count, warrent, legalAutoDebit, autoDebitFailedAPI, legalNotice, autoDebitFailedAPI_current
+        global legalDemandLetter, legalAutoDebit,caseAssigned,summons, summons_data, summons_data_count, warrent, legalAutoDebit, autoDebitFailedAPI, legalNotice, autoDebitFailedAPI_current, fillingInProgress, fillingInProgress_data
         legalDemandLetter = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                          params={"page": 1, "startDate": f"{pre_5_DateStr}T10:00:00.000Z",
                                                  "endDate": f"{pre_5_DateStr}T10:00:00.000Z", "type": 1, "adminId": 134,
@@ -48,6 +48,15 @@ class TestLegal:
                                    params={"page": 1, "startDate": f"{pre_15_DateStr}T10:00:00.000Z",
                                            "endDate": f"{curr_str}T10:00:00.000Z", "type": 2, "adminId": 134,
                                            "download": "true"})  # current date
+
+        fillingInProgress = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
+                                         params={"page": 1, "startDate": f"{pre_10_DateStr}T10:00:00.000Z",
+                                                 "endDate": f"{curr_str}T10:00:00.000Z", "type": 4, "adminId": 70,
+                                                 "download": "true"})
+
+        fillingInProgress_data = fillingInProgress.json()["data"]["rows"]
+
+
 
 
     def test_autodebit_failed(self, url):
@@ -149,11 +158,21 @@ class TestLegal:
 
         print("miss_of_fullpay_in_notice_sent_u::", miss_of_fullpay_in_notice_sent_u)
 
-        if len(miss_of_fullpay_in_notice_sent_u) > 0:
-            print("Error :: miss_of_fullpay_in_notice_sent_u::",miss_of_fullpay_in_notice_sent_u)
+        fillingInProgress_lid_fullPay = []
+        for fp in fillingInProgress_data:
+            if fp["Loan ID"]:
+                fillingInProgress_lid_fullPay.append(fp["Loan ID"])
+
+        print("fillingInProgress_lid_fullPay::", fillingInProgress_lid_fullPay)
+
+        miss_of_fullpay_in_notice_sent_u_fillingInprogress = set(
+            miss_of_fullpay_in_notice_sent_u) - set(fillingInProgress_lid_fullPay)
+
+        if len(miss_of_fullpay_in_notice_sent_u_fillingInprogress) > 0:
+            print("Error :: miss_of_fullpay_in_notice_sent_u_fillingInprogress::",miss_of_fullpay_in_notice_sent_u_fillingInprogress)
             assert False
         else:
-            print("*** No_miss_of_fullpay_in_notice_sent_u ***")
+            print("*** No_miss_of_fullpay_in_notice_sent_u_fillingInprogress ***")
 
 
     # @pytest.mark.skip
@@ -218,8 +237,19 @@ class TestLegal:
         print("miss_last_emi_failed_demand_trans_full_miss_with_notice::",miss_last_emi_failed_demand_trans_full_miss_with_notice)
 
 
-        if len(miss_last_emi_failed_demand_trans_full_miss_with_notice) > 0:
-            print("Error::last EMI failed miss found from fullpay atdbt &/ notice sent::",miss_last_emi_failed_demand_trans_full_miss_with_notice)
+
+        fillingInProgress_lid = []
+        for f in fillingInProgress_data:
+            if f["Loan ID"]:
+                fillingInProgress_lid.append(f["Loan ID"])
+
+        print("fillingInProgress_lid::",fillingInProgress_lid)
+
+        miss_last_emi_failed_demand_trans_full_miss_with_notice_filingInProgress = set(miss_last_emi_failed_demand_trans_full_miss_with_notice) - set(fillingInProgress_lid)
+
+
+        if len(miss_last_emi_failed_demand_trans_full_miss_with_notice_filingInProgress) > 0:
+            print("Error::last EMI failed miss found from fullpay atdbt &/ notice sent::",miss_last_emi_failed_demand_trans_full_miss_with_notice_filingInProgress)
             assert False
         else:
             print("*** No last EMI failed miss found from fullpay atdbt &/ notice sent ***")

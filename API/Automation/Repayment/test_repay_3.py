@@ -137,9 +137,6 @@ class TestRepayment:
 
 
 
-
-
-
     def test_using_per_loan_id_except_ontime_user(self):
 
         global emiDataTotalReceived_eo, totalTransAmt_eo
