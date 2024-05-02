@@ -106,6 +106,12 @@ class TestRepayment:
             if totalTransAmt:
                 totalTransAmt_n.append(totalTransAmt)
 
+            # print("totalTransAmt::",totalTransAmt)
+        print("totalTransAmt_n::", totalTransAmt_n)
+
+        print("emiDataTotalReceived::", emiDataTotalReceived)
+        print("ontime_emi_lid::", ontime_emi_lid)
+
 
         if len(emiDataTotalReceived) == len(totalTransAmt_n):
             differences = []  # Initialize an empty list to store the differences
@@ -130,11 +136,7 @@ class TestRepayment:
             print("Error: Lists have different lengths for ontime users.")
 
 
-        # print("totalTransAmt::",totalTransAmt)
-        print("totalTransAmt_n::", totalTransAmt_n)
 
-        print("emiDataTotalReceived::", emiDataTotalReceived)
-        print("ontime_emi_lid::", ontime_emi_lid)
 
 
 
