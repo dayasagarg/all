@@ -51,6 +51,11 @@ class TestLegal:
                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 2, "adminId": 134,
                                            "download": "true"})  # current date
 
+        caseAssigned = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
+                                    params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
+                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 11, "adminId": 153,
+                                            "download": "true"})
+
     #
     # @pytest.mark.skip
     def test_DemandLetter(self, url):
@@ -417,7 +422,7 @@ class TestLegal:
         else:
             print("*** paid percentage inside filing in progress is below 70 % ***")
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_notice_sent_unpaid_emi_total_70(self, url):
 
         global paidEMIAmt, emiAmt

@@ -56,7 +56,8 @@ class TestDashRepo:
         time.sleep(2)
         driver.find_element(By.ID, "login-password").send_keys(password) #password
         time.sleep(2)
-        driver.find_element(By.ID, "login-btn2").click() #button
+        driver.find_element(By.ID, "login-btn").click() #button
+        # driver.find_element(By.XPATH, "//*[@id="login-btn"]").click()  # button
         time.sleep(5)
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[1]").send_keys(otp1)  # otp
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[2]").send_keys(otp2)  # otp

@@ -10,10 +10,10 @@ curr_str = datetime.strftime(currentFullTime,"%Y-%m-%d")
 pre_15 = currentFullTime - timedelta(days=15)
 pre_15_DateStr = datetime.strftime(pre_15, "%Y-%m-%d")
 
-pre_5 = currentFullTime - timedelta(days=5) # 4-5
+pre_5 = currentFullTime - timedelta(days=30) # 4-5
 pre_5_DateStr = datetime.strftime(pre_5, "%Y-%m-%d")
 
-pre_10 = pre_5 - timedelta(days=10)
+pre_10 = pre_5 - timedelta(days=2)
 pre_10_DateStr = datetime.strftime(pre_10, "%Y-%m-%d")
 
 
@@ -32,7 +32,7 @@ class TestLegal:
 
         autoDebitFailedAPI = requests.get(
             "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",
-            params={"start_date": f"{pre_5_DateStr}T10:00:00.000Z", "end_date": f"{pre_5_DateStr}T10:00:00.000Z", "status": 4,
+            params={"start_date": f"{pre_10_DateStr}T10:00:00.000Z", "end_date": f"{pre_5_DateStr}T10:00:00.000Z", "status": 4,
                     "page": 1, "skipPageLimit": "true"})
 
         autoDebitFailedAPI_current = requests.get(

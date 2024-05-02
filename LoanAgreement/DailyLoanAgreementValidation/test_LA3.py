@@ -56,7 +56,8 @@ class TestDashRepo:
         time.sleep(2)
         driver.find_element(By.ID, "login-password").send_keys(password) #password
         time.sleep(2)
-        driver.find_element(By.ID, "login-btn2").click() #button
+        driver.find_element(By.ID, "login-btn").click() #button
+        # driver.find_element(By.XPATH, "//*[@id="login-btn"]").click()  # button
         time.sleep(5)
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[1]").send_keys(otp1)  # otp
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[2]").send_keys(otp2)  # otp
@@ -128,6 +129,7 @@ class TestDashRepo:
         customerId = driver.find_element(By.XPATH, "/html/body/app-root/app-layout/mat-drawer-container/mat-drawer-content/app-customer-list/div[1]/app-customer-list-header/div/div[1]/div[1]/div[1]/mat-chip-list/div/mat-chip/span/span").text
         time.sleep(5)
         # print("customerId::",customerId)
+
         if customerId in firstPage:
             print(f" *** 'customerId' :'{customerId}' is matched with KEY FACT STATEMENT in first Page of pdf *** ")
         else:
@@ -837,7 +839,7 @@ class TestDashRepo:
             assert profileName in fifthPage, "profileName is matched with security document section in fifth Page of pdf"
 
         except:
-            if 'Name of Borrower' in fifthPage:
+            if 'Name of Borrower' in firstPage:
                 index1 = firstPage.index('Name of Borrower')
                 index2 = firstPage.index('NBFC NameChinmay Finlease')
                 text = firstPage[index1 + 16:index2]
