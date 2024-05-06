@@ -188,6 +188,3 @@ class TestLegal:
             assert False
         else:
             print("*** paid percentage inside notice sent is below 70 % per emi ***")
-
-
-
