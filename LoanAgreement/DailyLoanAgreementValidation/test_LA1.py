@@ -426,7 +426,7 @@ class TestDashRepo:
                         f" *** 'documentCharges2' :'{documentCharges2}' is matched with CHARGES Section in first Page of pdf *** ")
                 else:
                     print(
-                        f"Error :: 'documentCharges2' :'{documentCharges2}' is not matched with CHARGES Section in first Page of pdf ")
+                        f"Exception :: 'documentCharges2' :'{documentCharges2}' is not matched with CHARGES Section in first Page of pdf ")
 
                 assert documentCharges2 in firstPage, "is matched with CHARGES Section in first Page of pdf"
             except:

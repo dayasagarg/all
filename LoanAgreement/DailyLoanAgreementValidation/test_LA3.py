@@ -561,7 +561,7 @@ class TestDashRepo:
         latePaymentChargePerAnnual = round(loanIntPerAnnum,4)
         # print("latePaymentChargePerAnnual::",latePaymentChargePerAnnual)
         # print("loanIntPerAnnum::", loanIntPerAnnum)
-        latePaymentChargePerAnnualInt = int(round(loanIntPerAnnum,3))
+        latePaymentChargePerAnnualInt = int(round(loanIntPerAnnum,0))
 
         latePaymentChargePerAnnualString = str(latePaymentChargePerAnnual) + "00%"
         latePaymentChargePerAnnualString2 = str(latePaymentChargePerAnnual) + "%"

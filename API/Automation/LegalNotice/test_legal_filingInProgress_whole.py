@@ -35,21 +35,11 @@ print("start_date_2::", start_date_2)
 print("end_date_2::", end_date_2)
 
 
-# note: execute at 12 pm every time because of crone set time.
 
 class TestLegal:
     @pytest.fixture
     def url(self):
-        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3, caseAssigned, fillingInProgress_data
-        legalDemandLetter = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
-                                         params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
-                                                 "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
-                                                 "download": "true"})  # date = 6 days before notice sent
-
-        legalNotice = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
-                                   params={"page": 1, "startDate": f"{start_date_2}T10:00:00.000Z",
-                                           "endDate": f"{end_date_2}T10:00:00.000Z", "type": 2, "adminId": 134,
-                                           "download": "true"})  # current date
+        global caseAssigned, fillingInProgress, fillingInProgress_data
 
         caseAssigned = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                     params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
@@ -63,8 +53,6 @@ class TestLegal:
 
         fillingInProgress_data = fillingInProgress.json()["data"]["rows"]
 
-    #
-
 
     # @pytest.mark.skip
     def test_case_assign_to_collection_1(self,url):
@@ -75,24 +63,20 @@ class TestLegal:
 
         case_lid = []
 
-
         for c in case_data:
-
             if c["Loan ID"]:
                 case_lid.append(c["Loan ID"])
             # print(c)
 
-
     def test_filingInProgress_2emi_2unpaid(self, url):
         global paidBeforeLetter, paidAfterLetter, total_emi_amt, emi3_amount, paidBeforeLetter_3, paidAfterLetter_3, total_emi_amt_3, fillingInProgress_lid
 
-        # print("summons_data::",summons_data)
+
 
         pp_gt_70_2emi_lid_f = []
 
         fillingInProgress_lid = []
 
-        # print("case_lid::",case_lid)
 
         for s in fillingInProgress_data:
             if s['Loan ID']:
@@ -106,9 +90,6 @@ class TestLegal:
 
                 total_emi_amt = emi1_amount + emi2_amount
 
-                # print("total_emi_amt::",total_emi_amt)
-
-                # print("loan_id::",s["Loan ID"])
 
                 if s["Amount paid (before letter)"]:
                     paidBeforeLetter = int(s["Amount paid (before letter)"].replace(",", ""))
@@ -117,20 +98,19 @@ class TestLegal:
                     paidAfterLetter = int(s["Amount paid (after letter)"].replace(",", ""))
 
                 totalPaid = paidBeforeLetter + paidAfterLetter
-                # print("totalPaid::",totalPaid)
+
 
                 pp_emi_2 = round((totalPaid / total_emi_amt) * 100, 0)
-                # print("pp_emi_2::",pp_emi_2)
+
 
                 if pp_emi_2 > 70.0:
                     pp_gt_70_2emi_lid_f.append(s['Loan ID'])
-                    # print("pp_emi_2::",pp_emi_2)
+
 
         pp_2emi_miss_in_ca_lid_f_2_unpaid = []
         for l in pp_gt_70_2emi_lid_f:
             if l not in case_lid:
                 pp_2emi_miss_in_ca_lid_f_2_unpaid.append(l)
-
 
 
         if len(pp_2emi_miss_in_ca_lid_f_2_unpaid) > 0:
@@ -140,34 +120,18 @@ class TestLegal:
         else:
             print("*** remaining paid percentage less than 70 for 2 emi, 2 unpaid in fillingInProgress ***")
 
-    #
-
 
     def test_filingInProgress_2emi_1unpaid(self, url):
         global paidBeforeLetter_1_u, paidAfterLetter_1_u
 
-
-
         pp_gt_70_2emi_lid_f_1_u = []
-
-
-
-
 
         for o in fillingInProgress_data:
 
-
             if o["Emi 1 status"] == "PAID" and o["Emi 2 status"] == "UNPAID" and o["Emi 3 amount"] == "-" and o["Emi 4 amount"] == "-":
-
-
 
                 emi2_amount_2emi_1u = int(o["Emi 2 amount"].replace(",", ""))
 
-
-
-                # print("total_emi_amt::",total_emi_amt)
-
-                # print("loan_id::",s["Loan ID"])
 
                 if o["Amount paid (before letter)"]:
                     paidBeforeLetter_1_u = int(o["Amount paid (before letter)"].replace(",", ""))
@@ -176,21 +140,19 @@ class TestLegal:
                     paidAfterLetter_1_u = int(o["Amount paid (after letter)"].replace(",", ""))
 
                 totalPaid_1_u = paidBeforeLetter_1_u + paidAfterLetter_1_u
-                # print("totalPaid::",totalPaid)
+
 
                 pp_emi_2_1_u = round((totalPaid_1_u / emi2_amount_2emi_1u) * 100, 0)
-                # print("pp_emi_2::",pp_emi_2)
+
 
                 if pp_emi_2_1_u > 70.0:
                     pp_gt_70_2emi_lid_f_1_u.append(o['Loan ID'])
-                    # print("pp_emi_2::",pp_emi_2)
+
 
         pp_2emi_miss_in_ca_lid_f_1_unpaid = []
         for m in pp_gt_70_2emi_lid_f_1_u:
             if m not in case_lid:
                 pp_2emi_miss_in_ca_lid_f_1_unpaid.append(m)
-
-
 
         if len(pp_2emi_miss_in_ca_lid_f_1_unpaid) > 0:
             print(
@@ -199,34 +161,19 @@ class TestLegal:
         else:
             print("*** remaining paid percentage less than 70 for 2 emi, 1 unpaid in fillingInProgress ***")
 
-
-
     def test_filingInProgress_3emi_1paid_2unpaid(self, url):
         global paidBeforeLetter, paidAfterLetter, total_emi_amt_1p_2u, emi3_amount, paidBeforeLetter_1p_2u, paidAfterLetter_1p_2u, total_emi_amt_3, fillingInProgress_lid, pp_gt_70_3emi_lid_f_1p_2u
 
-        # print("summons_data::",summons_data)
-
         pp_gt_70_3emi_lid_f_1p_2u = []
-
-
-
-        # print("case_lid::",case_lid)
 
         for t in fillingInProgress_data:
 
-
             if t["Emi 1 status"] == "PAID" and t["Emi 2 status"] == "UNPAID" and t["Emi 3 amount"] == "UNPAID" and t["Emi 4 amount"] == "-":
-
-
 
                 emi2_amount_1p_2u = int(t["Emi 2 amount"].replace(",", ""))
                 emi3_amount_1p_2u = int(t["Emi 3 amount"].replace(",", ""))
 
                 total_emi_amt_1p_2u = emi2_amount_1p_2u + emi3_amount_1p_2u
-
-                # print("total_emi_amt::",total_emi_amt)
-
-                # print("loan_id::",s["Loan ID"])
 
                 if t["Amount paid (before letter)"]:
                     paidBeforeLetter_1p_2u = int(t["Amount paid (before letter)"].replace(",", ""))
@@ -235,14 +182,14 @@ class TestLegal:
                     paidAfterLetter_1p_2u = int(t["Amount paid (after letter)"].replace(",", ""))
 
                 total_paid_1p_2u = paidBeforeLetter + paidAfterLetter
-                # print("totalPaid::",totalPaid)
+
 
                 pp_emi_3_1p_2u = round((total_paid_1p_2u / total_emi_amt_1p_2u) * 100, 0)
-                # print("pp_emi_2::",pp_emi_2)
+
 
                 if pp_emi_3_1p_2u > 70.0:
                     pp_gt_70_3emi_lid_f_1p_2u.append(t['Loan ID'])
-                    # print("pp_emi_2::",pp_emi_2)
+
 
 
         pp_3emi_miss_in_ca_lid_f_1p_2u = []
@@ -268,7 +215,7 @@ class TestLegal:
 
         fillingInProgress_lid = []
 
-        # print("case_lid::",case_lid)
+
 
         for u in fillingInProgress_data:
             if u['Loan ID']:
@@ -278,9 +225,7 @@ class TestLegal:
 
                 emi3_amount_2p_1u = int(u["Emi 3 amount"].replace(",", ""))
 
-                # print("total_emi_amt::",total_emi_amt)
 
-                # print("loan_id::",u["Loan ID"])
 
                 if u["Amount paid (before letter)"]:
                     paidBeforeLetter_2p_1u = int(u["Amount paid (before letter)"].replace(",", ""))
@@ -289,14 +234,11 @@ class TestLegal:
                     paidAfterLetter_2p_1u = int(u["Amount paid (after letter)"].replace(",", ""))
 
                 total_paid_2p_1u = paidBeforeLetter_2p_1u + paidAfterLetter_2p_1u
-                # print("totalPaid::",totalPaid)
 
                 pp_emi_3_2p_1u = round((total_paid_2p_1u / emi3_amount_2p_1u) * 100, 0)
-                # print("pp_emi_2::",pp_emi_2)
 
                 if pp_emi_3_2p_1u > 70.0:
                     pp_gt_70_3emi_lid_f_2p_1u.append(u['Loan ID'])
-                    # print("pp_emi_2::",pp_emi_2)
 
 
         pp_3emi_miss_in_ca_lid_f_2p_1u = []
@@ -315,8 +257,6 @@ class TestLegal:
     def test_filingInProgress_3emi_3unpaid(self, url):
         global paidBeforeLetter_3emi_3u, paidAfterLetter_3emi_3u
 
-        # print("summons_data::",summons_data)
-
         pp_gt_70_3emi_lid_f_3u = []
 
 
@@ -331,9 +271,6 @@ class TestLegal:
 
                 total_emi_amt_3u = emi1_amount_3emi_3u + emi2_amount_3emi_3u + emi3_amount_3emi_3u
 
-                # print("total_emi_amt::",total_emi_amt)
-
-                # print("loan_id::",q["Loan ID"])
 
                 if q["Amount paid (before letter)"]:
                     paidBeforeLetter_3emi_3u = int(q["Amount paid (before letter)"].replace(",", ""))
@@ -342,7 +279,7 @@ class TestLegal:
                     paidAfterLetter_3emi_3u = int(q["Amount paid (after letter)"].replace(",", ""))
 
                 total_paid_3emi_3u = paidBeforeLetter_3emi_3u + paidAfterLetter_3emi_3u
-                # print("totalPaid::",totalPaid)
+
 
                 pp_emi_3_3u = round((total_paid_3emi_3u / total_emi_amt_3u) * 100, 0)
 
@@ -390,14 +327,14 @@ class TestLegal:
 
 
                 total_paid_4emi_1p_3u = paidBeforeLetter_4emi_1p_3u + paidAfterLetter_4emi_1p_3u
-                # print("totalPaid::",totalPaid)
+
 
                 pp_emi_4_1p_3u = round((total_paid_4emi_1p_3u / total_emi_amt_4emi_1p_3u) * 100, 0)
-                # print("pp_emi_2::",pp_emi_2)
+
 
                 if pp_emi_4_1p_3u > 70.0:
                     pp_gt_70_4emi_lid_f_1p_3u.append(v['Loan ID'])
-                    # print("pp_emi_2::",pp_emi_2)
+
 
         pp_4emi_miss_in_ca_lid_f_1p_3u = []
         for w in pp_gt_70_4emi_lid_f_1p_3u:
@@ -417,7 +354,6 @@ class TestLegal:
 
         pp_gt_70_4emi_lid_f_2p_2u = []
 
-        # print("case_lid::",case_lid)
 
         for x in fillingInProgress_data:
 
@@ -438,14 +374,12 @@ class TestLegal:
                     paidAfterLetter_4emi_2p_2u = int(x["Amount paid (after letter)"].replace(",", ""))
 
                 total_paid_4emi_2p_2u = paidBeforeLetter_4emi_2p_2u + paidAfterLetter_4emi_2p_2u
-                # print("totalPaid::",totalPaid)
 
                 pp_emi_4_2p_2u = round((total_paid_4emi_2p_2u / total_emi_amt_4emi_2p_2u) * 100, 0)
-                # print("pp_emi_2::",pp_emi_2)
 
                 if pp_emi_4_2p_2u > 70.0:
                     pp_gt_70_4emi_lid_f_2p_2u.append(x['Loan ID'])
-                    # print("pp_emi_2::",pp_emi_2)
+
 
         pp_4emi_miss_in_ca_lid_f_2p_2u = []
         for y in pp_gt_70_4emi_lid_f_2p_2u:
@@ -465,8 +399,6 @@ class TestLegal:
 
         pp_gt_70_4emi_lid_f_3p_1u = []
 
-
-
         for x in fillingInProgress_data:
 
             if x["Emi 1 status"] == "PAID" and x["Emi 2 status"] == "PAID" and x["Emi 3 amount"] == "PAID" and x[
@@ -474,7 +406,6 @@ class TestLegal:
 
 
                 emi4_amount_4emi_3p_1u = int(x["Emi 4 amount"].replace(",", ""))
-
 
 
                 if x["Amount paid (before letter)"]:
@@ -487,7 +418,7 @@ class TestLegal:
 
 
                 pp_emi_4_3p_1u = round((total_paid_4emi_3p_1u / emi4_amount_4emi_3p_1u) * 100, 0)
-                # print("pp_emi_2::",pp_emi_2)
+
 
                 if pp_emi_4_3p_1u > 70.0:
                     pp_gt_70_4emi_lid_f_3p_1u.append(x['Loan ID'])
