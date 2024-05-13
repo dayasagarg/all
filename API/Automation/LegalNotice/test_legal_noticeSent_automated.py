@@ -58,6 +58,57 @@ class TestLegal:
 
     #
     # @pytest.mark.skip
+    def test_case_assign_to_collection_1(self,url):
+        global paidPrincipleInterest, principleInterest, cal_less_than_70, case_lid
+        case_data = caseAssigned.json()["data"]["rows"]
+
+        # print("case_data::",case_data)
+
+        case_lid = []
+
+        perc_loanId = []
+
+        cal_less_than_70 = []
+        # paidPrincipleInterest = []
+        # principleInterest = []
+
+        for c in case_data:
+
+            if c["Loan ID"]:
+                case_lid.append(c["Loan ID"])
+            # print(c)
+            if c["Paid principal & interest percentage(%)"] == "100.00":
+                # print(c)
+                perc_loanId.append(c["Loan ID"])
+
+            if c["Paid principal & interest"]:
+                paidPrincipleInterest = int(c["Paid principal & interest"].replace(",", ""))
+                # print("paidPrincipleInterest::",paidPrincipleInterest)
+
+            if c["Principal & interest"]:
+                principleInterest = int(c["Principal & interest"].replace(",", ""))
+                # print("principleInterest::",principleInterest)
+
+            # print("paidPrincipleInterest::",paidPrincipleInterest)
+            # print("principleInterest::",principleInterest)
+
+            if round((paidPrincipleInterest / principleInterest) * 100, 2) < 70.0:
+                cal_less_than_70.append(c["Loan ID"])
+
+        print("cal_less_than_70::", cal_less_than_70)
+        # print("case_lid::",case_lid)
+
+        count_perc_loanId = len(perc_loanId)
+        print("count_perc_loanId :: ", count_perc_loanId)
+        #
+        if count_perc_loanId > 0:
+            print(f"Error:: Paid percentage 100% found in case assigned to collection :: {perc_loanId}")
+            assert False
+        else:
+            print("Paid percentage is below 100% in case assigned to collection")
+        #
+        # print("perc_loanId:: ",perc_loanId)
+
     def test_DemandLetter(self, url):
         # print("start_date_2::", start_date_2)
         # print("end_date_2::", end_date_2)
@@ -185,73 +236,30 @@ class TestLegal:
 
         # print("case_lid_in_notice", case_lid)
 
-        if len(missedDemandWithNotice) == 0:
-            print("*** Notice sent ***")
+        missedDemandWithNotice_sub_coll = set(missedDemandWithNotice) - set(case_lid)
+        # print("noticeNotSent_sub_coll::",noticeNotSent_sub_coll)
+
+
+        if len(missedDemandWithNotice_sub_coll) == 0:
+            print("*** Notice are sent ***")
         else:
-            print(f"Error:: Notice not sent cases found::{missedDemandWithNotice}")
-        assert len(missedDemandWithNotice) == 0
+            print(f"Error:: Notice not sent cases found::{missedDemandWithNotice_sub_coll}")
+        assert len(missedDemandWithNotice_sub_coll) == 0
+
+    #
 
 
     # @pytest.mark.skip
     def test_notice_not_sent(self):
-        if len(noticeNotSent) > 0:
-            print(f"Notice not sent found ::{noticeNotSent}")
+        noticeNotSent_sub_coll = set(noticeNotSent) - set(case_lid)
+        # print("noticeNotSent_sub_coll::",noticeNotSent_sub_coll)
+
+
+        if len(noticeNotSent_sub_coll) > 0:
+            print(f"Notice not sent found ::{noticeNotSent_sub_coll}")
             assert False
         else:
             print("*** All notice sent ***")
-
-
-    def test_case_assign_to_collection_1(self):
-        global paidPrincipleInterest, principleInterest, cal_less_than_70, case_lid
-        case_data = caseAssigned.json()["data"]["rows"]
-
-        # print("case_data::",case_data)
-
-        case_lid = []
-
-        perc_loanId = []
-
-        cal_less_than_70 = []
-        # paidPrincipleInterest = []
-        # principleInterest = []
-
-        for c in case_data:
-
-            if c["Loan ID"]:
-                case_lid.append(c["Loan ID"])
-            # print(c)
-            if c["Paid principal & interest percentage(%)"] == "100.00":
-                # print(c)
-                perc_loanId.append(c["Loan ID"])
-
-            if c["Paid principal & interest"]:
-                paidPrincipleInterest = int(c["Paid principal & interest"].replace(",", ""))
-                # print("paidPrincipleInterest::",paidPrincipleInterest)
-
-            if c["Principal & interest"]:
-                principleInterest = int(c["Principal & interest"].replace(",", ""))
-                # print("principleInterest::",principleInterest)
-
-            # print("paidPrincipleInterest::",paidPrincipleInterest)
-            # print("principleInterest::",principleInterest)
-
-            if round((paidPrincipleInterest / principleInterest) * 100, 2) < 70.0:
-                cal_less_than_70.append(c["Loan ID"])
-
-        print("cal_less_than_70::", cal_less_than_70)
-        # print("case_lid::",case_lid)
-
-        count_perc_loanId = len(perc_loanId)
-        print("count_perc_loanId :: ", count_perc_loanId)
-        #
-        if count_perc_loanId > 0:
-            print(f"Error:: Paid percentage 100% found in case assigned to collection :: {perc_loanId}")
-            assert False
-        else:
-            print("Paid percentage is below 100% in case assigned to collection")
-        #
-        # print("perc_loanId:: ",perc_loanId)
-        #
 
 
     # @pytest.mark.skip

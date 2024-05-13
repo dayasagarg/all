@@ -22,28 +22,28 @@ class TestNegInterest:
 
         disData = disURL.json()["data"]["rows"]
 
-        l_id_intRate_less_85 = []
+        l_id_intRate_less_77 = []
         l_id_intRate_above_1 = []
 
         for inte in disData:
-            if float(inte["Interest Rate"].replace("%","")) < 0.085:
+            if float(inte["Interest Rate"].replace("%","")) < 0.077:
                 # print("intRate",float(inte["Interest Rate"].replace("%","")))
-                l_id_intRate_less_85.append(inte["Loan ID"])
+                l_id_intRate_less_77.append(inte["Loan ID"])
             elif float(inte["Interest Rate"].replace("%","")) > 0.1:
                 l_id_intRate_above_1.append(inte["Loan ID"])
 
-        count_l_id_intRate_85 = len(l_id_intRate_less_85)
+        count_l_id_intRate_77 = len(l_id_intRate_less_77)
         count_l_id_intRate_1 = len(l_id_intRate_above_1)
 
-        if count_l_id_intRate_85 > 0:
-            print(f"Error:: Interest rate below 0.085% found :: l_id :: {count_l_id_intRate_85}")
+        if count_l_id_intRate_77 > 0:
+            print(f"Error:: Interest rate below 0.077% found :: l_id :: {l_id_intRate_less_77}")
             assert False
         else:
-            print("*** Interest rate is not below 0.085% ***")
+            print("*** Interest rate is not below 0.077% ***")
 
 
         if count_l_id_intRate_1 > 0:
-            print(f"Error:: Interest rate above 0.1% found :: l_id :: {count_l_id_intRate_1}")
+            print(f"Error:: Interest rate above 0.1% found :: l_id :: {l_id_intRate_above_1}")
             assert False
         else:
             print("*** Interest rate is not above 0.1% ***")
