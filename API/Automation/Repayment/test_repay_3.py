@@ -175,7 +175,7 @@ class TestRepayment:
             #     break
 
             response = requests.get(
-                "https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": l},
+                "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": l},
                 verify=False)  # current date
 
             # print('status code of get Repayment::', response.status_code)
