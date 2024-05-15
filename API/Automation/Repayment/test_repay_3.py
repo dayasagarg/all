@@ -82,7 +82,7 @@ class TestRepayment:
             #     break
 
             response = requests.get(
-                "https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
+                "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
                 verify=False)  # current date
 
             # print('status code of get Repayment::', response.status_code)
@@ -94,8 +94,8 @@ class TestRepayment:
             for t in transData:
                 if t["Status"] == "COMPLETED":
 
-                    if t["Repay Amount"]:
-                        trans_amt.append(t["Repay Amount"])
+                    if t["Repay amount"]:
+                        trans_amt.append(t["Repay amount"])
 
 
             # print("totalTransAmt::",sum(trans_amt))
@@ -187,8 +187,8 @@ class TestRepayment:
             for t in transData:
                 if t["Status"] == "COMPLETED":
 
-                    if t["Repay Amount"]:
-                        trans_amt_eo.append(t["Repay Amount"])
+                    if t["Repay amount"]:
+                        trans_amt_eo.append(t["Repay amount"])
 
             totalTransAmt_eo = sum(trans_amt_eo)
 

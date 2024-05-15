@@ -19,6 +19,8 @@ class TestLoanDisbCibil:
                                       "page": 1, "download": "true"})
 
 
+
+
     def test_disb_cibil_new_user(self, url_dis_cibil):
         print("*** Test execution started ***")
         global cibil_pl_less_than_680_lid_count, cibil_pl_less_than_680_lid, cibil_pl_700_749_out_lid, cibil_pl_700_749_out_lid_count

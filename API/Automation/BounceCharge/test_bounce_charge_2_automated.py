@@ -79,7 +79,7 @@ class TestBounce:
                 if ed2["penaltyDays"] > 0:
                     if ed2["status"] == "UNPAID":
 
-                        if ed2["bounceCharge"] == 0:
+                        if ed2["totalBounceCharge"] == 0:
                             bounceChMissed_LId_2.append(r)
 
 
@@ -124,7 +124,7 @@ class TestBounce:
             for edf in emiAPI_data2_f:
                 if edf["emiDate"] == curr_str_emi:
 
-                    if edf["bounceCharge"] == 0:
+                    if edf["totalBounceCharge"] == 0:
                         bounceChMissed_LId_2_f.append(rf)
 
 
@@ -167,7 +167,7 @@ class TestBounce:
                 if ed2["penaltyDays"] > 0:
                     if ed2["status"] == "PAID":
 
-                        if ed2["bounceCharge"] == 0:
+                        if ed2["totalBounceCharge"] == 0:
                             bounceChMissed_LId_2.append(r)
 
 
@@ -216,7 +216,7 @@ class TestBounce:
             for ed3 in emiAPI_data3:
                 if ed3["penaltyDays"] > 0:
 
-                    if ed3["bounceCharge"] == 0:
+                    if ed3["totalBounceCharge"] == 0:
                         bounceChMissed_LId_3.append(s)
 
 

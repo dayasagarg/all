@@ -62,7 +62,7 @@ class TestRepayment:
         last_2_day_with_current = [currentDateStr_2,pre_time_2]
         # print("currentDateStr_2::",currentDateStr_2)
 
-        global trans_amt, trans_prin, trans_int, trans_penalty
+        global trans_amt, trans_prin, trans_int, trans_deffered, trans_penal, trans_fcc, trans_lc, trans_ecs
         totalTransAmt_n = []
 
         missMatchTransAmt = []
@@ -70,7 +70,7 @@ class TestRepayment:
 
         for n,j in enumerate(lIDs):
             response = requests.get(
-                "https://lendittfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
+                "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
                 verify=False)  # current date
 
             # print('status code of get Repayment::', response.status_code)
@@ -87,10 +87,10 @@ class TestRepayment:
             for t in transData:
 
                 if t["Status"] == "COMPLETED":
-                    if t["Repaid Date"] in last_2_day_with_current:
+                    if t["Repaid date"] in last_2_day_with_current:
 
                         # if t["Repay Amount"]:
-                        trans_amt = t["Repay Amount"]
+                        trans_amt = t["Repay amount"]
                             # trans_amt.append(t["Repay Amount"])
 
                         # if t["Principal"]:
@@ -101,11 +101,14 @@ class TestRepayment:
                         trans_int = t["Interest"]
     #                         trans_int.append(t["Interest"])
 
-                        # if t["Penalty"]:
-                        trans_penalty = t["Penalty"]
-    #                         trans_penalty.append(t["Penalty"])
 
-                        trans_amt_pert_f = trans_prin + trans_int + trans_penalty
+                        trans_deffered = t["Deferred interest"]
+                        trans_penal = t["Penal charge"]
+                        trans_fcc = t["For closure charge"]
+                        trans_lc = t["Legal charge"]
+                        trans_ecs = t["ECS charge"]
+
+                        trans_amt_pert_f = trans_prin + trans_int + trans_deffered + trans_penal + trans_fcc + trans_lc + trans_ecs
                         # print("trans_amt_pert_f::",trans_amt_pert_f)
                         # print("trans_amt::",trans_amt)
                         # print("trans_amt::",trans_amt)

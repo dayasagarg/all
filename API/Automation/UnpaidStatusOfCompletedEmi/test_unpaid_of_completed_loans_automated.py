@@ -47,10 +47,11 @@ class TestRepayment:
 
         unpaid = []
         withoutUnpaid = []
+        paid_0 = []
+
         # Upcoming EMI
         for n,i in enumerate(lIDs):
-            if n == 33:
-                break
+
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
@@ -65,13 +66,14 @@ class TestRepayment:
             # print(response.headers)
             # print(response.content)
 
-            '''getting EMIData data of Repayment '''
+            '''getting EMIData data of Repayment'''
             emiData = response.json()["data"]["EMIData"]
             # print(emiData)
 
             # EMI Data
             paymentType = []
             status = []
+
 
             for eD in emiData:
                 # if "Payment type" in eD:
@@ -86,6 +88,12 @@ class TestRepayment:
 
                 else:
                     withoutUnpaid.append(i)
+
+                if eD["status"] == "PAID":
+                    if eD["totalPaidAmount"] == 0 or eD["paidEmiAmount"] == 0:
+                        paid_0.append(i)
+
+
 
 
 
@@ -123,5 +131,13 @@ class TestRepayment:
             print(f"Error:: unpaid found::{unpaid}")
 
         assert len(unpaid) == 0
+
+
+        if len(paid_0) == 0:
+            print("*** No paid with 0 found ***")
+        else:
+            print(f"Error:: paid with 0 found::{paid_0}")
+
+        assert len(paid_0) == 0
 
 

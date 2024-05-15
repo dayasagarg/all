@@ -112,6 +112,7 @@ class TestDisbMonthlyLoanFigure:
         new_users_count = len(new_users)
         repeat_users = len(repeat_users)
 
+
         total_disb_loans_count = new_users_count + repeat_users
 
         # print("new_users_count_disb::",new_users_count)
@@ -148,6 +149,7 @@ class TestDisbMonthlyLoanFigure:
         combine_chn_lnd_interest_report = int(total_chn_interest_report) + int(total_lnd_interest_report)
 
         # assert total_int_amt == combine_chn_lnd_interest_report, "total_int_amt and combine_chn_lnd_interest_report not equal"
+
         print("total_chn_interest_report::",total_chn_interest_report)
         print("total_lnd_interest_report::",total_lnd_interest_report)
         print("combine_chn_lnd_interest_report::",combine_chn_lnd_interest_report)
@@ -157,8 +159,24 @@ class TestDisbMonthlyLoanFigure:
         chn_new_loan_r = int(monthlyFigureReport_disb_chin_data["data"]["rows"][0]['New Loan'])
         chn_repeat_loan_r = int(monthlyFigureReport_disb_chin_data["data"]["rows"][0]['Repeat Loan'])
 
+
         lnd_new_loan_r = int(monthlyFigureReport_disb_lenditt_data["data"]["rows"][0]['New Loan'])
         lnd_repeat_loan_r = int(monthlyFigureReport_disb_lenditt_data["data"]["rows"][0]['Repeat Loan'])
+
+        new_user_r = chn_new_loan_r + lnd_new_loan_r
+        print("new_user_r::",new_user_r)
+
+        assert new_user_r == new_users_count
+
+        repeat_user_r = chn_repeat_loan_r + lnd_repeat_loan_r
+        print("repeat_user_r::",repeat_user_r)
+        assert repeat_user_r == repeat_users
+
+        print("chn_new_loan_r::", chn_new_loan_r)
+        print("chn_repeat_loan_r::", chn_repeat_loan_r)
+        print("lnd_new_loan_r::",lnd_new_loan_r)
+        print("lnd_repeat_loan_r::",lnd_repeat_loan_r)
+
 
         combine_chn_lnd_new_repeat_user_r = chn_new_loan_r + chn_repeat_loan_r + lnd_new_loan_r + lnd_repeat_loan_r
         assert total_disb_loans_count == combine_chn_lnd_new_repeat_user_r, "total_disb_loans_count and combine_chn_lnd_new_repeat_user_r are not equal"
@@ -185,6 +203,7 @@ class TestDisbMonthlyLoanFigure:
         lnd_total_exp_fees_r = int((monthlyFigureReport_disb_lenditt_data["data"]["rows"][0]['Total Expected Fees']).replace(",",""))
         combine_chn_lnd_fees_r = chn_total_exp_fees_r + lnd_total_exp_fees_r
         # assert combine_chn_lnd_fees_r == total_fees, "combine_chn_lnd_fees_r not equal to total_fees"
+
         print("combine_chn_lnd_fees_r::",combine_chn_lnd_fees_r)
         print("total_fees::", total_fees)
         print("chn_total_exp_fees_r::",chn_total_exp_fees_r)
