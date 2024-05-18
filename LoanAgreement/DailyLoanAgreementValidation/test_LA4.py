@@ -922,7 +922,7 @@ class TestDashRepo:
 
             assert email in eleventhPage, "email is matched with LOAN AGREEMENT in eleventh Page of pdf"
 
-        #
+
         # PAN number
         # pan = driver.find_element(By.XPATH,"//div[contains(@class,'basic-details d-flex flex-row basic-info-card align-items-center justify-content-between mt-2')][2]//div[2]").text
         # pan = driver.find_element(By.ID,"PAN").text

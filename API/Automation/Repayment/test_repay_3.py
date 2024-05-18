@@ -53,8 +53,7 @@ class TestRepayment:
         ontime_emi_lid = []
 
         for n,i in enumerate(lIDs):
-            # if n == 5:
-            #     break
+
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
@@ -78,8 +77,7 @@ class TestRepayment:
 
         totalTransAmt_n = []
         for n,j in enumerate(ontime_emi_lid):
-            # if n == 5:
-            #     break
+
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
@@ -145,8 +143,7 @@ class TestRepayment:
         emi_lid_eo = []
 
         for m,k in enumerate(lIDs):
-            # if m == 5:
-            #     break
+
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": k},
@@ -171,8 +168,7 @@ class TestRepayment:
 
         totalTransAmt_n_eo = []
         for n,l in enumerate(emi_lid_eo):
-            # if n == 5:
-            #     break
+
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": l},

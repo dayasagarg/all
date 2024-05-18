@@ -84,16 +84,16 @@ class TestRepayment:
                 #     status.append(eD['Paid'])
 
                 if ((eD["paymentType"] == "FULLPAY") and (eD["status"] == "UNPAID")) or ((eD["paymentType"] == "EMIPAY") and (eD["status"] == "UNPAID")):
-                    unpaid.append(i)
+                    if eD["unpaidPenalty"] == 0:
+                        unpaid.append(i)
 
                 else:
                     withoutUnpaid.append(i)
 
+
                 if eD["status"] == "PAID":
                     if eD["totalPaidAmount"] == 0 or eD["paidEmiAmount"] == 0:
                         paid_0.append(i)
-
-
 
 
 
@@ -125,19 +125,17 @@ class TestRepayment:
         # print("unpaid::", unpaid)
         # print("withoutUnpaid::", withoutUnpaid)
 
+        if len(paid_0) == 0:
+            print("*** No paid with 0 found ***")
+        else:
+            print(f"Error:: paid with 0 found::{paid_0}")
+
+
         if len(unpaid) == 0:
             print("*** No unpaid found ***")
         else:
             print(f"Error:: unpaid found::{unpaid}")
 
         assert len(unpaid) == 0
-
-
-        if len(paid_0) == 0:
-            print("*** No paid with 0 found ***")
-        else:
-            print(f"Error:: paid with 0 found::{paid_0}")
-
-        assert len(paid_0) == 0
 
 

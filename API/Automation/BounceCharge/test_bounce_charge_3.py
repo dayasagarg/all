@@ -17,8 +17,6 @@ class TestBounce:
         curr_str = datetime.strftime(curr, "%d-%m-%Y")
         curr_str_emi = datetime.strftime(curr, "%d/%m/%Y")
 
-
-
         curr_s = datetime.strftime(curr, "%Y-%m-%d")
         prev_1 = curr - timedelta(days=1)
         prev_2 = curr - timedelta(days=3)
@@ -27,9 +25,6 @@ class TestBounce:
         pre_str_2 = datetime.strftime(prev_2, "%Y-%m-%d")
 
         pre_str_er = datetime.strftime(prev_1, "%d-%m-%Y")
-
-
-
 
 
 
@@ -45,9 +40,6 @@ class TestBounce:
 
         emiRepaymentStatus = requests.get(
             "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus",params={"fromDate":f"{pre_str_2}T10:00:00.000Z","endDate":f"{curr_s}T10:00:00.000Z","type":"TOTAL","page":1,"download":"true"})
-
-
-
 
 
     @pytest.mark.skip
@@ -115,7 +107,7 @@ class TestBounce:
 
         # print("emiRepaymentStatus_data_lid_2_count_f::", len(emiRepaymentStatus_data_lid_2_f))
         # print("emiRepaymentStatus_data_lid_2_f::",emiRepaymentStatus_data_lid_2_f)
-        #
+
         bounceChMissed_LId_2_f = []
         for rf in emiRepaymentStatus_data_lid_2_f:
             emiAPI_2_f = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
@@ -156,7 +148,7 @@ class TestBounce:
         # print("emiRepaymentStatus_data_lid_2_count_f::", len(emiRepaymentStatus_data_lid_2_f))
         # print("emiRepaymentStatus_data_lid_2_f::",emiRepaymentStatus_data_lid_2_f)
 
-        bounceChMissed_LId_2_g = []
+        bounceChMissed_LId_2_gst = []
         for rg in emiRepaymentStatus_data_lid_2_g:
             emiAPI_2_g = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
                                       params={"loanId": rg}, verify=False)
@@ -169,11 +161,13 @@ class TestBounce:
                 if edg["emiDate"] == curr_str_emi:
 
                     if edg["totalBounceCharge"] != 590:
-                        bounceChMissed_LId_2_g.append(rg)
+                        bounceChMissed_LId_2_gst.append(rg)
 
-        if len(bounceChMissed_LId_2_g) > 0:
+        print("bounceChMissed_LId_2_gst::",bounceChMissed_LId_2_gst)
+
+        if len(bounceChMissed_LId_2_gst) > 0:
             print(
-                f"Error::bounce charge not equal to 590::{bounceChMissed_LId_2_g}")
+                f"Error::bounce charge not equal to 590::{bounceChMissed_LId_2_gst}")
             assert False, "bounce charge missing found"
         else:
             print("*** bounce charge equal to 590 from 7th April ***")
