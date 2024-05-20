@@ -303,3 +303,5 @@ class TestLoanDisbCibil:
             print("*** loans are rejected if loan amount is more than 75 % of salary for cibil_pl_800_800 ::Repeat User:: ***")
 
 print("Test Execution Completed")
+
+
