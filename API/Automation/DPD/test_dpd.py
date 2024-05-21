@@ -70,6 +70,7 @@ class TestPenalFees:
                     pen_amt_1 = d["totalPenalty"]
                     pen_amt_cal_1 = math.ceil(round(d["principal"] * 0.05 + (d["principal"] * 0.05 * 0.18), 3))
 
+                    print("lid::",r)
                     print("pen_amt_1::",pen_amt_1)
                     print("pen_amt_cal_1::",pen_amt_cal_1)
 
@@ -80,6 +81,7 @@ class TestPenalFees:
                     pen_amt_2 = d["totalPenalty"]
                     pen_amt_cal_2 = math.ceil(round(d["principal"] * 0.1 + (d["principal"] * 0.1 * 0.18), 3))
 
+                    print("lid::", r)
                     print("pen_amt_2::", pen_amt_2)
                     print("pen_amt_cal_2::", pen_amt_cal_2)
 
@@ -90,6 +92,8 @@ class TestPenalFees:
                 elif d["penaltyDays"] in a_15_31:
                     pen_amt_3 = d["totalPenalty"]
                     pen_amt_cal_3 = math.ceil(round(d["principal"] * 0.15 + (d["principal"] * 0.15 * 0.18), 3))
+
+                    print("lid::", r)
                     print("pen_amt_3::",pen_amt_3)
                     print("pen_amt_cal_3::",pen_amt_cal_3)
 
@@ -100,6 +104,7 @@ class TestPenalFees:
                     pen_amt_4 = d["totalPenalty"]
                     pen_amt_cal_4 = math.ceil(round(d["principal"] * 0.20 + (d["principal"] * 0.20 * 0.18), 3))
 
+                    print("lid::", r)
                     print("pen_amt_4::",pen_amt_4)
                     print("pen_amt_cal_4::",pen_amt_cal_4)
 
@@ -110,6 +115,7 @@ class TestPenalFees:
                     pen_amt_5 = d["totalPenalty"]
                     pen_amt_cal_5 = math.ceil(round(d["principal"] * 0.25 + (d["principal"] * 0.25 * 0.18), 3))
 
+                    print("lid::", r)
                     print("pen_amt_5::",pen_amt_5)
                     print("pen_amt_cal_5::",pen_amt_cal_5)
 
