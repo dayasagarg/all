@@ -9,7 +9,9 @@ from datetime import datetime,timedelta
 class TestBounce:
     @pytest.fixture
     def bcURL(self):
-        global autoDebitFailedAPI, emiRepaymentStatus,pre_str_er,curr_str,curr_str_emi, disAPI, disAPI_d
+        global autoDebitFailedAPI, emiRepaymentStatus,pre_str_er,curr_str,curr_str_emi, disAPI, disAPI_d, disb_date_n
+
+
 
         curr = datetime.now()
         curr_str = datetime.strftime(curr, "%d-%m-%Y")
@@ -23,6 +25,9 @@ class TestBounce:
         pre_str_2 = datetime.strftime(prev_2, "%Y-%m-%d")
 
         pre_str_er = datetime.strftime(prev_1, "%d-%m-%Y")
+
+        disb_date = "07-04-2024"
+        disb_date_n = datetime.strptime(disb_date, "%d-%m-%Y")
 
 
 
@@ -97,13 +102,11 @@ class TestBounce:
         emiRepaymentStatus_data_lid_2_f = []
 
         for f in emiRepaymentStatus_data_f:
-            if (datetime.strptime(f["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024", "%d-%m-%Y"):
-
-                # emi date < current date
-                if f["Emi date"] == f"{curr_str}":
-                    if f["Today's EMI status"] == "FAILED":
-                        if f["Loan ID"]:
-                            emiRepaymentStatus_data_lid_2_f.append(f["Loan ID"])
+            # emi date < current date
+            if f["Emi date"] == f"{curr_str}":
+                if f["Today's EMI status"] == "FAILED":
+                    if f["Loan ID"]:
+                        emiRepaymentStatus_data_lid_2_f.append(f["Loan ID"])
 
         # print("emiRepaymentStatus_data_lid_2_count_f::", len(emiRepaymentStatus_data_lid_2_f))
         # print("emiRepaymentStatus_data_lid_2_f::",emiRepaymentStatus_data_lid_2_f)

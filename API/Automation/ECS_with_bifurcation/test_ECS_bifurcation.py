@@ -35,6 +35,7 @@ class TestBounce:
 
 
 
+
         # emi date < current date
 
         autoDebitFailedAPI = requests.get(
@@ -62,7 +63,7 @@ class TestBounce:
 
             # if ad["AD Response date"] == "05-02-2024":
 
-            if (datetime.strptime(ad["Disbursement date"], "%d-%m-%Y")) < disb_date_n:
+            if (datetime.strptime(ad["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
                 if ad["Today's EMI status"] == "FAILED":
                     if ad["Loan ID"]:
@@ -111,9 +112,9 @@ class TestBounce:
 
         for ad in autoDebitData:
 
-            if (datetime.strptime(ad["Disbursement date"], "%d-%m-%Y")) < disb_date_n:
+            # if ad["AD Response date"] == "05-02-2024":
 
-                # if ad["AD Response date"] == "05-02-2024":
+            if (datetime.strptime(ad["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
                 if ad["Today's EMI status"] == "FAILED":
                     if ad["Loan ID"]:
@@ -162,9 +163,10 @@ class TestBounce:
 
 
         for ad in autoDebitData_2:
-            if (datetime.strptime(ad["Disbursement date"], "%d-%m-%Y")) < disb_date_n:
 
-                # if ad["AD Response date"] == "05-02-2024":
+            # if ad["AD Response date"] == "05-02-2024":
+
+            if (datetime.strptime(ad["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
                 if ad["Today's EMI status"] == "FAILED":
                     if ad["Loan ID"]:
@@ -215,8 +217,7 @@ class TestBounce:
             # if rs["Emi date"] == "09-02-2024":
 
             # if rs["Today's EMI status"] == "FAILED":
-
-            if (datetime.strptime(rs["Disbursement date"], "%d-%m-%Y")) < disb_date_n:
+            if rs["Disbursement date"]:
 
                 if rs["Loan ID"]:
                     emiRepaymentStatus_data_lid_500.append(rs["Loan ID"])
@@ -252,106 +253,4 @@ class TestBounce:
         else:
             print("*** No bounce charge for ontime users ***")
 
-
-
-    @pytest.mark.skip
-    def test_bounceCharge_repayStatus_unpaid(self, bcURL):
-        global emiRepaymentStatus_data
-
-        emiRepaymentStatus_data = emiRepaymentStatus.json()["data"]["rows"]
-
-        emiRepaymentStatus_data_lid_2 = []
-
-        for rs in emiRepaymentStatus_data:
-
-
-            # emi date < current date
-            # if rs["Emi date"] == "09-02-2024":
-
-            # if rs["Today's EMI status"] == "FAILED":
-
-            if rs["Loan ID"]:
-                emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
-
-        # print("emiRepaymentStatus_data_lid_2_count::", len(emiRepaymentStatus_data_lid_2))
-        # print("emiRepaymentStatus_data_lid_2::",emiRepaymentStatus_data_lid_2)
-        #
-        bounceChMissed_LId_2 = []
-        for r in emiRepaymentStatus_data_lid_2:
-            emiAPI_2 = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
-                                    params={"loanId": r}, verify=False)
-            # print(emiAPI.json())
-            emiAPI_data2 = emiAPI_2.json()["data"]["EMIData"]
-
-            # print(emiAPI_data2)
-        #
-            for ed2 in emiAPI_data2:
-                if ed2["penaltyDays"] > 0:
-                    if ed2["status"] == "PAID":
-
-                        if ed2["totalBounceCharge"] == 0:
-                            bounceChMissed_LId_2.append(r)
-
-
-        # print("bounceChMissed_LId_2::",bounceChMissed_LId_2)
-        # print("bounceChMissed_LId_unique_2::", bounceChMissed_LId_unique_2)
-
-        # print(emiRepaymentStatus_data_lid)
-
-        if len(bounceChMissed_LId_2) > 0:
-            print(f"Error::bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay::{bounceChMissed_LId_2}")
-            assert False, "bounce charge missing found"
-        else:
-            print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay ***")
-
-
-    @pytest.mark.skip
-    def test_bounceCharge_repayStatus_total(self, bcURL):
-        global emiRepaymentStatus_data_2
-
-        emiRepaymentStatus_data_2 = emiRepaymentStatus.json()["data"]["rows"]
-
-        emiRepaymentStatus_data_lid_3 = []
-
-        for rs in emiRepaymentStatus_data_2:
-
-
-            # emi date < current date
-            # if rs["Emi date"] == "09-02-2024":
-
-            # if rs["Today's EMI status"] == "FAILED":
-
-            if rs["Loan ID"]:
-                emiRepaymentStatus_data_lid_3.append(rs["Loan ID"])
-
-        # print("emiRepaymentStatus_data_lid_3_count::", len(emiRepaymentStatus_data_lid_3))
-        # print("emiRepaymentStatus_data_lid_3::",emiRepaymentStatus_data_lid_3)
-        #
-
-        bounceChMissed_LId_3 = []
-        for s in emiRepaymentStatus_data_lid_3:
-            emiAPI_3 = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
-                                    params={"loanId": s}, verify=False)
-            # print(emiAPI.json())
-            emiAPI_data3 = emiAPI_3.json()["data"]["EMIData"]
-
-            # print(emiAPI_data2)
-        #
-            for ed3 in emiAPI_data3:
-                if ed3["penaltyDays"] > 0:
-
-                    if ed3["totalBounceCharge"] == 0:
-                        bounceChMissed_LId_3.append(s)
-
-
-        # print("bounceChMissed_LId_2::",bounceChMissed_LId_2)
-        # print("bounceChMissed_LId_unique_2::", bounceChMissed_LId_unique_2)
-
-        # print(emiRepaymentStatus_data_lid)
-
-        if len(bounceChMissed_LId_3) > 0:
-            print(f"Error::bounce charge missing found for bounceChMissed_LId_3_total_emi_repay::{bounceChMissed_LId_3}")
-            assert False, "bounce charge missing found"
-        else:
-            print("*** No bounce charge missed for bounceChMissed_LId_3_total_emi_repay ***")
 

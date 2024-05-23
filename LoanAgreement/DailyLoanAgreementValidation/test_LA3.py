@@ -599,8 +599,6 @@ class TestDashRepo:
 
 
 
-
-
         '''LETTER OF SANCTION TO THE BORROWER'''
 
         # Total amount to be paid  //*[@class="border-gray bg-mail font-weight-bold ng-star-inserted"]//td[6]
