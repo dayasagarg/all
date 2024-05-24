@@ -190,3 +190,40 @@ class TestBounce:
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_3_total_emi_repay ***")
 
+
+    def test_bounceCharge_repayStatus_more(self, bcURL):
+        global emiRepaymentStatus_data_n
+
+        emiRepaymentStatus_data_n = emiRepaymentStatus.json()["data"]["rows"]
+
+        emiRepaymentStatus_data_lid_n = []
+
+        for rsn in emiRepaymentStatus_data_n:
+            if (datetime.strptime(rsn["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
+
+                if rsn["Emi date"] == pre_str_er:
+
+                    if rsn["Loan ID"]:
+                        emiRepaymentStatus_data_lid_n.append(rsn["Loan ID"])
+
+        bounceChMissed_LId_n = []
+        for s in emiRepaymentStatus_data_lid_n:
+            emiAPI_n = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                                    params={"loanId": s}, verify=False)
+
+            emiAPI_datan = emiAPI_n.json()["data"]["EMIData"]
+
+            for edn in emiAPI_datan:
+                if edn["penaltyDays"] > 0:
+
+                    if edn["totalBounceCharge"] > 590:
+                        bounceChMissed_LId_n.append(s)
+
+        if len(bounceChMissed_LId_n) > 0:
+            print(f"Error::bounce charge more ::{bounceChMissed_LId_n}")
+            assert False, "bounce charge more"
+        else:
+            print("*** No bounce charge more ***")
+
+
+

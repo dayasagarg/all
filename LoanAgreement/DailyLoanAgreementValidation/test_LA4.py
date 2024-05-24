@@ -838,12 +838,14 @@ class TestDashRepo:
             assert profileName in fifthPage, "profileName is matched with security document section in fifth Page of pdf"
 
         except:
-            if 'Name of Borrower' in firstPage:
-                index1 = firstPage.index('Name of Borrower')
-                index2 = firstPage.index('NBFC NameChinmay Finlease')
-                text = firstPage[index1 + 16:index2]
-                print(f"Name by pdf module :: {text}")
+            if str(profileName).upper() in fifthPage:
+                print(
+                    f" *** 'profileName':'{str(profileName).upper()}' is matched with security document section in fifth Page of pdf *** ")
+            else:
+                print(
+                    f"Error :: 'profileName':'{profileName}' is not matched with security document section in fifth Page of pdf ")
 
+            assert str(profileName).upper() in fifthPage, "profileName is matched with security document section in fifth Page of pdf"
 
         '''Proof of identity'''
         # adhar = driver.find_element(By.ID,"aadhaar").text

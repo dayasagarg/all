@@ -13,8 +13,6 @@ currentFullTime = datetime.now()  # whole date
 currentDateStr = datetime.strftime(currentFullTime, "%Y-%m-%d")  # date to string format
 
 
-# print("currentDateStr::",currentDateStr)
-#
 class TestRepayment:
     def test_getRepayment(self):
         global totalUnpaidAmountForm, fullPay_unpaid_misssMatch
@@ -24,8 +22,6 @@ class TestRepayment:
             params={"start_date": f"{currentDateStr}T10:00:00.000Z", "end_date": f"{currentDateStr}T10:00:00.000Z",
                     "page": 1, "pagesize": 10, "getTotal": "true", "download": "true",
                     "verify": "False"})  # current date
-
-
 
 
         '''getting loan ids from Repayment'''
@@ -54,7 +50,6 @@ class TestRepayment:
 
         for n,i in enumerate(lIDs):
 
-
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
                 verify=False)  # current date
@@ -73,11 +68,8 @@ class TestRepayment:
                     emiDataTotalReceived.append(data["totalReceived"])
 
 
-
-
         totalTransAmt_n = []
         for n,j in enumerate(ontime_emi_lid):
-
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
@@ -164,8 +156,6 @@ class TestRepayment:
                     emiDataTotalReceived_eo.append(data["totalReceived"])
 
 
-
-
         totalTransAmt_n_eo = []
         for n,l in enumerate(emi_lid_eo):
 
@@ -190,7 +180,6 @@ class TestRepayment:
 
             if totalTransAmt_eo:
                 totalTransAmt_n_eo.append(totalTransAmt_eo)
-
 
 
         # print("totalTransAmt_eo::",totalTransAmt_eo)

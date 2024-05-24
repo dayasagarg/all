@@ -76,14 +76,11 @@ class TestBounce:
                         if ed2["totalBounceCharge"] == 0:
                             bounceChMissed_LId_2.append(r)
 
-
-
         if len(bounceChMissed_LId_2) > 0:
-            print(f"Error::bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay::{bounceChMissed_LId_2}")
+            print(f"Error::bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay before 7th April 2024 cases::{bounceChMissed_LId_2}")
             assert False, "bounce charge missing found"
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay ***")
-
 
     def test_bounceCharge_repayStatus_unpaid_failed_emi_current_date(self, bcURL):
         global emiRepaymentStatus_data
@@ -95,7 +92,6 @@ class TestBounce:
         for f in emiRepaymentStatus_data_f:
             if (datetime.strptime(f["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024", "%d-%m-%Y"):
 
-                # emi date < current date
                 if f["Emi date"] == f"{curr_str}":
                     if f["Today's EMI status"] == "FAILED":
                         if f["Loan ID"]:
@@ -111,7 +107,6 @@ class TestBounce:
             # print(emiAPI.json())
             emiAPI_data2_f = emiAPI_2_f.json()["data"]["EMIData"]
 
-            # print(emiAPI_data2)
         #
             for edf in emiAPI_data2_f:
                 if edf["emiDate"] == curr_str_emi:
@@ -121,7 +116,7 @@ class TestBounce:
 
 
         if len(bounceChMissed_LId_2_f) > 0:
-            print(f"Error::bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_currenr_date::{bounceChMissed_LId_2_f}")
+            print(f"Error::bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_currenr_date before 7th April 2024 cases::{bounceChMissed_LId_2_f}")
             assert False, "bounce charge missing found"
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_current_date ***")
@@ -140,7 +135,6 @@ class TestBounce:
                     if g["Today's EMI status"] == "FAILED":
                         if g["Loan ID"]:
                             emiRepaymentStatus_data_lid_2_g.append(g["Loan ID"])
-
 
 
         bounceChMissed_LId_2_gst = []
@@ -162,4 +156,4 @@ class TestBounce:
                 f"Error::bounce charge not equal to 500::{bounceChMissed_LId_2_gst}")
             assert False, "bounce charge missing found"
         else:
-            print("*** bounce charge equal to 500 before 7th April 2024 ***")
+            print("*** bounce charge equal to 500 before 7th April 2024 cases***")

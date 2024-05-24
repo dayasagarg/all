@@ -49,7 +49,6 @@ class TestBounce:
         bounceChMissed_LId = []
         autdebit_failed_loan_ids = []
 
-
         for ad in autoDebitData:
 
             if (datetime.strptime(ad["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
@@ -109,7 +108,6 @@ class TestBounce:
 
             emiAPI_data = emiAPI.json()["data"]["EMIData"]
 
-
             for ed in emiAPI_data:
                 if ed["emiDate"] == pre_str_emi:
 
@@ -167,6 +165,47 @@ class TestBounce:
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_unique_total_autodebit ***")
 
+    def test_bounce_charg_m_autodebit(self, bcURL):
+        global autoDebitData
+
+        autoDebitData_m = autoDebitFailedAPI.json()["data"]["finalData"]
+
+        bounceChMissed_LId_m = []
+        aut_failed_loan_ids_m = []
+
+        for adm in autoDebitData_m:
+
+            if (datetime.strptime(adm["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
+
+                if adm["Today's EMI status"] == "FAILED":
+                    if adm["Loan ID"]:
+                        aut_failed_loan_ids_m.append(adm["Loan ID"])
+
+
+        for f in aut_failed_loan_ids_m:
+            emiAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                                  params={"loanId": f}, verify=False)
+
+            emiAPI_data_m = emiAPI.json()["data"]["EMIData"]
+
+            for edm in emiAPI_data_m:
+                if edm["penaltyDays"] > 0:
+
+                    if edm["totalBounceCharge"] > 590:
+                        bounceChMissed_LId_m.append(f)
+
+        bounceChMissed_LId_unique_m = []
+
+        [bounceChMissed_LId_unique_m.append(ul) for ul in bounceChMissed_LId_m if ul not in bounceChMissed_LId_unique_m]
+
+
+        if len(bounceChMissed_LId_unique_m) > 0:
+            print(f"Error::bounce charge more autodebit::{bounceChMissed_LId_unique_m}")
+            assert False, "bounce charge more autodebit"
+        else:
+            print("*** No bounce charge more autodebit ***")
+
+
     def test_no_need_bounce_charg_autodebit_total(self, bcURL):
         global emiRepaymentStatus_data_500
 
@@ -200,9 +239,6 @@ class TestBounce:
 
         if len(bounceChMissed_LId_500) > 0:
             print(
-                f"Error::bounce charge found ::{bounceChMissed_LId_500}")
-
+                f"Er::bounce charge for ontime users ::{bounceChMissed_LId_500}")
         else:
             print("*** No bounce charge for ontime users ***")
-
-
