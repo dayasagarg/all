@@ -90,7 +90,7 @@ class TestFCC:
 
                     # fcc_cal = math.ceil(math.ceil(0.04 * td["Principal"]) + (math.ceil(0.04 * td["Principal"])*0.18))
 
-                    fcc_cal = math.ceil(math.ceil(0.04 * td["Principal"] + 0.04 * td["Principal"]) * 0.18)
+                    fcc_cal = math.ceil(math.ceil(0.04 * td["Principal"] + (0.04 * td["Principal"]) * 0.18))
 
                     print("fcc_cal::",fcc_cal)
 

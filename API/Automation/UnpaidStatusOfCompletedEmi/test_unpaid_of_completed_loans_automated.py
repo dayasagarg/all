@@ -48,6 +48,7 @@ class TestRepayment:
         unpaid = []
         withoutUnpaid = []
         paid_0 = []
+        unpaid_in_p = []
 
         # Upcoming EMI
         for n,i in enumerate(lIDs):
@@ -95,6 +96,10 @@ class TestRepayment:
                     if eD["totalPaidAmount"] == 0 or eD["paidEmiAmount"] == 0:
                         paid_0.append(i)
 
+                    if eD["totalUnpaidAmount"] > 0:
+                        unpaid_in_p.append(i)
+
+
 
 
             '''getting transactionData of Repayment'''
@@ -125,10 +130,15 @@ class TestRepayment:
         # print("unpaid::", unpaid)
         # print("withoutUnpaid::", withoutUnpaid)
 
+        if len(unpaid_in_p) == 0:
+            print("*** No unpaid into paid ***")
+        else:
+            print(f" Err :: unpaid into paid :: {unpaid_in_p} ")
+
         if len(paid_0) == 0:
             print("*** No paid with 0 found ***")
         else:
-            print(f"Error:: paid with 0 found::{paid_0}")
+            print(f"Err:: paid with 0 found::{paid_0}")
 
 
         if len(unpaid) == 0:

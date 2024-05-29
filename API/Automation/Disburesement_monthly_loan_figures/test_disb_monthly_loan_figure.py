@@ -19,13 +19,13 @@ class TestDisbMonthlyLoanFigure:
         #                               "end_date": f"{curr_str}T10:00:00.000Z",
         #                               "page": 1, "download": "true"})
 
-        disAPI = requests.get("https://chinmayfinserve.com/admin-prod//admin/dashboard/allDisbursedLoans?start_date=2024-04-01T10%3A00%3A00.000Z&end_date=2024-04-30T10%3A00%3A00.000Z&page=1&download=true")
+        disAPI = requests.get("https://chinmayfinserve.com/admin-prod//admin/dashboard/allDisbursedLoans?start_date=2024-05-01T10%3A00%3A00.000Z&end_date=2024-05-29T10%3A00%3A00.000Z&page=1&download=true")
 
         payload_chn = {
     "page": 1,
     "pagesize": 10,
-    "startDate": "2024-04-01T10:00:00.000Z",
-    "endDate": "2024-04-30T10:00:00.000Z",
+    "startDate": "2024-05-01T10:00:00.000Z",
+    "endDate": "2024-05-29T10:00:00.000Z",
     "report": "Monthly loan figures",
     "appType": "1"
 }
@@ -36,8 +36,8 @@ class TestDisbMonthlyLoanFigure:
         payload_lndt = {
             "page": 1,
             "pagesize": 10,
-            "startDate": "2024-04-01T10:00:00.000Z",
-            "endDate": "2024-04-30T10:00:00.000Z",
+            "startDate": "2024-05-01T10:00:00.000Z",
+            "endDate": "2024-05-29T10:00:00.000Z",
             "report": "Monthly loan figures",
             "appType": "0"
         }
@@ -56,61 +56,108 @@ class TestDisbMonthlyLoanFigure:
 
         # print(disData)
 
-        new_users = []
-        repeat_users = []
+        # chinmay
+        new_users_chn = []
+        repeat_users_chn = []
 
-        disb_amt = []
-        int_amt = []
+        disb_amt_chn = []
 
-        proc_fees = []
-        doc_fees = []
-        online_con_fees = []
-        risk_ass_fees = []
-        stamp_duty_fees = []
+        int_amt_chn = []
+
+        proc_fees_chn = []
+        doc_fees_chn = []
+        online_con_fees_chn = []
+        risk_ass_fees_chn = []
+        stamp_duty_fees_chn = []
+
+
+        # lenditt
+        new_users_lndt = []
+        repeat_users_lndt = []
+
+        disb_amt_lndt = []
+
+        int_amt_lndt = []
+
+        proc_fees_lndt = []
+        doc_fees_lndt = []
+        online_con_fees_lndt = []
+        risk_ass_fees_lndt = []
+        stamp_duty_fees_lndt = []
+
 
         for d in disData:
-            if d["App platform"] == "CHINMAY" or d["App platform"] == "LENDITT":
+            if d["App platform"] == "CHINMAY":
                 if d["Completed loans"] == 0:
-                    new_users.append(d["Loan ID"])
+                    new_users_chn.append(d["Loan ID"])
 
                 if d["Completed loans"] > 0:
-                    repeat_users.append(d["Loan ID"])
+                    repeat_users_lndt.append(d["Loan ID"])
 
                 if d["Disbursed Amount"]:
-                    disb_amt.append(d["Approved amount"])
+                    disb_amt_chn.append(d["Approved amount"])
 
                 if d["Total Interest Amount"]:
-                    int_amt.append(d["Total Interest Amount"])
-
-                if d["Total Interest Amount"]:
-                    int_amt.append(d["Total Interest Amount"])
+                    int_amt_chn.append(d["Total Interest Amount"])
 
                 if d["Processing fees"]:
-                    proc_fees.append(d["Processing fees"])
+                    proc_fees_chn.append(d["Processing fees"])
 
                 if d["Document Charges"]:
-                    doc_fees.append(d["Document Charges"])
+                    doc_fees_chn.append(d["Document Charges"])
 
                 if d["Online convenience fees"]:
-                    online_con_fees.append(d["Online convenience fees"])
+                    online_con_fees_chn.append(d["Online convenience fees"])
 
                 if d["Risk assessment fees"]:
-                    risk_ass_fees.append(d["Risk assessment fees"])
+                    risk_ass_fees_chn.append(d["Risk assessment fees"])
 
                 if d["Stamp Duty Fees"]:
-                    stamp_duty_fees.append(d["Stamp Duty Fees"])
+                    stamp_duty_fees_chn.append(d["Stamp Duty Fees"])
 
 
-        total_fees = sum(proc_fees) + sum(doc_fees) + sum(online_con_fees) + sum(risk_ass_fees) + sum(stamp_duty_fees)
+            if d["App platform"] == "LENDITT":
+                if d["Completed loans"] == 0:
+                    new_users_lndt.append(d["Loan ID"])
+
+                if d["Completed loans"] > 0:
+                    repeat_users_lndt.append(d["Loan ID"])
+
+                if d["Disbursed Amount"]:
+                    disb_amt_lndt.append(d["Approved amount"])
+
+                if d["Total Interest Amount"]:
+                    int_amt_lndt.append(d["Total Interest Amount"])
+
+                if d["Processing fees"]:
+                    proc_fees_lndt.append(d["Processing fees"])
+
+                if d["Document Charges"]:
+                    doc_fees_lndt.append(d["Document Charges"])
+
+                if d["Online convenience fees"]:
+                    online_con_fees_lndt.append(d["Online convenience fees"])
+
+                if d["Risk assessment fees"]:
+                    risk_ass_fees_lndt.append(d["Risk assessment fees"])
+
+                if d["Stamp Duty Fees"]:
+                    stamp_duty_fees_lndt.append(d["Stamp Duty Fees"])
 
 
-        print("total_fees::",total_fees)
+
+        total_fees_chn = sum(proc_fees_chn) + sum(doc_fees_chn) + sum(online_con_fees_chn) + sum(risk_ass_fees_chn) + sum(stamp_duty_fees_chn)
+        print("total_fees_chn::",total_fees_chn)
+
+        total_fees_lndt = sum(proc_fees_lndt) + sum(doc_fees_lndt) + sum(online_con_fees_lndt) + sum(
+            risk_ass_fees_lndt) + sum(stamp_duty_fees_lndt)
+        print("total_fees_lndt::", total_fees_lndt)
+
+        total_fees = total_fees_chn + total_fees_lndt
 
 
-
-
-        new_users_count = len(new_users)
-        repeat_users = len(repeat_users)
+        new_users_count = len(new_users_chn) + len(new_users_lndt)
+        repeat_users = len(repeat_users_chn) + len(repeat_users_lndt)
 
 
         total_disb_loans_count = new_users_count + repeat_users
@@ -120,8 +167,10 @@ class TestDisbMonthlyLoanFigure:
         # print("total/approved_disb_loans_count::",total_disb_loans_count)
         # print("disb_amt::",disb_amt)
 
-        total_disb_amt = sum(disb_amt)
-        total_int_amt = sum(int_amt)
+        total_disb_amt = sum(disb_amt_chn) + sum(disb_amt_lndt)
+
+        total_int_amt = sum(int_amt_chn) + sum(int_amt_lndt)
+
 
         # print("total_disb_amt::",total_disb_amt)
         # print("total_int_amt::",total_int_amt)

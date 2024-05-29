@@ -35,7 +35,7 @@ seventhPage = reader.pages[6].extract_text()
 eighthPage = reader.pages[7].extract_text()
 ninthPage = reader.pages[8].extract_text()
 eleventhPage = reader.pages[10].extract_text()
-twelthPage = reader.pages[11].extract_text()
+fourteenthPage = reader.pages[13].extract_text()
 
 
 class TestDashRepo:
@@ -225,6 +225,7 @@ class TestDashRepo:
         loanInterestPerDay = loanIntPerDay.replace(" %","00%")
         loanInterestPerDay2 = loanIntPerDay.replace(" %", "%")
         loanInterestPerDay3 = loanIntPerDay.replace(" %", "0%")
+
         try:
             if loanInterestPerDay in firstPage:
                 print(f" *** 'loanInterestPerDay' :'{loanInterestPerDay}' is matched with LOAN DETAILS in first Page of pdf *** ")
@@ -596,7 +597,14 @@ class TestDashRepo:
 
                 # assert latePaymentChargePerAnnualString3 in firstPage, "is matched with CHARGES Section in first Page of pdf"
 
+            # foreclose
+            foreclose = "4"
+            if foreclose in firstPage:
+                print(f" *** 'foreclose' :'{foreclose}%' is matched with LOAN DETAILS in first Page of pdf *** ")
+            else:
+                print(f"Exception :: 'foreclose' :'{foreclose}%'  is not matched with LOAN DETAILS in first Page of pdf ")
 
+            assert foreclose in firstPage, "foreclose is matched with LOAN DETAILS in first Page of pdf"
 
 
 
@@ -838,12 +846,14 @@ class TestDashRepo:
             assert profileName in fifthPage, "profileName is matched with security document section in fifth Page of pdf"
 
         except:
-            if 'Name of Borrower' in firstPage:
-                index1 = firstPage.index('Name of Borrower')
-                index2 = firstPage.index('NBFC NameChinmay Finlease')
-                text = firstPage[index1 + 16:index2]
-                print(f"Name by pdf module :: {text}")
+            if str(profileName).upper() in fifthPage:
+                print(
+                    f" *** 'profileName':'{str(profileName).upper()}' is matched with security document section in fifth Page of pdf *** ")
+            else:
+                print(
+                    f"Error :: 'profileName':'{profileName}' is not matched with security document section in fifth Page of pdf ")
 
+            assert str(profileName).upper() in fifthPage, "profileName is matched with security document section in fifth Page of pdf"
 
         '''Proof of identity'''
         # adhar = driver.find_element(By.ID,"aadhaar").text
@@ -870,11 +880,15 @@ class TestDashRepo:
 
         except:
             try:
-                if 'Name of Borrower' in firstPage:
-                    index1 = firstPage.index('Name of Borrower')
-                    index2 = firstPage.index('NBFC NameChinmay Finlease')
-                    text = firstPage[index1 + 16:index2]
-                    print(f"Name by pdf module :: {text}")
+                if str(profileName).upper() in eighthPage:
+                    print(
+                        f" *** 'profileName':'{str(profileName).upper()}' is matched with Proof of identity section of eighth Page of pdf *** ")
+                else:
+                    print(
+                        f"Error :: 'profileName':'{str(profileName).upper()}' is not matched with Proof of identity section of eighth Page of pdf ")
+
+                assert str(profileName).upper() in eighthPage, "profileName is matched with Proof of identity section of eighth Page of pdf"
+
             except:
                 pass
 
@@ -922,7 +936,7 @@ class TestDashRepo:
 
             assert email in eleventhPage, "email is matched with LOAN AGREEMENT in eleventh Page of pdf"
 
-        #
+
         # PAN number
         # pan = driver.find_element(By.XPATH,"//div[contains(@class,'basic-details d-flex flex-row basic-info-card align-items-center justify-content-between mt-2')][2]//div[2]").text
         # pan = driver.find_element(By.ID,"PAN").text
@@ -1038,15 +1052,21 @@ class TestDashRepo:
         '''Borrower Name in twelthPage page'''
 
         try:
-            if profileName in twelthPage:
-                print(f" *** 'profileName':'{profileName}' is matched with witness in twelthPage of pdf *** ")
+            if profileName in fourteenthPage:
+                print(f" *** 'profileName':'{profileName}' is matched with witness in fourteenth of pdf *** ")
             else:
-                print(f"Exception :: 'profileName':'{profileName}' is not matched with witness in twelthPage of pdf ")
+                print(f"Exception :: 'profileName':'{profileName}' is not matched with witness in fourteenth of pdf ")
 
-            assert profileName in twelthPage, "profileName is matched with witness in twelthPage of pdf"
+            assert profileName in fourteenthPage, "profileName is matched with witness in fourteenth of pdf"
 
         except:
-            pass
+            if str(profileName).upper() in fourteenthPage:
+                print(f" *** 'profileName':'{str(profileName).upper()}' is matched with witness in fourteenth of pdf *** ")
+            else:
+                print(f"Error :: 'profileName':'{str(profileName).upper()}' is not matched with witness in fourteenth of pdf ")
+
+            assert str(profileName).upper() in fourteenthPage, "profileName is matched with witness in fourteenth of pdf"
+
 
 
 
