@@ -133,12 +133,13 @@ class TestRepayment:
         if len(unpaid_in_p) == 0:
             print("*** No unpaid into paid ***")
         else:
-            print(f" Err :: unpaid into paid :: {unpaid_in_p} ")
+            print(f" E :: unpaid into paid :: {unpaid_in_p} ")
+
 
         if len(paid_0) == 0:
             print("*** No paid with 0 found ***")
         else:
-            print(f"Err:: paid with 0 found::{paid_0}")
+            print(f"E:: paid with 0 found::{paid_0}")
 
 
         if len(unpaid) == 0:
