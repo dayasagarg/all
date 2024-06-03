@@ -140,9 +140,9 @@ class TestBounce:
 
             #
             for n in emiAPI_data2_g_n:
-                if n["emiDate"] == curr_str_emi:
+                if n["repaymentDate"] == curr_str_emi:
 
-                    if n["repaymentDate"] != 590:
+                    if n["totalBounceCharge"] != 590:
                         bounceChMissed_LId_2_gst_n.append(r)
 
         print("bounceChMissed_LId_2_gst_n::", bounceChMissed_LId_2_gst_n)
