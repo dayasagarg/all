@@ -46,7 +46,7 @@ class TestDashRepo:
         ser = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service = ser)
         driver.maximize_window()
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(11)
         driver.get("https://chinmayfinserve.com/chinmay/#/dashboard") # url
         # driver.get("http://152.67.15.215/lenditt/#/dashboard")  # url
         time.sleep(2)

@@ -194,13 +194,11 @@ class TestBounce:
                     if edm["totalBounceCharge"] > 590:
                         bounceChMissed_LId_m.append(f)
 
-        bounceChMissed_LId_unique_m = []
-
-        [bounceChMissed_LId_unique_m.append(ul) for ul in bounceChMissed_LId_m if ul not in bounceChMissed_LId_unique_m]
 
 
-        if len(bounceChMissed_LId_unique_m) > 0:
-            print(f"Error::bounce charge more autodebit::{bounceChMissed_LId_unique_m}")
+
+        if len(bounceChMissed_LId_m) > 0:
+            print(f"Error::bounce charge more autodebit::{bounceChMissed_LId_m}")
             # assert False, "bounce charge more autodebit"
         else:
             print("*** No bounce charge more autodebit ***")

@@ -1,8 +1,8 @@
 import math
 
-
 class TestLoanAgrDis:
     import pytest
+
     @pytest.fixture
     def url_agr_dis(self):
         global disAPI, requests
@@ -14,12 +14,13 @@ class TestLoanAgrDis:
         prev = curr - timedelta(days=1)
         pre_str = datetime.strftime(prev, "%Y-%m-%d")
 
+
+
         disAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/dashboard/allDisbursedLoans",
                               params={"start_date": f"{pre_str}T10:00:00.000Z",
                                       "end_date": f"{curr_str}T10:00:00.000Z",
                                       "page": 1, "download": "true"})
 
-        # loanAgrAPI = requests.get("https://chinmayfinserve.com/admin-prod/ admin / esign / getLoanAgreement", params={"loanId":726301})
 
     def test_agr_disb(self, url_agr_dis):
         global loanAmount,app_amt,loanAgrAPI,intRate_disb,int_rate_la,emi_la,totalEMI,loanAgrAPIDataTenure,loanTenure,loan_tenure_la,name_la,name,nbfc,nbfc_la,procFees,procFees_la, sr,loanAgrAPIDataLoanId,dis_lid,riskFees,riskFees_la,docFees,docFees_la,gstAmt,gst_la,a
@@ -67,9 +68,8 @@ class TestLoanAgrDis:
 
 
 
-
-
         # print(riskFees)
+        # print("app_amt::",app_amt)
 
 
         global lid
@@ -92,55 +92,39 @@ class TestLoanAgrDis:
                                       params={"loanId": lid})
 
             loanAgrAPIData = loanAgrAPI.json()["data"]["eSign_agree_data"]["emiTotalPrincipal"]
+            loanAmtStr.append(loanAgrAPIData)
+            # print("loanAgrAPIData::",loanAgrAPIData)
 
             loanAgrAPIDataLoanId = loanAgrAPI.json()["data"]["eSign_agree_data"]["loanId"]
             loanAgrAPIDataIntRate = loanAgrAPI.json()["data"]["eSign_agree_data"]["interestRatePerDay"]
+            int_rate_la.append(round(float(loanAgrAPIDataIntRate), 3))
 
             loanAgrAPIDataEMI = loanAgrAPI.json()["data"]["eSign_agree_data"]["numberOfEmis"]
+            emi_la.append(loanAgrAPIDataEMI)
+
             loanAgrAPIDataTenure = loanAgrAPI.json()["data"]["eSign_agree_data"]["loanTenure"]
+            loan_tenure_la.append(int(loanAgrAPIDataTenure))
+
             loanAgrAPIDataName = loanAgrAPI.json()["data"]["eSign_agree_data"]["borrowerName"]
+            name_la.append(loanAgrAPIDataName)
+
             loanAgrAPIDataProcAmt = loanAgrAPI.json()["data"]["eSign_agree_data"]["processingAmount"]
+            proc_fees_str_la.append(loanAgrAPIDataProcAmt)
+
             loanAgrAPIDataDoc = loanAgrAPI.json()["data"]["eSign_agree_data"]["documentAmount"]
+            doc_fees_str_la.append(loanAgrAPIDataDoc)
+
             loanAgrAPIDataRisk = loanAgrAPI.json()["data"]["eSign_agree_data"]["riskAssessmentCharge"]
+            risk_fees_str_la.append(loanAgrAPIDataRisk)
+
             loanAgrAPIDataSGST = loanAgrAPI.json()["data"]["eSign_agree_data"]["sgstCharges"]
+            sgst_str_la.append(math.ceil(float(loanAgrAPIDataSGST.replace("₹", ""))))
+
             loanAgrAPIDataCGST = loanAgrAPI.json()["data"]["eSign_agree_data"]["cgstCharges"]
+            cgst_str_la.append(math.ceil(float(loanAgrAPIDataCGST.replace("₹", ""))))
 
 
             # print(loanAgrAPIDataRisk)
-
-
-            if loanAgrAPIData:
-                loanAmtStr.append(loanAgrAPIData)
-
-            if loanAgrAPIDataIntRate:
-                int_rate_la.append(round(float(loanAgrAPIDataIntRate),3))
-
-                # la_int_rate = round(float(loanAgrAPIDataIntRate), 2)
-                # print("la_int_rate::", la_int_rate)
-
-            if loanAgrAPIDataEMI:
-                emi_la.append(loanAgrAPIDataEMI)
-
-            if loanAgrAPIDataTenure:
-                loan_tenure_la.append(int(loanAgrAPIDataTenure))
-
-            if loanAgrAPIDataName:
-                name_la.append(loanAgrAPIDataName)
-
-            if loanAgrAPIDataProcAmt:
-                proc_fees_str_la.append(loanAgrAPIDataProcAmt)
-
-            if loanAgrAPIDataDoc:
-                doc_fees_str_la.append(loanAgrAPIDataDoc)
-
-            if loanAgrAPIDataRisk:
-                risk_fees_str_la.append(loanAgrAPIDataRisk)
-
-            if loanAgrAPIDataSGST:
-                sgst_str_la.append(math.ceil(float(loanAgrAPIDataSGST.replace("₹",""))))
-
-            if loanAgrAPIDataCGST:
-                cgst_str_la.append(math.ceil(float(loanAgrAPIDataCGST.replace("₹",""))))
 
 
         gst_la = [sum(i) for i in zip(sgst_str_la,cgst_str_la)]
@@ -159,6 +143,10 @@ class TestLoanAgrDis:
                 ss = a.strip("₹")
                 aa = ss.replace(",", "")
                 loanAmount.append(int(aa))
+
+        print("loanAmount::",loanAmount)
+        print("app_amt::",app_amt)
+
 
 
         procFees_la = []
@@ -187,11 +175,11 @@ class TestLoanAgrDis:
                 riskFees_la.append(int(rc))
             else:
                 pass
-    #
-    #
-        # print(riskFees_la)
-    #
-    #
+
+
+        print(riskFees_la)
+
+
 
     def test_loan_amt(self):
         if loanAmount == app_amt:
@@ -199,7 +187,6 @@ class TestLoanAgrDis:
         else:
             print(f"loan amount and approved amount are not equal::{lid}")
             assert False
-
 
 
     def test_int_rate(self):
@@ -273,7 +260,6 @@ class TestLoanAgrDis:
 
 
 
-
     def test_gst(self):
         # print("gstAmt::",gstAmt)
         # print("gst_la::",gst_la)
@@ -290,6 +276,6 @@ class TestLoanAgrDis:
             print(f"Difference more than Rs.2 encountered in gst::{gst_msg}")
             assert len(gst_msg) == 0, "Difference more than Rs.2 encountered in gst"
 
-            print("gst amount in disbursement and loan agreement not matched")
+            print("Error:: gst amount in disbursement and loan agreement not matched")
             assert False
 

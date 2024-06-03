@@ -201,8 +201,6 @@ class TestBounce:
         for rsn in emiRepaymentStatus_data_n:
             if (datetime.strptime(rsn["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
-                if rsn["Emi date"] == pre_str_er:
-
                     if rsn["Loan ID"]:
                         emiRepaymentStatus_data_lid_n.append(rsn["Loan ID"])
 

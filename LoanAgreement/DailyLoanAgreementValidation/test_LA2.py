@@ -892,6 +892,7 @@ class TestDashRepo:
             except:
                 pass
 
+        time.sleep(2)
         otherDetails = driver.find_element(By.XPATH,"/html/body/app-root/app-layout/mat-drawer-container/mat-drawer-content/app-customer-list/div[2]/div/div[2]/app-customer-basic-details/mat-card/mat-card-content/mat-tab-group/mat-tab-header/div/div/div/div[2]/div").click()
         time.sleep(2)
         # gender = driver.find_element(By.ID,"gender").text

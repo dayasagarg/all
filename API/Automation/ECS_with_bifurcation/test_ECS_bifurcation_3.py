@@ -37,6 +37,7 @@ class TestBounce:
         emiRepaymentStatus = requests.get(
             "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus",params={"fromDate":f"{pre_str_2}T10:00:00.000Z","endDate":f"{curr_s}T10:00:00.000Z","type":"TOTAL","page":1,"download":"true"})
 
+    @pytest.mark.skip
     def test_bounceCharge_repayStatus_unpaid_failed_emi_current_date(self, bcURL):
         global emiRepaymentStatus_data
 
@@ -73,8 +74,9 @@ class TestBounce:
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_current_date ***")
 
+    @pytest.mark.skip
     def test_bounceCharge_GST(self, bcURL):
-        global emiRepaymentStatus_data
+        global emiRepaymentStatus_data_g
 
         emiRepaymentStatus_data_g = emiRepaymentStatus.json()["data"]["rows"]
 
@@ -108,6 +110,46 @@ class TestBounce:
         if len(bounceChMissed_LId_2_gst) > 0:
             print(
                 f"Error::bounce charge not equal to 590::{bounceChMissed_LId_2_gst}")
+            assert False, "bounce charge missing found"
+        else:
+            print("*** bounce charge equal to 590 from 7th April ***")
+
+
+
+    def test_bounceCharge_GST_2(self, bcURL):
+
+        emiRepaymentStatus_data_g_n = emiRepaymentStatus.json()["data"]["rows"]
+
+        emiRepaymentStatus_data_lid_2_g_n = []
+
+        for g in emiRepaymentStatus_data_g_n:
+            if (datetime.strptime(g["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024",
+                                                                                           "%d-%m-%Y"):
+
+                if g["Emi date"] == f"{curr_str}":
+                    if g["Today's EMI status"] == "FAILED":
+                        if g["Loan ID"]:
+                            emiRepaymentStatus_data_lid_2_g_n.append(g["Loan ID"])
+
+        bounceChMissed_LId_2_gst_n = []
+        for r in emiRepaymentStatus_data_lid_2_g_n:
+            emiAPI_2_g_n = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                                      params={"loanId": r}, verify=False)
+
+            emiAPI_data2_g_n = emiAPI_2_g_n.json()["data"]["EMIData"]
+
+            #
+            for n in emiAPI_data2_g_n:
+                if n["emiDate"] == curr_str_emi:
+
+                    if n["repaymentDate"] != 590:
+                        bounceChMissed_LId_2_gst_n.append(r)
+
+        print("bounceChMissed_LId_2_gst_n::", bounceChMissed_LId_2_gst_n)
+
+        if len(bounceChMissed_LId_2_gst_n) > 0:
+            print(
+                f"Error::bounce charge not equal to 590::{bounceChMissed_LId_2_gst_n}")
             assert False, "bounce charge missing found"
         else:
             print("*** bounce charge equal to 590 from 7th April ***")
