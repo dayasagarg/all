@@ -122,11 +122,12 @@ class TestBounce:
         emiRepaymentStatus_data_lid_2_g_n = []
 
         for g in emiRepaymentStatus_data_g_n:
-            if (datetime.strptime(g["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024",
-                                                                                           "%d-%m-%Y"):
-                    if g["Today's EMI status"] == "FAILED":
-                        if g["Loan ID"]:
-                            emiRepaymentStatus_data_lid_2_g_n.append(g["Loan ID"])
+            if g["Repaid Date"] == curr_str:
+                if (datetime.strptime(g["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024",
+                                                                                               "%d-%m-%Y"):
+                        if g["Today's EMI status"] == "FAILED":
+                            if g["Loan ID"]:
+                                emiRepaymentStatus_data_lid_2_g_n.append(g["Loan ID"])
 
         bounceChMissed_LId_2_gst_n = []
         for r in emiRepaymentStatus_data_lid_2_g_n:
@@ -137,10 +138,9 @@ class TestBounce:
 
             #
             for n in emiAPI_data2_g_n:
-                if n["repaymentDate"] == curr_str_emi:
 
-                    if n["totalBounceCharge"] != 590:
-                        bounceChMissed_LId_2_gst_n.append(r)
+                if n["totalBounceCharge"] != 590:
+                    bounceChMissed_LId_2_gst_n.append(r)
 
         print("bounceChMissed_LId_2_gst_n::", bounceChMissed_LId_2_gst_n)
 
