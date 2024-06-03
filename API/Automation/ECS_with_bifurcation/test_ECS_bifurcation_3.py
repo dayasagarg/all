@@ -115,7 +115,6 @@ class TestBounce:
             print("*** bounce charge equal to 590 from 7th April ***")
 
 
-
     def test_bounceCharge_GST_2(self, bcURL):
 
         emiRepaymentStatus_data_g_n = emiRepaymentStatus.json()["data"]["rows"]
@@ -125,8 +124,6 @@ class TestBounce:
         for g in emiRepaymentStatus_data_g_n:
             if (datetime.strptime(g["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024",
                                                                                            "%d-%m-%Y"):
-
-                if g["Repaid Date"] == f"{curr_str}":
                     if g["Today's EMI status"] == "FAILED":
                         if g["Loan ID"]:
                             emiRepaymentStatus_data_lid_2_g_n.append(g["Loan ID"])
