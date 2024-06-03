@@ -39,9 +39,7 @@ class TestBounce:
             "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus",params={"fromDate":f"{pre_str_2}T10:00:00.000Z","endDate":f"{curr_s}T10:00:00.000Z","type":"TOTAL","page":1,"download":"true"})
 
 
-
-
-    def test_bounceCharge_repayStatus_unpaid(self, bcURL):
+    def test_bounceCharge_repayStatus_unpaid_prev(self, bcURL):
         global emiRepaymentStatus_data
 
         emiRepaymentStatus_data = emiRepaymentStatus.json()["data"]["rows"]
@@ -51,7 +49,7 @@ class TestBounce:
         for rs in emiRepaymentStatus_data:
             if (datetime.strptime(rs["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
-                if rs["Emi date"] == f"{pre_str_er}":
+                if rs["Repaid Date"] == f"{pre_str_er}":
 
                     if rs["Loan ID"]:
                         emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
@@ -92,7 +90,7 @@ class TestBounce:
         for f in emiRepaymentStatus_data_f:
             if (datetime.strptime(f["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
-                if f["Emi date"] == f"{curr_str}":
+                if f["Repaid Date"] == f"{curr_str}":
                     if f["Today's EMI status"] == "FAILED":
                         if f["Loan ID"]:
                             emiRepaymentStatus_data_lid_2_f.append(f["Loan ID"])
@@ -106,10 +104,9 @@ class TestBounce:
             emiAPI_data2_f = emiAPI_2_f.json()["data"]["EMIData"]
     #
             for edf in emiAPI_data2_f:
-                if edf["emiDate"] == curr_str_emi:
 
-                    if edf["totalBounceCharge"] == 0:
-                        bounceChMissed_LId_2_f.append(rf)
+                if edf["totalBounceCharge"] == 0:
+                    bounceChMissed_LId_2_f.append(rf)
 
 
         if len(bounceChMissed_LId_2_f) > 0:
@@ -128,9 +125,6 @@ class TestBounce:
 
         for rs in emiRepaymentStatus_data:
             if (datetime.strptime(rs["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
-
-                if rs["Emi date"] == pre_str_er:
-
                     if rs["Loan ID"]:
                         emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
 
@@ -166,10 +160,8 @@ class TestBounce:
         for rs in emiRepaymentStatus_data_2:
             if (datetime.strptime(rs["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
-                if rs["Emi date"] == pre_str_er:
-
-                    if rs["Loan ID"]:
-                        emiRepaymentStatus_data_lid_3.append(rs["Loan ID"])
+                if rs["Loan ID"]:
+                    emiRepaymentStatus_data_lid_3.append(rs["Loan ID"])
 
         bounceChMissed_LId_3 = []
         for s in emiRepaymentStatus_data_lid_3:

@@ -68,7 +68,7 @@ class TestBounce:
             emiAPI_data = emiAPI.json()["data"]["EMIData"]
 
             for ed in emiAPI_data:
-                if ed["emiDate"] == curr_str_emi:
+                if ed["repaymentDate"] == curr_str_emi:
 
                     if ed["totalBounceCharge"] == 0:
                         bounceChMissed_LId.append(e)
@@ -109,7 +109,7 @@ class TestBounce:
             emiAPI_data = emiAPI.json()["data"]["EMIData"]
 
             for ed in emiAPI_data:
-                if ed["emiDate"] == pre_str_emi:
+                if ed["repaymentDate"] == pre_str_emi:
 
                     if ed["totalBounceCharge"] == 0:
                         bounceChMissed_LId.append(e)
@@ -214,10 +214,8 @@ class TestBounce:
         for rs in emiRepaymentStatus_data_590:
             if (datetime.strptime(rs["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
-                if rs["Disbursement date"]:
-
-                    if rs["Loan ID"]:
-                        emiRepaymentStatus_data_lid_590.append(rs["Loan ID"])
+                if rs["Loan ID"]:
+                    emiRepaymentStatus_data_lid_590.append(rs["Loan ID"])
 
         #
         bounceChMissed_LId_590 = []
