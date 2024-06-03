@@ -112,7 +112,7 @@ class TestBounce:
                 f"Error::bounce charge not equal to 590::{bounceChMissed_LId_2_gst}")
             assert False, "bounce charge missing found"
         else:
-            print("*** bounce charge equal to 590 from 7th April ***")
+            print("*** bounce charge equal to 590 as per 7th April bifurcation ***")
 
 
     def test_bounceCharge_GST_2(self, bcURL):

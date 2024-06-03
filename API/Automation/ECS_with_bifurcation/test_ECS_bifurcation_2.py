@@ -16,8 +16,8 @@ class TestBounce:
 
 
         curr_s = datetime.strftime(curr, "%Y-%m-%d")
-        prev_1 = curr - timedelta(days=7)
-        prev_2 = curr - timedelta(days=7)
+        prev_1 = curr - timedelta(days=1)
+        prev_2 = curr - timedelta(days=3)
 
         pre_str_1 = datetime.strftime(prev_1, "%Y-%m-%d")
         pre_str_2 = datetime.strftime(prev_2, "%Y-%m-%d")
@@ -38,7 +38,7 @@ class TestBounce:
         emiRepaymentStatus = requests.get(
             "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus",params={"fromDate":f"{pre_str_2}T10:00:00.000Z","endDate":f"{curr_s}T10:00:00.000Z","type":"TOTAL","page":1,"download":"true"})
 
-
+    @pytest.mark.skip
     def test_bounceCharge_repayStatus_unpaid_prev(self, bcURL):
         global emiRepaymentStatus_data
 

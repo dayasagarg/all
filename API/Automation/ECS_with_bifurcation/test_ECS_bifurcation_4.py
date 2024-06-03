@@ -54,7 +54,7 @@ class TestBounce:
 
 
         print("repay_failed_loan_ids_count::",len(repay_failed_loan_ids))
-        print("repay_failed_loan_ids::", repay_failed_loan_ids)
+        # print("repay_failed_loan_ids::", repay_failed_loan_ids)
 
         for e in repay_failed_loan_ids:
             emiAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
