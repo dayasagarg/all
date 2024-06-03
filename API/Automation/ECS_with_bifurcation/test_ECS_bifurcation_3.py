@@ -37,7 +37,7 @@ class TestBounce:
         emiRepaymentStatus = requests.get(
             "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus",params={"fromDate":f"{pre_str_2}T10:00:00.000Z","endDate":f"{curr_s}T10:00:00.000Z","type":"TOTAL","page":1,"download":"true"})
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_bounceCharge_repayStatus_unpaid_failed_emi_current_date(self, bcURL):
         global emiRepaymentStatus_data
 
@@ -48,7 +48,7 @@ class TestBounce:
         for f in emiRepaymentStatus_data_f:
             if (datetime.strptime(f["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024", "%d-%m-%Y"):
 
-                if f["Repaid Date"] == f"{curr_str}":
+                if f["Emi paid date"] == f"{curr_str}":
                     if f["Today's EMI status"] == "FAILED":
                         if f["Loan ID"]:
                             emiRepaymentStatus_data_lid_2_f.append(f["Loan ID"])
@@ -74,7 +74,7 @@ class TestBounce:
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_current_date ***")
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_bounceCharge_GST(self, bcURL):
         global emiRepaymentStatus_data_g
 
@@ -85,7 +85,7 @@ class TestBounce:
         for g in emiRepaymentStatus_data_g:
             if (datetime.strptime(g["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024", "%d-%m-%Y"):
 
-                if g["Repaid Date"] == f"{curr_str}":
+                if g["Emi paid date"] == f"{curr_str}":
                     if g["Today's EMI status"] == "FAILED":
                         if g["Loan ID"]:
                             emiRepaymentStatus_data_lid_2_g.append(g["Loan ID"])
@@ -122,12 +122,14 @@ class TestBounce:
         emiRepaymentStatus_data_lid_2_g_n = []
 
         for g in emiRepaymentStatus_data_g_n:
-            if g["Repaid Date"] == curr_str:
-                if (datetime.strptime(g["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024",
-                                                                                               "%d-%m-%Y"):
-                        if g["Today's EMI status"] == "FAILED":
-                            if g["Loan ID"]:
-                                emiRepaymentStatus_data_lid_2_g_n.append(g["Loan ID"])
+            if (datetime.strptime(g["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024",
+                                                                                           "%d-%m-%Y"):
+                if g["Emi paid date"] == curr_str:
+                    # print(g)
+                    if g["Today's EMI status"] == "FAILED":
+                        if g["Loan ID"]:
+                            emiRepaymentStatus_data_lid_2_g_n.append(g["Loan ID"])
+
 
         bounceChMissed_LId_2_gst_n = []
         for r in emiRepaymentStatus_data_lid_2_g_n:

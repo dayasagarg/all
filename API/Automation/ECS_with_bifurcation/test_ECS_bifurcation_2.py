@@ -49,7 +49,7 @@ class TestBounce:
         for rs in emiRepaymentStatus_data:
             if (datetime.strptime(rs["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
-                if rs["Repaid Date"] == f"{pre_str_er}":
+                if rs["Emi paid date"] == f"{pre_str_er}":
 
                     if rs["Loan ID"]:
                         emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
@@ -90,7 +90,8 @@ class TestBounce:
         for f in emiRepaymentStatus_data_f:
             if (datetime.strptime(f["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
-                if f["Repaid Date"] == f"{curr_str}":
+
+                if f["Emi paid date"] == f"{curr_str}":
                     if f["Today's EMI status"] == "FAILED":
                         if f["Loan ID"]:
                             emiRepaymentStatus_data_lid_2_f.append(f["Loan ID"])
@@ -125,8 +126,10 @@ class TestBounce:
 
         for rs in emiRepaymentStatus_data:
             if (datetime.strptime(rs["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
-                    if rs["Loan ID"]:
-                        emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
+
+
+                if rs["Loan ID"]:
+                    emiRepaymentStatus_data_lid_2.append(rs["Loan ID"])
 
         bounceChMissed_LId_2 = []
         for r in emiRepaymentStatus_data_lid_2:
@@ -159,6 +162,7 @@ class TestBounce:
 
         for rs in emiRepaymentStatus_data_2:
             if (datetime.strptime(rs["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
+
 
                 if rs["Loan ID"]:
                     emiRepaymentStatus_data_lid_3.append(rs["Loan ID"])
@@ -193,8 +197,8 @@ class TestBounce:
         for rsn in emiRepaymentStatus_data_n:
             if (datetime.strptime(rsn["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
 
-                    if rsn["Loan ID"]:
-                        emiRepaymentStatus_data_lid_n.append(rsn["Loan ID"])
+                if rsn["Loan ID"]:
+                    emiRepaymentStatus_data_lid_n.append(rsn["Loan ID"])
 
         bounceChMissed_LId_n = []
         for s in emiRepaymentStatus_data_lid_n:

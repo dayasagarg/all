@@ -195,8 +195,6 @@ class TestBounce:
                         bounceChMissed_LId_m.append(f)
 
 
-
-
         if len(bounceChMissed_LId_m) > 0:
             print(f"Error::bounce charge more autodebit::{bounceChMissed_LId_m}")
             # assert False, "bounce charge more autodebit"
