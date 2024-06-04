@@ -37,7 +37,7 @@ class TestBounce:
 
 
 
-    def test_bounce_charg_autodebit_unpaid_current_date(self, bcURL):
+    def test_bounce_charg_m(self, bcURL):
         global autoDebitData
 
         repay_Data = resp_all_rep_lo.json()["data"]["rows"]
@@ -64,7 +64,7 @@ class TestBounce:
 
             for ed in emiAPI_data:
 
-                if ed["totalBounceCharge"] != 0:
+                if ed["totalBounceCharge"] > 590:
                     bounceChMissed_LId_590.append(e)
 
 
