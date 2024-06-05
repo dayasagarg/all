@@ -53,7 +53,6 @@ class TestRepayment:
         # Upcoming EMI
         for n,i in enumerate(lIDs):
 
-
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
                 verify=False)  # current date
@@ -98,7 +97,6 @@ class TestRepayment:
 
                     if eD["totalUnpaidAmount"] > 0:
                         unpaid_in_p.append(i)
-
 
 
 
@@ -148,5 +146,4 @@ class TestRepayment:
             print(f"Error:: unpaid found::{unpaid}")
 
         assert len(unpaid) == 0
-
 

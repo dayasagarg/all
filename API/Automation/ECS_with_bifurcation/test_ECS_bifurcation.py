@@ -233,6 +233,6 @@ class TestBounce:
 
         if len(bounceChMissed_LId_590) > 0:
             print(
-                f"Er::bounce charge for ontime users ::{bounceChMissed_LId_590}")
+                f"::bounce charge for ontime users ::{bounceChMissed_LId_590}")
         else:
             print("*** No bounce charge for ontime users ***")

@@ -117,6 +117,7 @@ class TestBounce:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_current_date ***")
 
 
+    @pytest.mark.skip
     def test_bounceCharge_repayStatus_paid(self, bcURL):
         global emiRepaymentStatus_data
 

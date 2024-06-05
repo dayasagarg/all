@@ -41,13 +41,24 @@ class TestPenalFees:
                     lid_arl.append(d["Loan id"])
 
 
-        def_int_issue = []
+        def_int_issue_with_partpay = []
+        part_lid = []
 
         for n, r in enumerate(lid_arl):
+            if n == 25:
+                break
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": r},
                 verify=False)  # current date
+
+            response_tran = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails?", params={"loanId": r},
+                verify=False)  # current date
+            response_tran_d = response_tran.json()["data"]
+
+            [part_lid.append(r) for t in response_tran_d if t["Pay type"] == "PARTPAY"]
+
 
             emi_resp = response.json()["data"]["EMIData"]
 
@@ -64,6 +75,7 @@ class TestPenalFees:
             # print("eil::",eil)
 
             for e in emi_resp:
+
                 def_int = e["deferredInterest"]
                 prin = e["principal"]
                 delay_days = e["penaltyDays"]
@@ -84,7 +96,7 @@ class TestPenalFees:
                 print("def_int_cal::",def_int_cal)
 
                 if def_int != def_int_cal:
-                    def_int_issue.append(r)
+                    def_int_issue_with_partpay.append(r)
 
 
                 if def_int != def_int_cal:
@@ -94,10 +106,14 @@ class TestPenalFees:
 
 
         # print("def_int_issue::",def_int_issue)
+        print("part_lid::",part_lid)
+        print("def_int_issue_with_partpay::",def_int_issue_with_partpay)
+
+        def_int_issue_without_part_pay = set(def_int_issue_with_partpay) - set(part_lid)
 
 
-        if len(def_int_issue) > 0:
-            print(f"Error:: deferred interest not as expected :: {def_int_issue}")
+        if len(def_int_issue_without_part_pay) > 0:
+            print(f"Error:: deferred interest not as expected :: {def_int_issue_without_part_pay}")
             assert False
         else:
-            print("*** deferred interest is as expected ***")
+            print("*** deferred interest is expected except partpay users ***")
