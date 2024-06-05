@@ -45,8 +45,7 @@ class TestPenalFees:
         part_lid = []
 
         for n, r in enumerate(lid_arl):
-            if n == 25:
-                break
+           
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": r},
