@@ -26,14 +26,15 @@ class TestNegInterest:
         l_id_intRate_above_1 = []
 
         for inte in disData:
-            if float(inte["Interest Rate"].replace("%","")) < 0.077:
+            if float(inte["Interest rate"].replace("%","")) < 0.077:
                 # print("intRate",float(inte["Interest Rate"].replace("%","")))
                 l_id_intRate_less_77.append(inte["Loan ID"])
-            elif float(inte["Interest Rate"].replace("%","")) > 0.1:
+            elif float(inte["Interest rate"].replace("%","")) > 0.1:
                 l_id_intRate_above_1.append(inte["Loan ID"])
 
         count_l_id_intRate_77 = len(l_id_intRate_less_77)
         count_l_id_intRate_1 = len(l_id_intRate_above_1)
+
 
         if count_l_id_intRate_77 > 0:
             print(f"Error:: Interest rate below 0.077% found :: l_id :: {l_id_intRate_less_77}")

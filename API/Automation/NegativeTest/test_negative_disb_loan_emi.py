@@ -21,10 +21,11 @@ class TestEMI:
     def test_emi_limit(self,url):
 
         durl_data = durl.json()["data"]["rows"]
+        # print("durl_data::",durl_data)
 
         lIdEMI = []
         for d in durl_data:
-            if (d["Total Emi"] < 3 or d["Total Emi"] > 4):
+            if (d["Total EMI"] < 3 or d["Total EMI"] > 4):
                 lIdEMI.append(d["Loan ID"])
 
 

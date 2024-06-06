@@ -36,12 +36,15 @@ class TestRepayment:
 
 
     def test_all_emi_details(self,url):
+        repay_status_loans_data_count = repay_status_loans_data["data"]["count"]
+        print("repay_status_loans_data_count::",repay_status_loans_data_count)
 
-        print("all_emi_details_report_data::",all_emi_details_report_data)
 
         all_emi_details_report_users = all_emi_details_report.json()["data"]["count"]
         print("all_emi_details_report_users_count::",all_emi_details_report_users)
 
+
+        print("all_emi_details_report_data::", all_emi_details_report_data)
 
 
         aed_lid = []

@@ -22,7 +22,7 @@ class TestLoanTenure:
 
         loan_id_tenure = []
         for lt in l_data:
-            if  (lt["Loan Tenure (Days)"] < 90 or lt["Loan Tenure (Days)"]>120):
+            if  (lt["Loan tenure (days)"] < 90 or lt["Loan tenure (days)"]>120):
                 loan_id_tenure.append(lt["Loan ID"])
 
 
@@ -33,6 +33,3 @@ class TestLoanTenure:
             assert False
         else:
             print("loan tenure is within 90 to 120 days")
-
-
-

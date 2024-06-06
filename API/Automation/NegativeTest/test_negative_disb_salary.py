@@ -30,7 +30,7 @@ class TestSalAmt:
         loanID_sal = []
         for s in disbData:
             # print(d)
-            if s["Approved Salary"] < 20000:
+            if s["Approved salary"] < 20000:
                 loanID_sal.append(s["Loan ID"])
         # print(loanID)
 

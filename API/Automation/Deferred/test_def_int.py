@@ -45,7 +45,7 @@ class TestPenalFees:
         part_lid = []
 
         for n, r in enumerate(lid_arl):
-           
+
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": r},
