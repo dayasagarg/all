@@ -99,7 +99,6 @@ class TestRepayment:
                         unpaid_in_p.append(i)
 
 
-
             '''getting transactionData of Repayment'''
             # tranData = response.json()["data"]["transactionData"]
             # print(tranData)

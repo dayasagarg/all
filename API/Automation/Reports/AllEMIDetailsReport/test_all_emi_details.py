@@ -28,6 +28,7 @@ class TestRepayment:
                     "isCountOnly": False,
                     "page": 1,
                     "pagesize": 10,
+                    "needAllData": "true",
                     "report": "All EMI Details",
                     "startDate": "2024-06-04T10:00:00.000Z"}
 
@@ -44,16 +45,42 @@ class TestRepayment:
         print("all_emi_details_report_users_count::",all_emi_details_report_users)
 
 
-        print("all_emi_details_report_data::", all_emi_details_report_data)
+        repay_status_loans_all_data = repay_status_loans_data["data"]["rows"]
+        # print("repay_status_loans_all_data::",repay_status_loans_all_data)
+        # print("all_emi_details_report_data::", all_emi_details_report_data)
+
+        emi_amt_repay_status = []
+        placed_princ_repay_status = []
+        for r in repay_status_loans_all_data:
+            if r["Emi amount"]:
+                emi_amt_repay_status.append(r["Emi amount"])
+
+            if r["Placed amount"]:
+                placed_princ_repay_status.append(r["Placed amount"])
+
+        print("emi_amt_repay_status::",emi_amt_repay_status)
+        print("placed_princ_repay_status::",placed_princ_repay_status)
+
 
 
         aed_lid = []
+        emi_amt_report = []
+        prin_amt_report = []
+
         for e in all_emi_details_report_data:
             if e["Loan ID"]:
                 aed_lid.append(e["Loan ID"])
 
+            if e["EMI Amount"]:
+                emi_amt_report.append(int(e["EMI Amount"].replace(",","")))
+
+            if e["Principal Amount"]:
+                prin_amt_report.append(int(e["Principal Amount"].replace(",","")))
+
+
+        print("emi_amt_report::",emi_amt_report)
+        print("prin_amt_report::",prin_amt_report)
         print("aed_lid::",aed_lid)
 
 
 
-        # print("repaid_loans_data::",repaid_loans_data)

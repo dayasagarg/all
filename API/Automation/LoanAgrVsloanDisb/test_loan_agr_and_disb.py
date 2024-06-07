@@ -17,7 +17,7 @@ class TestLoanAgrDis:
 
 
         disAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/dashboard/allDisbursedLoans",
-                              params={"start_date": f"{pre_str}T10:00:00.000Z",
+                              params={"start_date": f"{curr_str}T10:00:00.000Z",
                                       "end_date": f"{curr_str}T10:00:00.000Z",
                                       "page": 1, "download": "true"})
 
@@ -45,14 +45,14 @@ class TestLoanAgrDis:
             if dis["Approved amount"]:
                 app_amt.append(dis["Approved amount"])
 
-            if dis["Interest Rate"]:
-                intRate_disb.append(float(dis["Interest Rate"].replace("%","")))
+            if dis["Interest rate"]:
+                intRate_disb.append(float(dis["Interest rate"].replace("%","")))
 
-            if dis["Total Emi"]:
-                totalEMI.append(dis["Total Emi"])
+            if dis["Total EMI"]:
+                totalEMI.append(dis["Total EMI"])
 
-            if dis["Loan Tenure (Days)"]:
-                loanTenure.append(dis["Loan Tenure (Days)"])
+            if dis["Loan tenure (days)"]:
+                loanTenure.append(dis["Loan tenure (days)"])
 
             if dis["Name"]:
                 name.append(dis["Name"])
@@ -60,11 +60,11 @@ class TestLoanAgrDis:
             if dis["Processing fees"]:
                 procFees.append(dis["Processing fees"])
 
-            if dis["Document Charges"]:
-                docFees.append(dis["Document Charges"])
+            if dis["Document charges"]:
+                docFees.append(dis["Document charges"])
 
-            if dis["GST Amount"]:
-                gstAmt.append(dis["GST Amount"])
+            if dis["GST amount"]:
+                gstAmt.append(dis["GST amount"])
 
 
 
