@@ -123,24 +123,26 @@ class TestLoanDisbCibil:
         cibil_pl_750_799_1_lac_out_lid_count = len(cibil_pl_750_799_1_lac_out_lid)
         cibil_pl_800_800_lid_count = len(cibil_pl_800_800_lid)
 
-        cibil_pl_830_plus_and_prem_less_77_count_r = len(prem_less_77)
-        cibil_pl_830_plus_and_prem_more_77_count_r = len(prem_more_77)
+        cibil_pl_830_plus_and_prem_less_77_count = len(prem_less_77)
+        cibil_pl_830_plus_and_prem_more_77_count = len(prem_more_77)
 
         # print("cibil_pl_less_than_680_lid::",cibil_pl_less_than_680_lid)
         # print("cibil_pl_700_749_out_lid::",cibil_pl_700_749_out_lid)
         # print("cibil_pl_750_799_out_lid::",cibil_pl_750_799_out_lid)
         # print("cibil_pl_750_799_1_lac_out_lid::",cibil_pl_750_799_1_lac_out_lid)
         # print("cibil_pl_800_800_lid::",cibil_pl_800_800_lid)
-        print("prem_less_77::",prem_less_77)
-        print("prem_more_77::",prem_more_77)
+        # print("prem_less_77::",prem_less_77)
+        # print("prem_more_77::",prem_more_77)
 
 
 
-        print("cibil_pl_less_than_680_lid_count ::",cibil_pl_less_than_680_lid_count)
-        print("cibil_pl_700_749_out_lid_count::",cibil_pl_700_749_out_lid_count)
-        print("cibil_pl_750_799_out_lid_count::",cibil_pl_750_799_out_lid_count)
-        print("cibil_pl_750_799_1_lac_out_lid_count::",cibil_pl_750_799_1_lac_out_lid_count)
-        print("cibil_pl_800_800_lid_count::",cibil_pl_800_800_lid_count)
+        # print("cibil_pl_less_than_680_lid_count ::",cibil_pl_less_than_680_lid_count)
+        # print("cibil_pl_700_749_out_lid_count::",cibil_pl_700_749_out_lid_count)
+        # print("cibil_pl_750_799_out_lid_count::",cibil_pl_750_799_out_lid_count)
+        # print("cibil_pl_750_799_1_lac_out_lid_count::",cibil_pl_750_799_1_lac_out_lid_count)
+        # print("cibil_pl_800_800_lid_count::",cibil_pl_800_800_lid_count)
+        # print("cibil_pl_830_plus_and_prem_less_77_count_r::",cibil_pl_830_plus_and_prem_less_77_count_r)
+
 
 
 
@@ -159,7 +161,7 @@ class TestLoanDisbCibil:
         else:
             print("*** loans are rejected if loan amount is more than 50 % of salary for cibil_pl_700_749 ***")
 
-
+#
     def test_cs_pl_750_799_less_50000_out(self):
         if cibil_pl_750_799_out_lid_count > 0:
             print(f" Error :: loans are not rejected if loan amount is more than 50 % of salary for cibil_pl_750_799 and salary <= 50 k :: {cibil_pl_750_799_out_lid}")
@@ -175,7 +177,7 @@ class TestLoanDisbCibil:
         else:
             print("*** loans are rejected if loan amount is more than 75 % of salary for cibil_pl_750_799 and salary 1 lac+ ***")
 
-
+#
     def test_cs_pl_800_800(self):
         if cibil_pl_800_800_lid_count > 0:
             print(f" Error :: loans are not rejected if loan amount is more than 75 % of salary for cibil_pl_800_800 :: {cibil_pl_800_800_lid}")
@@ -184,7 +186,7 @@ class TestLoanDisbCibil:
 
     def test_cs_pl_830_l(self):
         if cibil_pl_830_plus_and_prem_less_77_count > 0:
-            print(f"Error:: premium user issue with less than 0.77 intrest rate for new user ::{prem_less_77}")
+            print("Error:: premium user issue with less than 0.77 intrest rate for new user :")
         else:
             print(f" No premium user issue with less than 0.77 intrest rate for new user ")
 
@@ -195,22 +197,22 @@ class TestLoanDisbCibil:
             print(f"*** No premium user issue with more than 0.77 intrest rate for new user ***")
 
 
-
+#
     def test_disb_cibil_repeat_user(self, url_dis_cibil):
         print("*** Test execution started ***")
-        global cibil_pl_less_than_680_lid_count_r, cibil_pl_less_than_680_lid_r, cibil_pl_700_749_out_lid_r, cibil_pl_700_749_out_lid_count_r
-        global cibil_pl_750_799_out_lid_count_r, cibil_pl_750_799_out_lid_r, cibil_pl_750_799_1_lac_out_lid_count_r, cibil_pl_750_799_1_lac_out_lid_r
-        global cibil_pl_800_800_lid_count_r, cibil_pl_800_800_lid_r
+        global cibil_less_than_680_lid_count_r, cibil_less_than_680_lid_r, cibil_700_749_out_lid_r, cibil_700_749_out_lid_count_r
+        global cibil_750_799_out_lid_count_r, cibil_750_799_out_lid_r, cibil_750_799_1_lac_out_lid_count_r, cibil_750_799_1_lac_out_lid_r
+        global cibil_800_800_lid_count_r, cibil_800_800_lid_r
         global cibil_830_plus_and_prem_less_77_count_r, prem_less_77_r, prem_more_77_r, cibil_830_plus_and_prem_more_77_count_r
 
         disAPIData = disAPI.json()["data"]["rows"]
 
 
-        cibil_pl_less_than_680_lid_r = []
-        cibil_pl_700_749_out_lid_r = []
-        cibil_pl_750_799_out_lid_r = []
-        cibil_pl_750_799_1_lac_out_lid_r = []
-        cibil_pl_800_800_lid_r = []
+        cibil_less_than_680_lid_r = []
+        cibil_700_749_out_lid_r = []
+        cibil_750_799_out_lid_r = []
+        cibil_750_799_1_lac_out_lid_r = []
+        cibil_800_800_lid_r = []
 
         prem_less_77_r = []
         prem_more_77_r = []
@@ -220,21 +222,19 @@ class TestLoanDisbCibil:
         # print(disAPIData)
 
         for s in disAPIData:
+            # print(s)
             # if s["Completed loans"] > 3 and isinstance(s["Cibil score"],str):
             #     # print(s["Cibil score"],type(s["Cibil score"]))
             #
             #     if s["Cibil score"] :
-            #         # print(type(s["Cibil score"]))
-            #         cibil_pl_less_than_700_lid_r.append(s["Loan ID"])
+            #         print(s["Cibil score"])
+                    # cibil_pl_less_than_700_lid_r.append(s["Loan ID"])
 
 
             if s["Completed loans"] > 3 and isinstance(s["Cibil score"],int):
                 # print(s["Cibil score"],type(s["Cibil score"]))
                 if s["Cibil score"] < 680:
-                    # print(type(s["Cibil score"]))
-                    cibil_pl_less_than_680_lid_r.append(s["Loan ID"])
-
-
+                    cibil_less_than_680_lid_r.append(s["Loan ID"])
 
                 elif 700 <= s["Cibil score"] <= 749:
                     apprAmt_r = s["Approved amount"]
@@ -242,7 +242,7 @@ class TestLoanDisbCibil:
                     apprSalary_loan_amt_cal_500_round_r = apprSalary_loan_amt_cal_r + 500
 
                     if apprAmt_r > apprSalary_loan_amt_cal_500_round_r:
-                        cibil_pl_700_749_out_lid_r.append(s["Loan ID"])
+                        cibil_700_749_out_lid_r.append(s["Loan ID"])
 
                 elif (750 <= s["Cibil score"] <= 799):
                     if s["Approved salary"] < 50000:
@@ -253,7 +253,7 @@ class TestLoanDisbCibil:
                         apprSalary_loan_amt_cal_500_round_2_r = apprSalary_loan_amt_cal_2_r + 500
 
                         if apprAmt_2_r > apprSalary_loan_amt_cal_500_round_2_r:
-                            cibil_pl_750_799_out_lid_r.append(s["Loan ID"])
+                            cibil_750_799_out_lid_r.append(s["Loan ID"])
 
                 elif (750 <= s["Cibil score"] <= 799):
                     if s["Approved salary"] >= 100000:
@@ -264,7 +264,7 @@ class TestLoanDisbCibil:
                         apprSalary_loan_amt_cal_500_round_3_r = apprSalary_loan_amt_cal_3_r + 500
 
                         if apprAmt_3_r > apprSalary_loan_amt_cal_500_round_3_r:
-                            cibil_pl_750_799_1_lac_out_lid_r.append(s["Loan ID"])
+                            cibil_750_799_1_lac_out_lid_r.append(s["Loan ID"])
 
                 elif s["Cibil score"] >= 800:
                     apprAmt_4_r = s["Approved amount"]
@@ -272,7 +272,7 @@ class TestLoanDisbCibil:
                     apprSalary_loan_amt_cal_500_round_4_r = apprSalary_loan_amt_cal_4_r + 500
 
                     if apprAmt_4_r > apprSalary_loan_amt_cal_500_round_4_r:
-                        cibil_pl_800_800_lid_r.append(s["Loan ID"])
+                        cibil_800_800_lid_r.append(s["Loan ID"])
 
                     # print("lid::", s["Loan ID"])
                     # print("apprSalary_loan_amt_cal::", apprSalary_loan_amt_cal_r)
@@ -280,75 +280,75 @@ class TestLoanDisbCibil:
                     # print("apprAmt::", apprAmt_r)
 
 
-                if s["Cibil score"] > 830:
-                    if s["Approved salary"] >= 20000:
-
-                        if float(s["Interest rate"].replace("%", "")) < 0.077:
-                            prem_less_77_r.append(s["Loan ID"])
-
-                        if float(s["Interest rate"].replace("%", "")) > 0.077:
-                            prem_more_77_r.append(s["Loan ID"])
-
-
+                # if s["Cibil score"] > 830:
+                #     if s["Approved salary"] >= 20000:
+                #
+                #         if float(s["Interest rate"].replace("%", "")) < 0.077:
+                #             prem_less_77_r.append(s["Loan ID"])
+                #
+                #         if float(s["Interest rate"].replace("%", "")) > 0.077:
+                #             prem_more_77_r.append(s["Loan ID"])
 
 
-        cibil_less_than_680_lid_count_r = len(cibil_pl_less_than_680_lid_r)
-        cibil_700_749_out_lid_count_r = len(cibil_pl_700_749_out_lid_r)
-        cibil_750_799_out_lid_count_r = len(cibil_pl_750_799_out_lid_r)
-        cibil_750_799_1_lac_out_lid_count_r = len(cibil_pl_750_799_1_lac_out_lid_r)
-        cibil_800_800_lid_count_r = len(cibil_pl_800_800_lid_r)
+
+
+        cibil_less_than_680_lid_count_r = len(cibil_less_than_680_lid_r)
+        cibil_700_749_out_lid_count_r = len(cibil_700_749_out_lid_r)
+        cibil_750_799_out_lid_count_r = len(cibil_750_799_out_lid_r)
+        cibil_750_799_1_lac_out_lid_count_r = len(cibil_750_799_1_lac_out_lid_r)
+        cibil_800_800_lid_count_r = len(cibil_800_800_lid_r)
         cibil_830_plus_and_prem_less_77_count_r = len(prem_less_77_r)
         cibil_830_plus_and_prem_more_77_count_r = len(prem_more_77_r)
 
 
 
 
-        print("cibil_pl_less_than_700_lid_count ::",cibil_pl_less_than_680_lid_r)
-        print("cibil_pl_700_749_out_lid_r::",cibil_pl_700_749_out_lid_count_r)
-        print("cibil_pl_750_799_out_lid_count_r::",cibil_pl_750_799_out_lid_count_r)
-        print("cibil_pl_750_799_1_lac_out_lid_count_r::",cibil_pl_750_799_1_lac_out_lid_count_r)
-        print("cibil_pl_800_800_lid_count_r::",cibil_pl_800_800_lid_count_r)
+        # print("cibil_pl_less_than_700_lid_count ::",cibil_pl_less_than_680_lid_r)
+        # print("cibil_pl_700_749_out_lid_r::",cibil_pl_700_749_out_lid_count_r)
+        # print("cibil_pl_750_799_out_lid_count_r::",cibil_pl_750_799_out_lid_count_r)
+        # print("cibil_pl_750_799_1_lac_out_lid_count_r::",cibil_pl_750_799_1_lac_out_lid_count_r)
+        # print("cibil_pl_800_800_lid_count_r::",cibil_pl_800_800_lid_count_r)
 
-        print("prem_less_77_r::",prem_less_77_r)
-        print("prem_more_77_r::",prem_more_77_r)
+        # print("prem_less_77_r::",prem_less_77_r)
+        # print("prem_more_77_r::",prem_more_77_r)
 
 
 
     def test_cs_less_than_680_r(self):
-        if cibil_pl_less_than_680_lid_count_r > 0:
-            print(f" Error :: loans are not rejected if cibil_and_pl_less_than_680 ::Repeat User:: {cibil_pl_less_than_680_lid_r}")
+        if cibil_less_than_680_lid_count_r > 0:
+            print(f" Error :: loans are not rejected if cibil_and_pl_less_than_680 ::Repeat User:: {cibil_less_than_680_lid_r}")
             assert False
         else:
             print("*** loans are rejected if cibil_and_pl_less_than_680 ::Repeat User:: ***")
 
 
     def test_cs_700_749_out_r(self):
-        if cibil_pl_700_749_out_lid_count_r > 0:
-            print(f" Error :: loan not rejected for cibil_pl_700_749 range and 50 % out salary ::Repeat User:: {cibil_pl_700_749_out_lid_r}")
+        if cibil_700_749_out_lid_count_r > 0:
+            print(f" Error :: loan not rejected for cibil_pl_700_749 range and 50 % out salary ::Repeat User:: {cibil_700_749_out_lid_r}")
             assert False
         else:
             print("*** loans are rejected if loan amount is more than 50 % of salary for cibil_pl_700_749 ::Repeat User:: ***")
 
 
     def test_cs_750_799_less_50000_out_r(self):
-        if cibil_pl_750_799_out_lid_count_r > 0:
-            print(f" Error :: loans are not rejected if loan amount is more than 50 % of salary for cibil_pl_750_799 and salary < 50 k ::Repeat User:: {cibil_pl_750_799_out_lid_r}")
+        if cibil_750_799_out_lid_count_r > 0:
+            print(f" Error :: loans are not rejected if loan amount is more than 50 % of salary for cibil_pl_750_799 and salary < 50 k ::Repeat User:: {cibil_750_799_out_lid_r}")
             assert False
         else:
             print("*** loans are rejected if loan amount is more than 50 % of salary for cibil_pl_750_799 and salary <= 50 k ::Repeat User:: ***")
 
 
     def test_cs_750_799_1_lac_out_r(self):
-        if cibil_pl_750_799_1_lac_out_lid_count_r > 0:
-            print(f" Error :: loans are not rejected if loan amount is more than 75 % of salary for cibil_pl_750_799 and salary 1 lac+ ::Repeat User:: {cibil_pl_750_799_1_lac_out_lid_r}")
+        if cibil_750_799_1_lac_out_lid_count_r > 0:
+            print(f" Error :: loans are not rejected if loan amount is more than 75 % of salary for cibil_pl_750_799 and salary 1 lac+ ::Repeat User:: {cibil_750_799_1_lac_out_lid_r}")
             assert False
         else:
             print("*** loans are rejected if loan amount is more than 75 % of salary for cibil_pl_750_799 and salary 1 lac+ ::Repeat User:: ***")
 
 
     def test_cs_800_800_r(self):
-        if cibil_pl_800_800_lid_count_r > 0:
-            print(f" Error :: loans are not rejected if loan amount is more than 75 % of salary for cibil_pl_800_800 ::Repeat User:: {cibil_pl_800_800_lid_r}")
+        if cibil_800_800_lid_count_r > 0:
+            print(f" Error :: loans are not rejected if loan amount is more than 75 % of salary for cibil_pl_800_800 ::Repeat User:: {cibil_800_800_lid_r}")
         else:
             print("*** loans are rejected if loan amount is more than 75 % of salary for cibil_pl_800_800 ::Repeat User:: ***")
 
@@ -356,7 +356,7 @@ class TestLoanDisbCibil:
         if cibil_830_plus_and_prem_less_77_count_r > 0:
             print(f"Error:: premium user issue with less than 0.77 intrest rate for repeat user ::{prem_less_77_r}")
         else:
-            print(f" No premium user issue with less than 0.77 intrest rate for repeat user ")
+            print(f"*** No premium user issue with less than 0.77 intrest rate for repeat user ***")
 
     def test_cs_830_m_r(self):
         if cibil_830_plus_and_prem_more_77_count_r > 0:
