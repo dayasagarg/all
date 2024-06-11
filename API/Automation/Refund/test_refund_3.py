@@ -253,7 +253,7 @@ class TestRefund:
         refund_compl_data = refund_compl.json()["data"]["rows"]
         refund_compl_data_count = refund_compl.json()["data"]["count"]
 
-        # print("refund_compl_data::",refund_compl_data)
+
         print("refund_compl_data_count::", refund_compl_data_count)
 
         refund_comp_loan_ids = []
@@ -309,8 +309,7 @@ class TestRefund:
 
     def test_refund_pending(self):
         refund_pend_data = refund_pend.json()["data"]["filteredData"]
-        # refund_pend_data = refund_pend.json()
-        # print("refund_pend_data::",refund_pend_data)
+
 
         pend_lid = []
         for p in refund_pend_data:
@@ -321,6 +320,8 @@ class TestRefund:
         for m in ref_miss_compl:
             if m not in pend_lid:
                 miss_with_pend.append(m)
+
+        print("refund_pend_data::", pend_lid)
 
         if len(miss_with_pend) > 0:
             print(f"Error:: refund miss_with_pend found::{miss_with_pend}")
