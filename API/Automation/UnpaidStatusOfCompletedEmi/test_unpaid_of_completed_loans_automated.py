@@ -15,7 +15,7 @@ print("currentDateStr::",currentDateStr)
 
 
 
-previousDate = currentDateF - timedelta(days=4)
+previousDate = currentDateF - timedelta(days=30)
 previousDateStr = datetime.strftime(previousDate,"%Y-%m-%d")
 
 
@@ -83,20 +83,20 @@ class TestRepayment:
                 # if "Paid" in eD:
                 #     status.append(eD['Paid'])
 
-                if ((eD["paymentType"] == "FULLPAY") and (eD["status"] == "UNPAID")) or ((eD["paymentType"] == "EMIPAY") and (eD["status"] == "UNPAID")):
-                    if eD["unpaidPenalty"] == 0:
-                        unpaid.append(i)
-
-                else:
-                    withoutUnpaid.append(i)
+                # if ((eD["paymentType"] == "FULLPAY") and (eD["status"] == "UNPAID")) or ((eD["paymentType"] == "EMIPAY") and (eD["status"] == "UNPAID")):
+                #     if eD["unpaidPenalty"] == 0:
+                #         unpaid.append(i)
+                # 
+                # else:
+                #     withoutUnpaid.append(i)
 
 
                 if eD["status"] == "PAID":
                     if eD["totalPaidAmount"] == 0 or eD["paidEmiAmount"] == 0:
                         paid_0.append(i)
 
-                    if eD["totalUnpaidAmount"] > 0:
-                        unpaid_in_p.append(i)
+                    # if eD["totalUnpaidAmount"] > 0:
+                    #     unpaid_in_p.append(i)
 
 
             '''getting transactionData of Repayment'''

@@ -24,7 +24,7 @@ class TestRepayment:
         repay_status_loans_data = repay_status.json()
 
         pay_l_emi = {"emiStatus": "0",
-                    "endDate": "2024-06-04T10:00:00.000Z",
+                    "endDate": "2024-06-11T10:00:00.000Z",
                     "isCountOnly": False,
                     "page": 1,
                     "pagesize": 10,

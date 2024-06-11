@@ -7,6 +7,8 @@ import time
 
 
 
+
+
 class TestDashRepo:
     @pytest.fixture()
     def setup_teardown(self):
@@ -16,7 +18,7 @@ class TestDashRepo:
         driver = webdriver.Chrome(service = ser)
         driver.maximize_window()
         driver.implicitly_wait(5)
-        driver.get("http://192.168.1.23:8080/web/") # url
+        driver.get("https://devuatapi.com/web-test/") # url
         # driver.get("http://152.67.15.215/lenditt/#/dashboard")  # url
         time.sleep(3)
 
@@ -28,14 +30,25 @@ class TestDashRepo:
 
 
     def test_keyFactStatement(self, setup_teardown):
+        time.sleep(1)
         driver.find_element(By.ID, "flt-semantic-node-13").click() #login
+        time.sleep(5)
+        driver.find_element(By.XPATH, "//*[@id='flt-semantic-node-50']").click() #checkbox
         time.sleep(7)
-        driver.find_element(By.ID, "flt-semantic-node-46").click() #checkbox
-        time.sleep(3)
-        driver.find_element(By.ID, "flt-semantic-node-54").click() # Accept
+        driver.find_element(By.XPATH, "/html/body/flutter-view/flt-semantics-host/flt-semantics/flt-semantics-container/flt-semantics/flt-semantics-container/flt-semantics/flt-semantics-container/flt-semantics/flt-semantics-container/flt-semantics/flt-semantics-container/flt-semantics[2]/flt-semantics-container/flt-semantics[4]").click() # Accept
         time.sleep(7)
-        driver.find_element(By.XPATH, "/html/body/flutter-view/flt-semantics-host/flt-semantics/flt-semantics-container/flt-semantics/flt-semantics-container/flt-semantics[1]/flt-semantics-container/flt-semantics/flt-semantics-container/flt-semantics/flt-semantics-container/flt-semantics/flt-semantics-container/flt-semantics[3]/flt-semantics-container/flt-semantics/textarea").send_keys("0123456789")  # mobile
-        time.sleep(3)
-        driver.find_element(By.ID, "flt-semantic-node-48").click()  # Continue
+        driver.find_element(By.XPATH, "//*[@id='flt-semantic-node-48']/textarea").click()
+        time.sleep(5)
+
+        # driver.find_element(By.XPATH, "//*[@id='flt-semantic-node-48']/textarea").send_keys("0123456789")  # mobile
+        time.sleep(11)
+        # driver.find_element(By.ID, "flt-semantic-node-48").click()  # Continue
         time.sleep(2)
 
+        #create java script executor instance
+
+        js_executor = driver.execute_script("arguments[0].value='abc@gmail.com';","//*[@id='flt-semantic-node-48']/textarea")
+
+        #send keys with help of javascript executor
+
+        # js_executor.executeScript("arguments[0].value='abc@gmail.com'")

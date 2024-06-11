@@ -58,6 +58,7 @@
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/WebAppTest/test_webApplication.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/WebAppTest/test_webApplication.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/all" beforeDir="false" afterPath="$PROJECT_DIR$/all" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,6 +164,7 @@
     &quot;Python tests.pytest in test_risk.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest in test_transaction_repay_check.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest in test_unpaid_of_completed_loans_automated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_webApplication.py.executor&quot;: &quot;Run&quot;,
     &quot;Python.a.executor&quot;: &quot;Run&quot;,
     &quot;Python.legal_notice_pp.executor&quot;: &quot;Run&quot;,
     &quot;Python.sample.executor&quot;: &quot;Run&quot;,
@@ -178,38 +180,38 @@
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_disb_cibil_pl.py">
-    <configuration name="pytest for test_all_emi_details.TestRepayment" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.pytest in test_all_emi_details.py">
+    <configuration name="pytest in test_LA3.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/Reports/AllEMIDetailsReport" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_all_emi_details.TestRepayment&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_ECS_bifurcation_2.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_LA4.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/ECS_with_bifurcation" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/ECS_with_bifurcation/test_ECS_bifurcation_2.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -230,47 +232,47 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_disb_cibil_pl.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_disb_monthly_loan_figure.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/Disburesement" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/Reports/Disburesement_monthly_loan_figures" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/Disburesement/test_disb_cibil_pl.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/Reports/Disburesement_monthly_loan_figures/test_disb_monthly_loan_figure.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_loan_agr_and_disb.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_webApplication.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/WebApp/WebAppTest" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb/test_loan_agr_and_disb.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/WebApp/WebAppTest/test_webApplication.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_disb_cibil_pl.py" />
         <item itemvalue="Python tests.pytest in test_all_emi_details.py" />
-        <item itemvalue="Python tests.pytest for test_all_emi_details.TestRepayment" />
-        <item itemvalue="Python tests.pytest in test_loan_agr_and_disb.py" />
-        <item itemvalue="Python tests.pytest in test_ECS_bifurcation_2.py" />
+        <item itemvalue="Python tests.pytest in test_disb_monthly_loan_figure.py" />
+        <item itemvalue="Python tests.pytest in test_webApplication.py" />
+        <item itemvalue="Python tests.pytest in test_LA4.py" />
+        <item itemvalue="Python tests.pytest in test_LA3.py" />
       </list>
     </recent_temporary>
   </component>
