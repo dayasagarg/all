@@ -15,7 +15,7 @@ print("currentDateStr::",currentDateStr)
 
 
 
-previousDate = currentDateF - timedelta(days=30)
+previousDate = currentDateF - timedelta(days=15)
 previousDateStr = datetime.strftime(previousDate,"%Y-%m-%d")
 
 
@@ -86,7 +86,7 @@ class TestRepayment:
                 # if ((eD["paymentType"] == "FULLPAY") and (eD["status"] == "UNPAID")) or ((eD["paymentType"] == "EMIPAY") and (eD["status"] == "UNPAID")):
                 #     if eD["unpaidPenalty"] == 0:
                 #         unpaid.append(i)
-                # 
+                #
                 # else:
                 #     withoutUnpaid.append(i)
 
