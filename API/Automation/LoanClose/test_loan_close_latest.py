@@ -5,10 +5,13 @@ from datetime import datetime,timedelta
 class TestLoanStatus:
     @pytest.fixture
     def url(self):
-        global allRepay
+        global allRepay, currTimeStr_emi
 
         currTime = datetime.now()
         currTimeStr = datetime.strftime(currTime, "%Y-%m-%d")
+
+        currTimeStr_emi = datetime.strftime(currTime, "%d/%m/%Y")
+
         preTime = currTime - timedelta(days=2)
         preTimeStr = datetime.strftime(preTime, "%Y-%m-%d")
         # print(currTimeStr)
@@ -35,12 +38,13 @@ class TestLoanStatus:
                 repay_loan_id.append(al["Loan id"])
 
             if al["Repaid flag"] == "Delayed":
-                if al["Principal"]:
-                    principal = al["Principal"]
-                if al["Interest"]:
-                    interest = al["Interest"]
-                if al["Total paid Amt"]:
-                    totalPaid = al["Total paid Amt"]
+                # print("del::",al["Loan id"])
+
+                principal = al["Principal"]
+
+                interest = al["Interest"]
+
+                totalPaid = al["Total paid Amt"]
 
                 pi = principal + interest
                 if totalPaid < pi:
@@ -57,23 +61,42 @@ class TestLoanStatus:
             loanStatus = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getLoanHistory", params={"userId":l})
             loanStatusData = loanStatus.json()["data"]["loanData"]
 
-            # loanStatus_wrong = []
-            for l in loanStatusData:
-                if l["loanStatus"]:
-                    if l["loanStatus"] == "Complete":
-                        loan_St_id = l["id"]
-                        # loanStatus_wrong_d += loan_St_id
-                        loanStatus_wrong.append(loan_St_id)
-                        # print("loan_St_id::",loan_St_id)
-                        # print(l["id"])
 
-                    break
+            for l in loanStatusData:
+
+                if l["loanStatus"] == "Complete":
+
+                    loanStatus_wrong.append(l["id"])
+
+                    # print("loan_status_id::",l["id"])
+
+                # break
 
         # print("loanStatus_wrong::",loanStatus_wrong)
 
+        loanStatus_wrong_curr_date = []
 
-        if len(loanStatus_wrong) > 0:
-            print(f"Error::paid amount is less than emi amount found in loan complete/close::{loanStatus_wrong}")
+
+        for m,k in enumerate(loanStatus_wrong):
+
+
+            response = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": k},
+                verify=False)  # current date
+
+            e_data = response.json()["data"]["EMIData"]
+
+
+            for e in e_data:
+                if e["repaymentDate"] == currTimeStr_emi:
+                    loanStatus_wrong_curr_date.append(k)
+
+        # print("loanStatus_wrong_curr_date::",loanStatus_wrong_curr_date)
+
+
+
+        if len(loanStatus_wrong_curr_date) > 0:
+            print(f"Error::paid amount is less than emi amount found in loan complete/close::{loanStatus_wrong_curr_date}")
             assert False, "paid amount is less than emi amount found"
 
         else:

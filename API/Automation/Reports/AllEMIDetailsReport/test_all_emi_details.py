@@ -7,6 +7,7 @@ from datetime import datetime
 
 currentFullTime = datetime.now()  # whole date
 currentDateStr = datetime.strftime(currentFullTime, "%Y-%m-%d")  # date to string format
+currentDateStr_emi = datetime.strftime(currentFullTime, "%d/%m/%Y")  # date to string format
 
 
 class TestRepayment:
@@ -14,68 +15,46 @@ class TestRepayment:
     def url(self):
         global all_emi_details_report, all_emi_details_report_data, repay_status_loans_data, all_repaid_loans, all_repaid_loans_data
 
-        # repay_status = requests.get(
-        #     "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus",
-        #     params={"fromDate": f"{currentDateStr}T10:00:00.000Z", "endDate": f"{currentDateStr}T10:00:00.000Z",
-        #             "type": "TOTAL",
-        #             "page": 1, "download": "true",
-        #             "verify": False})  # current date
-        # repay_status_loans_data = repay_status.json()
-
-
-        all_repaid_loans = requests.get(
-            "https://chinmayfinserve.com/admin-prod/admin/transaction/allRepaidLoans",
-            params={"start_date": f"{currentDateStr}T10:00:00.000Z", "end_date": f"{currentDateStr}T10:00:00.000Z",
-                    "page": 1, "pagesize": 10, "getTotal": "true", "download": "true",
-                    "verify": "False"})  # current date
-
-        all_repaid_loans_data = all_repaid_loans.json()["data"]["rows"]
+        repay_status = requests.get(
+            "https://chinmayfinserve.com/admin-prod/admin/emi/repaymentStatus",
+            params={"fromDate": f"{currentDateStr}T10:00:00.000Z", "endDate": f"{currentDateStr}T10:00:00.000Z",
+                    "type": "TOTAL",
+                    "page": 1, "download": "true",
+                    "verify": False})  # current date
+        repay_status_loans_data = repay_status.json()
 
 
         pay_l_emi = {"emiStatus": "0",
-                    "endDate": "2024-06-11T10:00:00.000Z",
+                    "endDate": f"{currentDateStr}T10:00:00.000Z",
                     "isCountOnly": False,
                     "page": 1,
                     "pagesize": 10,
                     "needAllData":"true",
                     "download":"true",
                     "report": "All EMI Details",
-                    "startDate": "2024-06-11T10:00:00.000Z"}
+                    "startDate": f"{currentDateStr}T10:00:00.000Z"}
 
         all_emi_details_report = requests.post("https://chinmayfinserve.com/admin-prod/admin/report/getTodayEmiData",json=pay_l_emi)
         all_emi_details_report_data = all_emi_details_report.json()["data"]["rows"]
 
 
     def test_all_emi_details(self,url):
-        # repay_status_loans_data_count = repay_status_loans_data["data"]["count"]
-        # print("repay_status_loans_data_count::",repay_status_loans_data_count)
+        repay_status_loans_data_count = repay_status_loans_data["data"]["count"]
+        print("repay_status_loans_data_count::",repay_status_loans_data_count)
 
-        all_repaid_users = all_repaid_loans.json()["data"]["count"]
-        print("all_repaid_users_count::", all_repaid_users)
+        repay_status_loans_data_total = repay_status_loans_data["data"]["rows"]
+        # print("repay_status_loans_data_total::",repay_status_loans_data_total)
+
+        repay_status_lid = []
+        for r in repay_status_loans_data_total:
+            if r["Loan ID"]:
+                repay_status_lid.append(r["Loan ID"])
+
+        print("repay_status_lid::",repay_status_lid)
 
 
         all_emi_details_report_users = all_emi_details_report.json()["data"]["count"]
         print("all_emi_details_report_users_count::",all_emi_details_report_users)
-
-
-        # repay_status_loans_all_data = repay_status_loans_data["data"]["rows"]
-        # print("repay_status_loans_all_data::",repay_status_loans_all_data)
-        # print("all_emi_details_report_data::", all_emi_details_report_data)
-
-        emi_amt_repaid_status = []
-        placed_princ_repaid_status = []
-        all_repaid_lid = []
-
-        for r in all_repaid_loans_data:
-            if r["Loan id"]:
-                all_repaid_lid.append(r["Loan id"])
-
-
-
-        print("emi_amt_repaid_status::",emi_amt_repaid_status)
-        print("placed_princ_repaid_status::",placed_princ_repaid_status)
-        # print("all_repaid_lid::",all_repaid_lid)
-
 
 
         all_emi_d_report_lid = []
@@ -97,57 +76,65 @@ class TestRepayment:
         # print("prin_amt_report::",prin_amt_report)
         print("all_emi_d_report_lid::",all_emi_d_report_lid)
 
-        # print(len(all_repaid_lid))
-        # print(len(all_emi_d_report_lid))
+        comm_repay_emi_report = set(repay_status_lid).intersection(set(all_emi_d_report_lid))
+        print("comm_repay_emi_report::",comm_repay_emi_report)
+        print("comm_repay_emi_report_count::", len(comm_repay_emi_report))
+        assert len(comm_repay_emi_report) == repay_status_loans_data_count
 
-        repaid_lid_not_in_report = set(all_repaid_lid) - set(all_emi_d_report_lid)
-        print("repaid_lid_not_in_report::",repaid_lid_not_in_report)
-        print("repaid_lid_not_in_report_count::", len(repaid_lid_not_in_report))
+        diff_repay_emi_report = set(repay_status_lid).difference(set(all_emi_d_report_lid))
+        print("diff_repay_emi_report::", diff_repay_emi_report)
+        print("diff_repay_emi_report::", len(diff_repay_emi_report))
 
-        report_lid_not_in_repaid__unpaid = set(all_emi_d_report_lid) - set(all_repaid_lid)
-        print("report_lid_not_in_repaid__unpaid::", report_lid_not_in_repaid__unpaid)
-        print("report_lid_not_in_repaid__unpaid_count::", len(report_lid_not_in_repaid__unpaid))
-
-
-
-        refund_compl = [904294, 870029, 903247, 931767, 919116, 949002, 866732, 876070, 915747, 818249, 821385, 873617, 885270, 903178, 906692, 896021, 813861, 871195, 894691, 908947, 912308, 922158, 848968, 868131, 910273, 930989, 849287, 911470, 886604, 786478, 922049, 913704, 914331, 917137, 919581, 931015, 931736, 926649, 937907, 890835, 906586, 934055, 863430, 938089, 944003, 638151, 803973, 945815, 885178, 905518, 933365, 936608, 917182, 794601, 913506, 810781, 905416, 784456, 913840, 950457]
-        refund_pend_data = [821619, 854222, 864748, 878053, 878224, 890605, 901872, 909984, 915802]
-        all_refund = refund_compl + refund_pend_data
-        print("all_refund_count::",len(all_refund))
+        diff_emi_report_repay_prepaid = set(all_emi_d_report_lid).difference(set(repay_status_lid))
+        print("diff_emi_report_repay_prepaid::", diff_emi_report_repay_prepaid)
+        print("diff_emi_report_repay_prepaid_count::", len(diff_emi_report_repay_prepaid))
 
 
+        diff_emi_report_repay_prepaid_notOntime = []
+        diff_emi_report_repay_prepaid_receive_amt_issue = []
+        diff_emi_report_repay_prepaid_unpaid = []
+
+        for m,k in enumerate(diff_emi_report_repay_prepaid):
+
+            response_emi = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": k},
+                verify=False)  # current date
+
+            # # print('status code of get Repayment::', response.status_code)
+            ## print(response.json())
+            ##
+            ## data = response_emi.json()["data"]
+            ## # print(emiData)
+            ##
+            ## if data['loanStatus'] != 'OnTime':
+            ##     diff_emi_report_repay_prepaid_notOntime.append(k)
+            ##
+            ##     # emiData = data["EMIData"]
+            ##
+            ##     if data["totalReceived"] != data["totalReceivable"]:
+            ##         diff_emi_report_repay_prepaid_receive_amt_issue.append(k)
+            ##
+            ## print("diff_emi_report_repay_prepaid_notOntime::",diff_emi_report_repay_prepaid_notOntime)
+            ## print("diff_emi_report_repay_prepaid_receive_amt_issue::",diff_emi_report_repay_prepaid_receive_amt_issue)
 
 
-        miss = []
-        match = []
 
-        # for d in all_emi_d_report_lid:
-        #     if d not in all_repaid_lid:
-        #         miss.append(d)
-        #     else:
-        #         match.append(d)
+            data_emi = response_emi.json()["data"]["EMIData"]
+
+            for emi in data_emi:
+
+                if emi["emiDate"] == currentDateStr_emi:
+                    # print("emi::",emi)
+                    if emi["status"] == "UNPAID":
+                        diff_emi_report_repay_prepaid_unpaid.append(k)
         #
-        # print("miss::",len(miss))
-        # print("match::", len(match))
+        #
+        print("diff_emi_report_repay_prepaid_unpaid::",diff_emi_report_repay_prepaid_unpaid)
 
 
-        for d in all_repaid_lid:
-            if d not in all_emi_d_report_lid:
-                miss.append(d)
-            else:
-                match.append(d)
-
-        print("miss::",len(miss))
-        print("match::", len(match))
-
-
-        match_rm_refund = set(match) - set(all_refund)
-        refund_rm_match = set(all_refund) - set(match)
-        print("match_rm_refund::",len(match_rm_refund))
-        print("refund_rm_match::", len(refund_rm_match))
-
-
-
-
+        if len(diff_emi_report_repay_prepaid_unpaid) > 0:
+            print(f"Error :: All emi detail report data is not as per daily EMI (upcomming EMI) for prepaid ::,{diff_emi_report_repay_prepaid_unpaid}")
+        else:
+            print(" *** All emi detail report data is per as daily EMI (upcomming EMI) with prepaid users ***")
 
 

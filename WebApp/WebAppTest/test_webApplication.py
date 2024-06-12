@@ -40,14 +40,14 @@ class TestDashRepo:
         driver.find_element(By.XPATH, "//*[@id='flt-semantic-node-48']/textarea").click()
         time.sleep(5)
 
-        # driver.find_element(By.XPATH, "//*[@id='flt-semantic-node-48']/textarea").send_keys("0123456789")  # mobile
-        time.sleep(11)
+        driver.find_element(By.XPATH, "//*[@id='flt-semantic-node-48']/textarea").send_keys("0123456789")  # mobile
+        time.sleep(5)
         # driver.find_element(By.ID, "flt-semantic-node-48").click()  # Continue
         time.sleep(2)
 
         #create java script executor instance
 
-        js_executor = driver.execute_script("arguments[0].value='abc@gmail.com';","//*[@id='flt-semantic-node-48']/textarea")
+        # js_executor = driver.execute_script("arguments[0].value='abc@gmail.com';","//*[@id='flt-semantic-node-48']/textarea")
 
         #send keys with help of javascript executor
 
