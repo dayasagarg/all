@@ -10,13 +10,19 @@ f_lid = []
 
 currentFullTime = datetime.now() # whole date
 currentDateStr = datetime.strftime(currentFullTime,"%Y-%m-%d") # date to string format
+
 currentDateF = datetime.strptime(currentDateStr,"%Y-%m-%d")
 print("currentDateStr::",currentDateStr)
 
+currentDateStr_emi = datetime.strftime(currentFullTime,"%d/%m/%Y")
+print("currentDateStr_emi::",currentDateStr_emi)
 
 
 previousDate = currentDateF - timedelta(days=4)
 previousDateStr = datetime.strftime(previousDate,"%Y-%m-%d")
+
+previousDate_1 = currentDateF - timedelta(days=1)
+previousDateStr_emi_1 = datetime.strftime(previousDate,"%d/%m/%Y")
 
 
 class TestRepayment:
@@ -49,6 +55,7 @@ class TestRepayment:
         withoutUnpaid = []
         paid_0 = []
         unpaid_in_p = []
+        unpaid_in_p_current_emi_repaym = []
 
         # Upcoming EMI
         for n,i in enumerate(lIDs):
@@ -83,6 +90,7 @@ class TestRepayment:
                 # if "Paid" in eD:
                 #     status.append(eD['Paid'])
 
+
                 if ((eD["paymentType"] == "FULLPAY") and (eD["status"] == "UNPAID")) or ((eD["paymentType"] == "EMIPAY") and (eD["status"] == "UNPAID")):
                     if eD["unpaidPenalty"] == 0:
                         unpaid.append(i)
@@ -98,34 +106,16 @@ class TestRepayment:
                     if eD["totalUnpaidAmount"] > 0:
                         unpaid_in_p.append(i)
 
-
-            '''getting transactionData of Repayment'''
-            # tranData = response.json()["data"]["transactionData"]
-            # print(tranData)
-
-            # Transaction data
-            # tPaidAmount = []
-            # tPrincipalAmount = []
-            # tPrincipalDifference = []
-            # tInterestAmount = []
-            # tInterestDifference = []
-            # tPenaltyAmount = []
-            #
-            # tPenaltyDifference = []
+                    if (eD["emiDate"] == currentDateStr_emi or eD["emiDate"] == previousDateStr_emi_1) or (eD["repaymentDate"] == currentDateStr_emi or eD["repaymentDate"] == previousDateStr_emi_1):
+                        if eD["totalUnpaidAmount"] > 0:
+                            unpaid_in_p_current_emi_repaym.append(i)
 
 
-            # for td in tranData:
-            #     if (td["status"] == "COMPLETED") and (td["type"] == "FULLPAY") or ((td["status"] == "INITIALIZED") and (td["type"] == "EMIPAY")):
-            #         match.append(i)
-            #
-            #     else:
-            #         missMatch.append(i)
+        if len(unpaid_in_p_current_emi_repaym) == 0:
+            print("*** No unpaid into paid for current date ***")
+        else:
+            print(f" E :: unpaid into paid for current date:: {unpaid_in_p_current_emi_repaym} ")
 
-        # print("match::", match)
-        # print("missMatch::", missMatch)
-
-        # print("unpaid::", unpaid)
-        # print("withoutUnpaid::", withoutUnpaid)
 
         if len(unpaid_in_p) == 0:
             print("*** No unpaid into paid ***")

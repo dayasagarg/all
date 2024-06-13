@@ -50,6 +50,7 @@ class TestPenalFees:
         a61pls_p_m = []
 
         lid_arl = []
+        part_lid = []
 
         for d in arl_d:
             if (datetime.strptime(d["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
@@ -130,11 +131,26 @@ class TestPenalFees:
 
         all_day_issue = a13_p_m + a_4_15_p_m + a_15_31_p_m + a31_61_p_m + a61pls_p_m
 
-        print("all_day_dpd_issue_total::", len(all_day_issue))
+        print("all_day_dpd_issue_with_partpay_count::", len(all_day_issue))
+        print("all_day_dpd_issue_with_partpay::", all_day_issue)
 
 
-        if len(all_day_issue) > 0:
-            print(f"Error:: DPD/penal charges are not as Expected ::{all_day_issue}")
+        for n, r in enumerate(all_day_issue):
+
+            response_tran_dpd = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": r},
+                verify=False)  # current date
+            response_tran_d = response_tran_dpd.json()["data"]
+
+            [part_lid.append(r) for t in response_tran_d if t["Pay type"] == "PARTPAY"]
+
+        # print("part_lid::",part_lid)
+
+        all_day_issue_except_partpay = set(all_day_issue) - set(part_lid)
+
+
+        if len(all_day_issue_except_partpay) > 0:
+            print(f"Error:: DPD/penal charges are not as Expected except partpay user::{all_day_issue_except_partpay}")
             assert False
         else:
-            print("*** DPD/penal charges are as expected ***")
+            print("*** DPD/penal charges are as expected except partpay user ***")

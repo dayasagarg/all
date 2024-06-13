@@ -255,5 +255,3 @@ class TestLegal:
             print("*** No last EMI failed miss found from fullpay atdbt &/ notice sent ***")
 
 
-
-

@@ -28,6 +28,8 @@
       <change afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_transaction_repay_check.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Reports/AllEMIDetailsReport/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Reports/AllEMIDetailsReport/test_all_emi_details.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Reports/DisburesementDetail/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Reports/DisburesementDetail/test_disb_detail_report.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Reports/Disburesement_monthly_loan_figures/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Reports/Disburesement_monthly_loan_figures/test_disb_monthly_loan_figure.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Reports/__init__.py" afterDir="false" />
@@ -60,6 +62,7 @@
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApp/WebAppTest/test_webApplication.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/WebAppTest/test_webApplication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all" beforeDir="false" afterPath="$PROJECT_DIR$/all" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,7 +183,24 @@
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_all_emi_details.py">
+  <component name="RunManager" selected="Python tests.pytest in test_dpd.py">
+    <configuration name="pytest in test_LA2.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="pytest in test_LA3.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
@@ -215,64 +235,47 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_all_emi_details.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_dpd.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/Reports/AllEMIDetailsReport" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/DPD" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/Reports/AllEMIDetailsReport/test_all_emi_details.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/DPD/test_dpd.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest in test_loan_close_latest.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in test_unpaid_of_completed_loans_automated.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/LoanClose" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/UnpaidStatusOfCompletedEmi" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/LoanClose/test_loan_close_latest.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest in test_webApplication.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/WebApp/WebAppTest" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/WebApp/WebAppTest/test_webApplication.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/UnpaidStatusOfCompletedEmi/test_unpaid_of_completed_loans_automated.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_all_emi_details.py" />
-        <item itemvalue="Python tests.pytest in test_loan_close_latest.py" />
-        <item itemvalue="Python tests.pytest in test_webApplication.py" />
+        <item itemvalue="Python tests.pytest in test_dpd.py" />
+        <item itemvalue="Python tests.pytest in test_unpaid_of_completed_loans_automated.py" />
         <item itemvalue="Python tests.pytest in test_LA4.py" />
         <item itemvalue="Python tests.pytest in test_LA3.py" />
+        <item itemvalue="Python tests.pytest in test_LA2.py" />
       </list>
     </recent_temporary>
   </component>

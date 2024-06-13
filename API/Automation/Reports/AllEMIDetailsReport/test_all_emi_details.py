@@ -134,7 +134,6 @@ class TestRepayment:
 
         if len(diff_emi_report_repay_prepaid_unpaid) > 0:
             print(f"Error :: All emi detail report data is not as per daily EMI (upcomming EMI) for prepaid ::,{diff_emi_report_repay_prepaid_unpaid}")
+            assert False
         else:
             print(" *** All emi detail report data is per as daily EMI (upcomming EMI) with prepaid users ***")
-
-
