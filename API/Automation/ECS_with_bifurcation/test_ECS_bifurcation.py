@@ -224,7 +224,7 @@ class TestBounce:
 
             for ed2 in emiAPI_data590:
                 if ed2["penaltyDays"] == 0:
-                    if ed2["status"] == "PAID":
+                    if (ed2["status"] == "PAID") or (ed2["status"] == "UNPAID"):
 
                         if ed2["totalBounceCharge"] > 0:
                             bounceChMissed_LId_590.append(r)

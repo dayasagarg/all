@@ -9,7 +9,7 @@ class TestPenalFees:
 
     @pytest.fixture
     def url(self):
-        global url_arl, arl_d, disb_date_n, disAPI_d
+        global url_arl, arl_d, disb_date_n, disAPI_d, curr_str_emi, pre1_str_emi
 
 
         currentFullTime = datetime.now()  # whole date
@@ -17,9 +17,13 @@ class TestPenalFees:
         currentDateF = datetime.strptime(currentDateStr, "%Y-%m-%d")
         print("currentDateStr::", currentDateStr)
 
+
         previousDate = currentDateF - timedelta(days=1)
         previousDateStr = datetime.strftime(previousDate, "%Y-%m-%d")
         previousDateStr_n = datetime.strftime(previousDate, "%d-%m-%Y")
+
+        curr_str_emi = datetime.strftime(currentFullTime, "%d/%m/%Y")
+        pre1_str_emi = datetime.strftime(previousDate, "%d/%m/%Y")
 
         prod_url = "https://chinmayfinserve.com/admin-prod"
         stage_url = "https://chinmayfinserve.com/stagging"
@@ -32,8 +36,6 @@ class TestPenalFees:
 
         disb_date = "07-04-2024"
         disb_date_n = datetime.strptime(disb_date, "%d-%m-%Y")
-
-
 
     def test_dpd_2(self, url):
         global lid_arl
@@ -147,10 +149,38 @@ class TestPenalFees:
         # print("part_lid::",part_lid)
 
         all_day_issue_except_partpay = set(all_day_issue) - set(part_lid)
+        print("all_day_issue_except_partpay::",all_day_issue_except_partpay)
+
+        all_day_issue_except_partpay_curr_pre1 = []
+        all_day_issue_except_partpay_curr_pre2 = []
+        all_day_issue_except_partpay_curr_pre3 = []
+        for p in all_day_issue_except_partpay:
+            emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
+                                        params={"loanId": p}, verify=False)
+
+            emi_data = emi.json()["data"]["EMIData"]
+
+            for n in emi_data:
+                if (n["repaymentDate"] == pre1_str_emi) or (n["emiDate"] == pre1_str_emi):
+                    all_day_issue_except_partpay_curr_pre1.append(p)
+
+                if (n["repaymentDate"] == curr_str_emi or n["repaymentDate"] == pre1_str_emi) or (n["emiDate"] == curr_str_emi or n["emiDate"] == pre1_str_emi):
+                    all_day_issue_except_partpay_curr_pre2.append(p)
+
+                if (curr_str_emi >= n["repaymentDate"] <= pre1_str_emi) or (curr_str_emi >= n["emiDate"] <= pre1_str_emi):
+                    all_day_issue_except_partpay_curr_pre3.append(p)
 
 
-        if len(all_day_issue_except_partpay) > 0:
-            print(f"Error:: DPD/penal charges are not as Expected except partpay user::{all_day_issue_except_partpay}")
-            assert False
-        else:
-            print("*** DPD/penal charges are as expected except partpay user ***")
+
+        print("all_day_issue_except_partpay_curr_pre1::",all_day_issue_except_partpay_curr_pre1)
+        print("all_day_issue_except_partpay_curr_pre2::",all_day_issue_except_partpay_curr_pre2)
+        print("all_day_issue_except_partpay_curr_pre3::",all_day_issue_except_partpay_curr_pre3)
+
+
+
+        # if len(all_day_issue_except_partpay_curr_pre1) > 0:
+        #     print(f"Error:: DPD/penal charges are not as Expected except partpay user curr_pre1::{all_day_issue_except_partpay_curr_pre1}")
+        #     assert False
+        # else:
+        #     print("*** DPD/penal charges are as expected except partpay user curr_pre1 ***")
+

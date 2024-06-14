@@ -186,7 +186,7 @@ class TestMissedLID:
     def test_DemandLetter(self, url):
 
         if len(demandLetterLoanId_notSent) == 0:
-            print("*** All demand letter sent ***")
+            print("*** All demand letter sent except ad not placed substatus cases ***")
         else:
             print(f"Error:: demand letter not sent found:: {demandLetterLoanId_notSent}")
 
