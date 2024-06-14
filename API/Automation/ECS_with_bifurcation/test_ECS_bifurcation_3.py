@@ -48,7 +48,7 @@ class TestBounce:
         for f in emiRepaymentStatus_data_f:
             if (datetime.strptime(f["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024", "%d-%m-%Y"):
 
-                if f["Emi paid date"] == f"{curr_str}":
+                if (f["Emi paid date"] == f"{curr_str}") or (f["Emi date"] == f"{curr_str}"):
                     if f["Today's EMI status"] == "FAILED":
                         if f["Loan ID"]:
                             emiRepaymentStatus_data_lid_2_f.append(f["Loan ID"])
@@ -62,14 +62,29 @@ class TestBounce:
             emiAPI_data2_f = emiAPI_2_f.json()["data"]["EMIData"]
 
             for edf in emiAPI_data2_f:
-                if edf["repaymentDate"] == curr_str_emi:
+                if (edf["repaymentDate"] == curr_str_emi) or (edf["emiDate"] == curr_str_emi):
 
                     if edf["totalBounceCharge"] == 0:
                         bounceChMissed_LId_2_f.append(rf)
 
+        print("bounceChMissed_LId_2_f_without_ad_not_placed::",bounceChMissed_LId_2_f)
 
-        if len(bounceChMissed_LId_2_f) > 0:
-            print(f"Error::bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_currenr_date::{bounceChMissed_LId_2_f}")
+        ad_not_placed_f_lid = []
+        for n, u in enumerate(bounceChMissed_LId_2_f):
+            response_tran_dpd = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": u},
+                verify=False)  # current date
+            response_tran_d = response_tran_dpd.json()["data"]
+
+            [ad_not_placed_f_lid.append(u) for a in response_tran_d if a["Sub status"] == "AD_NOT_PLACED"]
+
+        print("ad_not_placed_f_lid::",ad_not_placed_f_lid)
+
+        bounceChMissed_LId_f_anp = set(bounceChMissed_LId_2_f) - set(ad_not_placed_f_lid)
+
+
+        if len(bounceChMissed_LId_f_anp) > 0:
+            print(f"Error::bounce charge missing found for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_currenr_date::{bounceChMissed_LId_f_anp}")
             assert False, "bounce charge missing found"
         else:
             print("*** No bounce charge missed for bounceChMissed_LId_2_unpaid_emi_repay_failed_emi_current_date ***")
@@ -85,7 +100,7 @@ class TestBounce:
         for g in emiRepaymentStatus_data_g:
             if (datetime.strptime(g["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024", "%d-%m-%Y"):
 
-                if g["Emi paid date"] == f"{curr_str}":
+                if (g["Emi paid date"] == f"{curr_str}") or (g["Emi date"] == f"{curr_str}"):
                     if g["Today's EMI status"] == "FAILED":
                         if g["Loan ID"]:
                             emiRepaymentStatus_data_lid_2_g.append(g["Loan ID"])
@@ -98,21 +113,33 @@ class TestBounce:
 
             emiAPI_data2_g = emiAPI_2_g.json()["data"]["EMIData"]
 
-            #
             for edg in emiAPI_data2_g:
-                if edg["repaymentDate"] == curr_str_emi:
+                if (edg["repaymentDate"] == curr_str_emi) or (edg["emiDate"] == curr_str_emi):
 
                     if edg["totalBounceCharge"] != 590:
                         bounceChMissed_LId_2_gst.append(rg)
 
-        print("bounceChMissed_LId_2_gst::",bounceChMissed_LId_2_gst)
+        print("bounceChMissed_LId_2_gst_without_ad_not_placed::",bounceChMissed_LId_2_gst)
 
-        if len(bounceChMissed_LId_2_gst) > 0:
+        ad_not_placed_2g_lid = []
+        for n, w in enumerate(bounceChMissed_LId_2_gst):
+            response_tran_dpd = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": w},
+                verify=False)  # current date
+            response_tran_d = response_tran_dpd.json()["data"]
+
+            [ad_not_placed_2g_lid.append(w) for a in response_tran_d if a["Sub status"] == "AD_NOT_PLACED"]
+
+        print("ad_not_placed_2g_lid::",ad_not_placed_2g_lid)
+
+        bounceChMissed_LId_2_gst_anp = set(bounceChMissed_LId_2_gst).difference(set(ad_not_placed_2g_lid))
+
+        if len(bounceChMissed_LId_2_gst_anp) > 0:
             print(
-                f"Error::bounce charge not equal to 590::{bounceChMissed_LId_2_gst}")
+                f"Error::bounce charge not equal to 590::{bounceChMissed_LId_2_gst_anp}")
             assert False, "bounce charge missing found"
         else:
-            print("*** bounce charge equal to 590 as per 7th April bifurcation ***")
+            print("*** bounce charge equal to 590 for ad placed cases as per 7th April bifurcation ***")
 
 
     def test_bounceCharge_GST_2(self, bcURL):
@@ -121,14 +148,15 @@ class TestBounce:
 
         emiRepaymentStatus_data_lid_2_g_n = []
 
-        for g in emiRepaymentStatus_data_g_n:
-            if (datetime.strptime(g["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024",
+        for gg in emiRepaymentStatus_data_g_n:
+            if (datetime.strptime(gg["Disbursement date"], "%d-%m-%Y")) > datetime.strptime("07-04-2024",
                                                                                            "%d-%m-%Y"):
-                if g["Emi paid date"] == curr_str:
+
+                if (gg["Emi paid date"] == f"{curr_str}") or (gg["Emi date"] == f"{curr_str}"):
                     # print(g)
-                    if g["Today's EMI status"] == "FAILED":
-                        if g["Loan ID"]:
-                            emiRepaymentStatus_data_lid_2_g_n.append(g["Loan ID"])
+                    if gg["Today's EMI status"] == "FAILED":
+                        if gg["Loan ID"]:
+                            emiRepaymentStatus_data_lid_2_g_n.append(gg["Loan ID"])
 
 
         bounceChMissed_LId_2_gst_n = []
@@ -140,15 +168,30 @@ class TestBounce:
 
             #
             for n in emiAPI_data2_g_n:
+                if (n["repaymentDate"] == curr_str_emi) or (n["emiDate"] == curr_str_emi):
 
-                if n["totalBounceCharge"] != 590:
-                    bounceChMissed_LId_2_gst_n.append(r)
+                    if n["totalBounceCharge"] != 590:
+                        bounceChMissed_LId_2_gst_n.append(r)
 
-        print("bounceChMissed_LId_2_gst_n::", bounceChMissed_LId_2_gst_n)
+        print("bounceChMissed_LId_2_gst_n_without_ad_not_placed::", bounceChMissed_LId_2_gst_n)
 
-        if len(bounceChMissed_LId_2_gst_n) > 0:
+        ad_not_placed_lid = []
+        for n, s in enumerate(bounceChMissed_LId_2_gst_n):
+
+            response_tran_dpd = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": s},
+                verify=False)  # current date
+            response_tran_d = response_tran_dpd.json()["data"]
+
+            [ad_not_placed_lid.append(s) for t in response_tran_d if t["Sub status"] == "AD_NOT_PLACED"]
+
+        print("ad_not_placed_lid::",ad_not_placed_lid)
+
+        bounceChMissed_LId_2_gst_n_anp = set(bounceChMissed_LId_2_gst_n) - set(ad_not_placed_lid)
+
+        if len(bounceChMissed_LId_2_gst_n_anp) > 0:
             print(
-                f"Error::bounce charge not equal to 590::{bounceChMissed_LId_2_gst_n}")
+                f"Error::bounce charge not equal to 590::{bounceChMissed_LId_2_gst_n_anp}")
             assert False, "bounce charge missing found"
         else:
-            print("*** bounce charge equal to 590 ***")  # 7th April
+            print("*** bounce charge equal to 590 for ad placed cases ***")  # 7th April

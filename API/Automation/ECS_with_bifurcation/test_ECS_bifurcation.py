@@ -201,7 +201,6 @@ class TestBounce:
         else:
             print("*** No bounce charge more autodebit ***")
 
-
     def test_no_need_bounce_charg_autodebit_total(self, bcURL):
         global emiRepaymentStatus_data_590
 
@@ -215,7 +214,7 @@ class TestBounce:
                 if rs["Loan ID"]:
                     emiRepaymentStatus_data_lid_590.append(rs["Loan ID"])
 
-        #
+
         bounceChMissed_LId_590 = []
         for r in emiRepaymentStatus_data_lid_590:
             emiAPI_590 = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",

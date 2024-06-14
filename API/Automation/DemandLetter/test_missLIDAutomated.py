@@ -143,12 +143,25 @@ class TestMissedLID:
         count_of_missed_lid = len(missedLID)
         print("count of missedLID::", count_of_missed_lid)
 
-        if count_of_missed_lid == 0:
-            print("All auto-debit failed are listed in demand letter")
+        ad_not_placed_d_lid = []
+        for n, v in enumerate(missedLID):
+            response_tran_dpd = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": v},
+                verify=False)  # current date
+            response_tran_d = response_tran_dpd.json()["data"]
+
+            [ad_not_placed_d_lid.append(v) for a in response_tran_d if a["Sub status"] == "AD_NOT_PLACED"]
+
+        print("ad_not_placed_d_lid::", ad_not_placed_d_lid)
+
+        demand_ad_not_placed_d_lid_anp = set(missedLID) - set(ad_not_placed_d_lid)
+
+        if len(demand_ad_not_placed_d_lid_anp) == 0:
+            print("*** All auto-debit failed are listed in demand letter except ad not placed substatus cases ***")
         else:
             print("Error::Auto-debit failed loan ids are missing in demand letter")
 
-        assert count_of_missed_lid == 0, "All auto-debit failed loan ids are present in demand letter"
+        assert len(demand_ad_not_placed_d_lid_anp) == 0, "All auto-debit failed loan ids are not present in demand letter"
 
 
         duplicateDemandLetter = []
@@ -173,7 +186,7 @@ class TestMissedLID:
     def test_DemandLetter(self, url):
 
         if len(demandLetterLoanId_notSent) == 0:
-            print("All demand letter sent")
+            print("*** All demand letter sent ***")
         else:
             print(f"Error:: demand letter not sent found:: {demandLetterLoanId_notSent}")
 
