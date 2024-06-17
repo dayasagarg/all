@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e6bd174e-606d-432a-9fcc-a90df17ec2d4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/API/Automation/DPD/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/DPD/test_dpd.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Deferred/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Deferred/test_def_int.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Disburesement/test_disb_cibil_pl.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Disburesement/test_interest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/ECS_with_bifurcation/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/ECS_with_bifurcation/test_ECS_bifurcation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/ECS_with_bifurcation/test_ECS_bifurcation_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/ECS_with_bifurcation/test_ECS_bifurcation_3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/ECS_with_bifurcation/test_ECS_bifurcation_4.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/ForeClose/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/ForeClose/test_fcc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/NewLegalCharge/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/NewLegalCharge/test_legal_collection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_filingInProgress_whole.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_filling_in_progress.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated_2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_whole.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb/test_111.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb/test_loan_agreem_disb_updation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_salary.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_emi_transaction_total.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_transaction_repay_check.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Reports/AllEMIDetailsReport/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Reports/AllEMIDetailsReport/test_all_emi_details.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Reports/DisburesementDetail/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Reports/DisburesementDetail/test_disb_detail_report.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Reports/Disburesement_monthly_loan_figures/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Reports/Disburesement_monthly_loan_figures/test_disb_monthly_loan_figure.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/Automation/Reports/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/BankStatement/test_bankStatement.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/BankStatement/test_bankStatement.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/BounceCharge/test_bounce_charge.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/BounceCharge/test_bounce_charge.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/BounceCharge/test_bounce_charge_2_automated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/BounceCharge/test_bounce_charge_2_automated.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/BounceCharge/test_bounce_charge_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/BounceCharge/test_bounce_charge_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/DemandLetter/test_missLIDAutomated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/DemandLetter/test_missLIDAutomated.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/Disburesement/test_risk.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/EMIAutodebit/test_emiAutoDebitLIDAutomated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/EMIAutodebit/test_emiAutoDebitLIDAutomated.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_autodebit.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_autodebit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb/test_loan_agr_and_disb.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/LoanAgrVsloanDisb/test_loan_agr_and_disb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/LoanClose/test_loan_close_latest.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/LoanClose/test_loan_close_latest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_amt.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_amt.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_emi.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_emi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_interest.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_interest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_tenure.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/NegativeTest/test_negative_disb_loan_tenure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/Refund/test_refund_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/Refund/test_refund_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/Repayment/test_repay_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_repay_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Automation/UnpaidStatusOfCompletedEmi/test_unpaid_of_completed_loans_automated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/UnpaidStatusOfCompletedEmi/test_unpaid_of_completed_loans_automated.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Legal/test_legal.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Legal/test_legal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/input.json" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/input.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/WebAppTest/test_webApplication.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/WebAppTest/test_webApplication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all" beforeDir="false" afterPath="$PROJECT_DIR$/all" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2dr77dbQuJwWehVgTyjmsWZIubH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for test_webApplication.TestDashRepo.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in DailyLoanAgreementValidation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_LA1.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_LA2.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_LA3.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_LA4.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_accDR_edit.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_accWalletAutomated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_accountDisRepAutomated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_bounce_2.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_bounce_charge.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_bounce_charge_2_automated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_bounce_charge_3.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_emiAutoDebitLIDAutomated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_legal_autodebit.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_legal_demand_noticeSent_automated.py (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_legal_demand_noticeSent_automated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_legal_noticeSent_automated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_loan_close_latest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_missLIDAutomated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_refund_3.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_repay_2.py (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_repay_2.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_repay_3.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_webApplication.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_working.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest for test_all_emi_details.TestRepayment.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in DailyLoanAgreementValidation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in legal_autodebit.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in legal_autodebit_updation.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_111.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_ECS_bifurcation.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_ECS_bifurcation_2.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_ECS_bifurcation_3.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_ECS_bifurcation_4.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_LA1.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_LA2.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_LA3.py (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_LA3.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_LA4.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_a.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_accWalletAutomated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_accountDisRepAutomated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_all_emi_details.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_bankStatement.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_bounce_charge.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_bounce_charge_3.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_def_int.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_disb_cibil_pl.py (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_disb_cibil_pl.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_disb_monthly_loan_figure.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_dpd.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_emiAutoDebitLIDAutomated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_emi_transaction_total.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_fcc.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_interest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_legal_autodebit.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_legal_collection.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_legal_demand_autodebit_automated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_legal_demand_noticeSent_automated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_legal_filingInProgress_whole.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_legal_filling_in_progress.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_legal_noticeSent_automated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_legal_noticeSent_automated_2.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_legal_noticeSent_whole.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_loan_agr_and_disb.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_loan_agreem_disb_updation.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_loan_close_latest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_missLIDAutomated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_negative_disb_loan_amt.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_negative_disb_loan_emi.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_negative_disb_loan_interest.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_negative_disb_loan_tenure.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_negative_disb_salary.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_refund_3.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_repay_2.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_repay_3.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_risk.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_transaction_repay_check.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_unpaid_of_completed_loans_automated.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_webApplication.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.a.executor&quot;: &quot;Run&quot;,
+    &quot;Python.legal_notice_pp.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sample.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lendi\PycharmProjects\pythonProject\API\Automation\LegalNotice\NewLegalCharge" />
+      <recent name="C:\Users\lendi\PycharmProjects\pythonProject\API\Automation\Reports" />
+      <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.pytest in test_legal_collection.py">
+    <configuration name="pytest in test_ECS_bifurcation.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/ECS_with_bifurcation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/ECS_with_bifurcation/test_ECS_bifurcation.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_LA2.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_LA3.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA3.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_LA4.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_legal_collection.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/LegalNotice/NewLegalCharge" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/LegalNotice/NewLegalCharge/test_legal_collection.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest in test_legal_collection.py" />
+        <item itemvalue="Python tests.pytest in test_ECS_bifurcation.py" />
+        <item itemvalue="Python tests.pytest in test_LA4.py" />
+        <item itemvalue="Python tests.pytest in test_LA3.py" />
+        <item itemvalue="Python tests.pytest in test_LA2.py" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e6bd174e-606d-432a-9fcc-a90df17ec2d4" name="Changes" comment="" />
+      <created>1710754177561</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710754177561</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
