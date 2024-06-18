@@ -44,6 +44,9 @@ class TestLoanDisbCibil:
 
         # print(disAPIData)
 
+        # As per new logic (50 % - 75 %), (75 % - 100 %)
+        #
+
         for r in disAPIData:
             if r["Completed loans"] < 3:
 
@@ -56,7 +59,7 @@ class TestLoanDisbCibil:
                     if r["Approved salary"] >= 20000:
                         # print(r)
                         apprAmt = r["Approved amount"]
-                        apprSalary_loan_amt_cal = r["Approved salary"] * 0.50
+                        apprSalary_loan_amt_cal = r["Approved salary"] * 0.75
                         apprSalary_loan_amt_cal_500_round = apprSalary_loan_amt_cal + 500
 
                         if apprAmt > apprSalary_loan_amt_cal_500_round:
@@ -70,7 +73,7 @@ class TestLoanDisbCibil:
                         # if (750 >= r["Cibil score"] <= 799) or (750 >= r["Pl Score"] <= 799):
 
                         apprAmt_2 = r["Approved amount"]
-                        apprSalary_loan_amt_cal_2 = r["Approved salary"] * 0.50
+                        apprSalary_loan_amt_cal_2 = r["Approved salary"] * 0.75
                         apprSalary_loan_amt_cal_500_round_2 = apprSalary_loan_amt_cal_2 + 500
 
                         if apprAmt_2 > apprSalary_loan_amt_cal_500_round_2:
@@ -81,7 +84,7 @@ class TestLoanDisbCibil:
                         # if (750 >= r["Cibil score"] <= 799) or (750 >= r["Pl Score"] <= 799):
 
                         apprAmt_3 = r["Approved amount"]
-                        apprSalary_loan_amt_cal_3 = r["Approved salary"] * 0.75
+                        apprSalary_loan_amt_cal_3 = r["Approved salary"] * 1
                         apprSalary_loan_amt_cal_500_round_3 = apprSalary_loan_amt_cal_3 + 500
 
                         if apprAmt_3 > apprSalary_loan_amt_cal_500_round_3:
@@ -91,7 +94,7 @@ class TestLoanDisbCibil:
                 elif r["Cibil score"] >= 800 & r["Pl score"] >= 800:
                     if r["Approved salary"] >= 20000:
                         apprAmt_4 = r["Approved amount"]
-                        apprSalary_loan_amt_cal_4 = r["Approved salary"] * 0.75
+                        apprSalary_loan_amt_cal_4 = r["Approved salary"] * 1
                         apprSalary_loan_amt_cal_500_round_4 = apprSalary_loan_amt_cal_4 + 500
 
                         if apprAmt_4 > apprSalary_loan_amt_cal_500_round_4:
@@ -237,7 +240,7 @@ class TestLoanDisbCibil:
 
                 elif 700 <= s["Cibil score"] <= 749:
                     apprAmt_r = s["Approved amount"]
-                    apprSalary_loan_amt_cal_r = s["Approved salary"] * 0.50
+                    apprSalary_loan_amt_cal_r = s["Approved salary"] * 0.75
                     apprSalary_loan_amt_cal_500_round_r = apprSalary_loan_amt_cal_r + 500
 
                     if apprAmt_r > apprSalary_loan_amt_cal_500_round_r:
@@ -248,7 +251,7 @@ class TestLoanDisbCibil:
                         # if (750 >= r["Cibil score"] <= 799) or (750 >= r["Pl Score"] <= 799):
 
                         apprAmt_2_r = s["Approved amount"]
-                        apprSalary_loan_amt_cal_2_r = s["Approved salary"] * 0.50
+                        apprSalary_loan_amt_cal_2_r = s["Approved salary"] * 0.75
                         apprSalary_loan_amt_cal_500_round_2_r = apprSalary_loan_amt_cal_2_r + 500
 
                         if apprAmt_2_r > apprSalary_loan_amt_cal_500_round_2_r:
@@ -259,7 +262,7 @@ class TestLoanDisbCibil:
                         # if (750 >= r["Cibil score"] <= 799) or (750 >= r["Pl Score"] <= 799):
 
                         apprAmt_3_r = s["Approved amount"]
-                        apprSalary_loan_amt_cal_3_r = s["Approved salary"] * 0.75
+                        apprSalary_loan_amt_cal_3_r = s["Approved salary"] * 1
                         apprSalary_loan_amt_cal_500_round_3_r = apprSalary_loan_amt_cal_3_r + 500
 
                         if apprAmt_3_r > apprSalary_loan_amt_cal_500_round_3_r:
@@ -267,7 +270,7 @@ class TestLoanDisbCibil:
 
                 elif s["Cibil score"] >= 800:
                     apprAmt_4_r = s["Approved amount"]
-                    apprSalary_loan_amt_cal_4_r = s["Approved salary"] * 0.75
+                    apprSalary_loan_amt_cal_4_r = s["Approved salary"] * 1
                     apprSalary_loan_amt_cal_500_round_4_r = apprSalary_loan_amt_cal_4_r + 500
 
                     if apprAmt_4_r > apprSalary_loan_amt_cal_500_round_4_r:

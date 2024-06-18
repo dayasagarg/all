@@ -32,16 +32,16 @@ class TestMissedLID:
         # print('status code of get AutoDebitFail::', response.status_code)
         # print(response.json())
 
-        autoDebitFailLoanId = []
+        autoDebitFailNotPlacedLoanId = []
 
         # ''' adding loan id of AutoDebitFail api into AutoDebitFail list'''
         for i in rows:
             if "Loan ID" in i:
-                autoDebitFailLoanId.append(i['Loan ID'])
+                autoDebitFailNotPlacedLoanId.append(i['Loan ID'])
                 # print(i)
 
-        print("AutoDebitFailLoanId::", autoDebitFailLoanId)
-        print("Count of AutoDebitFailLoanId::", len(autoDebitFailLoanId))
+        print("autoDebitFailNotPlacedLoanId::", autoDebitFailNotPlacedLoanId)
+        print("Count of autoDebitFailNotPlacedLoanId::", len(autoDebitFailNotPlacedLoanId))
 
         autoDebitNotPlaced = []
 
@@ -75,7 +75,7 @@ class TestMissedLID:
 
         matchedLID = []
 
-        for i in autoDebitFailLoanId:
+        for i in autoDebitFailNotPlacedLoanId:
             if i in demandLetterLoanId:
                 matchedLID.append(i)
                 # print("matchedLID ::",i)
@@ -85,7 +85,7 @@ class TestMissedLID:
 
         missedLID = []
 
-        for i in autoDebitFailLoanId:
+        for i in autoDebitFailNotPlacedLoanId:
             if i not in demandLetterLoanId:
                 missedLID.append(i)
                 # print("missed loan id::",i)
@@ -97,9 +97,10 @@ class TestMissedLID:
         if count_of_missed_lid == 0:
             print("All auto-debit failed loan ids are present in demand letter")
         else:
-            print("Error::Auto-debit failed loan ids are missing in demand letter")
+            print(f"Error::Auto-debit failed loan ids are missing in demand letter:: {missedLID}")
 
         assert count_of_missed_lid == 0, "All auto-debit failed loan ids are present in demand letter"
+
 
         duplicateDemandLetter = []
         uniqDemand = []
@@ -119,10 +120,11 @@ class TestMissedLID:
 
         assert len(duplicateDemandLetter) == 0
 
+
     def test_DemandLetter_notsent(self, url):
 
         if len(demandLetterLoanId_notSent) == 0:
-            print("All demand letter sent")
+            print("*** All demand letter sent ***")
         else:
             print(f"Error:: demand letter not sent found:: {demandLetterLoanId_notSent}")
 

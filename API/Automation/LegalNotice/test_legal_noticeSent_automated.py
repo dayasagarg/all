@@ -100,7 +100,7 @@ class TestLegal:
 
         count_perc_loanId = len(perc_loanId)
         print("count_perc_loanId :: ", count_perc_loanId)
-        #
+
         if count_perc_loanId > 0:
             print(f"Error:: Paid percentage 100% found in case assigned to collection :: {perc_loanId}")
             assert False
@@ -109,7 +109,10 @@ class TestLegal:
         #
         # print("perc_loanId:: ",perc_loanId)
 
+
+
     def test_DemandLetter(self, url):
+        global loanID_d_unique
         # print("start_date_2::", start_date_2)
         # print("end_date_2::", end_date_2)
 
@@ -120,37 +123,36 @@ class TestLegal:
         demandAllData = legalDemandLetter.json()["data"]["rows"]
         # print(demandAllData)
 
-        loanID = []
+        loanID_d = []
 
         for ld in demandAllData:
             if (ld["Emi 4 status"] == "UNPAID"):
                 if ld["Loan ID"]:
-                    loanID.append(ld["Loan ID"])
+                    loanID_d.append(ld["Loan ID"])
 
             if (ld["Emi 3 status"] == "UNPAID") and (ld["Emi 4 status"] == "-"):
                 if ld["Loan ID"]:
-                    loanID.append(ld["Loan ID"])
+                    loanID_d.append(ld["Loan ID"])
 
             if (ld["Emi 2 status"] == "UNPAID") and (ld["Emi 3 status"] == "-") and (ld["Emi 4 status"] == "-"):
                 if ld["Loan ID"]:
-                    loanID.append(ld["Loan ID"])
+                    loanID_d.append(ld["Loan ID"])
 
 
 
-        print("count of demand loan ids::", len(loanID))
+        print("count of demand loan ids::", len(loanID_d))
         # print("unpaid loan ids::",loanID)
         # print(demandCreatedDate)
         # print(emiNo)
         # print(asOnDueAmt)
         # print(dueDate)
 
-        uLIdSet = set(loanID)
-        global uniqLIdListDemand
-        uniqLIdListDemand = list(uLIdSet)
+        loanID_d_unique = set(loanID_d)
 
-        print("count of demand unique loan ids list ::", len(uniqLIdListDemand))
-        print("demand loan ids::", loanID)
-        print("demand uniqLIdList::", uniqLIdListDemand)
+
+        print("count of demand unique loan ids list ::", len(loanID_d_unique))
+        print("demand loan ids::", loanID_d_unique)
+        print("demand uniqLIdList::", loanID_d_unique)
 
     # @pytest.mark.skip
     def test_NoticeSent(self, url):
@@ -222,7 +224,7 @@ class TestLegal:
         missedDemandWithNotice = []
         global uniqLIdListDemand
         # checking demand against notice sent
-        for unl in uniqLIdListDemand:
+        for unl in loanID_d_unique:
             if unl in lIdNS:
                 matchedDemandWithNotice.append(unl)
                 # print("loanID in lIdNS::", unl)
@@ -236,7 +238,7 @@ class TestLegal:
 
         # print("case_lid_in_notice", case_lid)
 
-        missedDemandWithNotice_sub_coll = set(missedDemandWithNotice) - set(case_lid)
+        missedDemandWithNotice_sub_coll = set(missedDemandWithNotice)
         # print("noticeNotSent_sub_coll::",noticeNotSent_sub_coll)
 
 
@@ -250,12 +252,11 @@ class TestLegal:
 
     # @pytest.mark.skip
     def test_notice_not_sent(self):
-        noticeNotSent_sub_coll = set(noticeNotSent) - set(case_lid)
+        # noticeNotSent_sub_coll = set(noticeNotSent) - set(case_lid)
         # print("noticeNotSent_sub_coll::",noticeNotSent_sub_coll)
 
-
-        if len(noticeNotSent_sub_coll) > 0:
-            print(f"Notice not sent found ::{noticeNotSent_sub_coll}")
+        if len(noticeNotSent) > 0:
+            print(f"Notice not sent found ::{noticeNotSent}")
             assert False
         else:
             print("*** All notice sent ***")

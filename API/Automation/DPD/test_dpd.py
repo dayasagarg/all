@@ -178,4 +178,3 @@ class TestPenalFees:
             assert False
         else:
             print("*** DPD/penal charges are as expected except partpay user curr_pre1 ***")
-

@@ -51,6 +51,7 @@ class TestMissedLID:
         print("previousDateStr3::", previousDateStr3)
         global demandLetterLoanId_notSent
         # '''getting loan id of AutoDebitFail'''
+
         rows = []
         allEMiList = response.json()["data"]['rows']
         for el in allEMiList:
@@ -62,17 +63,17 @@ class TestMissedLID:
 
         # print("rows::",rows)
 
-        autoDebitFailLoanId = []
+        autoDebitFailed_adnotPlaced_LoanId = []
 
         # '''loan id of AutoDebitFail api into AutoDebitFail list'''  'AD Response date': '-'
         for i in rows:
-            if i["Today's EMI status"] == 'FAILED':
-                autoDebitFailLoanId.append(i['Loan ID'])
+            if i["Today's EMI status"] == 'FAILED' or i["Today's EMI status"] == 'AD NOT PLACED' or i["Today's EMI status"] == 'Response pending':
+                autoDebitFailed_adnotPlaced_LoanId.append(i['Loan ID'])
                 # print(i)
 
 
-        print("AutoDebitFailLoanId::", autoDebitFailLoanId)
-        print("Count of AutoDebitFailLoanId::", len(autoDebitFailLoanId))
+        print("autoDebitFailed_adnotPlaced_LoanId::", autoDebitFailed_adnotPlaced_LoanId)
+        print("Count of autoDebitFailed_adnotPlaced_LoanId::", len(autoDebitFailed_adnotPlaced_LoanId))
 
         autoDebitNotPlaced = []
         autoDebitResponsePending = []
@@ -124,7 +125,7 @@ class TestMissedLID:
 
         matchedLID = []
 
-        for i in autoDebitFailLoanId:
+        for i in autoDebitFailed_adnotPlaced_LoanId:
             if i in demandLetterLoanId:
                 matchedLID.append(i)
                 # print("matchedLID ::",i)
@@ -134,7 +135,7 @@ class TestMissedLID:
 
         missedLID = []
 
-        for i in autoDebitFailLoanId:
+        for i in autoDebitFailed_adnotPlaced_LoanId:
             if i not in demandLetterLoanId:
                 missedLID.append(i)
                 # print("missed loan id::",i)
@@ -143,25 +144,14 @@ class TestMissedLID:
         count_of_missed_lid = len(missedLID)
         print("count of missedLID::", count_of_missed_lid)
 
-        ad_not_placed_d_lid = []
-        for n, v in enumerate(missedLID):
-            response_tran_dpd = requests.get(
-                "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": v},
-                verify=False)  # current date
-            response_tran_d = response_tran_dpd.json()["data"]
 
-            [ad_not_placed_d_lid.append(v) for a in response_tran_d if a["Sub status"] == "AD_NOT_PLACED"]
 
-        print("ad_not_placed_d_lid::", ad_not_placed_d_lid)
-
-        demand_ad_not_placed_d_lid_anp = set(missedLID) - set(ad_not_placed_d_lid)
-
-        if len(demand_ad_not_placed_d_lid_anp) == 0:
-            print("*** All auto-debit failed are listed in demand letter except ad not placed substatus cases ***")
+        if len(missedLID) == 0:
+            print("*** All auto-debit failed are listed in demand letter including ***")
         else:
-            print("Error::Auto-debit failed loan ids are missing in demand letter")
+            print(f"Error::Auto-debit failed loan ids are missing in demand letter::{missedLID}")
 
-        assert len(demand_ad_not_placed_d_lid_anp) == 0, "All auto-debit failed loan ids are not present in demand letter"
+        assert len(missedLID) == 0, "All auto-debit failed loan ids are not present in demand letter"
 
 
         duplicateDemandLetter = []
@@ -186,8 +176,8 @@ class TestMissedLID:
     def test_DemandLetter(self, url):
 
         if len(demandLetterLoanId_notSent) == 0:
-            print("*** All demand letter sent except ad not placed substatus cases ***")
+            print("*** All demand letter sent using not sent status cases ***")
         else:
-            print(f"Error:: demand letter not sent found:: {demandLetterLoanId_notSent}")
+            print(f"Error:: demand letter not sent found :: {demandLetterLoanId_notSent}")
 
         assert len(demandLetterLoanId_notSent) == 0
