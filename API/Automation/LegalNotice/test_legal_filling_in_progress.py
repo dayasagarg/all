@@ -66,14 +66,9 @@ class TestLegal:
 
 
 
-
-
-
-
     # @pytest.mark.skip
     def test_case_assign_to_collection_1(self,url):
         global paidPrincipleInterest, principleInterest, cal_less_than_70, case_lid
-
 
         # print("case_data::",case_data)
 
@@ -89,8 +84,6 @@ class TestLegal:
             if c["Loan ID"]:
                 case_lid.append(c["Loan ID"])
             # print(c)
-
-
 
 
     # @pytest.mark.skip
@@ -252,3 +245,5 @@ class TestLegal:
             assert False
         else:
             print("*** paid percentage inside filing in progress for per emi is below 70 % ***")
+
+

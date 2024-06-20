@@ -147,9 +147,9 @@ class TestMissedLID:
 
 
         if len(missedLID) == 0:
-            print("*** All auto-debit failed are listed in demand letter including ***")
+            print("*** All auto-debit failed are listed in demand letter including ad not placed ***")
         else:
-            print(f"Error::Auto-debit failed loan ids are missing in demand letter::{missedLID}")
+            print(f"Error::Auto-debit failed loan ids are missing in demand letter including ad not placed::{missedLID}")
 
         assert len(missedLID) == 0, "All auto-debit failed loan ids are not present in demand letter"
 
@@ -176,7 +176,7 @@ class TestMissedLID:
     def test_DemandLetter(self, url):
 
         if len(demandLetterLoanId_notSent) == 0:
-            print("*** All demand letter sent using not sent status cases ***")
+            print("*** All demand letter sent as per api status ***")
         else:
             print(f"Error:: demand letter not sent found :: {demandLetterLoanId_notSent}")
 

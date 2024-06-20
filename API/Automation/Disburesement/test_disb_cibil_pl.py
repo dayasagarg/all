@@ -188,15 +188,15 @@ class TestLoanDisbCibil:
 
     def test_cs_pl_830_l(self):
         if cibil_pl_830_plus_and_prem_less_77_count > 0:
-            print("Error:: premium user issue with less than 0.77 intrest rate for new user :")
+            print("Error:: premium user issue with less than 0.077/day intrest rate for new user :")
         else:
-            print(f" No premium user issue with less than 0.77 intrest rate for new user ")
+            print(f" No premium user issue with less than 0.077/day intrest rate for new user ")
 
     def test_cs_pl_830_m(self):
         if cibil_pl_830_plus_and_prem_more_77_count > 0:
-            print(f"Error:: premium user issue with more than 0.77 intrest rate for new user ::{prem_more_77}")
+            print(f"Error:: premium user issue with more than 0.077/day intrest rate for new user ::{prem_more_77}")
         else:
-            print(f"*** No premium user issue with more than 0.77 intrest rate for new user ***")
+            print(f"*** No premium user issue with more than 0.077/day intrest rate for new user ***")
 
 
 #
@@ -282,14 +282,14 @@ class TestLoanDisbCibil:
                     # print("apprAmt::", apprAmt_r)
 
 
-                # if s["Cibil score"] > 830:
-                #     if s["Approved salary"] >= 20000:
-                #
-                #         if float(s["Interest rate"].replace("%", "")) < 0.077:
-                #             prem_less_77_r.append(s["Loan ID"])
-                #
-                #         if float(s["Interest rate"].replace("%", "")) > 0.077:
-                #             prem_more_77_r.append(s["Loan ID"])
+                if s["Cibil score"] > 830:
+                    if s["Approved salary"] >= 20000:
+
+                        if float(s["Interest rate"].replace("%", "")) < 0.077:
+                            prem_less_77_r.append(s["Loan ID"])
+
+                        if float(s["Interest rate"].replace("%", "")) > 0.077:
+                            prem_more_77_r.append(s["Loan ID"])
 
 
 
@@ -356,16 +356,15 @@ class TestLoanDisbCibil:
 
     def test_cs_830_l_r(self):
         if cibil_830_plus_and_prem_less_77_count_r > 0:
-            print(f"Error:: premium user issue with less than 0.77 intrest rate for repeat user ::{prem_less_77_r}")
+            print(f"Error:: premium user issue with less than 0.077/day intrest rate for repeat user ::{prem_less_77_r}")
         else:
-            print(f"*** No premium user issue with less than 0.77 intrest rate for repeat user ***")
+            print(f"*** No premium user issue with less than 0.077/day intrest rate for repeat user ***")
 
     def test_cs_830_m_r(self):
         if cibil_830_plus_and_prem_more_77_count_r > 0:
-            print(f"Error:: premium user issue with more than 0.77 intrest rate for repeat user ::{prem_more_77_r}")
+            print(f"Error:: premium user issue with more than 0.077/day intrest rate for repeat user ::{prem_more_77_r}")
         else:
-            print(f"*** No premium user issue with more than 0.77 intrest rate for repeat user ***")
-
+            print(f"*** No premium user issue with more than 0.077/day intrest rate for repeat user ***")
 
 print("Test Execution Completed")
 

@@ -637,8 +637,6 @@ class TestDashRepo:
         assert totalPeriod in fourthPage, "is matched with LETTER OF SANCTION TO THE BORROWER Section in fourth page of pdf"
 
 
-
-
         # ONLINE CONVENIENCE CHARGES
         onlineConvCharge = 200
         onlineConvChargeString = "₹200"
@@ -907,7 +905,6 @@ class TestDashRepo:
                 f"Exception :: 'gender':'{gender}' is not matched with Proof of identity section of eighth Page of pdf ")
 
         assert gender in eighthPage, "gender is matched with Proof of identity section of eighth Page of pdf"
-
 
 
         # Email

@@ -65,7 +65,11 @@ class TestBounce:
             for ed in emiAPI_data:
                 if (ed["repaymentDate"] == curr_str_emi) or (ed["emiDate"] == curr_str_emi):
 
+
                     if ed["totalBounceCharge"] > 590:
+                        bounceChMissed_LId_590.append(e)
+
+                    if ed["totalBounceCharge"] < 590 and ed["totalBounceCharge"] > 0:
                         bounceChMissed_LId_590.append(e)
 
 
@@ -73,4 +77,6 @@ class TestBounce:
             print(f"Error::bounce charge != 590::{bounceChMissed_LId_590}")
             assert False, "bounce charge not correct"
         else:
-            print("*** No bounce charge == 590 ***")
+            print("*** Bounce charge equal to 590 ***")
+
+
