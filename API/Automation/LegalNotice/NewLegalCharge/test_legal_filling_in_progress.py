@@ -2,14 +2,10 @@ import requests
 import pytest
 from datetime import datetime, timedelta
 
-# uniqLIdListDemand = None
-
 currentFullTime = datetime.now()  # whole date
 curr_str = datetime.strftime(currentFullTime, "%Y-%m-%d")
 
-
 print("curr_str::", curr_str)
-
 
 class TestLegal:
     @pytest.fixture
@@ -55,8 +51,6 @@ class TestLegal:
                 filling_in_progress_lid.append(c["Loan ID"])
 
 
-
-
         filling_in_progress_emi_m_5k = []
         for e in filling_in_progress_lid:
             emiAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
@@ -64,31 +58,39 @@ class TestLegal:
 
             emiAPI_data = emiAPI.json()["data"]["EMIData"]
 
+            emi_amt_e = []
+            paid_emi_amt_e = []
             for n,ed in enumerate(emiAPI_data):
 
                 emi_amt = ed["totalEmiAmount"]
+                emi_amt_e.append(emi_amt)
                 paid_emi_amt = ed["paidEmiAmount"]
+                paid_emi_amt_e.append(paid_emi_amt)
 
-                outs_emi = emi_amt - paid_emi_amt
+            print(f"lid::{e}")
+            print("emi_amt_l::",emi_amt_e)
+            print("paid_emi_amt_l::",paid_emi_amt_e)
 
-                if outs_emi < 5000:
-                    filling_in_progress_emi_m_5k.append(e)
 
+            emi_amt_l = sum(emi_amt_e)
+            paid_emi_amt_l = sum(paid_emi_amt_e)
 
-                print(f"lid::{e}")
-                print("emi_amt::",emi_amt)
-                print("paid_emi_amt::",paid_emi_amt)
-                print("out_emi::",outs_emi)
+            print("emi_amt_l::",emi_amt_l)
+            print("paid_emi_amt_l::",paid_emi_amt_l)
+
+            outs_emi_l = emi_amt_l - paid_emi_amt_l
+            print("outs_emi_l::", outs_emi_l)
+
+            if outs_emi_l < 5000:
+                filling_in_progress_emi_m_5k.append(e)
 
         # print("coll_emi_m_5k::",coll_emi_m_5k)
 
         filling_in_progress_emi_m_5k_drop_coll_lid = set(filling_in_progress_emi_m_5k) - set(case_lid)
 
         if len(filling_in_progress_emi_m_5k_drop_coll_lid) > 0:
-            print(f"filling_in_progress outstanding EMI amt not below 5k::{filling_in_progress_emi_m_5k_drop_coll_lid}")
+            print(f"filling_in_progress outstanding EMI amt below 5k cases not assign to collection::{filling_in_progress_emi_m_5k_drop_coll_lid}")
             assert False
         else:
-            print("*** filling_in_progress outstanding EMI amt is below 5k ***")
-
-
+            print("*** filling_in_progress outstanding EMI amt below 5k cases are assigned to collection ***")
 
