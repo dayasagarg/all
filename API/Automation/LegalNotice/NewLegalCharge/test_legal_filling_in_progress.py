@@ -33,6 +33,19 @@ class TestLegal:
     def test_filling_in_progress_to_collection(self,url):
         global paidPrincipleInterest, principleInterest, cal_less_than_70, case_lid
 
+        case_data = caseAssigned.json()["data"]["rows"]
+
+        # print("case_data::",case_data)
+
+        case_lid = []
+
+        for c in case_data:
+
+            if c["Loan ID"]:
+                case_lid.append(c["Loan ID"])
+
+        print("case_lid::",case_lid)
+
 
         filling_in_progress_lid = []
 
@@ -40,6 +53,8 @@ class TestLegal:
 
             if c["Loan ID"]:
                 filling_in_progress_lid.append(c["Loan ID"])
+
+
 
 
         filling_in_progress_emi_m_5k = []
@@ -56,7 +71,7 @@ class TestLegal:
 
                 outs_emi = emi_amt - paid_emi_amt
 
-                if outs_emi > 5000:
+                if outs_emi < 5000:
                     filling_in_progress_emi_m_5k.append(e)
 
 
@@ -67,14 +82,13 @@ class TestLegal:
 
         # print("coll_emi_m_5k::",coll_emi_m_5k)
 
-        if len(filling_in_progress_emi_m_5k) > 0:
-            print(f"filling_in_progress outstanding EMI amt not below 5k::{filling_in_progress_emi_m_5k}")
+        filling_in_progress_emi_m_5k_drop_coll_lid = set(filling_in_progress_emi_m_5k) - set(case_lid)
+
+        if len(filling_in_progress_emi_m_5k_drop_coll_lid) > 0:
+            print(f"filling_in_progress outstanding EMI amt not below 5k::{filling_in_progress_emi_m_5k_drop_coll_lid}")
             assert False
         else:
             print("*** filling_in_progress outstanding EMI amt is below 5k ***")
-
-
-
 
 
 
