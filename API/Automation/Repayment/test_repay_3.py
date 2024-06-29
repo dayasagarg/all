@@ -136,7 +136,6 @@ class TestRepayment:
 
         for m,k in enumerate(lIDs):
 
-
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": k},
                 verify=False)  # current date
@@ -158,7 +157,6 @@ class TestRepayment:
 
         totalTransAmt_n_eo = []
         for n,l in enumerate(emi_lid_eo):
-
 
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": l},

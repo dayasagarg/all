@@ -48,6 +48,7 @@ class TestLoanDisbCibil:
         #
 
         for r in disAPIData:
+
             if r["Completed loans"] < 3:
 
                 if (r["Cibil score"] < 680) & (r["Pl score"] < 680):

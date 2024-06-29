@@ -5,9 +5,10 @@
     "otp2": "5",
     "otp3": "2",
     "otp4": "5",
-    "loanID": "L-998738",
-    "loanPdf": "C:\\Users\\lendi\\OneDrive\\Desktop\\Daily_task\\loan_agreement\\June\\21-06-2024\\la1.pdf"
+    "loanID": "L-1012512",
+    "loanPdf": "C:\\Users\\lendi\\OneDrive\\Desktop\\Daily_task\\loan_agreement\\June\\29-06-2024\\la1.pdf"
   },
+
   "user2": {
     "email": "test@chinmayfinlease.com",
     "password": "Ysg@5555",
@@ -15,8 +16,8 @@
     "otp2": "5",
     "otp3": "2",
     "otp4": "5",
-    "loanID": "L-998731",
-    "loanPdf": "C:\\Users\\lendi\\OneDrive\\Desktop\\Daily_task\\loan_agreement\\June\\21-06-2024\\la2.pdf"
+    "loanID": "L-1012503",
+    "loanPdf": "C:\\Users\\lendi\\OneDrive\\Desktop\\Daily_task\\loan_agreement\\June\\29-06-2024\\la2.pdf"
   },
 
   "user3": {
@@ -26,8 +27,8 @@
     "otp2": "5",
     "otp3": "2",
     "otp4": "5",
-    "loanID": "L-998668",
-    "loanPdf": "C:\\Users\\lendi\\OneDrive\\Desktop\\Daily_task\\loan_agreement\\June\\21-06-2024\\la3.pdf"
+    "loanID": "L-1012489",
+    "loanPdf": "C:\\Users\\lendi\\OneDrive\\Desktop\\Daily_task\\loan_agreement\\June\\29-06-2024\\la3.pdf"
   },
 
   "user4": {
@@ -42,3 +43,5 @@
   }
 
 }
+
+

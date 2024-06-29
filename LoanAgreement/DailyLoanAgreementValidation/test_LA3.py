@@ -354,7 +354,7 @@ class TestDashRepo:
 
 
         '''CHARGES (All charges are non-refundable & applicable post disbursement of loan)'''
-        rmLoanAmInt = apprAmount.replace("₹ ","")
+        rmLoanAmInt = apprAmount.replace("₹","")
         rmChLoanAmInt = rmLoanAmInt.replace(",","")
         loanAmountInt = int(rmChLoanAmInt)
 

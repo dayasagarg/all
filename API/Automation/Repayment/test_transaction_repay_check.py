@@ -48,6 +48,8 @@ class TestRepayment:
                 lIDs.append(lid["Loan id"])
                 # print(i["Loan id"])
 
+        # print("lIDs::",lIDs)
+
 
     def test_transa(self):
         currentFullTime_2 = datetime.now()  # whole date
@@ -67,8 +69,10 @@ class TestRepayment:
 
         missMatchTransAmt = []
         transact_mismatch_lid = []
+        diff_tran_3 = []
 
         for n,j in enumerate(lIDs):
+
             response = requests.get(
                 "https://chinmayfinserve.com/admin-prod/admin/transaction/getTransactionDetails", params={"loanId": j},
                 verify=False)  # current date
@@ -109,6 +113,12 @@ class TestRepayment:
                         trans_ecs = t["ECS charge"]
 
                         trans_amt_pert_f = trans_prin + trans_int + trans_deffered + trans_penal + trans_fcc + trans_lc + trans_ecs
+
+                        diff_tran = trans_amt_pert_f - trans_amt
+                        # print("diff_tran",diff_tran)
+                        if diff_tran > 3 or diff_tran < -3:
+                            diff_tran_3.append(j)
+
                         # print("trans_amt_pert_f::",trans_amt_pert_f)
                         # print("trans_amt::",trans_amt)
                         # print("trans_amt::",trans_amt)
@@ -124,6 +134,8 @@ class TestRepayment:
                             print("trans_amt::",trans_amt)
                             transact_mismatch_lid.append(j)
 
+
+
                             # assert False
 
                         else:
@@ -132,10 +144,12 @@ class TestRepayment:
                             # missMatchTransAmt.append(j)
 
         # print("transact_mismatch_lid::",transact_mismatch_lid)
+        print("diff_tran_3::",diff_tran_3)
 
         if len(transact_mismatch_lid) > 0:
             print(f"Error:: transaction amount is not as per principal, interest and penalty::{set(transact_mismatch_lid)}")
             assert False
         else:
             print("*** transaction amount is as per principal, interest and penalty ***")
+
 

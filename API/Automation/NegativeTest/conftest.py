@@ -1,7 +1,7 @@
 from datetime import datetime,timedelta
-global timing
+global timin
 
-def timing(currTimeStr,prevTimeStr):
+def timin(currTimeStr, prevTimeStr):
     # global currTimeStr, prevTimeStr
     currTime = datetime.now()
     currTimeStr = datetime.strftime(currTime, "%Y-%m-%d")

@@ -182,6 +182,7 @@ class TestDashRepo:
         apprAmount = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[10]").text
         time.sleep(2)
         lSpace = apprAmount.replace(" ","")
+        # print("apprAmount::",apprAmount)
 
 
         approvedAmount = lSpace + '.00/-'
@@ -354,9 +355,12 @@ class TestDashRepo:
 
 
         '''CHARGES (All charges are non-refundable & applicable post disbursement of loan)'''
-        rmLoanAmInt = apprAmount.replace("₹ ","")
+        rmLoanAmInt = apprAmount.replace("₹","")
         rmChLoanAmInt = rmLoanAmInt.replace(",","")
+        # print("rmChLoanAmInt::", rmChLoanAmInt)
         loanAmountInt = int(rmChLoanAmInt)
+
+
 
         # #Processing Charges @6.5%
         processChargeInt = math.ceil((loanAmountInt/100) * 6.5)

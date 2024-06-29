@@ -33,3 +33,4 @@ class TestLoanTenure:
             assert False
         else:
             print("loan tenure is within 90 to 120 days")
+

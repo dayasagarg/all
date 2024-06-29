@@ -89,8 +89,8 @@ class TestLegal:
         filling_in_progress_emi_m_5k_drop_coll_lid = set(filling_in_progress_emi_m_5k) - set(case_lid)
 
         if len(filling_in_progress_emi_m_5k_drop_coll_lid) > 0:
-            print(f"filling_in_progress outstanding EMI amt below 5k cases not assign to collection::{filling_in_progress_emi_m_5k_drop_coll_lid}")
+            print(f" If outstanding EMI amt is below 5k in filling_in_progress then it not assign to collection ::{filling_in_progress_emi_m_5k_drop_coll_lid}")
             assert False
         else:
-            print("*** filling_in_progress outstanding EMI amt below 5k cases are assigned to collection ***")
+            print("*** If outstanding EMI amt is below 5k in filling_in_progress then it is assigned to collection ***")
 

@@ -40,7 +40,7 @@ print("end_date_2::", end_date_2)
 class TestLegal:
     @pytest.fixture
     def url(self):
-        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3, caseAssigned, fillingInProgress_data
+        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3, caseAssigned, fillingInProgress_data, paidCollection
         legalDemandLetter = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                          params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
                                                  "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
@@ -52,8 +52,13 @@ class TestLegal:
                                            "download": "true"})  # current date
 
         caseAssigned = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
-                                    params={"page": 1, "startDate": f"{start_3_DateStr}T10:00:00.000Z",
+                                    params={"page": 1, "startDate": f"{end_date_2}T10:00:00.000Z",
                                             "endDate": f"{end_date_2}T10:00:00.000Z", "type": 11, "adminId": 153,
+                                            "download": "true"})
+
+        paidCollection = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
+                                    params={"page": 1, "startDate": f"{end_date_2}T10:00:00.000Z",
+                                            "endDate": f"{end_date_2}T10:00:00.000Z", "type": 10, "adminId": 153,
                                             "download": "true"})
 
     #
@@ -61,10 +66,12 @@ class TestLegal:
     def test_case_assign_to_collection_1(self,url):
         global paidPrincipleInterest, principleInterest, cal_less_than_70, case_lid
         case_data = caseAssigned.json()["data"]["rows"]
+        paid_legal = paidCollection.json()["data"]["rows"]
 
         # print("case_data::",case_data)
 
         case_lid = []
+        paid_legal_lid = []
 
         perc_loanId = []
 
@@ -76,38 +83,54 @@ class TestLegal:
 
             if c["Loan ID"]:
                 case_lid.append(c["Loan ID"])
-            # print(c)
-            if c["Paid principal & interest percentage(%)"] == "100.00":
-                # print(c)
-                perc_loanId.append(c["Loan ID"])
 
-            if c["Paid principal & interest"]:
-                paidPrincipleInterest = int(c["Paid principal & interest"].replace(",", ""))
-                # print("paidPrincipleInterest::",paidPrincipleInterest)
+        print("case_lid::",case_lid)
 
-            if c["Principal & interest"]:
-                principleInterest = int(c["Principal & interest"].replace(",", ""))
-                # print("principleInterest::",principleInterest)
+        for p in paid_legal:
 
-            # print("paidPrincipleInterest::",paidPrincipleInterest)
-            # print("principleInterest::",principleInterest)
+            if p["Loan ID"]:
+                paid_legal_lid.append(p["Loan ID"])
 
-            if round((paidPrincipleInterest / principleInterest) * 100, 2) < 70.0:
-                cal_less_than_70.append(c["Loan ID"])
+        print("paid_legal_lid::",paid_legal_lid)
 
-        print("cal_less_than_70::", cal_less_than_70)
-        # print("case_lid::",case_lid)
 
-        count_perc_loanId = len(perc_loanId)
-        print("count_perc_loanId :: ", count_perc_loanId)
 
-        if count_perc_loanId > 0:
-            print(f"Error:: Paid percentage 100% found in case assigned to collection :: {perc_loanId}")
+        collection_paid_cons = []
+        collection_unpaid_cons = []
+
+        for n,i in enumerate(case_lid):
+
+            response = requests.get(
+                "https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails", params={"loanId": i},
+                verify=False)  # current date
+
+
+            '''getting EMIData data of Repayment'''
+            emiData = response.json()["data"]["EMIData"]
+            # print(emiData)
+
+            for eD in emiData:
+
+                if eD["status"] == "PAID":
+                    collection_paid_cons.append(i)
+
+                elif eD["status"] == "UNPAID":
+                    collection_unpaid_cons.append(i)
+
+        print("collection_paid_cons::",collection_paid_cons)
+        print("collection_unpaid_cons::",collection_unpaid_cons)
+
+        actual_paid = set(collection_paid_cons) - set(collection_unpaid_cons)
+
+        sub_actual_paid_and_paid_legal_lid = set(actual_paid) - set(paid_legal_lid)
+
+        if len(sub_actual_paid_and_paid_legal_lid) > 0:
+            print(f"Error:: Paid percentage 100% found in case assigned to collection :: {sub_actual_paid_and_paid_legal_lid}")
             assert False
         else:
             print("Paid percentage is below 100% in case assigned to collection")
-        #
-        # print("perc_loanId:: ",perc_loanId)
+
+
 
 
 
