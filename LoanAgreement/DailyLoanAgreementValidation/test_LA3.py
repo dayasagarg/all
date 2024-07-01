@@ -78,7 +78,7 @@ class TestDashRepo:
 
 
     def test_keyFactStatement(self, setup_teardown):
-        driver.find_element(By.ID, "mainSearch").send_keys(loanID)  # search box
+        driver.find_element(By.CSS_SELECTOR, "#mainSearch").send_keys(loanID)
         time.sleep(4)
         driver.find_element(By.ID, "master-search-name-mobile").click()  # click user
         time.sleep(4)

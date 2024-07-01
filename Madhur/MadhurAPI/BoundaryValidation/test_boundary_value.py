@@ -1,37 +1,9 @@
+
 class TestAppAmt:
-    import pytest
-    @pytest.fixture
-    def url(self):
-
-        global disAPI, disbData
-        import requests
-        from datetime import datetime,timedelta
-
-        currTime = datetime.now()
-        currTimeStr = datetime.strftime(currTime,"%Y-%m-%d")
-
-        prevTime = currTime - timedelta(days=4)
-        prevTimeStr = datetime.strftime(prevTime, "%Y-%m-%d")
-
-
-        disb_url = "https://madhurfinance.com"
-        endpoint = "/admin-prod/admin/dashboard/allDisbursedLoans"
-        params = {
-            "start_date": f"{prevTimeStr}T10:00:00.000Z",
-            "end_date": f"{currTimeStr}T10:00:00.000Z",
-            "count" : "true",
-            "page": 1,
-            "download": "false"
-        }
-
-        disAPI = requests.get(f"{disb_url}{endpoint}", params=params)
-        disbData = disAPI.json()["data"]['rows']
-        # print(disbData)
-
     def test_dis_loan_amt_lower(self, url):
 
         loanID = []
-        for d in disbData:
+        for d in url:
             # print(d)
             if d["Approved amount"] < 10000:
                 loanID.append(d["Loan ID"])
@@ -40,15 +12,15 @@ class TestAppAmt:
         count_loan = len(loanID)
 
         if count_loan > 0:
-            print(f"Error::Approved amount is below Rs.10000 found :: loanID :: {loanID}")
+            print(f"Error::Approved amount is below Rs.10 k found :: loanID :: {loanID}")
             assert False
         else:
-            print("*** Approved amount is above Rs.10000 ***")
+            print("*** Approved amount is above Rs.10 k ***")
 
-    def test_dis_loan_amt_upper(self):
+    def test_dis_loan_amt_upper(self,url):
 
         l_Id_upper = []
-        for da in disbData:
+        for da in url:
             if da["Approved amount"] > 37500:
                 l_Id_upper.append(da["Loan ID"])
 
@@ -64,7 +36,7 @@ class TestAppAmt:
     def test_emi_limit(self,url):
 
         lIdEMI = []
-        for d in disbData:
+        for d in url:
             if (d["Total EMI"] < 2 or d["Total EMI"] > 2):
                 lIdEMI.append(d["Loan ID"])
 
@@ -83,7 +55,7 @@ class TestAppAmt:
         l_id_intRate_less_77 = []
         l_id_intRate_above_1 = []
 
-        for inte in disbData:
+        for inte in url:
             if float(inte["Interest rate"].replace("%","")) < 0.077:
                 l_id_intRate_less_77.append(inte["Loan ID"])
 
@@ -111,7 +83,7 @@ class TestAppAmt:
     def test_loan_tenure(self,url):
 
         loan_id_tenure = []
-        for lt in disbData:
+        for lt in url:
             if  (lt["Loan tenure (days)"] < 42 or lt["Loan tenure (days)"] > 72):
                 loan_id_tenure.append(lt["Loan ID"])
 
@@ -119,16 +91,16 @@ class TestAppAmt:
         # print("count_l_data::",count_l_data)
 
         if count_l_data > 0:
-            print(f"Errors::loan tenure not within 42 to 71 days :: loan_id_tenure :: {loan_id_tenure}")
+            print(f"Errors::loan tenure not within 42 to 72 days :: loan_id_tenure :: {loan_id_tenure}")
             assert False
         else:
-            print("loan tenure is within 42 to 71 days")
+            print("loan tenure is within 42 to 72 days")
 
 
     def test_dis_salary_amt_lower(self, url):
 
         loanID_sal = []
-        for s in disbData:
+        for s in url:
 
             if s["Approved salary"] < 20000:
                 loanID_sal.append(s["Loan ID"])
@@ -142,10 +114,10 @@ class TestAppAmt:
         else:
             print("*** Loan rejected if Approved Salary is below Rs.20000 ***")
 
-    def test_dis_salary_amt_upper(self, url):
+    def test_dis_salary_amt_upper(self,url):
 
         loanID_sal = []
-        for s in disbData:
+        for s in url:
 
             if s["Approved salary"] > 50000:
                 loanID_sal.append(s["Loan ID"])
@@ -159,4 +131,3 @@ class TestAppAmt:
         else:
             print("*** Loan rejected/moved to chinmay if Approved Salary is above Rs.50000 ***")
         print("### Test Execution Completed ###")
-

@@ -61,6 +61,12 @@ class TestLegal:
                                             "endDate": f"{end_date_2}T10:00:00.000Z", "type": 10, "adminId": 153,
                                             "download": "true"})
 
+
+
+        # todayEmiFailedAPI = requests.get(
+        #     "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{pre_str_3}T10:00:00.000Z","end_date":f"{curr_str}T10:00:00.000Z","status":4,"page":1,"skipPageLimit":"true"})
+
+
     #
     # @pytest.mark.skip
     def test_case_assign_to_collection_1(self,url):
@@ -121,14 +127,15 @@ class TestLegal:
         print("collection_unpaid_cons::",collection_unpaid_cons)
 
         actual_paid = set(collection_paid_cons) - set(collection_unpaid_cons)
+        print("actual_paid::",actual_paid)
 
         sub_actual_paid_and_paid_legal_lid = set(actual_paid) - set(paid_legal_lid)
 
         if len(sub_actual_paid_and_paid_legal_lid) > 0:
-            print(f"Error:: Paid percentage 100% found in case assigned to collection :: {sub_actual_paid_and_paid_legal_lid}")
+            print(f"Error:: Paid percentage 100% /all emi paid found in case assigned to collection and not assigned to paid section :: {sub_actual_paid_and_paid_legal_lid}")
             assert False
         else:
-            print("Paid percentage is below 100% in case assigned to collection")
+            print("*** Paid percentage is below 100% in case assigned to collection ***")
 
 
 

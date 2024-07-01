@@ -37,11 +37,16 @@
       <change afterPath="$PROJECT_DIR$/API/Automation/Reports/Disburesement_monthly_loan_figures/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Reports/Disburesement_monthly_loan_figures/test_disb_monthly_loan_figure.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/API/Automation/Reports/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Madhur/Cibil/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Madhur/Cibil/test_cibil_disb.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Madhur/MadhurAPI/BoundaryValidation/.env" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Madhur/MadhurAPI/BoundaryValidation/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Madhur/MadhurAPI/BoundaryValidation/conftest.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Madhur/MadhurAPI/BoundaryValidation/test_boundary_value.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Madhur/MadhurAPI/Cibil/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Madhur/MadhurAPI/Cibil/test_cibil_disb.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Madhur/MadhurAPI/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Madhur/MadhurAPI/foreclose/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Madhur/MadhurAPI/foreclose/test_foreclose_m.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Madhur/__init__.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/WebApp/WebAppTest/test_web_2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
@@ -68,6 +73,7 @@
       <change beforePath="$PROJECT_DIR$/API/Automation/Repayment/test_repay_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/Repayment/test_repay_2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Automation/UnpaidStatusOfCompletedEmi/test_unpaid_of_completed_loans_automated.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Automation/UnpaidStatusOfCompletedEmi/test_unpaid_of_completed_loans_automated.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Legal/test_legal.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Legal/test_legal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Legal/test_legal_demand_noticeSent.py" beforeDir="false" afterPath="$PROJECT_DIR$/API/Legal/test_legal_demand_noticeSent.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/input.json" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/input.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py" afterDir="false" />
@@ -75,7 +81,6 @@
       <change beforePath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" beforeDir="false" afterPath="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApp/WebAppTest/test_webApplication.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/WebAppTest/test_webApplication.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/all" beforeDir="false" afterPath="$PROJECT_DIR$/all" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/all/API/Automation/NegativeTest/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/all/API/Automation/NegativeTest/conftest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +165,7 @@
     &quot;Python tests.pytest in test_emiAutoDebitLIDAutomated.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest in test_emi_transaction_total.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest in test_fcc.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.pytest in test_foreclose_m.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest in test_interest.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest in test_legal_autodebit.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest in test_legal_collection.py.executor&quot;: &quot;Run&quot;,
@@ -190,6 +196,7 @@
     &quot;Python tests.pytest in test_webApplication.py.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.pytest in test_web_2.py.executor&quot;: &quot;Run&quot;,
     &quot;Python.a.executor&quot;: &quot;Run&quot;,
+    &quot;Python.conftest.executor&quot;: &quot;Run&quot;,
     &quot;Python.legal_notice_pp.executor&quot;: &quot;Run&quot;,
     &quot;Python.sample.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -200,12 +207,47 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lendi\PycharmProjects\pythonProject\Madhur\MadhurAPI" />
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject\API\Automation\LegalNotice\NewLegalCharge" />
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject\API\Automation\Reports" />
       <recent name="C:\Users\lendi\PycharmProjects\pythonProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in test_legal_noticeSent_automated.py">
+  <component name="RunManager" selected="Python tests.pytest in test_boundary_value.py">
+    <configuration name="pytest in test_LA1.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA1.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_LA2.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/LoanAgreement/DailyLoanAgreementValidation/test_LA2.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="pytest in test_LA3.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="pythonProject" />
       <option name="ENV_FILES" value="" />
@@ -246,58 +288,24 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Madhur/Cibil" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Madhur/MadhurAPI/Cibil" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/Madhur/Cibil/test_cibil_disb.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest in test_legal_noticeSent_automated.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/LegalNotice" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/LegalNotice/test_legal_noticeSent_automated.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest in test_transaction_repay_check.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="pythonProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/API/Automation/Repayment" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/API/Automation/Repayment/test_transaction_repay_check.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/Madhur/MadhurAPI/Cibil/test_cibil_disb.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest in test_legal_noticeSent_automated.py" />
-        <item itemvalue="Python tests.pytest in test_transaction_repay_check.py" />
         <item itemvalue="Python tests.pytest in test_boundary_value.py" />
-        <item itemvalue="Python tests.pytest in test_cibil_disb.py" />
         <item itemvalue="Python tests.pytest in test_LA3.py" />
+        <item itemvalue="Python tests.pytest in test_LA2.py" />
+        <item itemvalue="Python tests.pytest in test_LA1.py" />
+        <item itemvalue="Python tests.pytest in test_cibil_disb.py" />
       </list>
     </recent_temporary>
   </component>
@@ -318,6 +326,9 @@
       <updated>1710754177561</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

@@ -243,7 +243,7 @@ class TestLegal:
         print("demand loan ids::", loanID)
         print("demand uniqLIdList::", uniqLIdListDemand)
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_NoticeSent(self, url):
         global lIdNS, missedDemandWithNotice, matchedDemandWithNotice, noticeNotSent
         countOfNoticeSent = legalNotice.json()["data"]["count"]
@@ -331,7 +331,7 @@ class TestLegal:
             print("Error:: demand letter not matched with notice menu in legal section")
         assert len(missedDemandWithNotice) == 0
 
-    @pytest.mark.skip
+    # @pytest.mark.skip
     def test_notice_not_sent(self):
         if len(noticeNotSent) > 0:
             print(f"Notice not sent found ::{noticeNotSent}")
