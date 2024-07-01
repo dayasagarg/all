@@ -30,7 +30,7 @@ class TestBounce:
         disb_date_n = datetime.strptime(disb_date, "%d-%m-%Y")
 
 
-        todayEmiFailedAPI = requests.get(
+        autoDebitFailedAPI = requests.get(
             "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{pre_str_3}T10:00:00.000Z","end_date":f"{curr_str}T10:00:00.000Z","status":4,"page":1,"skipPageLimit":"true"})
 
 
