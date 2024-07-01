@@ -69,8 +69,6 @@ class TestBounce:
                     if ed["totalBounceCharge"] > 590:
                         bounceChMissed_LId_590.append(e)
 
-                    if ed["totalBounceCharge"] < 590 and ed["totalBounceCharge"] > 0:
-                        bounceChMissed_LId_590.append(e)
 
 
         if len(bounceChMissed_LId_590) > 0:

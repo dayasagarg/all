@@ -1,30 +1,10 @@
 import math
 
-class TestLoanInterest:
-    import pytest
-    @pytest.fixture
-    def url_dis_int(self):
-        global disAPI, requests
-        import requests
-        from datetime import datetime, timedelta
-
-        curr = datetime.now()
-        curr_str = datetime.strftime(curr, "%Y-%m-%d")
-        prev = curr - timedelta(days=7)
-        pre_str = datetime.strftime(prev, "%Y-%m-%d")
-
-        disAPI = requests.get("https://chinmayfinserve.com/admin-prod/admin/dashboard/allDisbursedLoans",
-                              params={"start_date": f"{curr_str}T10:00:00.000Z",
-                                      "end_date": f"{curr_str}T10:00:00.000Z",
-                                      "page": 1, "download": "true"})
-
-
-    def test_disb_interest(self, url_dis_int):
+class TestLoanInterestMadhur:
+    def test_disb_interest_m(self, url):
         print("*** Test execution started ***")
 
-
-        disAPIData = disAPI.json()["data"]["rows"]
-
+        # print(disAPIData)
         diff_int_more = []
         diff_int_less = []
         remain = []
@@ -33,7 +13,7 @@ class TestLoanInterest:
         diff_int_less_lid = []
         remain_lid = []
 
-        for r in disAPIData:
+        for r in url:
             total_int_amt = r["Total interest amount"]
             days = r["Loan tenure (days)"]
             int_rate = float((r["Interest rate"]).replace("%",""))
@@ -67,22 +47,20 @@ class TestLoanInterest:
         print("diff_int_less_lid::", diff_int_less_lid)
         print("remain_lid::", remain_lid)
 
-
         m_3 = [i for i in diff_int_more if i > 3]
-        print("m_3::",m_3)
-
+        print("m_3::", m_3)
 
         if len(diff_int_less) > 0:
-            print("Error::Interest rate is wrong in case of negative difference::",diff_int_less)
+            print("Error::Interest rate is wrong in case of negative difference::", diff_int_less)
             assert False
         else:
             print("*** Interest rate is correct in case of negative difference ***")
 
-
         if len(m_3) > 0:
-            print("Error::Interest rate positive difference is more than Rs.3::",m_3)
+            print("Error::Interest rate positive difference is more than Rs.3::", m_3)
             assert False
         else:
             print("*** Interest rate positive difference is below Rs.3 ***")
 
         print("*** Test execution completed ***")
+

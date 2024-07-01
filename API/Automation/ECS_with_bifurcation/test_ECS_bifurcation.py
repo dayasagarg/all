@@ -198,42 +198,6 @@ class TestBounce:
 
         if len(bounceChMissed_LId_m) > 0:
             print(f"Error::bounce charge more autodebit::{bounceChMissed_LId_m}")
-            # assert False, "bounce charge more autodebit"
+            assert False, "bounce charge more autodebit"
         else:
             print("*** No bounce charge more autodebit ***")
-
-
-    def test_no_need_bounce_charg_repay_total(self, bcURL):
-        global emiRepaymentStatus_data_590
-
-        emiRepaymentStatus_data_590 = emiRepaymentStatus.json()["data"]["rows"]
-
-        emiRepaymentStatus_data_lid_590 = []
-
-        for rs in emiRepaymentStatus_data_590:
-            if (datetime.strptime(rs["Disbursement date"], "%d-%m-%Y")) > disb_date_n:
-
-                if rs["Loan ID"]:
-                    emiRepaymentStatus_data_lid_590.append(rs["Loan ID"])
-
-
-        bounceChMissed_LId_590 = []
-        for r in emiRepaymentStatus_data_lid_590:
-            emiAPI_590 = requests.get("https://chinmayfinserve.com/admin-prod/admin/loan/getEMIDetails",
-                                    params={"loanId": r}, verify=False)
-
-            emiAPI_data590 = emiAPI_590.json()["data"]["EMIData"]
-
-            for ed2 in emiAPI_data590:
-                if ed2["penaltyDays"] == 0:
-                    if (ed2["status"] == "PAID") or (ed2["status"] == "UNPAID"):
-
-                        if ed2["totalBounceCharge"] > 0:
-                            bounceChMissed_LId_590.append(r)
-
-
-        if len(bounceChMissed_LId_590) > 0:
-            print(
-                f"::bounce charge for ontime users ::{bounceChMissed_LId_590}")
-        else:
-            print("*** No bounce charge for ontime users ***")

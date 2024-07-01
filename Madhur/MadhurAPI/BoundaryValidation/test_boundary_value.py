@@ -126,8 +126,8 @@ class TestAppAmt:
         count_loan_sal = len(loanID_sal)
 
         if count_loan_sal > 0:
-            print(f"Error:: Loan accepted if Approved Salary is below Rs.50000 found :: loanID :: {loanID_sal}")
+            print(f"Error:: Loan accepted if Approved Salary is above Rs.50 k found :: loanID :: {loanID_sal}")
             assert False
         else:
-            print("*** Loan rejected/moved to chinmay if Approved Salary is above Rs.50000 ***")
+            print("*** Loan rejected/moved to chinmay if Approved Salary is above Rs.50 k ***")
         print("### Test Execution Completed ###")
