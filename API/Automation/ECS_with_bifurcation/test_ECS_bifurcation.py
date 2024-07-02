@@ -33,8 +33,6 @@ class TestBounce:
         autoDebitFailedAPI = requests.get(
             "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{pre_str_3}T10:00:00.000Z","end_date":f"{curr_str}T10:00:00.000Z","status":4,"page":1,"skipPageLimit":"true"})
 
-
-
         # autoDebitFailedAPI_daily_emi = requests.get("https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData?start_date=2024-06-20T10:00:00.000Z&end_date=2024-06-20T10:00:00.000Z&status=9&page=4")
 
         emiRepaymentStatus = requests.get(

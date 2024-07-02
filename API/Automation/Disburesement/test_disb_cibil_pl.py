@@ -19,8 +19,6 @@ class TestLoanDisbCibil:
                                       "page": 1, "download": "true"})
 
 
-
-
     def test_disb_cibil_new_user(self, url_dis_cibil):
         print("*** Test execution started ***")
         global cibil_pl_less_than_680_lid_count, cibil_pl_less_than_680_lid, cibil_pl_700_749_out_lid, cibil_pl_700_749_out_lid_count
@@ -101,6 +99,9 @@ class TestLoanDisbCibil:
                         if apprAmt_4 > apprSalary_loan_amt_cal_500_round_4:
                             cibil_pl_800_800_lid.append(r["Loan ID"])
 
+                else:
+                    print("remaining::",r)
+
                 if r["Cibil score"] > 830 & r["Pl score"] > 830:
                     if r["Approved salary"] >= 20000:
                         if float(r["Interest rate"].replace("%","")) < 0.077:
@@ -115,9 +116,6 @@ class TestLoanDisbCibil:
                         # print("apprSalary_loan_amt_cal::",apprSalary_loan_amt_cal_4)
                         # print("apprSalary_loan_amt_cal_500_round::",apprSalary_loan_amt_cal_500_round_4)
                         # print("apprAmt::", apprAmt_4)
-
-
-
 
 
         cibil_pl_less_than_680_lid_count = len(cibil_pl_less_than_680_lid)
@@ -145,8 +143,6 @@ class TestLoanDisbCibil:
         # print("cibil_pl_750_799_1_lac_out_lid_count::",cibil_pl_750_799_1_lac_out_lid_count)
         # print("cibil_pl_800_800_lid_count::",cibil_pl_800_800_lid_count)
         # print("cibil_pl_830_plus_and_prem_less_77_count_r::",cibil_pl_830_plus_and_prem_less_77_count_r)
-
-
 
 
     def test_cs_pl_less_than_680(self):
@@ -293,8 +289,6 @@ class TestLoanDisbCibil:
                             prem_more_77_r.append(s["Loan ID"])
 
 
-
-
         cibil_less_than_680_lid_count_r = len(cibil_less_than_680_lid_r)
         cibil_700_749_out_lid_count_r = len(cibil_700_749_out_lid_r)
         cibil_750_799_out_lid_count_r = len(cibil_750_799_out_lid_r)
@@ -367,6 +361,5 @@ class TestLoanDisbCibil:
         else:
             print(f"*** No premium user issue with more than 0.077/day intrest rate for repeat user ***")
 
-print("Test Execution Completed")
-
+    print("Test Execution Completed")
 

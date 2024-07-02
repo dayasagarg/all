@@ -18,7 +18,7 @@ currentDateStr_emi = datetime.strftime(currentFullTime,"%d/%m/%Y")
 print("currentDateStr_emi::",currentDateStr_emi)
 
 
-previousDate = currentDateF - timedelta(days=4)
+previousDate = currentDateF - timedelta(days=2)
 previousDateStr = datetime.strftime(previousDate,"%Y-%m-%d")
 
 previousDate_1 = currentDateF - timedelta(days=1)
@@ -126,13 +126,13 @@ class TestRepayment:
         if len(paid_0) == 0:
             print("*** No paid with 0 found ***")
         else:
-            print(f"E:: paid with 0 found::{paid_0}")
+            print(f"E:: paid with 0 found::{set(paid_0)}")
 
 
         if len(unpaid) == 0:
             print("*** No unpaid found ***")
         else:
-            print(f"Error:: unpaid found::{unpaid}")
+            print(f"Error:: unpaid found::{set(unpaid)}")
 
         assert len(unpaid) == 0
 

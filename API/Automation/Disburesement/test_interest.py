@@ -71,18 +71,22 @@ class TestLoanInterest:
         m_3 = [i for i in diff_int_more if i > 3]
         print("m_3::",m_3)
 
+        try:
+            if len(diff_int_less) > 0:
+                print("Error::Interest rate is wrong in case of negative difference::",diff_int_less)
+                assert False
+            else:
+                print("*** Interest rate is correct in case of negative difference ***")
 
-        if len(diff_int_less) > 0:
-            print("Error::Interest rate is wrong in case of negative difference::",diff_int_less)
-            assert False
-        else:
-            print("*** Interest rate is correct in case of negative difference ***")
+
+        finally:
+
+            if len(m_3) > 0:
+                print("Error::Interest rate positive difference is more than Rs.3::",m_3)
+                assert False
+            else:
+                print("*** Interest rate positive difference is below Rs.3 ***")
+
+            print("*** Test execution completed ***")
 
 
-        if len(m_3) > 0:
-            print("Error::Interest rate positive difference is more than Rs.3::",m_3)
-            assert False
-        else:
-            print("*** Interest rate positive difference is below Rs.3 ***")
-
-        print("*** Test execution completed ***")

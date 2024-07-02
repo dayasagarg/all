@@ -442,6 +442,9 @@ class TestLoanDisbCibil:
                     if apprAmt_5_r > apprSalary_loan_amt_cal_500_round_5_r:
                         cibil_more_than_830_lid_r.append(s["Loan ID"])
 
+                else:
+                    print("remaining::",s)
+
 
                     if float(s["Interest rate"].replace("%", "")) < 0.077:
                         prem_less_77_r.append(s["Loan ID"])

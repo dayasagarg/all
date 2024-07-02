@@ -63,7 +63,7 @@ class TestDashRepo:
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[2]").send_keys(otp2)  # otp
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[3]").send_keys(otp3)  # otp
         driver.find_element(By.XPATH, "//*[@id='OTP']/div/input[4]").send_keys(otp4)  # otp
-        time.sleep(17)
+        time.sleep(7)
         # element = driver.find_element(By.ID, "login-btn2") #button
         time.sleep(1)
         # driver.execute_script("arguments[0].scrollIntoView();", element)
@@ -78,8 +78,10 @@ class TestDashRepo:
 
 
     def test_keyFactStatement(self, setup_teardown):
-        driver.find_element(By.CSS_SELECTOR, "#mainSearch").send_keys(loanID)
-        time.sleep(4)
+        driver.find_element(By.XPATH, "//*[contains(text(),'EXPLORE LATER')]").click()  # popup
+        time.sleep(1)
+        driver.find_element(By.CSS_SELECTOR, "#mainSearch").send_keys(loanID)  # search box
+        time.sleep(2)
         driver.find_element(By.ID, "master-search-name-mobile").click()  # click user
         time.sleep(4)
         driver.switch_to.window(driver.window_handles[-1])
@@ -182,6 +184,7 @@ class TestDashRepo:
         apprAmount = driver.find_element(By.XPATH,"(//div//table[@id='loanDetails']//tbody[1]//tr[1]//td)[10]").text
         time.sleep(2)
         lSpace = apprAmount.replace(" ","")
+        # print("apprAmount::",apprAmount)
 
 
         approvedAmount = lSpace + '.00/-'
@@ -356,7 +359,10 @@ class TestDashRepo:
         '''CHARGES (All charges are non-refundable & applicable post disbursement of loan)'''
         rmLoanAmInt = apprAmount.replace("₹","")
         rmChLoanAmInt = rmLoanAmInt.replace(",","")
+        # print("rmChLoanAmInt::", rmChLoanAmInt)
         loanAmountInt = int(rmChLoanAmInt)
+
+
 
         # #Processing Charges @6.5%
         processChargeInt = math.ceil((loanAmountInt/100) * 6.5)
@@ -892,11 +898,12 @@ class TestDashRepo:
             except:
                 pass
 
-        otherDetails = driver.find_element(By.XPATH,"/html/body/app-root/app-layout/mat-drawer-container/mat-drawer-content/app-customer-list/div[2]/div/div[2]/app-customer-basic-details/mat-card/mat-card-content/mat-tab-group/mat-tab-header/div/div/div/div[2]/div").click()
+        otherDetails = driver.find_element(By.XPATH,"//*[contains(text(),'Other details')]").click()
         time.sleep(2)
         # gender = driver.find_element(By.ID,"gender").text
-        gender = driver.find_element(By.XPATH, "/html/body/app-root/app-layout/mat-drawer-container/mat-drawer-content/app-customer-list/div[2]/div/div[2]/app-customer-basic-details/mat-card/mat-card-content/mat-tab-group/div/mat-tab-body[2]/div/mat-card/div/div[1]/div[2]").text
-
+        # gender = driver.find_element(By.XPATH,"//*[contains(text(),'Gender')]").text
+        gender = driver.find_element(By.XPATH, "//*[text()='Gender']").text
+        time.sleep(2)
 
         if gender in eighthPage:
             print(

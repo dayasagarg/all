@@ -40,7 +40,7 @@ print("end_date_2::", end_date_2)
 class TestLegal:
     @pytest.fixture
     def url(self):
-        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3, caseAssigned, fillingInProgress_data, paidCollection
+        global legalDemandLetter, legalAutoDebit, legalNotice, legalNotice2, legalNotice3, caseAssigned, fillingInProgress_data, paidCollection, todayEmiFailedData
         legalDemandLetter = requests.get("https://chinmayfinserve.com/admin-prod/admin/legal/getAllLegalData",
                                          params={"page": 1, "startDate": f"{start_date}T10:00:00.000Z",
                                                  "endDate": f"{end_date}T10:00:00.000Z", "type": 1, "adminId": 134,
@@ -63,9 +63,10 @@ class TestLegal:
 
 
 
-        # todayEmiFailedAPI = requests.get(
-        #     "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{pre_str_3}T10:00:00.000Z","end_date":f"{curr_str}T10:00:00.000Z","status":4,"page":1,"skipPageLimit":"true"})
+        todayEmiFailed = requests.get(
+            "https://chinmayfinserve.com/admin-prod/admin/dashboard/todayAutoDebitData",params={"start_date":f"{curr_str}T10:00:00.000Z","end_date":f"{curr_str}T10:00:00.000Z","status":9,"page":1})
 
+        todayEmiFailedData = todayEmiFailed.json()["data"]["finalData"]
 
     #
     # @pytest.mark.skip
@@ -75,6 +76,7 @@ class TestLegal:
         paid_legal = paidCollection.json()["data"]["rows"]
 
         # print("case_data::",case_data)
+
 
         case_lid = []
         paid_legal_lid = []
@@ -136,8 +138,6 @@ class TestLegal:
             assert False
         else:
             print("*** Paid percentage is below 100% in case assigned to collection ***")
-
-
 
 
 
@@ -268,15 +268,18 @@ class TestLegal:
 
         # print("case_lid_in_notice", case_lid)
 
-        missedDemandWithNotice_sub_coll = set(missedDemandWithNotice)
-        # print("noticeNotSent_sub_coll::",noticeNotSent_sub_coll)
+
+        todays_failed_emi_lid = [f["Loan ID"] for f in todayEmiFailedData if f["Today's EMI status"] == "AD NOT PLACED"]
+        print("todays_failed_emi_lid::", todays_failed_emi_lid)
+
+        missedDemandWithNotice_subs_todays_failed_emi_lid = set(missedDemandWithNotice) - set(todays_failed_emi_lid)
 
 
-        if len(missedDemandWithNotice_sub_coll) == 0:
+        if len(missedDemandWithNotice_subs_todays_failed_emi_lid) == 0:
             print("*** Notice are sent ***")
         else:
-            print(f"Error:: Notice not sent cases found::{missedDemandWithNotice_sub_coll}")
-        assert len(missedDemandWithNotice_sub_coll) == 0
+            print(f"Error:: Notice not sent cases found with neglecting ad not placed ::{missedDemandWithNotice_subs_todays_failed_emi_lid}") ###
+        assert len(missedDemandWithNotice_subs_todays_failed_emi_lid) == 0
 
 
 
